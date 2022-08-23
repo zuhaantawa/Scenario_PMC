@@ -1,0 +1,1359 @@
+﻿[PMC Globals]|None||
+[PMC Code v5.4.1]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|log
+Context=None|
+Groups=Start:1
+1|FormatTime|timeNow, , yyyy-MM-dd HH:mm:ss|1|200|FormatTime||||||
+2|[Pause]||1|200|Sleep||||||
+3|[Goto]|openFile|1|0|Goto||||||
+4|[Pause]||1|200|Sleep||||||
+5|[Label]|selesai|1|0|Label||||||
+6|[Pause]||1|200|Sleep||||||
+7|FormatTime|timeEnd, , yyyy-MM-dd HH:mm:ss|1|200|FormatTime||||||
+8|[Pause]||1|200|Sleep||||||
+9|[MsgBox]|Proses Selesai|1|0|MsgBox|0|||||
+10|[Pause]||1|200|Sleep||||||
+11|FileAppend|IQC``, RoHs Data Result``, %timeNow%``, %timeEnd%`n, D:\PMC\Scenarios\1. Accounting\11. Raw Material\RAW MATERIAL\Support File\Log\Raw Material.txt|1|200|FileAppend||||||
+
+[PMC Code v5.4.1]|F7||1|Window,2,Fast,0,1,Input,-1,-1,1|1|openFile
+Context=None|
+Groups=Start:1
+1|InputBox|totalFile, Jumlah File, Masukkan Jumlah File Pada Folder Raw Material, , 200, 200|1|200|InputBox|||Input Jumlah File pada Folder Raw Material|||
+2|[Pause]||1|200|Sleep||||||
+3|InputBox|dateYear, Periode, Masukan Bulan dan Tahun`n(cth: May 2022), , 200, 200|1|200|InputBox||||||
+4|[Pause]||1|200|Sleep||||||
+5|Run|D:\PMC\Scenarios\1. Accounting\11. Raw Material\RAW MATERIAL\Support File\Trial|1|200|Run|||Open File yang akan diproses|||
+6|[Pause]||1|200|Sleep||||||
+7|[Assign Variable]|loopFile := 0|1|0|Variable|||Looping File|||
+8|[Pause]||1|200|Sleep||||||
+9|[LoopStart]|LoopStart|0|0|Loop||||||
+10|[Pause]||1|200|Sleep||||||
+011|[MsgBox]|Loop File = %loopFile%|1|0|MsgBox|0|||||
+12|[Pause]||1|200|Sleep||||||
+13|[Label]|startFile|1|0|Label||||||
+14|[Pause]||1|200|Sleep||||||
+15|Compare Variables|loopFile = %totalFile%|1|0|If_Statement||||||
+16|[Pause]||1|200|Sleep||||||
+17|[Goto]|selesai|1|0|Goto||||||
+18|[Pause]||1|200|Sleep||||||
+19|[End If]|EndIf|1|0|If_Statement||||||
+20|[Pause]||1|300|Sleep||||||
+21|WinActivate||1|333|WinActivate||Trial||||
+22|[Pause]||1|200|Sleep||||||
+23|WinMaximize||1|333|WinMaximize||Trial||||
+24|[Pause]||1|200|Sleep||||||
+25|WinWaitActive||1|333|WinWaitActive||Trial||||
+26|[Pause]||1|300|Sleep||||||
+27|Left Move & Click|1087, 247 Left, 1|1|100|Click||||||
+28|[Pause]||1|1000|Sleep|||Get File Name|||
+29|Home|{Home}|1|100|Send||||||
+30|[Pause]||1|1000|Sleep|||Get File Name|||
+31|[Text]|{Down}|1|100|SendEvent||||||
+32|[Pause]||1|1000|Sleep||||||
+33|[Assign Variable]|moveLoopFile := %loopFile%|1|0|Variable||||||
+34|[Pause]||1|300|Sleep||||||
+35|[Add Variable]|loopFile += 1|1|0|Variable||||||
+36|[Pause]||1|1000|Sleep||||||
+37|Up|{Up}|1|100|Send|||Get File Name|||
+38|[Pause]||1|1000|Sleep|||Get File Name|||
+39|[Text]|{Down %moveLoopFile%}|1|200|SendEvent||||||
+40|[Pause]||1|300|Sleep|||Get File Name|||
+41|F2|{F2}|1|100|Send|||Get File Name|||
+42|[Pause]||1|300|Sleep|||Get File Name|||
+43|Control + c|{Control Down}{c}{Control Up}|1|200|Send|||Get File Name|||
+44|[Pause]||1|300|Sleep|||Get File Name|||
+45|[Assign Variable]|fileName := %Clipboard%|1|0|Variable|||Get File Name|||
+46|[Pause]||1|200|Sleep|||Get File Name|||
+047|[MsgBox]|File Name : %fileName%|1|1|MsgBox|0||Get File Name|||
+48|[Pause]||1|200|Sleep|||Get File Name|||
+49|F2|{F2}|1|100|Send|||Get File Name|||
+50|[Pause]||1|300|Sleep|||Get File Name|||
+51|Home|{Home}|1|100|Send|||Get File Name|||
+52|[Pause]||1|300|Sleep|||Get File Name|||
+53|[Text]|{Shift Down}{Right 11}{Shift Up}|1|200|SendEvent|||Get File Name|||
+54|[Pause]||1|300|Sleep|||Get File Name|||
+55|Control + c|{Control Down}{c}{Control Up}|1|200|Send|||Get File Name|||
+56|[Pause]||1|200|Sleep|||Get File Name|||
+57|[Assign Variable]|identification := %Clipboard%|1|0|Variable|||Get File Name|||
+58|[Pause]||1|200|Sleep|||Get File Name|||
+59|Escape|{Escape}|1|100|Send|||Get File Name|||
+60|[Pause]||1|200|Sleep|||Get File Name|||
+061|[MsgBox]|File Name : %identification%|1|1|MsgBox|0||Get File Name|||
+62|[Pause]||1|200|Sleep|||Get File Name|||
+63|F2|{F2}|1|100|Send|||Get File Name|||
+64|[Pause]||1|200|Sleep||||||
+65|Right|{Right}|1|100|Send||||||
+66|[Pause]||1|200|Sleep||||||
+67|[Text]|{Shift Down}{Left 2}{Shift Up}|1|200|SendEvent||||||
+68|[Pause]||1|300|Sleep||||||
+69|Control + c|{Control Down}{c}{Control Up}|1|201|Send||||||
+70|[Pause]||1|200|Sleep||||||
+71|[Assign Variable]|fileNo := %Clipboard%|1|0|Variable|||Get File Name|||
+72|[Pause]||1|200|Sleep||||||
+73|Escape|{Escape}|1|100|Send|||Get File Name|||
+74|[Pause]||1|200|Sleep||||||
+75|Enter|{Enter}|1|100|Send|||Get File Name|||
+76|[Pause]||1|1000|Sleep||||||
+77|WinActivate||1|333|WinActivate||%fileName%.CSV - Excel||||
+78|WinWaitActive||1|333|WinWaitActive||%fileName%.CSV - Excel||||
+79|[Pause]||1|2000|Sleep||||||
+80|[Text]|{Control Down}{a}{Control Up}|1|200|SendEvent|||Copy Data from File|||
+81|[Pause]||1|500|Sleep|||Copy Data from File|||
+82|[Text]|{Control Down}{c}{Control Up}|1|200|SendEvent|||Copy Data from File|||
+83|[Pause]||1|2000|Sleep||||||
+84|[Pause]||1|500|Sleep||||||
+085|[MsgBox]|open file Pivot|1|1|MsgBox|0|||||
+86|[Pause]||1|200|Sleep||||||
+87|Run|Pivottable.xlsx, D:\PMC\Scenarios\1. Accounting\11. Raw Material\RAW MATERIAL\Support File|1|200|Run||||||
+88|[Pause]||1|500|Sleep||||||
+89|Run|Keterangan.xlsx, D:\PMC\Scenarios\1. Accounting\11. Raw Material\RAW MATERIAL\Support File|1|200|Run||||||
+90|[Pause]||1|200|Sleep||||||
+91|WinActivate||1|333|WinActivate||Pivottable.xlsx - Excel||||
+92|WinWaitActive||1|333|WinWaitActive||Pivottable.xlsx - Excel||||
+93|[Pause]||1|500|Sleep||||||
+94|goTo|_null := "Raw_file!A1"|1|0|Function||||||
+95|[Pause]||1|200|Sleep||||||
+96|[Pause]||1|200|Sleep||||||
+97|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+98|[Pause]||1|1000|Sleep||||||
+99|WinActivate||1|333|WinActivate||Pivottable.xlsx - Excel||||
+100|[Pause]||1|200|Sleep||||||
+101|goTo|_null := "Raw_file!A1"|1|0|Function||||||
+102|[Pause]||1|200|Sleep||||||
+103|Down|{Down}|1|100|Send||||||
+104|[Pause]||1|200|Sleep||||||
+105|Shift + Down|{Shift Down}{Down}{Shift Up}|1|200|Send||||||
+106|[Pause]||1|200|Sleep||||||
+107|Shift + Space|{Shift Down}{Space}{Shift Up}|1|200|Send||||||
+108|[Pause]||1|200|Sleep||||||
+109|AppsKey|{AppsKey}|1|100|Send||||||
+110|[Pause]||1|200|Sleep||||||
+111|d|{d}|1|100|Send||||||
+112|[Pause]||1|200|Sleep||||||
+113|WinActivate||1|333|WinActivate||Pivottable.xlsx - Excel||||
+114|[Pause]||1|200|Sleep||||||
+115|goTo|_null := "Pivot!A1"|1|0|Function||||||
+116|[Pause]||1|200|Sleep||||||
+117|Right|{Right}|1|100|Send||||||
+118|[Pause]||1|200|Sleep||||||
+119|forAll|_null := |1|0|Function||||||
+120|[Pause]||1|200|Sleep||||||
+121|Down|{Down}|1|100|Send||||||
+122|[Pause]||1|200|Sleep||||||
+123|forAll|_null := |1|0|Function||||||
+124|[Pause]||1|200|Sleep||||||
+125|Down|{Down}|1|100|Send||||||
+126|[Pause]||1|200|Sleep||||||
+127|forAll|_null := |1|0|Function||||||
+128|[Pause]||1|200|Sleep||||||
+129|Down|{Down}|1|100|Send||||||
+130|[Pause]||1|200|Sleep||||||
+131|forAll|_null := |1|0|Function||||||
+132|[Pause]||1|200|Sleep||||||
+133|[Text]|{Alt}{J}{T}{F}{R}|1|500|SendEvent||||||
+134|[Pause]||1|500|Sleep||||||
+135|WinActivate||1|333|WinActivate||Keterangan.xlsx - Excel||||
+136|WinWaitActive||1|333|WinWaitActive||Keterangan.xlsx - Excel||||
+137|goTo|_null := "Identifikasi!A1"|1|0|Function||||||
+138|[Pause]||1|200|Sleep||||||
+139|Control + f|{Control Down}{f}{Control Up}|1|200|Send||||||
+140|[Pause]||1|200|Sleep||||||
+141|WinActivate||1|333|WinActivate||Find and Replace||||
+142|[Pause]||1|200|Sleep||||||
+143|[Assign Variable]|Clipboard := %identification%|1|0|Variable|||Get Keterangan|||
+144|[Pause]||1|200|Sleep|||Get Keterangan|||
+145|Control + v|{Control Down}{v}{Control Up}|1|200|Send|||Get Keterangan|||
+146|[Pause]||1|200|Sleep|||Get Keterangan|||
+147|Enter|{Enter}|1|100|Send|||Get Keterangan|||
+148|[Pause]||1|200|Sleep|||Get Keterangan|||
+149|Escape|{Escape}|1|100|Send|||Get Keterangan|||
+150|[Pause]||1|200|Sleep|||Get Keterangan|||
+151|Right|{Right}|1|100|Send|||Get Keterangan|||
+152|[Pause]||1|200|Sleep|||Get Keterangan|||
+153|F2|{F2}|1|100|Send|||Get Keterangan|||
+154|[Pause]||1|200|Sleep|||Get Keterangan|||
+155|Shift + Control + Home|{Shift Down}{Control Down}{Home}{Control Up}{Shift Up}|1|200|Send|||Get Keterangan|||
+156|[Pause]||1|200|Sleep|||Get Keterangan|||
+157|Control + c|{Control Down}{c}{Control Up}|1|200|Send|||Get Keterangan|||
+158|[Pause]||1|200|Sleep||||||
+159|[Assign Variable]|keterangan := %Clipboard%|1|0|Variable|||Get Keterangan|||
+160|[Pause]||1|200|Sleep|||Get Keterangan|||
+161|Escape|{Escape}|1|100|Send||||||
+162|[Pause]||1|200|Sleep|||Get Keterangan|||
+0163|[MsgBox]|File Name : %keterangan%|1|1|MsgBox|0||Get Keterangan|||
+164|[Pause]||1|200|Sleep||||||
+165|WinActivate||1|333|WinActivate||Pivottable.xlsx - Excel||||
+166|WinWaitActive||1|333|WinWaitActive||Pivottable.xlsx - Excel||||
+0167|Shift + Up|{Shift Down}{Up}{Shift Up}|1|201|Send||||||
+168|[Pause]||1|200|Sleep||||||
+169|goTo|_null := "Pivot!A5"|1|0|Function||||||
+170|[Pause]||1|200|Sleep||||||
+171|F2|{F2}|1|100|Send||||||
+172|[Pause]||1|200|Sleep||||||
+173|[Assign Variable]|Clipboard := %keterangan%|1|0|Variable|||Get Keterangan|||
+174|[Pause]||1|200|Sleep||||||
+175|Control + v|{Control Down}{v}{Control Up}|1|200|Send|||Get Keterangan|||
+176|[Pause]||1|200|Sleep||||||
+177|Space|{Space}|1|100|Send||||||
+178|[Pause]||1|200|Sleep||||||
+179|[Assign Variable]|Clipboard := %dateYear%|1|0|Variable|||Get Keterangan|||
+180|[Pause]||1|200|Sleep||||||
+181|Control + v|{Control Down}{v}{Control Up}|1|200|Send|||Get Keterangan|||
+182|[Pause]||1|200|Sleep||||||
+183|Enter|{Enter}|1|100|Send||||||
+184|[Pause]||1|200|Sleep||||||
+185|Right|{Right}|1|100|Send||||||
+186|[Pause]||1|200|Sleep||||||
+187|Alt + Down|{Alt Down}{Down}{Alt Up}|1|201|Send||||||
+188|[Pause]||1|200|Sleep||||||
+189|Down|{Down}|7|200|Send||||||
+190|[Pause]||1|200|Sleep||||||
+191|End|{End}|1|100|Send||||||
+192|[Pause]||1|200|Sleep||||||
+193|Space|{Space}|1|100|Send||||||
+194|[Pause]||1|200|Sleep||||||
+195|Home|{Home}|1|100|Send||||||
+196|[Pause]||1|200|Sleep||||||
+197|Space|{Space}|1|100|Send||||||
+198|[Pause]||1|200|Sleep||||||
+199|Enter|{Enter}|1|100|Send||||||
+200|[Pause]||1|200|Sleep||||||
+201|WinActivate||1|333|WinActivate||Keterangan.xlsx - Excel||||
+202|WinWaitActive||1|333|WinWaitActive||Keterangan.xlsx - Excel||||
+203|goTo|_null := "Rumus!A1"|1|0|Function||||||
+204|[Pause]||1|200|Sleep||||||
+205|Control + f|{Control Down}{f}{Control Up}|1|200|Send||||||
+206|[Pause]||1|200|Sleep||||||
+207|WinActivate||1|333|WinActivate||Find and Replace||||
+208|[Pause]||1|200|Sleep||||||
+209|[Text]|Rumus|1|200|SendRaw||||||
+210|[Pause]||1|200|Sleep||||||
+211|Enter|{Enter}|1|100|Send||||||
+212|[Pause]||1|200|Sleep||||||
+213|Escape|{Escape}|1|200|Send||||||
+214|[Pause]||1|200|Sleep||||||
+215|Right|{Right}|1|100|Send||||||
+216|[Pause]||1|200|Sleep||||||
+217|[Text]|{Shift Down}{Right 3}{Shift Up}|1|200|SendEvent||||||
+218|[Pause]||1|200|Sleep||||||
+219|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+220|[Pause]||1|200|Sleep||||||
+221|[Assign Variable]|commonData := %Clipboard%|1|0|Variable||||||
+222|[Pause]||1|200|Sleep||||||
+0223|Escape|{Escape}|1|200|Send||||||
+0224|[Pause]||1|200|Sleep||||||
+0225|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+0226|[Pause]||1|200|Sleep||||||
+0227|WinActivate||1|333|WinActivate||Pivottable.xlsx - Excel||||
+0228|goTo|_null := "Pivot!A1"|1|0|Function||||||
+0229|[Pause]||1|200|Sleep||||||
+0230|Control + Down|{Control Down}{Down}{Control Up}|1|200|Send||||||
+0231|[Pause]||1|200|Sleep||||||
+0232|Down|{Down}|2|100|Send||||||
+0233|[Pause]||1|300|Sleep||||||
+0234|Right|{Right}|1|200|Send||||||
+0235|[Pause]||1|300|Sleep||||||
+0236|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+0237|[Pause]||1|200|Sleep||||||
+0238|WinActivate||1|333|WinActivate||Keterangan.xlsx - Excel||||
+0239|WinWaitActive||1|333|WinWaitActive||Keterangan.xlsx - Excel||||
+0240|[Pause]||1|200|Sleep||||||
+241|Left|{Left}|1|100|Send||||||
+242|[Pause]||1|200|Sleep||||||
+243|Right|{Right}|5|200|Send||||||
+244|[Pause]||1|200|Sleep||||||
+245|[Text]|{F2}{Shift Down}{Home}{Shift Up}|1|200|SendEvent||||||
+246|[Pause]||1|200|Sleep||||||
+247|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+248|[Pause]||1|200|Sleep||||||
+249|[Assign Variable]|rumus := %Clipboard%|1|0|Variable||||||
+250|[Pause]||1|200|Sleep||||||
+251|Enter|{Enter}|1|100|Send||||||
+252|[Pause]||1|200|Sleep||||||
+253|Up|{Up}|1|100|Send||||||
+254|[Pause]||1|200|Sleep||||||
+255|WinActivate||1|333|WinActivate||Pivottable.xlsx - Excel||||
+256|goTo|_null := "Pivot!A1"|1|0|Function||||||
+257|[Pause]||1|200|Sleep||||||
+258|Control + Down|{Control Down}{Down}{Control Up}|1|200|Send||||||
+259|[Pause]||1|200|Sleep||||||
+260|Down|{Down}|1|100|Send||||||
+261|[Pause]||1|200|Sleep||||||
+262|[Assign Variable]|Clipboard := %fileNo%|1|0|Variable||||||
+263|[Pause]||1|200|Sleep||||||
+264|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+265|[Pause]||1|200|Sleep||||||
+266|Right|{Right}|1|100|Send||||||
+267|[Pause]||1|200|Sleep||||||
+268|[Assign Variable]|Clipboard := %commonData%|1|0|Variable||||||
+269|[Pause]||1|200|Sleep||||||
+270|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+271|[Pause]||1|200|Sleep||||||
+272|Control + Right|{Control Down}{Right}{Control Up}|1|201|Send||||||
+273|[Pause]||1|200|Sleep||||||
+274|Right|{Right}|1|100|Send||||||
+275|[Pause]||1|200|Sleep||||||
+276|[Assign Variable]|Clipboard := %rumus%|1|0|Variable||||||
+277|[Pause]||1|200|Sleep||||||
+278|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+279|[Pause]||1|200|Sleep||||||
+280|Right|{Right}|1|100|Send||||||
+281|WinActivate||1|333|WinActivate||Keterangan.xlsx - Excel||||
+282|WinWaitActive||1|333|WinWaitActive||Keterangan.xlsx - Excel||||
+283|Right|{Right}|1|100|Send||||||
+284|[Pause]||1|200|Sleep||||||
+285|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+286|[Pause]||1|200|Sleep||||||
+287|[Pause]||1|200|Sleep||||||
+288|WinActivate||1|333|WinActivate||Pivottable.xlsx - Excel||||
+289|[Pause]||1|200|Sleep||||||
+290|[Pause]||1|200|Sleep||||||
+291|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+292|[Pause]||1|200|Sleep||||||
+0293|[MsgBox]|Go To Main Process|1|1|MsgBox|0|||||
+294|[Goto]|mainProcess|1|0|Goto||||||
+295|[LoopEnd]|LoopEnd|1|0|Loop|||Looping File End|||
+
+[PMC Code v5.4.1]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|mainProcess
+Context=None|
+Groups=Start:1
+1|[Assign Variable]|LoopStart := 0|1|0|Variable|||Looping Acc code Start|||
+2|[Pause]||1|100|Sleep||||||
+3|[LoopStart]|LoopStart|0|0|Loop||||||
+4|[Pause]||1|100|Sleep||||||
+05|[MsgBox]|Loop Start: %LoopStart%|1|1|MsgBox|0|||||
+6|[Pause]||1|100|Sleep||||||
+7|[Label]|changeAccCode|1|0|Label|||Label changeAccCode|||
+8|[Pause]||1|100|Sleep||||||
+9|[Label]|loopSpecial|1|0|Label||||||
+10|[Pause]||1|100|Sleep||||||
+11|WinActivate||1|333|WinActivate||Pivottable.xlsx - Excel||||
+12|[Pause]||1|200|Sleep||||||
+13|goTo|_null := "B6"|1|0|Function||||||
+14|[Pause]||1|200|Sleep||||||
+15|Alt + Down|{Alt Down}{Down}{Alt Up}|1|200|Send||||||
+16|[Pause]||1|200|Sleep||||||
+17|Down|{Down}|7|200|Send||||||
+18|[Pause]||1|200|Sleep||||||
+19|Space|{Space}|1|100|Send||||||
+20|[Pause]||1|200|Sleep||||||
+21|Down|{Down}|1|100|Send||||||
+22|[Pause]||1|200|Sleep||||||
+23|Space|{Space}|1|100|Send||||||
+24|[Pause]||1|200|Sleep||||||
+25|[Pause]||1|200|Sleep||||||
+26|Home|{Home}|1|100|Send||||||
+27|[Pause]||1|200|Sleep||||||
+28|Space|{Space}|1|100|Send||||||
+29|[Pause]||1|200|Sleep||||||
+30|Enter|{Enter}|1|100|Send||||||
+31|[Pause]||1|200|Sleep||||||
+32|goTo|_null := "B6"|1|0|Function||||||
+33|[Pause]||1|200|Sleep||||||
+34|Down|{Down}|1|100|Send||||||
+35|[Pause]||1|200|Sleep||||||
+36|[Assign Variable]|rightMove := %LoopStart%|1|0|Variable||||||
+037|[MsgBox]|%rightMove%|1|1|MsgBox|0|||||
+38|[Pause]||1|200|Sleep||||||
+39|[Text]|{Right %rightMove%}|1|200|SendEvent||||||
+40|[Pause]||1|200|Sleep||||||
+41|[Add Variable]|LoopStart += 1|1|0|Variable||||||
+42|[Pause]||1|200|Sleep||||||
+43|[Text]|{F2}{Shift Down}{Home}{Shift Up}|1|100|SendEvent||||||
+44|[Pause]||1|200|Sleep||||||
+45|Control + c|{Control Down}{c}{Control Up}|1|100|Send||||||
+46|[Pause]||1|200|Sleep||||||
+47|[Assign Variable]|accCode := %Clipboard%|1|0|Variable||||||
+48|[Pause]||1|200|Sleep||||||
+49|Escape|{Escape}|1|100|Send||||||
+50|[Pause]||1|200|Sleep||||||
+51|Compare Variables|accCode = "4230"|1|0|If_Statement||||||
+52|[Pause]||1|200|Sleep||||||
+53|whsSpecial|_null := %accCode%|1|0|Function||||||
+54|[Pause]||1|200|Sleep||||||
+55|[Goto]|loopWhsSpecial|1|0|Goto||||||
+56|[Pause]||1|200|Sleep||||||
+57|[End If]|EndIf|1|0|If_Statement||||||
+58|[Pause]||1|200|Sleep||||||
+59|Compare Variables|accCode = "4440"|1|0|If_Statement||||||
+60|[Pause]||1|200|Sleep||||||
+61|whsSpecial|_null := %accCode%|1|0|Function||||||
+62|[Pause]||1|200|Sleep||||||
+63|[Goto]|loopWhsSpecial|1|0|Goto||||||
+64|[Pause]||1|200|Sleep||||||
+65|[End If]|EndIf|1|0|If_Statement||||||
+66|[Pause]||1|200|Sleep||||||
+67|Compare Variables|accCode = "(blank)"|1|0|If_Statement||||||
+68|[Pause]||1|200|Sleep||||||
+69|WinActivate||1|333|WinActivate||Pivottable.xlsx - Excel||||
+70|[Pause]||1|200|Sleep||||||
+71|goTo|_null := "Pivot!A1"|1|0|Function||||||
+72|[Pause]||1|200|Sleep||||||
+73|Control + Down|{Control Down}{Down}{Control Up}|1|200|Send||||||
+74|[Pause]||1|200|Sleep||||||
+75|Shift + Space|{Shift Down}{Space}{Shift Up}|1|200|Send||||||
+76|[Pause]||1|200|Sleep||||||
+77|[Text]|{Alt}{h}{i}{e}|1|200|SendEvent||||||
+78|[Pause]||1|200|Sleep||||||
+79|Control + Down|{Control Down}{Down}{Control Up}|1|200|Send||||||
+80|[Pause]||1|200|Sleep||||||
+81|Right|{Right}|1|200|Send||||||
+82|[Pause]||1|200|Sleep||||||
+83|Control + Down|{Control Down}{Down}{Control Up}|1|200|Send||||||
+84|[Pause]||1|200|Sleep||||||
+85|Shift + Space|{Shift Down}{Space}{Shift Up}|1|200|Send||||||
+86|[Pause]||1|200|Sleep||||||
+87|Delete|{Delete}|1|200|Send||||||
+88|[Pause]||1|200|Sleep||||||
+89|[Text]|{Alt}{f}{a}{c}{b}|1|200|SendEvent||||||
+90|[Pause]||1|200|Sleep||||||
+91|WinActivate||1|333|WinActivate||Save As||||
+92|WinWaitActive||1|333|WinWaitActive||Save As||||
+93|[Pause]||1|200|Sleep||||||
+94|[Assign Variable]|addressFile := D:\PMC\Scenarios\1. Accounting\11. Raw Material\RAW MATERIAL\Support File\Result|1|0|Variable||||||
+95|[Pause]||1|200|Sleep||||||
+096|[MsgBox]|address : %addressFile%|1|0|MsgBox|0|||||
+97|[Pause]||1|200|Sleep||||||
+98|[Assign Variable]|Clipboard := %addressFile%|1|0|Variable||||||
+99|[Pause]||1|200|Sleep||||||
+100|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+101|[Pause]||1|200|Sleep||||||
+102|Enter|{Enter}|1|100|Send||||||
+103|[Pause]||1|200|Sleep||||||
+104|[Assign Variable]|Clipboard := %fileName%|1|0|Variable||||||
+105|[Pause]||1|200|Sleep||||||
+106|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+107|[Pause]||1|200|Sleep||||||
+108|Enter|{Enter}|1|100|Send||||||
+109|[Pause]||1|1000|Sleep||||||
+110|[MsgBox]|Closing for Files|1|2|MsgBox|0|||||
+111|WinActivate||1|333|WinActivate||%fileName%.xlsx - Excel|Close File for New File|||
+112|WinWaitActive||1|333|WinWaitActive||%fileName%.xlsx - Excel|Close File for New File|||
+113|[Pause]||1|200|Sleep|||Close File for New File|||
+114|Alt + F4|{Alt Down}{F4}{Alt Up}|1|200|Send|||Close File for New File|||
+115|[Pause]||1|1000|Sleep|||Close File for New File|||
+116|[MsgBox]|Closing for Files|1|2|MsgBox|0|||||
+117|WinActivate||1|333|WinActivate||Keterangan.xlsx - Excel|Close File for New File|||
+118|WinWaitActive||1|333|WinWaitActive||Keterangan.xlsx - Excel|Close File for New File|||
+119|[Pause]||1|200|Sleep|||Close File for New File|||
+120|Alt + F4|{Alt Down}{F4}{Alt Up}|1|200|Send|||Close File for New File|||
+121|[Pause]||1|500|Sleep|||Close File for New File|||
+122|WinActivate||1|333|WinActivate||Microsoft Excel|Close File for New File|||
+123|WinWaitActive||1|333|WinWaitActive||Microsoft Excel|Close File for New File|||
+124|[Text]|{Enter}|1|200|SendEvent|||Close File for New File|||
+125|[Pause]||1|500|Sleep|||Close File for New File|||
+126|[MsgBox]|Closing for Files|1|2|MsgBox|0|||||
+127|WinActivate||1|333|WinActivate||%fileName%.CSV - Excel|Close File for New File|||
+128|WinWaitActive||1|333|WinWaitActive||%fileName%.CSV - Excel|Close File for New File|||
+129|[Pause]||1|200|Sleep|||Close File for New File|||
+130|Alt + F4|{Alt Down}{F4}{Alt Up}|1|200|Send|||Close File for New File|||
+131|[Pause]||1|200|Sleep|||Close File for New File|||
+132|WinActivate||1|333|WinActivate||Microsoft Excel|Close File for New File|||
+133|[Pause]||1|200|Sleep|||Close File for New File|||
+134|[Text]|{Right}{Enter}|1|200|SendEvent|||Close File for New File|||
+135|[Pause]||1|200|Sleep||||||
+136|[Goto]|startFile|1|0|Goto||||||
+137|[Pause]||1|200|Sleep||||||
+138|[End If]|EndIf|1|0|If_Statement||||||
+139|[Pause]||1|200|Sleep||||||
+140|goTo|_null := "B6"|1|0|Function||||||
+141|[Pause]||1|200|Sleep||||||
+142|Alt + Down|{Alt Down}{Down}{Alt Up}|1|200|Send||||||
+143|[Pause]||1|200|Sleep||||||
+144|Down|{Down}|6|200|Send||||||
+145|[Pause]||1|200|Sleep||||||
+146|[Assign Variable]|Clipboard := %accCode%|1|0|Variable||||||
+147|[Pause]||1|200|Sleep||||||
+148|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+149|[Pause]||1|200|Sleep||||||
+150|Enter|{Enter}|1|100|Send||||||
+151|[Pause]||1|200|Sleep||||||
+152|[Label]|changeDataWhs|1|0|Label|||Label changeDataWhs|||
+153|[Pause]||1|200|Sleep||||||
+154|goTo|_null := "B1"|1|0|Function||||||
+155|[Pause]||1|200|Sleep||||||
+156|Alt + Down|{Alt Down}{Down}{Alt Up}|1|200|Send||||||
+157|[Pause]||1|200|Sleep||||||
+158|Down|{Down}|2|200|Send||||||
+159|[Pause]||1|200|Sleep||||||
+160|Enter|{Enter}|1|100|Send||||||
+161|[Pause]||1|200|Sleep||||||
+162|[Text]|{F2}{Shift Down}{Home}{Shift Up}|1|100|SendEvent||||||
+163|[Pause]||1|200|Sleep||||||
+164|Control + c|{Control Down}{c}{Control Up}|1|100|Send||||||
+165|[Pause]||1|200|Sleep||||||
+166|[Assign Variable]|whs := %Clipboard%|1|0|Variable||||||
+167|[Pause]||1|200|Sleep||||||
+168|Escape|{Escape}|1|100|Send||||||
+169|[Pause]||1|200|Sleep||||||
+170|Compare Variables|whs = "(blank)"|1|0|If_Statement||||||
+171|goTo|_null := "B1"|1|0|Function||||||
+172|forAll|_null := |1|0|Function||||||
+173|[Goto]|changeAccCode|1|0|Goto||||||
+0174|[MsgBox]|go to change Account Code|1|0|MsgBox|0|||||
+175|[End If]|EndIf|1|0|If_Statement||||||
+176|[Pause]||1|200|Sleep||||||
+177|Control + Down|{Control Down}{Down}{Control Up}|1|200|Send||||||
+178|[Pause]||1|200|Sleep||||||
+179|Down|{Down}|3|200|Send||||||
+180|[Pause]||1|200|Sleep||||||
+181|[Text]|{F2}{Shift Down}{Home}{Shift Up}|1|100|SendEvent||||||
+182|[Pause]||1|200|Sleep||||||
+183|Control + c|{Control Down}{c}{Control Up}|1|100|Send||||||
+184|[Pause]||1|200|Sleep||||||
+185|[Assign Variable]|comparasion := %Clipboard%|1|0|Variable||||||
+186|[Pause]||1|200|Sleep||||||
+187|Escape|{Escape}|1|100|Send||||||
+188|[Pause]||1|200|Sleep||||||
+189|Compare Variables|comparasion = "Grand Total"|1|0|If_Statement||||||
+190|[Pause]||1|100|Sleep||||||
+0191|[MsgBox]|go to change other WHS|1|1|MsgBox|0|||||
+192|[Pause]||1|100|Sleep||||||
+193|[Goto]|changeDataWhs|1|0|Goto||||||
+194|[Pause]||1|100|Sleep||||||
+195|[End If]|EndIf|1|0|If_Statement||||||
+196|[Pause]||1|100|Sleep||||||
+197|Down|{Down}|1|100|Send||||||
+198|[Pause]||1|200|Sleep||||||
+199|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|200|Send||||||
+200|[Pause]||1|200|Sleep||||||
+201|Shift + Up|{Shift Down}{Up}{Shift Up}|1|200|Send||||||
+202|[Pause]||1|200|Sleep||||||
+203|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+204|[Pause]||1|200|Sleep||||||
+205|[Assign Variable]|isiAmount := %Clipboard%|1|0|Variable||||||
+206|[Pause]||1|200|Sleep||||||
+207|Control + Down|{Control Down}{Down}{Control Up}|2|200|Send||||||
+208|[Pause]||1|200|Sleep||||||
+209|Right|{Right}|3|200|Send||||||
+210|[Pause]||1|200|Sleep||||||
+211|Down|{Down}|1|100|Send||||||
+212|[Pause]||1|200|Sleep||||||
+213|[Text]|{F2}{Shift Down}{Home}{Shift Up}|1|100|SendEvent||||||
+214|[Pause]||1|200|Sleep||||||
+215|Control + c|{Control Down}{c}{Control Up}|1|100|Send||||||
+216|[Pause]||1|200|Sleep||||||
+217|[Assign Variable]|itemCheck := %Clipboard%|1|0|Variable||||||
+218|[Pause]||1|200|Sleep||||||
+219|Escape|{Escape}|1|100|Send||||||
+220|[Pause]||1|200|Sleep||||||
+221|Compare Variables|itemCheck = |1|0|If_Statement||||||
+222|[Pause]||1|200|Sleep||||||
+223|Up|{Up}|1|100|Send||||||
+224|[Pause]||1|200|Sleep||||||
+225|[Assign Variable]|Clipboard := %isiAmount%|1|0|Variable||||||
+226|[Pause]||1|200|Sleep||||||
+227|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+228|[Pause]||1|200|Sleep||||||
+229|[Goto]|pasteCommonData|1|0|Goto||||||
+230|[Pause]||1|200|Sleep||||||
+231|[End If]|EndIf|1|0|If_Statement||||||
+232|[Pause]||1|200|Sleep||||||
+233|Control + Down|{Control Down}{Down}{Control Up}|1|200|Send||||||
+234|[Pause]||1|200|Sleep||||||
+235|[Assign Variable]|Clipboard := %isiAmount%|1|0|Variable||||||
+236|[Pause]||1|200|Sleep||||||
+237|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+238|[Pause]||1|200|Sleep||||||
+239|Up|{Up}|1|200|Send||||||
+240|[Pause]||1|200|Sleep||||||
+241|Down|{Down}|1|200|Send||||||
+242|[Pause]||1|200|Sleep||||||
+243|[Label]|pasteCommonData|1|0|Label|||Label pasteCommonData|||
+0244|[MsgBox]|Start Inti|1|0|MsgBox|0|||||
+245|[Pause]||1|200|Sleep||||||
+246|Left|{Left}|1|200|Send||||||
+247|[Pause]||1|200|Sleep||||||
+248|[Assign Variable]|Clipboard := %accCode%|1|0|Variable||||||
+249|[Pause]||1|200|Sleep||||||
+250|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+251|[Pause]||1|200|Sleep||||||
+252|Right|{Right}|1|200|Send||||||
+253|[Pause]||1|200|Sleep||||||
+254|Down|{Down}|1|200|Send||||||
+255|[Pause]||1|200|Sleep||||||
+256|[Text]|{F2}{Shift Down}{Home}{Shift Up}|1|100|SendEvent||||||
+257|[Pause]||1|200|Sleep||||||
+258|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+259|[Pause]||1|200|Sleep||||||
+260|[Assign Variable]|pasteRumus := %Clipboard%|1|0|Variable||||||
+261|[Pause]||1|200|Sleep||||||
+262|Escape|{Escape}|1|200|Send||||||
+263|[Pause]||1|200|Sleep||||||
+264|Up|{Up}|1|200|Send||||||
+265|[Pause]||1|200|Sleep||||||
+266|Compare Variables|pasteRumus = |1|0|If_Statement||||||
+267|[Pause]||1|200|Sleep||||||
+268|Left|{Left}|3|200|Send||||||
+269|[Pause]||1|200|Sleep||||||
+270|Down|{Down}|1|200|Send||||||
+271|[Pause]||1|200|Sleep||||||
+272|[Assign Variable]|Clipboard := %commonData%|1|0|Variable||||||
+273|[Pause]||1|200|Sleep||||||
+274|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+275|[Pause]||1|200|Sleep||||||
+276|Right|{Right}|4|200|Send||||||
+277|[Pause]||1|200|Sleep||||||
+278|[Assign Variable]|Clipboard := %rumus%|1|0|Variable||||||
+279|[Pause]||1|200|Sleep||||||
+280|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+281|[Pause]||1|200|Sleep||||||
+282|Right|{Right}|1|200|Send||||||
+283|[Pause]||1|200|Sleep||||||
+284|Up|{Up}|1|200|Send||||||
+285|[Pause]||1|200|Sleep||||||
+286|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+287|[Pause]||1|200|Sleep||||||
+288|Down|{Down}|1|200|Send||||||
+289|[Pause]||1|200|Sleep||||||
+290|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+291|[Pause]||1|200|Sleep||||||
+292|Up|{Up}|1|200|Send||||||
+293|[Pause]||1|200|Sleep||||||
+294|Shift + Left|{Shift Down}{Left}{Shift Up}|1|200|Send||||||
+295|[Pause]||1|200|Sleep||||||
+296|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+297|[Pause]||1|200|Sleep||||||
+298|[Text]|{Alt}{h}{v}{v}|1|200|SendEvent||||||
+299|[Pause]||1|300|Sleep||||||
+300|[Goto]|changeDataWhs|1|0|Goto||||||
+0301|[MsgBox]|Go to change other WSH 2|1|0|MsgBox|0|||||
+302|[Pause]||1|100|Sleep||||||
+303|[End If]|EndIf|1|0|If_Statement||||||
+304|[Pause]||1|200|Sleep||||||
+305|Control + Down|{Control Down}{Down}{Control Up}|1|200|Send||||||
+306|[Pause]||1|200|Sleep||||||
+307|Down|{Down}|1|100|Send||||||
+308|[Pause]||1|200|Sleep||||||
+309|Left|{Left}|3|200|Send||||||
+310|[Pause]||1|200|Sleep||||||
+311|[Assign Variable]|Clipboard := %commonData%|1|0|Variable||||||
+312|[Pause]||1|200|Sleep||||||
+313|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+314|[Pause]||1|200|Sleep||||||
+315|Right|{Right}|4|200|Send||||||
+316|[Pause]||1|200|Sleep||||||
+317|[Assign Variable]|Clipboard := %rumus%|1|0|Variable||||||
+318|[Pause]||1|200|Sleep||||||
+319|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+320|[Pause]||1|200|Sleep||||||
+321|Right|{Right}|1|100|Send||||||
+322|[Pause]||1|200|Sleep||||||
+323|Control + Up|{Control Down}{Up}{Control Up}|1|200|Send||||||
+324|[Pause]||1|200|Sleep||||||
+325|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+326|[Pause]||1|200|Sleep||||||
+327|Left|{Left}|1|100|Send||||||
+328|[Pause]||1|200|Sleep||||||
+329|Control + Down|{Control Down}{Down}{Control Up}|1|200|Send||||||
+330|[Pause]||1|200|Sleep||||||
+331|Right|{Right}|1|100|Send||||||
+332|[Pause]||1|200|Sleep||||||
+333|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+334|[Pause]||1|200|Sleep||||||
+335|Control + Up|{Control Down}{Up}{Control Up}|1|200|Send||||||
+336|[Pause]||1|200|Sleep||||||
+337|Left|{Left}|3|200|Send||||||
+338|[Pause]||1|200|Sleep||||||
+339|[Text]|{Shift Down}{Left 2}{Shift Up}|1|200|SendEvent||||||
+340|[Pause]||1|200|Sleep||||||
+341|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+342|[Pause]||1|200|Sleep||||||
+343|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|200|Send||||||
+344|[Pause]||1|200|Sleep||||||
+345|Shift + Up|{Shift Down}{Up}{Shift Up}|1|200|Send||||||
+346|[Pause]||1|200|Sleep||||||
+347|Enter|{Enter}|1|100|Send||||||
+348|[Pause]||1|200|Sleep||||||
+349|Up|{Up}|1|100|Send||||||
+350|[Pause]||1|200|Sleep||||||
+351|Down|{Down}|1|100|Send||||||
+352|[Pause]||1|200|Sleep||||||
+353|Right|{Right}|2|200|Send||||||
+354|[Pause]||1|200|Sleep||||||
+355|Shift + Right|{Shift Down}{Right}{Shift Up}|1|200|Send||||||
+356|[Pause]||1|200|Sleep||||||
+357|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+358|[Pause]||1|200|Sleep||||||
+359|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|200|Send||||||
+360|[Pause]||1|200|Sleep||||||
+361|Shift + Up|{Shift Down}{Up}{Shift Up}|1|200|Send||||||
+362|[Pause]||1|200|Sleep||||||
+363|Enter|{Enter}|1|100|Send||||||
+364|[Pause]||1|200|Sleep||||||
+365|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+366|[Pause]||1|200|Sleep||||||
+367|[Text]|{Alt}{h}{v}{v}|1|200|SendEvent||||||
+368|[Pause]||1|300|Sleep||||||
+0369|[MsgBox]|Start Sub|1|1|MsgBox|0|||||
+370|[Goto]|changeDataWhs|1|0|Goto||||||
+371|[LoopEnd]|LoopEnd|1|0|Loop||||||
+
+[PMC Code v5.4.1]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|loopWhsSpecial
+Context=None|
+Groups=Start:1
+01|InputBox|accCode, accCode|1|200|InputBox||||||
+02|[MsgBox]|acc Code : %accCode%|1|1|MsgBox|0|||||
+3|[Pause]||1|200|Sleep||||||
+4|WinActivate||1|333|WinActivate||Pivottable.xlsx - Excel||||
+5|[Pause]||1|200|Sleep||||||
+6|goTo|_null := "Raw_file!A1"|1|0|Function||||||
+7|[Pause]||1|200|Sleep||||||
+8|Shift + Control + Right|{Shift Down}{Control Down}{Right}{Control Up}{Shift Up}|1|200|Send||||||
+9|[Pause]||1|200|Sleep||||||
+10|[Text]|{Alt}{A}{T}|1|200|SendEvent||||||
+11|[Pause]||1|200|Sleep||||||
+12|Control + Left|{Control Down}{Left}{Control Up}|1|200|Send||||||
+13|[Pause]||1|200|Sleep||||||
+14|Right|{Right}|8|200|Send||||||
+15|[Pause]||1|200|Sleep||||||
+16|Alt + Down|{Alt Down}{Down}{Alt Up}|1|200|Send||||||
+17|[Pause]||1|200|Sleep||||||
+18|Down|{Down}|7|200|Send||||||
+19|[Pause]||1|200|Sleep||||||
+20|[Assign Variable]|Clipboard := %accCode%|1|0|Variable||||||
+21|[Pause]||1|200|Sleep||||||
+22|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+23|[Pause]||1|200|Sleep||||||
+24|Enter|{Enter}|1|100|Send||||||
+25|[Pause]||1|200|Sleep||||||
+26|Left|{Left}|5|200|Send||||||
+27|[Pause]||1|200|Sleep||||||
+28|Down|{Down}|1|100|Send||||||
+29|[Pause]||1|200|Sleep||||||
+30|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|200|Send|||toGet Jumlah Whs|||
+31|[Pause]||1|200|Sleep|||toGet Jumlah Whs|||
+32|Control + c|{Control Down}{c}{Control Up}|1|200|Send|||toGet Jumlah Whs|||
+33|[Pause]||1|200|Sleep|||toGet Jumlah Whs|||
+34|Control + Down|{Control Down}{Down}{Control Up}|1|200|Send|||toGet Jumlah Whs|||
+35|[Pause]||1|200|Sleep|||toGet Jumlah Whs|||
+36|Down|{Down}|2|200|Send|||toGet Jumlah Whs|||
+37|[Pause]||1|200|Sleep|||toGet Jumlah Whs|||
+38|Control + v|{Control Down}{v}{Control Up}|1|200|Send|||toGet Jumlah Whs|||
+39|[Pause]||1|200|Sleep|||toGet Jumlah Whs|||
+40|Control + Down|{Control Down}{Down}{Control Up}|1|200|Send|||toGet Jumlah Whs|||
+41|[Pause]||1|200|Sleep|||toGet Jumlah Whs|||
+42|Down|{Down}|1|100|Send|||toGet Jumlah Whs|||
+43|[Pause]||1|200|Sleep|||toGet Jumlah Whs|||
+44|[Text]|=sum(1/countif(|1|200|SendRaw|||toGet Jumlah Whs|||
+45|[Pause]||1|200|Sleep|||toGet Jumlah Whs|||
+46|Control + Up|{Control Down}{Up}{Control Up}|1|200|Send|||toGet Jumlah Whs|||
+47|[Pause]||1|200|Sleep|||toGet Jumlah Whs|||
+48|Shift + Control + Up|{Shift Down}{Control Down}{Up}{Control Up}{Shift Up}|1|200|Send|||toGet Jumlah Whs|||
+49|[Pause]||1|200|Sleep|||toGet Jumlah Whs|||
+50|[Text]|`,|1|200|SendRaw|||toGet Jumlah Whs|||
+51|[Pause]||1|200|Sleep|||toGet Jumlah Whs|||
+52|F2|{F2}|1|100|Send|||toGet Jumlah Whs|||
+53|[Pause]||1|200|Sleep|||toGet Jumlah Whs|||
+54|Left|{Left}|1|100|Send|||toGet Jumlah Whs|||
+55|[Pause]||1|200|Sleep|||toGet Jumlah Whs|||
+56|[Text]|{Shift Down}{Control Down}{Left 2}{Shift Up}{Control Up}|1|200|SendEvent|||toGet Jumlah Whs|||
+57|[Pause]||1|200|Sleep|||toGet Jumlah Whs|||
+58|Control + c|{Control Down}{c}{Control Up}|1|200|Send|||toGet Jumlah Whs|||
+59|[Pause]||1|200|Sleep|||toGet Jumlah Whs|||
+60|[Text]|{Control Down}{Right 2}{Control Up}|1|200|SendEvent|||toGet Jumlah Whs|||
+61|[Pause]||1|200|Sleep|||toGet Jumlah Whs|||
+62|Control + v|{Control Down}{v}{Control Up}|1|200|Send|||toGet Jumlah Whs|||
+63|[Pause]||1|200|Sleep|||toGet Jumlah Whs|||
+64|[Text]|))|1|200|SendRaw|||toGet Jumlah Whs|||
+65|[Pause]||1|200|Sleep|||toGet Jumlah Whs|||
+66|Shift + Control + Enter|{Shift Down}{Control Down}{Enter}{Control Up}{Shift Up}|1|200|Send|||toGet Jumlah Whs|||
+67|[Pause]||1|200|Sleep|||toGet Jumlah Whs|||
+68|Control + c|{Control Down}{c}{Control Up}|1|200|Send|||toGet Jumlah Whs|||
+69|[Pause]||1|200|Sleep|||toGet Jumlah Whs|||
+70|[Text]|{Alt}{h}{v}{v}|1|200|SendEvent|||toGet Jumlah Whs|||
+71|[Pause]||1|300|Sleep|||toGet Jumlah Whs|||
+72|[Text]|{F2}{Shift Down}{Home}{Shift Up}|1|200|SendEvent|||toGet Jumlah Whs|||
+73|[Pause]||1|200|Sleep|||toGet Jumlah Whs|||
+74|Control + c|{Control Down}{c}{Control Up}|1|200|Send|||toGet Jumlah Whs|||
+75|[Pause]||1|200|Sleep|||toGet Jumlah Whs|||
+76|[Assign Variable]|qtyWhs := %Clipboard%|1|0|Variable|||toGet Jumlah Whs|||
+77|[Pause]||1|200|Sleep|||toGet Jumlah Whs|||
+078|[MsgBox]|%qtyWhs%|1|1|MsgBox|0||toGet Jumlah Whs|||
+79|[Pause]||1|200|Sleep|||toGet Jumlah Whs|||
+80|Escape|{Escape}|1|100|Send|||toGet Jumlah Whs|||
+81|[Pause]||1|200|Sleep|||toGet Jumlah Whs|||
+082|[MsgBox]|qty Whs = %qtyWhs%|1|0|MsgBox|0|||||
+83|[Pause]||1|200|Sleep||||||
+84|Shift + Control + Up|{Shift Down}{Control Down}{Up}{Control Up}{Shift Up}|1|200|Send|||toGet Jumlah Whs|||
+85|[Pause]||1|200|Sleep|||toGet Jumlah Whs|||
+86|Delete|{Delete}|1|100|Send|||toGet Jumlah Whs|||
+87|[Pause]||1|200|Sleep|||toGet Jumlah Whs|||
+88|Control + Up|{Control Down}{Up}{Control Up}|2|200|Send|||toGet Jumlah Whs|||
+89|[Pause]||1|200|Sleep||||||
+90|Alt + Down|{Alt Down}{Down}{Alt Up}|1|200|Send||||||
+91|[Pause]||1|200|Sleep||||||
+92|Down|{Down}|8|200|Send||||||
+93|[Pause]||1|200|Sleep||||||
+94|Space|{Space}|1|100|Send||||||
+95|[Pause]||1|200|Sleep||||||
+96|Down|{Down}|1|100|Send||||||
+97|[Pause]||1|200|Sleep||||||
+98|Space|{Space}|1|100|Send||||||
+99|[Pause]||1|200|Sleep||||||
+100|Enter|{Enter}|1|100|Send||||||
+101|[Pause]||1|200|Sleep||||||
+102|[Assign Variable]|moveDownTo := 0|1|0|Variable||||||
+103|[Pause]||1|200|Sleep||||||
+104|[LoopStart]|LoopStart|0|0|Loop||||0xFFFF00||
+0105|[MsgBox]|move down to = %moveDownTo%|1|0|MsgBox|0|||0xFFFF00||
+106|[Pause]||1|100|Sleep||||||
+107|[Label]|loopSpecialWhs|1|0|Label|||loopSpecialWhs|0xFFFF00||
+108|[Pause]||1|200|Sleep||||0xFFFF00||
+109|Compare Variables|moveDownTo = %qtyWhs%|1|0|If_Statement||||0xFFFF00||
+110|[Pause]||1|200|Sleep||||0xFFFF00||
+111|[Text]|{Alt}{A}{T}|1|200|SendEvent||||0xFFFF00||
+112|[Pause]||1|200|Sleep||||0xFFFF00||
+113|goTo|_null := "Pivot!A1"|1|0|Function||||0xFFFF00||
+114|[Pause]||1|200|Sleep||||0xFFFF00||
+115|goTo|_null := "B1"|1|0|Function||||||
+116|[Pause]||1|200|Sleep||||||
+117|forAll|_null := |1|0|Function||||||
+118|[Pause]||1|200|Sleep||||||
+119|goTo|_null := "B3"|1|0|Function||||||
+120|[Pause]||1|200|Sleep||||||
+121|forAll|_null := |1|0|Function||||||
+122|[Pause]||1|200|Sleep||||||
+123|[Goto]|loopSpecial|1|0|Goto||||||
+124|[Pause]||1|200|Sleep||||||
+0125|[MsgBox]|Stop Looping WHS|1|1|MsgBox|0|||||
+126|[End If]|EndIf|1|0|If_Statement||||||
+127|[Pause]||1|200|Sleep||||||
+128|Alt + Down|{Alt Down}{Down}{Alt Up}|1|200|Send||||||
+129|[Pause]||1|200|Sleep||||||
+130|Down|{Down}|8|200|Send||||||
+131|[Pause]||1|200|Sleep||||||
+132|Space|{Space}|1|100|Send||||||
+133|[Pause]||1|200|Sleep||||||
+134|Enter|{Enter}|1|100|Send||||||
+135|[Pause]||1|200|Sleep||||||
+136|Alt + Down|{Alt Down}{Down}{Alt Up}|1|200|Send||||||
+137|[Pause]||1|200|Sleep||||||
+138|Down|{Down}|8|200|Send||||||
+139|[Pause]||1|200|Sleep||||||
+140|Space|{Space}|1|100|Send||||||
+141|[Pause]||1|200|Sleep||||||
+142|[Assign Variable]|downTo := %moveDownTo%|1|0|Variable||||||
+143|[Pause]||1|200|Sleep||||||
+144|[Text]|{Down %downTo%}|1|200|SendEvent||||||
+145|[Pause]||1|200|Sleep||||||
+146|Down|{Down}|1|100|Send||||||
+147|[Pause]||1|200|Sleep||||||
+148|Space|{Space}|1|100|Send||||||
+149|[Pause]||1|200|Sleep||||||
+150|Enter|{Enter}|1|100|Send||||||
+151|[Pause]||1|200|Sleep||||||
+152|Down|{Down}|1|100|Send||||||
+153|[Pause]||1|200|Sleep||||||
+154|[Text]|{F2}{Shift Down}{Home}{Shift Up}|1|200|SendEvent||||||
+155|[Pause]||1|200|Sleep||||||
+156|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+157|[Pause]||1|200|Sleep||||||
+158|[Assign Variable]|whsSpecial := %Clipboard%|1|0|Variable||||||
+159|[Pause]||1|200|Sleep||||||
+160|Escape|{Escape}|1|100|Send||||||
+161|[Pause]||1|200|Sleep||||||
+162|[Add Variable]|moveDownTo += 1|1|0|Variable||||||
+163|[Pause]||1|200|Sleep||||||
+164|Up|{Up}|1|100|Send||||||
+165|[Pause]||1|200|Sleep||||||
+166|Right|{Right}|10|200|Send|||toGet Jumlah Work|||
+167|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+168|Down|{Down}|1|100|Send|||toGet Jumlah Work|||
+169|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+170|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|200|Send|||toGet Jumlah Work|||
+171|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+172|Control + c|{Control Down}{c}{Control Up}|1|200|Send|||toGet Jumlah Work|||
+173|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+174|Control + Down|{Control Down}{Down}{Control Up}|1|200|Send|||toGet Jumlah Work|||
+175|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+176|Down|{Down}|2|200|Send|||toGet Jumlah Work|||
+177|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+178|Control + v|{Control Down}{v}{Control Up}|1|200|Send|||toGet Jumlah Work|||
+179|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+180|Control + Down|{Control Down}{Down}{Control Up}|1|200|Send|||toGet Jumlah Work|||
+181|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+182|Down|{Down}|1|100|Send|||toGet Jumlah Work|||
+183|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+184|[Text]|=sum(1/countif(|1|200|SendRaw|||toGet Jumlah Work|||
+185|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+186|Control + Up|{Control Down}{Up}{Control Up}|1|200|Send|||toGet Jumlah Work|||
+187|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+188|Shift + Control + Up|{Shift Down}{Control Down}{Up}{Control Up}{Shift Up}|1|200|Send|||toGet Jumlah Work|||
+189|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+190|[Text]|`,|1|200|SendRaw|||toGet Jumlah Work|||
+191|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+192|F2|{F2}|1|100|Send|||toGet Jumlah Work|||
+193|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+194|Left|{Left}|1|100|Send|||toGet Jumlah Work|||
+195|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+196|[Text]|{Shift Down}{Control Down}{Left 2}{Shift Up}{Control Up}|1|200|SendEvent|||toGet Jumlah Work|||
+197|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+198|Control + c|{Control Down}{c}{Control Up}|1|200|Send|||toGet Jumlah Work|||
+199|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+200|[Text]|{Control Down}{Right 2}{Control Up}|1|200|SendEvent|||toGet Jumlah Work|||
+201|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+202|Control + v|{Control Down}{v}{Control Up}|1|200|Send|||toGet Jumlah Work|||
+203|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+204|[Text]|))|1|200|SendRaw|||toGet Jumlah Work|||
+205|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+206|Shift + Control + Enter|{Shift Down}{Control Down}{Enter}{Control Up}{Shift Up}|1|200|Send|||toGet Jumlah Work|||
+207|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+0208|Up|{Up}|1|200|Send|||toGet Jumlah Work|||
+209|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+210|Control + c|{Control Down}{c}{Control Up}|1|200|Send|||toGet Jumlah Work|||
+211|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+212|[Text]|{Alt}{h}{v}{v}|1|200|SendEvent|||toGet Jumlah Work|||
+213|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+214|[Text]|{F2}{Shift Down}{Home}{Shift Up}|1|200|SendEvent|||toGet Jumlah Work|||
+215|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+216|Control + c|{Control Down}{c}{Control Up}|1|200|Send|||toGet Jumlah Work|||
+217|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+218|[Assign Variable]|qtyWork := %Clipboard%|1|0|Variable|||toGet Jumlah Work|||
+219|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+0220|[MsgBox]|%qtyWork%|1|1|MsgBox|0||toGet Jumlah Work|||
+221|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+222|Escape|{Escape}|1|200|Send|||toGet Jumlah Work|||
+223|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+224|Shift + Control + Up|{Shift Down}{Control Down}{Up}{Control Up}{Shift Up}|1|200|Send|||toGet Jumlah Work|||
+225|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+226|Delete|{Delete}|1|100|Send|||toGet Jumlah Work|||
+227|[Pause]||1|200|Sleep|||toGet Jumlah Work|||
+228|Control + Up|{Control Down}{Up}{Control Up}|2|200|Send|||toGet Jumlah Work|||
+229|[Pause]||1|200|Sleep||||||
+230|[Goto]|loopWork|1|0|Goto||||||
+231|[Pause]||1|200|Sleep||||||
+232|[LoopEnd]|LoopEnd|1|0|Loop||||||
+
+[PMC Code v5.4.1]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|loopWork
+Context=None|
+Groups=Start:1
+01|InputBox|itemMoveDown, Total Down|1|200|InputBox||||||
+02|InputBox|whsSpecial, WHS Special|1|200|InputBox||||||
+03|InputBox|accCode, Acc Code|1|200|InputBox||||||
+4|goTo|_null := "Raw_file!N1"|1|0|Function||||||
+5|[Pause]||1|200|Sleep||||||
+6|Alt + Down|{Alt Down}{Down}{Alt Up}|1|200|Send||||||
+7|[Pause]||1|200|Sleep||||||
+8|Down|{Down}|8|200|Send||||||
+9|[Pause]||1|200|Sleep||||||
+10|Space|{Space}|1|100|Send||||||
+11|[Pause]||1|200|Sleep||||||
+12|Down|{Down}|1|100|Send||||||
+13|[Pause]||1|200|Sleep||||||
+14|Space|{Space}|1|100|Send||||||
+15|[Pause]||1|200|Sleep||||||
+16|Enter|{Enter}|1|100|Send||||||
+17|[Pause]||1|200|Sleep||||||
+18|[Assign Variable]|moveDown := 0|1|0|Variable||||||
+19|[Pause]||1|100|Sleep||||||
+20|[LoopStart]|LoopStart|0|0|Loop||||||
+21|[Pause]||1|100|Sleep||||||
+22|[Label]|startLoopingSpecial|1|0|Label||||||
+23|[Pause]||1|200|Sleep||||||
+24|goTo|_null := "Raw_file!N1"|1|0|Function||||||
+25|[Pause]||1|200|Sleep||||||
+026|[MsgBox]|%moveDown%|1|1|MsgBox|0|||||
+27|[Pause]||1|200|Sleep||||||
+28|Compare Variables|moveDown = %qtyWork%|1|0|If_Statement||||||
+29|[Pause]||1|200|Sleep||||||
+30|Alt + Down|{Alt Down}{Down}{Alt Up}|1|200|Send||||||
+31|[Pause]||1|200|Sleep||||||
+32|Down|{Down}|8|200|Send||||||
+33|[Pause]||1|200|Sleep||||||
+34|End|{End}|1|100|Send||||||
+35|[Pause]||1|200|Sleep||||||
+36|Space|{Space}|1|100|Send||||||
+37|[Pause]||1|200|Sleep||||||
+38|Home|{Home}|1|100|Send||||||
+39|[Pause]||1|200|Sleep||||||
+40|Space|{Space}|1|100|Send||||||
+41|[Pause]||1|200|Sleep||||||
+42|Enter|{Enter}|1|100|Send||||||
+43|[Pause]||1|200|Sleep||||||
+44|Left|{Left}|10|200|Send||||||
+45|[Pause]||1|200|Sleep||||||
+046|[MsgBox]|Stop|1|1|MsgBox|0|||||
+47|[Goto]|loopSpecialWhs|1|0|Goto||||||
+48|[Pause]||1|200|Sleep||||||
+49|[Pause]||1|200|Sleep||||||
+50|[End If]|EndIf|1|0|If_Statement||||||
+51|[Pause]||1|200|Sleep||||||
+52|Alt + Down|{Alt Down}{Down}{Alt Up}|1|200|Send||||||
+53|[Pause]||1|200|Sleep||||||
+54|Down|{Down}|8|200|Send||||||
+55|[Pause]||1|200|Sleep||||||
+56|Space|{Space}|1|100|Send||||||
+57|[Pause]||1|200|Sleep||||||
+58|Enter|{Enter}|1|100|Send||||||
+59|[Pause]||1|200|Sleep||||||
+60|Alt + Down|{Alt Down}{Down}{Alt Up}|1|200|Send||||||
+61|[Pause]||1|200|Sleep||||||
+62|Down|{Down}|8|200|Send||||||
+63|[Pause]||1|200|Sleep||||||
+64|Space|{Space}|1|100|Send||||||
+65|[Pause]||1|200|Sleep||||||
+66|[Assign Variable]|moveToDown := %moveDown%|1|0|Variable||||||
+67|[Pause]||1|200|Sleep||||||
+68|[Text]|{Down %moveToDown%}|1|200|SendEvent||||||
+69|[Pause]||1|200|Sleep||||||
+70|Down|{Down}|1|100|Send||||||
+71|[Pause]||1|200|Sleep||||||
+72|Space|{Space}|1|100|Send||||||
+73|[Pause]||1|200|Sleep||||||
+74|Enter|{Enter}|1|100|Send||||||
+75|[Pause]||1|200|Sleep||||||
+76|Down|{Down}|1|100|Send||||||
+77|[Pause]||1|200|Sleep||||||
+78|[Text]|{F2}{Shift Down}{Home}{Shift Up}|1|200|SendEvent||||||
+79|[Pause]||1|200|Sleep||||||
+80|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+81|[Pause]||1|200|Sleep||||||
+82|[Assign Variable]|specialWork := %Clipboard%|1|0|Variable||||||
+83|[Pause]||1|200|Sleep||||||
+84|Escape|{Escape}|1|100|Send||||||
+85|[Pause]||1|200|Sleep||||||
+86|[Add Variable]|moveDown += 1|1|0|Variable||||||
+87|[Pause]||1|200|Sleep||||||
+88|Up|{Up}|1|100|Send||||||
+89|[Pause]||1|200|Sleep||||||
+90|goTo|_null := "Pivot!B1"|1|0|Function||||||
+91|[Pause]||1|200|Sleep||||||
+92|forAll|_null := |1|0|Function||||||
+93|[Pause]||1|200|Sleep||||||
+94|Alt + Down|{Alt Down}{Down}{Alt Up}|1|200|Send||||||
+95|[Pause]||1|200|Sleep||||||
+96|[Assign Variable]|Clipboard := %whsSpecial%|1|0|Variable||||||
+97|[Pause]||1|200|Sleep||||||
+98|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+99|[Pause]||1|200|Sleep||||||
+100|Enter|{Enter}|1|100|Send||||||
+101|[Pause]||1|200|Sleep||||||
+102|Down|{Down}|2|200|Send||||||
+103|[Pause]||1|200|Sleep||||||
+104|forAll|_null := |1|0|Function||||||
+105|[Pause]||1|200|Sleep||||||
+106|Alt + Down|{Alt Down}{Down}{Alt Up}|1|200|Send||||||
+107|[Pause]||1|200|Sleep||||||
+108|[Assign Variable]|Clipboard := %specialWork%|1|0|Variable||||||
+109|[Pause]||1|200|Sleep||||||
+110|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+111|[Pause]||1|200|Sleep||||||
+112|Enter|{Enter}|1|100|Send||||||
+113|[Pause]||1|200|Sleep||||||
+114|Down|{Down}|1|100|Send||||||
+115|[Pause]||1|200|Sleep||||||
+116|Control + Down|{Control Down}{Down}{Control Up}|1|200|Send||||||
+117|[Pause]||1|200|Sleep||||||
+118|Down|{Down}|1|100|Send||||||
+119|[Pause]||1|200|Sleep||||||
+120|[Text]|{F2}{Shift Down}{Home}{Shift Up}|1|200|SendEvent||||||
+121|[Pause]||1|200|Sleep||||||
+122|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+123|[Pause]||1|200|Sleep||||||
+124|[Assign Variable]|comparasionSpecial := %Clipboard%|1|0|Variable||||||
+125|[Pause]||1|200|Sleep||||||
+126|Escape|{Escape}|1|100|Send||||||
+127|[Pause]||1|200|Sleep||||||
+128|Compare Variables|comparasionSpecial = "Grand Total"|1|0|If_Statement||||||
+0129|[MsgBox]|go to change other WORK|1|1|MsgBox|0|||||
+130|[End If]|EndIf|1|0|If_Statement||||||
+131|[Pause]||1|200|Sleep||||||
+132|Down|{Down}|1|100|Send||||||
+133|[Pause]||1|200|Sleep||||||
+134|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|200|Send||||||
+135|[Pause]||1|200|Sleep||||||
+136|Shift + Up|{Shift Down}{Up}{Shift Up}|1|200|Send||||||
+137|[Pause]||1|200|Sleep||||||
+138|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+139|[Pause]||1|200|Sleep||||||
+140|[Assign Variable]|isiAmount := %Clipboard%|1|0|Variable||||||
+141|[Pause]||1|200|Sleep||||||
+142|Control + Down|{Control Down}{Down}{Control Up}|2|200|Send||||||
+143|[Pause]||1|200|Sleep||||||
+144|Right|{Right}|3|200|Send||||||
+145|[Pause]||1|200|Sleep||||||
+146|Down|{Down}|1|100|Send||||||
+147|[Pause]||1|200|Sleep||||||
+148|[Text]|{F2}{Shift Down}{Home}{Shift Up}|1|200|SendEvent||||||
+149|[Pause]||1|200|Sleep||||||
+150|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+151|[Pause]||1|200|Sleep||||||
+152|[Assign Variable]|itemCheck := %Clipboard%|1|0|Variable||||||
+153|[Pause]||1|200|Sleep||||||
+154|Escape|{Escape}|1|100|Send||||||
+155|[Pause]||1|200|Sleep||||||
+156|Compare Variables|itemCheck = |1|0|If_Statement||||||
+157|[Pause]||1|200|Sleep||||||
+158|Up|{Up}|1|100|Send||||||
+159|[Pause]||1|200|Sleep||||||
+160|[Assign Variable]|Clipboard := %isiAmount%|1|0|Variable||||||
+161|[Pause]||1|200|Sleep||||||
+162|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+163|[Pause]||1|200|Sleep||||||
+164|[Goto]|pasteCommonSpecial|1|0|Goto||||||
+165|[Pause]||1|200|Sleep||||||
+166|[End If]|EndIf|1|0|If_Statement||||||
+167|[Pause]||1|200|Sleep||||||
+168|Control + Down|{Control Down}{Down}{Control Up}|1|200|Send||||||
+169|[Pause]||1|200|Sleep||||||
+170|[Assign Variable]|Clipboard := %isiAmount%|1|0|Variable||||||
+171|[Pause]||1|200|Sleep||||||
+172|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+173|[Pause]||1|200|Sleep||||||
+174|Up|{Up}|1|100|Send||||||
+175|[Pause]||1|200|Sleep||||||
+176|Down|{Down}|1|100|Send||||||
+177|[Pause]||1|200|Sleep||||||
+178|[Label]|pasteCommonSpecial|1|0|Label|||Label pasteCommonSpecial|||
+0179|[MsgBox]|Start Inti|1|0|MsgBox|0|||||
+180|[Pause]||1|200|Sleep||||||
+181|Left|{Left}|1|100|Send||||||
+182|[Pause]||1|200|Sleep||||||
+183|[Assign Variable]|Clipboard := %accCode%|1|0|Variable||||||
+184|[Pause]||1|200|Sleep||||||
+185|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+186|[Pause]||1|200|Sleep||||||
+187|Right|{Right}|1|100|Send||||||
+188|[Pause]||1|200|Sleep||||||
+189|Down|{Down}|1|100|Send||||||
+190|[Pause]||1|200|Sleep||||||
+191|[Text]|{F2}{Shift Down}{Home}{Shift Up}|1|200|SendEvent||||||
+192|[Pause]||1|200|Sleep||||||
+193|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+194|[Pause]||1|200|Sleep||||||
+195|[Assign Variable]|pasteRumus := %Clipboard%|1|0|Variable||||||
+196|[Pause]||1|200|Sleep||||||
+197|Escape|{Escape}|1|100|Send||||||
+198|[Pause]||1|200|Sleep||||||
+199|Up|{Up}|1|100|Send||||||
+200|[Pause]||1|200|Sleep||||||
+201|Compare Variables|pasteRumus = |1|0|If_Statement||||||
+202|[Pause]||1|200|Sleep||||||
+203|Left|{Left}|3|200|Send||||||
+204|[Pause]||1|200|Sleep||||||
+205|Down|{Down}|1|100|Send||||||
+206|[Pause]||1|200|Sleep||||||
+207|[Assign Variable]|Clipboard := %commonData%|1|0|Variable||||||
+208|[Pause]||1|200|Sleep||||||
+209|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+210|[Pause]||1|200|Sleep||||||
+211|Right|{Right}|4|200|Send||||||
+212|[Pause]||1|200|Sleep||||||
+213|[Assign Variable]|Clipboard := %rumus%|1|0|Variable||||||
+214|[Pause]||1|200|Sleep||||||
+215|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+216|[Pause]||1|200|Sleep||||||
+217|Right|{Right}|1|100|Send||||||
+218|[Pause]||1|200|Sleep||||||
+219|Up|{Up}|1|100|Send||||||
+220|[Pause]||1|200|Sleep||||||
+221|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+222|[Pause]||1|200|Sleep||||||
+223|Down|{Down}|1|100|Send||||||
+224|[Pause]||1|200|Sleep||||||
+225|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+226|[Pause]||1|200|Sleep||||||
+227|Up|{Up}|1|100|Send||||||
+228|[Pause]||1|200|Sleep||||||
+229|Shift + Left|{Shift Down}{Left}{Shift Up}|1|200|Send||||||
+230|[Pause]||1|200|Sleep||||||
+231|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+232|[Pause]||1|200|Sleep||||||
+233|[Text]|{Alt}{h}{v}{v}|1|200|SendEvent||||||
+234|[Pause]||1|200|Sleep||||||
+0235|[MsgBox]|Go to change other WSH 2|1|0|MsgBox|0|||||
+236|[Goto]|startLoopingSpecial|1|0|Goto||||||
+237|[End If]|EndIf|1|0|If_Statement||||||
+238|[Pause]||1|200|Sleep||||||
+239|Control + Down|{Control Down}{Down}{Control Up}|1|200|Send||||||
+240|[Pause]||1|200|Sleep||||||
+241|Down|{Down}|1|100|Send||||||
+242|[Pause]||1|200|Sleep||||||
+243|Left|{Left}|3|200|Send||||||
+244|[Pause]||1|200|Sleep||||||
+245|[Assign Variable]|Clipboard := %commonData%|1|0|Variable||||||
+246|[Pause]||1|200|Sleep||||||
+247|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+248|[Pause]||1|200|Sleep||||||
+249|Right|{Right}|4|200|Send||||||
+250|[Pause]||1|200|Sleep||||||
+251|[Assign Variable]|Clipboard := %rumus%|1|0|Variable||||||
+252|[Pause]||1|200|Sleep||||||
+253|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+254|[Pause]||1|200|Sleep||||||
+255|Right|{Right}|1|100|Send||||||
+256|[Pause]||1|200|Sleep||||||
+257|Control + Up|{Control Down}{Up}{Control Up}|1|200|Send||||||
+258|[Pause]||1|200|Sleep||||||
+259|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+260|[Pause]||1|200|Sleep||||||
+261|Left|{Left}|1|100|Send||||||
+262|[Pause]||1|200|Sleep||||||
+263|Control + Down|{Control Down}{Down}{Control Up}|1|200|Send||||||
+264|[Pause]||1|200|Sleep||||||
+265|Right|{Right}|1|100|Send||||||
+266|[Pause]||1|200|Sleep||||||
+267|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+268|[Pause]||1|200|Sleep||||||
+269|Control + Up|{Control Down}{Up}{Control Up}|1|200|Send||||||
+270|[Pause]||1|200|Sleep||||||
+271|Left|{Left}|3|200|Send||||||
+272|[Pause]||1|200|Sleep||||||
+273|[Text]|{Shift Down}{Left 2}{Shift Up}|1|200|SendEvent||||||
+274|[Pause]||1|200|Sleep||||||
+275|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+276|[Pause]||1|200|Sleep||||||
+277|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|200|Send||||||
+278|[Pause]||1|200|Sleep||||||
+279|Shift + Up|{Shift Down}{Up}{Shift Up}|1|200|Send||||||
+280|[Pause]||1|200|Sleep||||||
+281|Enter|{Enter}|1|100|Send||||||
+282|[Pause]||1|200|Sleep||||||
+283|Up|{Up}|1|100|Send||||||
+284|[Pause]||1|200|Sleep||||||
+285|Down|{Down}|1|100|Send||||||
+286|[Pause]||1|200|Sleep||||||
+287|Right|{Right}|2|200|Send||||||
+288|[Pause]||1|200|Sleep||||||
+289|Shift + Right|{Shift Down}{Right}{Shift Up}|1|200|Send||||||
+290|[Pause]||1|200|Sleep||||||
+291|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+292|[Pause]||1|200|Sleep||||||
+293|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|200|Send||||||
+294|[Pause]||1|200|Sleep||||||
+295|Shift + Up|{Shift Down}{Up}{Shift Up}|1|200|Send||||||
+296|[Pause]||1|200|Sleep||||||
+297|Enter|{Enter}|1|100|Send||||||
+298|[Pause]||1|200|Sleep||||||
+299|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+300|[Pause]||1|200|Sleep||||||
+301|[Text]|{Alt}{h}{v}{v}|1|200|SendEvent||||||
+302|[Pause]||1|200|Sleep||||||
+303|[Pause]||1|200|Sleep||||||
+304|[LoopEnd]|LoopEnd|1|0|Loop||||||
+
+[PMC Code v5.4.1]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|forAll()
+Context=None|
+Groups=Start:1
+1|[FunctionStart]|forAll|1|0|UserFunction|Local| / ||||
+2|[Pause]||1|200|Sleep||||||
+3|Alt + Down|{Alt Down}{Down}{Alt Up}|1|200|Send||||||
+4|[Pause]||1|200|Sleep||||||
+5|Down|{Down}|1|100|Send||||||
+6|[Pause]||1|200|Sleep||||||
+7|End|{End}|1|100|Send||||||
+8|[Pause]||1|200|Sleep||||||
+9|Home|{Home}|1|100|Send||||||
+10|[Pause]||1|200|Sleep||||||
+11|Enter|{Enter}|1|100|Send||||||
+12|[Pause]||1|200|Sleep||||||
+13|[FuncReturn]|Return|1|0|FuncReturn||||||
+
+[PMC Code v5.4.1]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|goTo()
+Context=None|
+Groups=Start:1
+1|[FuncParameter]|toMove|1|0|FuncParameter||||||
+2|[FunctionStart]|goTo|1|0|UserFunction|Local| / ||||
+3|F5|{F5}|1|200|Send||||||
+4|[Pause]||1|200|Sleep||||||
+5|WinActivate||1|333|WinActivate||Go To||||
+6|WinWaitActive||1|333|WinWaitActive||Go To||||
+7|[Pause]||1|200|Sleep||||||
+08|[MsgBox]|%toMove%|1|0|MsgBox|0|||||
+9|[Text]|%toMove%|1|200|SendRaw||||||
+10|[Pause]||1|200|Sleep||||||
+11|Enter|{Enter}|1|100|Send||||||
+12|[FuncReturn]|Return|1|200|FuncReturn||||||
+
+[PMC Code v5.4.1]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|whsFilter()
+Context=None|
+Groups=Start:1
+1|[FuncParameter]|dataCopy|1|0|FuncParameter||||||
+2|[FunctionStart]|whsFilter|1|0|UserFunction|Local| / ||||
+3|[Pause]||1|300|Sleep||||||
+4|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|200|Send||||||
+5|[Pause]||1|300|Sleep||||||
+6|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+7|[Pause]||1|300|Sleep||||||
+8|Control + Down|{Control Down}{Down}{Control Up}|1|200|Send||||||
+9|[Pause]||1|300|Sleep||||||
+10|Down|{Down}|2|200|Send||||||
+11|[Pause]||1|300|Sleep||||||
+12|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+13|[Pause]||1|300|Sleep||||||
+14|Control + Down|{Control Down}{Down}{Control Up}|1|200|Send||||||
+15|[Pause]||1|300|Sleep||||||
+16|Down|{Down}|1|200|Send||||||
+17|[Pause]||1|300|Sleep||||||
+18|[Text]|=sum(1/countif(|1|200|SendRaw||||||
+19|[Pause]||1|300|Sleep||||||
+20|Control + Up|{Control Down}{Up}{Control Up}|1|200|Send||||||
+21|[Pause]||1|300|Sleep||||||
+22|Shift + Control + Up|{Shift Down}{Control Down}{Up}{Control Up}{Shift Up}|1|200|Send||||||
+23|[Pause]||1|300|Sleep||||||
+24|[Text]|`,|1|200|SendRaw||||||
+25|[Pause]||1|300|Sleep||||||
+26|F2|{F2}|1|200|Send||||||
+27|[Pause]||1|300|Sleep||||||
+28|Left|{Left}|1|200|Send||||||
+29|[Pause]||1|300|Sleep||||||
+30|[Text]|{Shift Down}{Control Down}{Left 2}{Shift Up}{Control Up}|1|200|SendEvent||||||
+31|[Pause]||1|300|Sleep||||||
+32|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+33|[Pause]||1|300|Sleep||||||
+34|[Text]|{Control Down}{Right 2}{Control Up}|1|200|SendEvent||||||
+35|[Pause]||1|300|Sleep||||||
+36|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+37|[Pause]||1|300|Sleep||||||
+38|[Text]|))|1|200|SendRaw||||||
+39|[Pause]||1|300|Sleep||||||
+40|Shift + Control + Enter|{Shift Down}{Control Down}{Enter}{Control Up}{Shift Up}|1|200|Send||||||
+41|[Pause]||1|300|Sleep||||||
+042|Up|{Up}|1|200|Send||||||
+43|[Pause]||1|300|Sleep||||||
+44|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+45|[Pause]||1|300|Sleep||||||
+46|[Text]|{Alt}{h}{v}{v}|1|200|SendEvent||||||
+47|[Pause]||1|300|Sleep||||||
+48|[Text]|{F2}{Shift Down}{Home}{Shift Up}|1|200|SendEvent||||||
+49|[Pause]||1|300|Sleep||||||
+50|Control + c|{Control Down}{c}{Control Up}|1|200|Send||||||
+51|[Pause]||1|300|Sleep||||||
+52|[Assign Variable]|resultCopy := %Clipboard%|1|0|Variable||||||
+53|[Pause]||1|300|Sleep||||||
+54|[MsgBox]|%resultCopy%|1|0|MsgBox|0|||||
+55|[Pause]||1|300|Sleep||||||
+56|Escape|{Escape}|1|200|Send||||||
+57|[Pause]||1|300|Sleep||||||
+58|[Assign Variable]|dataCopy := %resultCopy%|1|0|Variable||||||
+59|[Pause]||1|300|Sleep||||||
+60|[Assign Variable]|resultCopy := %"datacopy"%|1|0|Variable||||||
+61|[Pause]||1|300|Sleep||||||
+62|Shift + Control + Up|{Shift Down}{Control Down}{Up}{Control Up}{Shift Up}|1|200|Send||||||
+63|[Pause]||1|300|Sleep||||||
+64|Delete|{Delete}|1|200|Send||||||
+65|[Pause]||1|300|Sleep||||||
+66|Control + Up|{Control Down}{Up}{Control Up}|2|200|Send||||||
+67|[Pause]||1|300|Sleep||||||
+68|[FuncReturn]|resultCopy|1|0|FuncReturn||||||
+
+[PMC Code v5.4.1]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|whsSpecial()
+Context=None|
+Groups=Start:1
+1|[FuncParameter]|accCode|1|0|FuncParameter||||||
+2|[FunctionStart]|whsSpecial|1|0|UserFunction|Local| / ||||
+3|[Pause]||1|200|Sleep||||||
+4|goTo|_null := "B6"|1|0|Function||||||
+5|[Pause]||1|200|Sleep||||||
+6|Alt + Down|{Alt Down}{Down}{Alt Up}|1|200|Send||||||
+7|[Pause]||1|200|Sleep||||||
+8|Down|{Down}|6|200|Send||||||
+9|[Pause]||1|200|Sleep||||||
+10|[Pause]||1|200|Sleep||||||
+11|[Assign Variable]|Clipboard := %accCode%|1|0|Variable||||||
+12|[Pause]||1|200|Sleep||||||
+13|Control + v|{Control Down}{v}{Control Up}|1|200|Send||||||
+14|[Pause]||1|200|Sleep||||||
+15|Enter|{Enter}|1|100|Send||||||
+16|[FuncReturn]|return|1|0|FuncReturn||||||
+
