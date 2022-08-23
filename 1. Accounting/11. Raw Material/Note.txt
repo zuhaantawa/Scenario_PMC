@@ -1,0 +1,11 @@
+\\svrfiles\DIV-ACCT\MEMBER\COSTING\RAW_MATERIAL\RM_2022\2. MAY 2022
+
+Yang berbeda
+4230
+4440
+
+24 Receiving
+25 other Receiving
+26 S/O Return
+27 S/O Issue
+28 Other Issue
