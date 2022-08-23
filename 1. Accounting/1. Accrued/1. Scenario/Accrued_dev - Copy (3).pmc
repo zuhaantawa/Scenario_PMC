@@ -1,0 +1,1790 @@
+﻿[PMC Code v5.0.5]|F3||1|Window,2,Fast,0,1,Input,-1,-1,1|1|Macro1
+Groups=Start:1
+1|FormatTime|timeStart, , yyyy-MM-dd HH:mm:ss|1|100|FormatTime|||||
+02|If File Exist|D:\PMC\Log\Accrued.txt|1|0|If_Statement|||Write Log||
+03|FileAppend|Start``, %timeStart%|1|0|FileAppend|||||
+04|[End If]|EndIf|1|100|If_Statement|||Write Log||
+05|FileAppend|`nS %timeStart%, D:\PMC\Log\Accrued.txt|1|100|FileAppend|||Write Log||
+6|OpenFiles|_null := |1|100|Function|||||
+7|IsiAccruedEmpty|_null := |1|100|Function|||||
+8|FillLedgerImport|_null := |1|100|Function|||||
+9|FillAccrued|_null := |1|100|Function|||||
+10|FillExcRate|_null := |1|100|Function|||||
+011|If File Exist|D:\PMC\Log\Accrued.txt|1|0|If_Statement|||Write Log||
+12|FileAppend|Accounting``,Accrued``,%timeStart%``,%timeEnd%, D:\PMC\Scenario\1. Accounting\1. Accrued\4. Log\Accrued_Log.txt|1|0|FileAppend|||||
+013|[End If]|EndIf|1|100|If_Statement|||Write Log||
+
+[PMC Code v5.0.5]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|OpenFiles()
+Groups=Start:1
+1|[FunctionStart]|OpenFiles|1|0|UserFunction|Local| / |||
+2|Run|D:\PMC\Scenario\1. Accounting\1. Accrued\2. Support Files\1. Cashbill.xlsx|1|1000|Run|||Cashbill Open||
+3|[Pause]||1|3000|Sleep|||Cashbill Open||
+4|[WinMaximize]||1|333|WinMaximize||1. Cashbill.xlsx - Excel|Cashbill Open||
+5|[Pause]||1|1000|Sleep|||Cashbill Open||
+6|Run|D:\PMC\Scenario\1. Accounting\1. Accrued\2. Support Files\2. List Accrued EMPTY.xls|1|1000|Run|||Accrued Empty Open||
+7|[Pause]||1|3000|Sleep|||Accrued Empty Open||
+8|WinMaximize||1|333|WinMaximize||2. List Accrued EMPTY.xls  [Compatibility Mode] - Excel|Accrued Empty Open||
+9|[Pause]||1|1000|Sleep|||Accrued Empty Open||
+10|Run|D:\PMC\Scenario\1. Accounting\1. Accrued\2. Support Files\3. LEDGER IMPORT.xls|1|1000|Run|||Ledger Import Open||
+11|[Pause]||1|3000|Sleep|||Ledger Import Open||
+12|WinMaximize||1|333|WinMaximize||3. LEDGER IMPORT.xls  [Compatibility Mode] - Excel|Ledger Import Open||
+13|[Pause]||1|1000|Sleep|||Ledger Import Open||
+14|Run|D:\PMC\Scenario\1. Accounting\1. Accrued\2. Support Files\4. ACCRUED.xlsx|1|1000|Run|||Accrued Open||
+15|[Pause]||1|3000|Sleep|||Accrued Open||
+16|WinMaximize||1|333|WinMaximize||4. ACCRUED.xlsx - Excel|Accrued Open||
+17|[Pause]||1|1000|Sleep|||Accrued Open||
+18|Run|D:\PMC\Scenario\1. Accounting\1. Accrued\2. Support Files\5. EXC.RATE.xlsx|1|1000|Run|||Exc Rate Open||
+19|[Pause]||1|3000|Sleep|||Exc Rate Open||
+20|WinMaximize||1|333|WinMaximize||5. EXC.RATE.xlsx - Excel|Exc Rate Open||
+21|[Pause]||1|1000|Sleep|||Exc Rate Open||
+22|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|SGD_Invoice Date - Supp Name||
+23|[Pause]||1|300|Sleep|||SGD_Invoice Date - Supp Name||
+24|Control + Home|{Control Down}{Home}{Control Up}|1|100|Send|||SGD_Invoice Date - Supp Name||
+25|[Pause]||1|300|Sleep|||SGD_Invoice Date - Supp Name||
+26|[Text]|{Down}{Shift Down}{Right 2}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||SGD_Invoice Date - Supp Name||
+27|[Pause]||1|300|Sleep|||SGD_Invoice Date - Supp Name||
+28|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||SGD_Invoice Date - Supp Name||
+29|[Pause]||1|300|Sleep|||SGD_Invoice Date - Supp Name||
+30|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|SGD_Invoice Date - Supp Name||
+31|[Pause]||1|1000|Sleep|||SGD_Invoice Date - Supp Name||
+32|F5|{F5}|1|100|Send|||SGD_Invoice Date - Supp Name||
+33|[Pause]||1|100|Sleep|||SGD_Invoice Date - Supp Name||
+34|[Text]|B8{Enter}|1|100|SendEvent|||SGD_Invoice Date - Supp Name||
+35|[Pause]||1|300|Sleep|||SGD_Invoice Date - Supp Name||
+36|Control + Down|{Control Down}{Down}{Control Up}|1|0|Send|||||
+37|[Pause]||1|300|Sleep|||SGD_Invoice Date - Supp Name||
+38|[Text]|{Alt}{h}{v}|1|300|SendEvent|||SGD_Invoice Date - Supp Name||
+39|[Pause]||1|100|Sleep|||SGD_Invoice Date - Supp Name||
+40|[Text]|{Down 2}{Enter}|1|100|SendEvent|||USD_CC - Debit Account||
+41|[MsgBox]|end of open files|1|0|MsgBox|0||||
+42|[FuncReturn]|return|1|0|FuncReturn|||||
+
+[PMC Code v5.0.5]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|IsiAccruedEmpty()
+Groups=Start:1
+1|[FunctionStart]|IsiAccruedEmpty|1|0|UserFunction|Local| / |||
+2|WinActivate||1|333|WinActivate||2. List Accrued EMPTY.xls  [Compatibility Mode] - Excel|Accrued Empty Open||
+3|[Pause]||1|1000|Sleep|||Accrued Empty Open||
+4|InputBox|periode, Periode Accrued, Input Periode Accrued|1|100|InputBox|||Isi Period||
+05|[MsgBox]|Period : %periode%|1|100|MsgBox|0||Isi Period||
+6|[Pause]||1|300|Sleep|||||
+7|[Text]|{F5}|1|100|SendEvent|||Isi Period||
+8|[Pause]||1|300|Sleep|||||
+9|[Text]|{c}{7}{Enter}|1|100|SendEvent|||Isi Period||
+10|[Pause]||1|300|Sleep|||||
+11|[Assign Variable]|Clipboard := %periode%|1|300|Variable|||Isi Period||
+12|[Pause]||1|300|Sleep|||||
+13|[Text]|{Control Down}{v}{Control Up}|1|100|SendEvent|||Isi Period||
+14|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|Accrued Empty Open||
+15|[Pause]||1|300|Sleep|||||
+16|Control + Home|{Control Down}{Home}{Control Up}|1|100|Send|||Get Invoice Date||
+17|[Pause]||1|300|Sleep|||||
+18|[Text]|{Down}{Control Down}{Shift Down}{Down}{Shift Up}{Control Up}|1|100|SendEvent|||Get Invoice Date||
+19|[Pause]||1|300|Sleep|||||
+20|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Get Invoice Date||
+21|[Pause]||1|300|Sleep|||||
+22|[Assign Variable]|invoiceDate := %Clipboard%|1|300|Variable|||Get Invoice Date||
+23|[Pause]||1|300|Sleep|||||
+24|[Text]|{Up}{Right}{Down}|1|100|SendEvent|||Get Invoice Date||
+025|[MsgBox]|invoices = %invoiceDate%|1|100|MsgBox|0||Get Invoice Date||
+26|[Pause]||1|300|Sleep|||||
+27|Control + Home|{Control Down}{Home}{Control Up}|1|100|Send|||Get Invoice Number||
+28|[Pause]||1|300|Sleep|||||
+29|[Text]|{Right}{Down}{Control Down}{Shift Down}{Down}{Shift Up}{Control Up}|1|100|SendEvent|||Get Invoice Number||
+30|[Pause]||1|300|Sleep|||||
+31|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Get Invoice Number||
+32|[Pause]||1|300|Sleep|||||
+33|[Assign Variable]|invoiceNumber := %Clipboard%|1|300|Variable|||Get Invoice Number||
+34|[Pause]||1|300|Sleep|||||
+35|[Text]|{Up}{Right}{Down}|1|100|SendEvent|||Get Invoice Number||
+036|[MsgBox]|invoices = %invoiceNumber%|1|100|MsgBox|0||Get Invoice Number||
+37|[Pause]||1|300|Sleep|||||
+38|Control + Home|{Control Down}{Home}{Control Up}|1|100|Send|||Get Slip Number||
+39|[Pause]||1|300|Sleep|||||
+40|[Text]|{Right 2}{Down}{Control Down}{Shift Down}{Down}{Shift Up}{Control Up}|1|100|SendEvent|||Get Slip Number||
+41|[Pause]||1|300|Sleep|||||
+42|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Get Slip Number||
+43|[Pause]||1|300|Sleep|||||
+44|[Assign Variable]|slipNumber := %Clipboard%|1|300|Variable|||Get Slip Number||
+45|[Pause]||1|300|Sleep|||||
+46|[Text]|{Up}{Right}{Down}|1|100|SendEvent|||Get Slip Number||
+047|[MsgBox]|slip = %slipNumber%|1|100|MsgBox|0||Get Slip Number||
+48|[Text]|{Control Down}{Shift Down}{Down}{Shift Up}{Control Up}|1|100|SendEvent|||Get Supplier Name||
+49|[Pause]||1|300|Sleep|||||
+50|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Get Supplier Name||
+51|[Pause]||1|300|Sleep|||Get Supplier Name||
+52|[Assign Variable]|supplierName := %Clipboard%|1|300|Variable|||Get Supplier Name||
+53|[Pause]||1|300|Sleep|||Get Supplier Name||
+54|[Text]|{Up}{Right}{Down}|1|100|SendEvent|||Get Supplier Name||
+055|[MsgBox]|supplierName = %supplierName%|1|100|MsgBox|0||Get Supplier Name||
+56|[Pause]||1|300|Sleep|||Get Description||
+57|[Text]|{Control Down}{Shift Down}{Down}{Shift Up}{Control Up}|1|100|SendEvent|||Get Description||
+58|[Pause]||1|300|Sleep|||Get Description||
+59|[Pause]||1|300|Sleep|||Get Description||
+60|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Get Description||
+61|[Pause]||1|300|Sleep|||Get Description||
+62|[Assign Variable]|description := %Clipboard%|1|300|Variable|||Get Description||
+63|[Pause]||1|300|Sleep|||Get Description||
+64|[Text]|{Up}{Right}{Down}|1|100|SendEvent|||Get Description||
+065|[MsgBox]|desc = %description%|1|100|MsgBox|0||Get Description||
+66|[Pause]||1|300|Sleep|||Get Description||
+67|F5|{F5}|1|100|Send|||Get CC||
+68|[Pause]||1|300|Sleep|||||
+69|[Text]|G2{Enter}|1|100|SendEvent|||Get CC||
+70|[Pause]||1|300|Sleep|||||
+71|[Text]|{Control Down}{Shift Down}{Down}{Shift Up}{Control Up}|1|100|SendEvent|||Get CC||
+72|[Pause]||1|300|Sleep|||||
+73|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Get CC||
+74|[Pause]||1|300|Sleep|||||
+75|[Assign Variable]|costCenter := %Clipboard%|1|300|Variable|||Get CC||
+76|[Pause]||1|300|Sleep|||||
+77|[Text]|{Up}{Right}{Down}|1|100|SendEvent|||Get CC||
+078|[MsgBox]|cc = %costCenter%|1|100|MsgBox|0||Get CC||
+79|[Pause]||1|300|Sleep|||||
+80|[Text]|{Control Down}{Shift Down}{Down}{Shift Up}{Control Up}|1|100|SendEvent|||Get Debit Account||
+81|[Pause]||1|300|Sleep|||||
+82|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Get Debit Account||
+83|[Pause]||1|300|Sleep|||||
+84|[Assign Variable]|debitAccount := %Clipboard%|1|300|Variable|||Get Debit Account||
+85|[Pause]||1|300|Sleep|||||
+86|[Text]|{Up}{Right}{Down}|1|100|SendEvent|||Get Debit Account||
+087|[MsgBox]|debitAccount = %debitAccount%|1|100|MsgBox|0||Get Debit Account||
+88|[Pause]||1|300|Sleep|||||
+89|[Text]|{Control Down}{Shift Down}{Down}{Shift Up}{Control Up}|1|100|SendEvent|||Get credit Account||
+90|[Pause]||1|300|Sleep|||||
+91|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Get credit Account||
+92|[Pause]||1|300|Sleep|||||
+93|[Assign Variable]|creditAccount := %Clipboard%|1|300|Variable|||Get credit Account||
+94|[Pause]||1|300|Sleep|||||
+95|[Text]|{Up}{Right}{Down}|1|100|SendEvent|||Get credit Account||
+096|[MsgBox]|creditAccount = %creditAccount%|1|100|MsgBox|0||Get credit Account||
+97|[Pause]||1|300|Sleep|||||
+98|[Text]|{Control Down}{Shift Down}{Down}{Shift Up}{Control Up}|1|100|SendEvent|||Get Currency||
+99|[Pause]||1|300|Sleep|||||
+100|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Get Currency||
+101|[Pause]||1|300|Sleep|||||
+102|[Assign Variable]|currency := %Clipboard%|1|300|Variable|||Get Currency||
+103|[Pause]||1|300|Sleep|||||
+104|[Text]|{Up}{Right}{Down}|1|100|SendEvent|||Get Currency||
+0105|[MsgBox]|currency = %currency%|1|100|MsgBox|0||Get Currency||
+106|[Pause]||1|300|Sleep|||||
+107|[Text]|{Control Down}{Shift Down}{Down}{Shift Up}{Control Up}|1|100|SendEvent|||Get Amount||
+108|[Pause]||1|300|Sleep|||||
+109|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Get Amount||
+110|[Pause]||1|300|Sleep|||||
+111|[Assign Variable]|amount := %Clipboard%|1|300|Variable|||Get Amount||
+112|[Pause]||1|300|Sleep|||||
+113|[Text]|{Up}{Right}{Down}|1|100|SendEvent|||Get Amount||
+0114|[MsgBox]|amount = %amount%|1|100|MsgBox|0||Get Amount||
+115|WinActivate||1|333|WinActivate||2. List Accrued EMPTY.xls  [Compatibility Mode] - Excel|Accrued Empty Open||
+116|[Assign Variable]|Clipboard := |1|300|Variable|||||
+117|F5|{F5}|1|100|Send|||Set Invoice Date||
+118|[Pause]||1|300|Sleep|||Set Invoice Date||
+119|[Text]|B10{Enter}|1|100|SendEvent|||Set Invoice Date||
+120|[Pause]||1|300|Sleep|||Set Invoice Date||
+121|[Assign Variable]|Clipboard := %invoiceDate%|1|300|Variable|||Set Invoice Date||
+122|[Pause]||1|300|Sleep|||Set Invoice Date||
+123|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Set Invoice Date||
+124|[Pause]||1|300|Sleep|||Set Invoice Date||
+125|[Assign Variable]|Clipboard := |1|300|Variable|||||
+126|F5|{F5}|1|100|Send|||Set Invoice Number||
+127|[Pause]||1|300|Sleep|||Set Invoice Number||
+128|[Text]|C10{Enter}|1|100|SendEvent|||Set Invoice Number||
+129|[Pause]||1|300|Sleep|||Set Invoice Number||
+130|[Assign Variable]|Clipboard := %invoiceNumber%|1|300|Variable|||Set Invoice Number||
+131|[Pause]||1|300|Sleep|||Set Invoice Number||
+132|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Set Invoice Number||
+133|[Pause]||1|300|Sleep|||Set Invoice Number||
+134|[Assign Variable]|Clipboard := |1|300|Variable|||||
+135|F5|{F5}|1|100|Send|||Set Slip Number||
+136|[Pause]||1|300|Sleep|||Set Slip Number||
+137|[Text]|D10{Enter}|1|100|SendEvent|||Set Slip Number||
+138|[Pause]||1|300|Sleep|||Set Slip Number||
+139|[Assign Variable]|Clipboard := %slipNumber%|1|300|Variable|||Set Slip Number||
+140|[Pause]||1|300|Sleep|||Set Slip Number||
+141|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Set Slip Number||
+142|[Pause]||1|300|Sleep|||Set Slip Number||
+143|[Assign Variable]|Clipboard := |1|300|Variable|||||
+144|F5|{F5}|1|100|Send|||Set Supplier Name||
+145|[Pause]||1|300|Sleep|||Set Supplier Name||
+146|[Text]|E10{Enter}|1|100|SendEvent|||Set Supplier Name||
+147|[Pause]||1|300|Sleep|||Set Supplier Name||
+148|[Assign Variable]|Clipboard := %supplierName%|1|300|Variable|||Set Supplier Name||
+149|[Pause]||1|300|Sleep|||Set Supplier Name||
+150|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Set Supplier Name||
+151|[Pause]||1|300|Sleep|||Set Supplier Name||
+0152|[Assign Variable]|Clipboard := |1|300|Variable|||||
+153|F5|{F5}|1|100|Send|||Set Description||
+154|[Pause]||1|300|Sleep|||Set Description||
+155|[Text]|F10{Enter}|1|100|SendEvent|||Set Description||
+156|[Pause]||1|300|Sleep|||Set Description||
+157|[Assign Variable]|Clipboard := %description%|1|300|Variable|||Set Slip Number||
+158|[Pause]||1|300|Sleep|||Set Description||
+159|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Set Description||
+160|[Pause]||1|300|Sleep|||Set Description||
+161|[Assign Variable]|Clipboard := |1|300|Variable|||||
+162|F5|{F5}|1|100|Send|||Set Cost Center||
+163|[Pause]||1|300|Sleep|||Set Cost Center||
+164|[Text]|I10{Enter}|1|100|SendEvent|||Set Cost Center||
+165|[Pause]||1|300|Sleep|||Set Cost Center||
+166|[Assign Variable]|Clipboard := %costCenter%|1|300|Variable|||Set Cost Center||
+167|[Pause]||1|300|Sleep|||Set Cost Center||
+168|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Set Cost Center||
+169|[Pause]||1|300|Sleep|||Set Cost Center||
+170|[Assign Variable]|Clipboard := |1|300|Variable|||||
+171|F5|{F5}|1|100|Send|||Set Debit Account||
+172|[Pause]||1|300|Sleep|||Set Debit Account||
+173|[Text]|J10{Enter}|1|100|SendEvent|||Set Debit Account||
+174|[Pause]||1|300|Sleep|||Set Debit Account||
+175|[Assign Variable]|Clipboard := %debitAccount%|1|300|Variable|||Set Debit Account||
+176|[Pause]||1|300|Sleep|||Set Debit Account||
+177|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Set Debit Account||
+178|[Pause]||1|300|Sleep|||Set Debit Account||
+179|[Assign Variable]|Clipboard := |1|300|Variable|||||
+180|F5|{F5}|1|100|Send|||Set Cost Center||
+181|[Pause]||1|300|Sleep|||Set Cost Center||
+182|[Text]|L10{Enter}|1|100|SendEvent|||Set Cost Center||
+183|[Pause]||1|300|Sleep|||Set Cost Center||
+184|[Assign Variable]|Clipboard := %costCenter%|1|300|Variable|||Set Cost Center||
+185|[Pause]||1|300|Sleep|||Set Cost Center||
+186|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Set Cost Center||
+187|[Pause]||1|300|Sleep|||Set Cost Center||
+188|[Assign Variable]|Clipboard := |1|300|Variable|||||
+189|F5|{F5}|1|100|Send|||Set Credit Account||
+190|[Pause]||1|300|Sleep|||Set Credit Account||
+191|[Text]|M10{Enter}|1|100|SendEvent|||Set Credit Account||
+192|[Pause]||1|300|Sleep|||Set Credit Account||
+193|[Assign Variable]|Clipboard := %creditAccount%|1|300|Variable|||Set Credit Account||
+194|[Pause]||1|300|Sleep|||Set Credit Account||
+195|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Set Credit Account||
+196|[Pause]||1|300|Sleep|||Set Credit Account||
+197|[Assign Variable]|Clipboard := |1|300|Variable|||||
+198|F5|{F5}|1|100|Send|||Set currency||
+199|[Pause]||1|300|Sleep|||Set currency||
+200|[Text]|O10{Enter}|1|100|SendEvent|||Set currency||
+201|[Pause]||1|300|Sleep|||Set currency||
+202|[Assign Variable]|Clipboard := %currency%|1|300|Variable|||Set currency||
+203|[Pause]||1|300|Sleep|||Set currency||
+204|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Set currency||
+205|[Pause]||1|300|Sleep|||Set currency||
+206|[Assign Variable]|Clipboard := |1|300|Variable|||||
+207|F5|{F5}|1|100|Send|||Set Amount||
+208|[Pause]||1|300|Sleep|||Set Amount||
+209|[Text]|P10{Enter}|1|100|SendEvent|||Set Amount||
+210|[Pause]||1|300|Sleep|||Set Amount||
+211|[Assign Variable]|Clipboard := %amount%|1|300|Variable|||Set Amount||
+212|[Pause]||1|300|Sleep|||Set Amount||
+213|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Set Amount||
+214|[Pause]||1|300|Sleep|||Set Amount||
+215|F5|{F5}|1|100|Send|||Replace Cost Center||
+216|[Pause]||1|300|Sleep|||Replace Cost Center||
+217|[Text]|I9{Enter}|1|100|SendEvent|||Replace Cost Center||
+218|[Pause]||1|300|Sleep|||Replace Cost Center||
+219|Alt + Down|{Alt Down}{Down}{Alt Up}|1|100|Send|||||
+220|[Text]|{Down 6}{Right}{Enter}|1|100|SendEvent|||||
+221|WinWaitActive|10|1|333|WinWaitActive||Custom AutoFilter|||
+222|[Text]|{0}{Enter}|1|100|SendEvent|||||
+223|F5|{F5}|1|100|Send|||Replace Cost Center||
+224|[Pause]||1|300|Sleep|||Replace Cost Center||
+225|[Text]|I9{Enter}|1|100|SendEvent|||Replace Cost Center||
+226|[Pause]||1|300|Sleep|||Replace Cost Center||
+227|[Text]|{Enter}{'}{0}{0}{Enter}|1|100|SendEvent|||||
+228|[Pause]||1|300|Sleep|||Replace Cost Center||
+229|[Text]|{Up}{Control Down}{c}{Control Up}{Control Down}{Shift Down}{Down}{Shift Up}{Control Up}{Enter}|1|100|SendEvent|||||
+230|F5|{F5}|1|100|Send|||Replace Cost Center||
+231|[Pause]||1|300|Sleep|||Replace Cost Center||
+232|[Text]|L9{Enter}|1|100|SendEvent|||Replace Cost Center||
+233|[Pause]||1|300|Sleep|||Replace Cost Center||
+234|[Text]|{Enter}{'}{0}{0}{Enter}|1|100|SendEvent|||||
+235|[Pause]||1|300|Sleep|||Replace Cost Center||
+236|[Text]|{Up}{Control Down}{c}{Control Up}{Control Down}{Shift Down}{Down}{Shift Up}{Control Up}{Enter}|1|100|SendEvent|||||
+237|[MsgBox]|Accrued Empty Finish`n`nNext >> Ledger Import|1|100|MsgBox|0||||
+
+[PMC Code v5.0.5]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|FillLedgerImport()
+Groups=Start:1
+1|[FunctionStart]|FillLedgerImport|1|0|UserFunction|Local| / |||
+2|WinActivate||1|333|WinActivate||2. List Accrued EMPTY.xls  [Compatibility Mode] - Excel|Get Ledger Data||
+3|[Pause]||1|300|Sleep|||Get Ledger Data||
+4|Control + PgDn|{Control Down}{PgDn}{Control Up}|1|100|Send|||Get Ledger Data||
+5|[Pause]||1|300|Sleep|||Get Ledger Data||
+6|Control + PgDn|{Control Down}{PgDn}{Control Up}|1|100|Send|||Get Ledger Data||
+7|[Pause]||1|300|Sleep|||Get Ledger Data||
+8|Control + PgDn|{Control Down}{PgDn}{Control Up}|1|100|Send|||Get Ledger Data||
+9|[Pause]||1|300|Sleep|||Get Ledger Data||
+10|F5|{F5}|1|100|Send|||Get Ledger Data||
+11|[Pause]||1|300|Sleep|||Get Ledger Data||
+12|[Text]|B8{Enter}|1|100|SendEvent|||Get Ledger Data||
+13|[Pause]||1|300|Sleep|||Get Ledger Data||
+14|[Text]|{Shift Down}{Space}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||Get Ledger Data||
+15|[Pause]||1|300|Sleep|||Get Ledger Data||
+16|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Get Ledger Data||
+17|[Pause]||1|300|Sleep|||Get Ledger Data||
+18|WinActivate||1|333|WinActivate||3. LEDGER IMPORT.xls  [Compatibility Mode] - Excel|Paste to Ledger Import||
+19|[Pause]||1|500|Sleep|||Paste to Ledger Import||
+20|F5|{F5}|1|100|Send|||Paste to Ledger Import||
+21|[Pause]||1|300|Sleep|||Paste to Ledger Import||
+22|[Text]|A8{Enter}|1|100|SendEvent|||Paste to Ledger Import||
+23|[Pause]||1|300|Sleep|||Paste to Ledger Import||
+24|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Paste to Ledger Import||
+25|[Pause]||1|3000|Sleep|||Paste to Ledger Import||
+26|[MsgBox]|Ledger Import Finish `n`nNext >> Accrued|1|100|MsgBox|0||||
+27|[FuncReturn]|return|1|0|FuncReturn|||||
+
+[PMC Code v5.0.5]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|FillAccrued()
+Groups=Start:1
+1|[FunctionStart]|FillAccrued|1|0|UserFunction|Local| / |||
+2|[Pause]||1|300|Sleep|||||
+3|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|Fill USD||
+4|[Pause]||1|300|Sleep|||||
+5|Control + Home|{Control Down}{Home}{Control Up}|1|0|Send|||||
+6|[Pause]||1|300|Sleep|||||
+7|[Text]|{Alt}{a}{t}|1|0|Send|||||
+8|[Pause]||1|1000|Sleep|||Fill USD||
+9|F5|{F5}|1|100|Send|||Fill USD||
+10|[Pause]||1|300|Sleep|||Fill USD||
+11|[Text]|J1{Enter}|1|100|SendEvent|||Fill USD||
+12|[Pause]||1|300|Sleep|||Fill USD||
+13|Alt + Down|{Alt Down}{Down}{Alt Up}|1|100|Send|||Fill USD||
+14|[Pause]||1|300|Sleep|||Fill USD||
+15|[Text]|{Down 7}|1|100|SendEvent|||Fill USD||
+16|[Pause]||1|300|Sleep|||Fill USD||
+17|[Text]|USD{Enter}|1|100|SendEvent|||Fill USD||
+18|[Pause]||1|300|Sleep|||Fill USD||
+19|Control + Home|{Control Down}{Home}{Control Up}|1|100|Send|||Delete C||
+20|[Text]|{Down}{Shift Down}{Right 4}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||USD_Model - Desc||
+21|[Pause]||1|300|Sleep|||USD_Model - Desc||
+22|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||USD_Model - Desc||
+23|[Pause]||1|300|Sleep|||USD_Model - Desc||
+24|WinActivate||1|333|WinActivate||4. ACCRUED.xlsx - Excel|USD_Model - Desc||
+25|[Pause]||1|1000|Sleep|||USD_Model - Desc||
+26|F5|{F5}|1|100|Send|||USD_Model - Desc||
+27|[Pause]||1|100|Sleep|||USD_Model - Desc||
+28|[Text]|B8{Enter}|1|100|SendEvent|||USD_Model - Desc||
+29|[Pause]||1|300|Sleep|||USD_Model - Desc||
+30|[Text]|{Alt}{h}{v}|1|300|SendEvent|||USD_Model - Desc||
+31|[Pause]||1|100|Sleep|||USD_Model - Desc||
+32|[Text]|{Down 2}{Enter}|1|100|SendEvent|||USD_CC - Debit Account||
+33|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|Fill USD||
+34|[Pause]||1|300|Sleep|||USD_CC - Debit Account||
+35|F5|{F5}|1|100|Send|||USD_CC - Debit Account||
+36|[Pause]||1|300|Sleep|||USD_CC - Debit Account||
+37|[Text]|G1{Enter}|1|100|SendEvent|||USD_CC - Debit Account||
+38|[Pause]||1|300|Sleep|||USD_CC - Debit Account||
+39|[Text]|{Down}{Shift Down}{Right}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||USD_CC - Debit Account||
+40|[Pause]||1|300|Sleep|||USD_CC - Debit Account||
+41|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||USD_CC - Debit Account||
+42|[Pause]||1|300|Sleep|||USD_CC - Debit Account||
+43|WinActivate||1|333|WinActivate||4. ACCRUED.xlsx - Excel|USD_CC - Debit Account||
+44|[Pause]||1|1000|Sleep|||USD_CC - Debit Account||
+45|F5|{F5}|1|100|Send|||USD_CC - Debit Account||
+46|[Pause]||1|300|Sleep|||USD_CC - Debit Account||
+47|[Text]|G8{Enter}|1|100|SendEvent|||USD_CC - Debit Account||
+48|[Pause]||1|300|Sleep|||USD_CC - Debit Account||
+49|[Text]|{Alt}{h}{v}|1|300|SendEvent|||USD_CC - Debit Account||
+50|[Text]|{Down 2}{Enter}|1|100|SendEvent|||USD_CC - Debit Account||
+51|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|Fill USD||
+52|[Pause]||1|300|Sleep|||USD_Amount||
+53|F5|{F5}|1|100|Send|||USD_Amount||
+54|[Pause]||1|300|Sleep|||USD_Amount||
+55|[Text]|K1{Enter}|1|100|SendEvent|||USD_Amount||
+56|[Pause]||1|300|Sleep|||USD_Amount||
+57|[Text]|{Down}{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||USD_Amount||
+58|[Pause]||1|300|Sleep|||USD_Amount||
+59|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||USD_Amount||
+60|[Pause]||1|300|Sleep|||USD_Amount||
+61|WinActivate||1|333|WinActivate||4. ACCRUED.xlsx - Excel|USD_Amount||
+62|[Pause]||1|1000|Sleep|||USD_Amount||
+63|F5|{F5}|1|100|Send|||USD_Amount||
+64|[Pause]||1|300|Sleep|||USD_Amount||
+65|[Text]|N8{Enter}|1|100|SendEvent|||USD_Amount||
+66|[Pause]||1|300|Sleep|||USD_Amount||
+67|[Text]|{Alt}{h}{v}|1|300|SendEvent|||USD_Amount||
+68|[Text]|{Down 2}{Enter}|1|100|SendEvent|||USD_Amount||
+69|[Pause]||1|300|Sleep|||USD_Amount||
+70|[MsgBox]|USD Selesai`n`nNext >> SGD|1|0|MsgBox|0||||
+71|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|Fill SGD||
+72|[Pause]||1|1000|Sleep|||Fill SGD||
+73|F5|{F5}|1|100|Send|||Fill SGD||
+74|[Pause]||1|300|Sleep|||Fill SGD||
+75|[Text]|J1{Enter}|1|100|SendEvent|||Fill SGD||
+76|[Pause]||1|300|Sleep|||Fill SGD||
+77|Alt + Down|{Alt Down}{Down}{Alt Up}|1|100|Send|||Fill SGD||
+78|[Pause]||1|300|Sleep|||Fill SGD||
+79|[Text]|{Down 7}|1|100|SendEvent|||Fill SGD||
+80|[Pause]||1|300|Sleep|||Fill SGD||
+81|[Text]|SGD{Enter}|1|100|SendEvent|||Fill SGD||
+82|[Pause]||1|300|Sleep|||Fill SGD||
+83|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|Fill SGD||
+84|[Pause]||1|300|Sleep|||Fill SGD||
+85|Control + Home|{Control Down}{Home}{Control Up}|1|100|Send|||SGD_Model - Desc||
+86|[Pause]||1|300|Sleep|||Fill SGD||
+87|[Text]|{Down}{Shift Down}{Right 4}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||SGD_Model - Desc||
+88|[Pause]||1|300|Sleep|||SGD_Model - Desc||
+89|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||SGD_Model - Desc||
+90|[Pause]||1|300|Sleep|||SGD_Model - Desc||
+91|WinActivate||1|333|WinActivate||4. ACCRUED.xlsx - Excel|SGD_Model - Desc||
+92|[Pause]||1|1000|Sleep|||SGD_Model - Desc||
+93|F5|{F5}|1|100|Send|||SGD_Model - Desc||
+94|[Pause]||1|300|Sleep|||SGD_Model - Desc||
+95|[Text]|B8{Enter}|1|100|SendEvent|||SGD_Model - Desc||
+96|[Pause]||1|300|Sleep|||SGD_Model - Desc||
+97|Control + Down|{Control Down}{Down}{Control Up}|1|0|Send|||||
+98|[Pause]||1|300|Sleep|||SGD_Model - Desc||
+99|Down|{Down}|1|100|Send|||||
+100|[Pause]||1|300|Sleep|||SGD_Model - Desc||
+101|[Text]|{Alt}{h}{v}|1|300|SendEvent|||SGD_Model - Desc||
+102|[Pause]||1|300|Sleep|||SGD_Model - Desc||
+103|[Text]|{Down 2}{Enter}|1|100|SendEvent|||SGD_Model - Desc||
+104|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|SGD_CC - Debit Account||
+105|[Pause]||1|300|Sleep|||SGD_CC - Debit Account||
+106|F5|{F5}|1|100|Send|||SGD_CC - Debit Account||
+107|[Pause]||1|300|Sleep|||SGD_CC - Debit Account||
+108|[Text]|G1{Enter}|1|100|SendEvent|||SGD_CC - Debit Account||
+109|[Pause]||1|300|Sleep|||SGD_CC - Debit Account||
+110|[Text]|{Down}{Shift Down}{Right}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||SGD_CC - Debit Account||
+111|[Pause]||1|300|Sleep|||SGD_CC - Debit Account||
+112|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||SGD_CC - Debit Account||
+113|[Pause]||1|300|Sleep|||SGD_CC - Debit Account||
+114|WinActivate||1|333|WinActivate||4. ACCRUED.xlsx - Excel|SGD_CC - Debit Account||
+115|[Pause]||1|1000|Sleep|||SGD_CC - Debit Account||
+116|F5|{F5}|1|100|Send|||SGD_CC - Debit Account||
+117|[Pause]||1|300|Sleep|||SGD_CC - Debit Account||
+118|[Text]|G8{Enter}|1|100|SendEvent|||SGD_CC - Debit Account||
+119|[Pause]||1|300|Sleep|||SGD_CC - Debit Account||
+120|Control + Down|{Control Down}{Down}{Control Up}|1|0|Send|||SGD_CC - Debit Account||
+121|[Pause]||1|300|Sleep|||SGD_CC - Debit Account||
+122|Down|{Down}|1|100|Send|||SGD_CC - Debit Account||
+123|[Pause]||1|300|Sleep|||SGD_CC - Debit Account||
+124|[Text]|{Alt}{h}{v}|1|300|SendEvent|||SGD_CC - Debit Account||
+125|[Text]|{Down 2}{Enter}|1|100|SendEvent|||SGD_CC - Debit Account||
+126|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|SGD_Amount||
+127|[Pause]||1|300|Sleep|||SGD_Amount||
+128|F5|{F5}|1|100|Send|||SGD_Amount||
+129|[Pause]||1|300|Sleep|||SGD_Amount||
+130|[Text]|K1{Enter}|1|100|SendEvent|||SGD_Amount||
+131|[Pause]||1|300|Sleep|||SGD_Amount||
+132|[Text]|{Down}{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||SGD_Amount||
+133|[Pause]||1|300|Sleep|||SGD_Amount||
+134|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||SGD_Amount||
+135|[Pause]||1|300|Sleep|||SGD_Amount||
+136|WinActivate||1|333|WinActivate||4. ACCRUED.xlsx - Excel|SGD_Amount||
+137|[Pause]||1|1000|Sleep|||SGD_Amount||
+138|F5|{F5}|1|100|Send|||SGD_Amount||
+139|[Pause]||1|300|Sleep|||SGD_Amount||
+140|[Text]|N8{Enter}|1|100|SendEvent|||SGD_Amount||
+141|[Pause]||1|300|Sleep|||SGD_Amount||
+142|Control + Down|{Control Down}{Down}{Control Up}|1|100|Send|||SGD_Amount||
+143|[Pause]||1|300|Sleep|||SGD_Amount||
+144|[Text]|{Down}{Right 2}|1|100|SendEvent|||||
+145|[Pause]||1|300|Sleep|||SGD_Amount||
+146|[Text]|{Alt}{h}{v}|1|300|SendEvent|||SGD_Amount||
+147|[Text]|{Down 2}{Enter}|1|100|SendEvent|||SGD_Amount||
+148|[Pause]||1|300|Sleep|||SGD_Amount||
+149|F5|{F5}|1|100|Send|||SGD Daily Rate||
+150|[Pause]||1|300|Sleep|||SGD Daily Rate||
+151|[Text]|P6{Enter}|1|100|SendEvent|||SGD Daily Rate||
+152|[Pause]||1|300|Sleep|||SGD Daily Rate||
+153|Control + Down|{Control Down}{Down}{Control Up}|1|100|Send|||SGD_Amount||
+154|[Pause]||1|300|Sleep|||SGD Daily Rate||
+155|Left|{Left}|6|100|Send|||SGD Daily Rate||
+156|[Pause]||1|300|Sleep|||SGD_Rate B||
+157|[Text]|=VLOOKUP({Home}{Right}`,{Control Down}{PgUp}{Home}{Shift Down}{Right}{Down}{Shift Up}{Control Up}`,3`,0{Enter}|1|100|SendEvent|||SGD Daily Rate||
+158|[Pause]||1|300|Sleep|||SGD Daily Rate||
+159|[Text]|{Up}{Control Down}{c}{Control Up}{Left 2}{Control Down}{Down}{Control Up}{Right 2}|1|100|SendEvent|||SGD Daily Rate||
+160|[Pause]||1|300|Sleep|||SGD Daily Rate||
+161|[Text]|{Control Down}{Shift Down}{Up}{Shift Up}{v}{Control Up}|1|100|SendEvent|||SGD Daily Rate||
+162|[Pause]||1|300|Sleep|||SGD_Rate B||
+163|F5|{F5}|1|100|Send|||SGD_Rate B||
+164|[Pause]||1|300|Sleep|||SGD_Rate B||
+165|[Text]|J8{Enter}|1|100|SendEvent|||SGD_Rate B||
+166|[Pause]||1|300|Sleep|||SGD_Rate B||
+167|Control + Down|{Control Down}{Down}{Control Up}|1|100|Send|||SGD_Rate B||
+168|[Pause]||1|300|Sleep|||SGD_Rate B||
+169|Right|{Right}|3|100|Send|||SGD_Rate B||
+170|[Pause]||1|300|Sleep|||SGD_Rate B||
+171|Control + PgUp|{Control Down}{PgUp}{Control Up}|1|100|Send|||SGD_Rate B||
+172|[Pause]||1|300|Sleep|||SGD_Rate B||
+173|[Text]|{Control Down}{Home}{Down}{Control Up}{Right 2}|1|100|SendEvent|||SGD_Rate B||
+174|[Pause]||1|300|Sleep|||SGD_Rate B||
+175|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||SGD_Rate B||
+176|[Pause]||1|300|Sleep|||SGD_Rate B||
+177|Control + PgDn|{Control Down}{PgDn}{Control Up}|1|100|Send|||SGD_Rate B||
+178|[Pause]||1|300|Sleep|||SGD_Rate B||
+179|[Text]|{Alt}{h}{v}|1|300|SendEvent|||SGD_Rate B||
+180|[Pause]||1|300|Sleep|||SGD_Rate B||
+181|[Text]|{Down 2}{Enter}|1|100|SendEvent|||SGD_Rate B||
+182|[Pause]||1|300|Sleep|||SGD_Rate B||
+183|[Text]|{Control Down}{c}{Control Up}{Control Down}{Left}{Down}{Control Up}{Right 3}|1|100|SendEvent|||SGD_Rate B||
+184|[Pause]||1|300|Sleep|||SGD_Rate B||
+185|[Text]|{Control Down}{Shift Down}{Up}{Shift Up}{v}{Control Up}|1|100|SendEvent|||SGD_Rate B||
+186|[Pause]||1|300|Sleep|||SGD_Rate B||
+187|F5|{F5}|1|100|Send|||Rumus Round USD||
+188|[Pause]||1|300|Sleep|||Rumus Round USD||
+189|[Text]|N8{Enter}|1|100|SendEvent|||Rumus Round USD||
+190|[Pause]||1|300|Sleep|||Rumus Round USD||
+191|Control + Down|{Control Down}{Down}{Control Up}|2|100|Send|||SGD_Amount||
+192|[Pause]||1|300|Sleep|||round Rumus SGD||
+193|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||round Rumus SGD||
+194|[Pause]||1|300|Sleep|||round Rumus SGD||
+195|[Text]|{Control Down}{Up}{Control Up}{Down}|1|100|SendEvent|||round Rumus SGD||
+196|[Pause]||1|300|Sleep|||round Rumus SGD||
+197|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||round Rumus SGD||
+198|[Pause]||1|300|Sleep|||round Rumus SGD||
+199|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||round Rumus SGD||
+200|[Pause]||1|300|Sleep|||round Rumus SGD||
+201|[Text]|{Control Down}{Left}{Down}{Control Up}|1|100|SendEvent|||round Rumus SGD||
+202|[Pause]||1|300|Sleep|||round Rumus SGD||
+203|[Text]|{Right}{Control Down}{Shift Down}{Up}{Shift Up}{Control Up}|1|100|SendEvent|||round Rumus SGD||
+204|[Pause]||1|300|Sleep|||SGD_Amount||
+205|[Text]|{Alt}{h}{v}|1|300|SendEvent|||SGD_Amount||
+206|[Pause]||1|300|Sleep|||SGD_Amount||
+207|[Text]|{Down 2}{Enter}|1|100|SendEvent|||SGD_Amount||
+208|[MsgBox]|SGD|1|0|MsgBox|0||Set Currency to JPY||
+209|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|Set Currency to JPY||
+210|[Pause]||1|1000|Sleep|||Set Currency to JPY||
+211|F5|{F5}|1|100|Send|||Set Currency to JPY||
+212|[Pause]||1|300|Sleep|||Set Currency to JPY||
+213|[Text]|J1{Enter}|1|100|SendEvent|||Set Currency to JPY||
+214|[Pause]||1|300|Sleep|||Set Currency to JPY||
+215|Alt + Down|{Alt Down}{Down}{Alt Up}|1|100|Send|||Set Currency to JPY||
+216|[Pause]||1|300|Sleep|||Set Currency to JPY||
+217|[Text]|{Down 7}|1|100|SendEvent|||Set Currency to JPY||
+218|[Pause]||1|300|Sleep|||Set Currency to JPY||
+219|[Text]|JPY{Enter}|1|100|SendEvent|||Set Currency to JPY||
+220|[Pause]||1|300|Sleep|||Set Currency to JPY||
+221|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|JPY_Invoice Date - Description||
+222|[Pause]||1|300|Sleep|||JPY_Invoice Date - Description||
+223|Control + Home|{Control Down}{Home}{Control Up}|1|100|Send|||JPY_Invoice Date - Description||
+224|[Pause]||1|300|Sleep|||JPY_Invoice Date - Description||
+225|[Text]|{Down}{Shift Down}{Right 4}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||JPY_Invoice Date - Description||
+226|[Pause]||1|300|Sleep|||JPY_Invoice Date - Description||
+227|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||JPY_Invoice Date - Description||
+228|[Pause]||1|300|Sleep|||JPY_Invoice Date - Description||
+229|WinActivate||1|333|WinActivate||4. ACCRUED.xlsx - Excel|JPY_Invoice Date - Description||
+230|[Pause]||1|1000|Sleep|||JPY_Invoice Date - Description||
+231|F5|{F5}|1|100|Send|||JPY_Invoice Date - Description||
+232|[Pause]||1|300|Sleep|||JPY_Invoice Date - Description||
+233|[Text]|B8{Enter}|1|100|SendEvent|||JPY_Invoice Date - Description||
+234|[Pause]||1|300|Sleep|||JPY_Invoice Date - Description||
+235|Control + Down|{Control Down}{Down}{Control Up}|1|0|Send|||JPY_Invoice Date - Description||
+236|[Pause]||1|300|Sleep|||JPY_Invoice Date - Description||
+237|Down|{Down}|1|100|Send|||JPY_Invoice Date - Description||
+238|[Pause]||1|300|Sleep|||JPY_Invoice Date - Description||
+239|[Text]|{Alt}{h}{v}|1|300|SendEvent|||JPY_Invoice Date - Description||
+240|[Pause]||1|300|Sleep|||JPY_Invoice Date - Description||
+241|[Text]|{Down 2}{Enter}|1|100|SendEvent|||JPY_Invoice Date - Description||
+242|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|JPY_CC - Debit Account||
+243|[Pause]||1|300|Sleep|||JPY_CC - Debit Account||
+244|F5|{F5}|1|100|Send|||JPY_CC - Debit Account||
+245|[Pause]||1|300|Sleep|||JPY_CC - Debit Account||
+246|[Text]|G1{Enter}|1|100|SendEvent|||JPY_CC - Debit Account||
+247|[Pause]||1|300|Sleep|||JPY_CC - Debit Account||
+248|[Text]|{Down}{Shift Down}{Right}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||JPY_CC - Debit Account||
+249|[Pause]||1|300|Sleep|||JPY_CC - Debit Account||
+250|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||JPY_CC - Debit Account||
+251|[Pause]||1|300|Sleep|||JPY_CC - Debit Account||
+252|WinActivate||1|333|WinActivate||4. ACCRUED.xlsx - Excel|JPY_CC - Debit Account||
+253|[Pause]||1|1000|Sleep|||JPY_CC - Debit Account||
+254|F5|{F5}|1|100|Send|||JPY_CC - Debit Account||
+255|[Pause]||1|300|Sleep|||JPY_CC - Debit Account||
+256|[Text]|G8{Enter}|1|100|SendEvent|||JPY_CC - Debit Account||
+257|[Pause]||1|300|Sleep|||JPY_CC - Debit Account||
+258|Control + Down|{Control Down}{Down}{Control Up}|1|100|Send|||JPY_CC - Debit Account||
+259|[Pause]||1|300|Sleep|||JPY_CC - Debit Account||
+260|Down|{Down}|1|100|Send|||JPY_CC - Debit Account||
+261|[Pause]||1|300|Sleep|||JPY_CC - Debit Account||
+262|[Text]|{Alt}{h}{v}|1|300|SendEvent|||JPY_CC - Debit Account||
+263|[Text]|{Down 2}{Enter}|1|100|SendEvent|||JPY_CC - Debit Account||
+264|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|JPY_Amount||
+265|[Pause]||1|300|Sleep|||JPY_Amount||
+266|F5|{F5}|1|100|Send|||JPY_Amount||
+267|[Pause]||1|300|Sleep|||JPY_Amount||
+268|[Text]|K1{Enter}|1|100|SendEvent|||JPY_Amount||
+269|[Pause]||1|300|Sleep|||JPY_Amount||
+270|[Text]|{Down}{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||JPY_Amount||
+271|[Pause]||1|300|Sleep|||JPY_Amount||
+272|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||JPY_Amount||
+273|[Pause]||1|300|Sleep|||JPY_Amount||
+274|WinActivate||1|333|WinActivate||4. ACCRUED.xlsx - Excel|JPY_Amount||
+275|[Pause]||1|1000|Sleep|||JPY_Amount||
+276|F5|{F5}|1|100|Send|||JPY_Amount||
+277|[Pause]||1|300|Sleep|||JPY_Amount||
+278|[Text]|N8{Enter}|1|100|SendEvent|||JPY_Amount||
+279|[Pause]||1|300|Sleep|||JPY_Amount||
+280|Control + Down|{Control Down}{Down}{Control Up}|1|100|Send|||JPY_Amount||
+281|[Pause]||1|300|Sleep|||JPY_Amount||
+282|[Text]|{Down}{Right 2}|1|100|SendEvent|||JPY_Amount||
+283|[Pause]||1|300|Sleep|||JPY_Amount||
+284|[Text]|{Alt}{h}{v}|1|300|SendEvent|||JPY_Amount||
+285|[Pause]||1|300|Sleep|||JPY_Amount||
+286|[Text]|{Down 2}{Enter}|1|100|SendEvent|||JPY_Amount||
+287|[Pause]||1|300|Sleep|||JPY_Amount||
+288|F5|{F5}|1|100|Send|||JPY_Daily Rate Look Up||
+289|[Pause]||1|300|Sleep|||JPY_Daily Rate Look Up||
+290|[Text]|P6{Enter}|1|100|SendEvent|||JPY_Daily Rate Look Up||
+291|[Pause]||1|300|Sleep|||JPY_Daily Rate Look Up||
+292|Control + Down|{Control Down}{Down}{Control Up}|1|100|Send|||JPY_Daily Rate Look Up||
+293|[Pause]||1|300|Sleep|||JPY_Daily Rate Look Up||
+294|Left|{Left}|6|100|Send|||JPY_Daily Rate Look Up||
+295|[Pause]||1|300|Sleep|||JPY_Daily Rate Look Up||
+296|Control + Down|{Control Down}{Down}{Control Up}|1|100|Send|||JPY_Daily Rate Look Up||
+297|[Pause]||1|300|Sleep|||JPY_Daily Rate Look Up||
+298|[Text]|{Down}{Right}|1|100|SendEvent|||||
+299|[Pause]||1|300|Sleep|||JPY_Daily Rate Look Up||
+300|[Text]|=VLOOKUP({Home}{Right}`,{Control Down}{PgUp}{Home}{Shift Down}{Right}{Down}{Shift Up}{Control Up}`,4`,0{Enter}|1|100|SendEvent|||JPY_Daily Rate Look Up||
+301|[Pause]||1|300|Sleep|||JPY_Daily Rate Look Up||
+302|[Text]|{Up}{Control Down}{c}{Control Up}{Left 3}{Control Down}{Down}{Control Up}{Right 3}|1|100|SendEvent|||JPY_Daily Rate Look Up||
+303|[Pause]||1|300|Sleep|||JPY_Daily Rate Look Up||
+304|[Text]|{Control Down}{Shift Down}{Up}{Shift Up}{v}{Control Up}|1|100|SendEvent|||JPY_Daily Rate Look Up||
+305|[Pause]||1|300|Sleep|||JPY_Daily Rate Look Up||
+306|[Pause]||1|300|Sleep|||JPY_Rate B||
+307|F5|{F5}|1|100|Send|||JPY_Rate B||
+308|[Pause]||1|300|Sleep|||JPY_Rate B||
+309|[Text]|J8{Enter}|1|100|SendEvent|||JPY_Rate B||
+310|[Pause]||1|300|Sleep|||JPY_Rate B||
+311|Control + Down|{Control Down}{Down}{Control Up}|2|100|Send|||JPY_Rate B||
+312|[Pause]||1|300|Sleep|||JPY_Rate B||
+313|Down|{Down}|1|0|Send|||||
+314|[Pause]||1|300|Sleep|||JPY_Rate B||
+315|Right|{Right}|3|100|Send|||JPY_Rate B||
+316|[Pause]||1|300|Sleep|||JPY_Rate B||
+317|Control + PgUp|{Control Down}{PgUp}{Control Up}|1|100|Send|||JPY_Rate B||
+318|[Pause]||1|300|Sleep|||JPY_Rate B||
+319|[Text]|{Control Down}{Home}{Down}{Control Up}{Right 3}|1|100|SendEvent|||JPY_Rate B||
+320|[Pause]||1|300|Sleep|||JPY_Rate B||
+321|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||JPY_Rate B||
+322|[Pause]||1|300|Sleep|||JPY_Rate B||
+323|Control + PgDn|{Control Down}{PgDn}{Control Up}|1|100|Send|||JPY_Rate B||
+324|[Pause]||1|300|Sleep|||JPY_Rate B||
+325|[Text]|{Alt}{h}{v}|1|300|SendEvent|||JPY_Rate B||
+326|[Pause]||1|300|Sleep|||JPY_Rate B||
+327|[Text]|{Down 2}{Enter}|1|100|SendEvent|||JPY_Rate B||
+328|[Pause]||1|300|Sleep|||JPY_Rate B||
+329|[Text]|{Control Down}{c}{Control Up}{Control Down}{Left}{Down}{Control Up}{Right 2}|1|100|SendEvent|||JPY_Rate B||
+330|[Pause]||1|300|Sleep|||JPY_Rate B||
+331|[Text]|{Control Down}{Shift Down}{Up}{Shift Up}{v}{Control Up}|1|100|SendEvent|||JPY_Rate B||
+332|[Pause]||1|300|Sleep|||JPY_Rate B||
+333|F5|{F5}|1|100|Send|||JPY_Round||
+334|[Pause]||1|300|Sleep|||JPY_Round||
+335|[Text]|N8{Enter}|1|100|SendEvent|||JPY_Round||
+336|[Pause]||1|300|Sleep|||JPY_Round||
+337|Control + Down|{Control Down}{Down}{Control Up}|1|100|Send|||JPY_Round||
+338|[Pause]||1|300|Sleep|||JPY_Round||
+339|Down|{Down}|1|0|Send|||JPY_Round||
+340|[Pause]||1|300|Sleep|||JPY_Round||
+341|[Text]|=ROUND(({Right 2}/{Left 3})`,2){Enter}|1|100|SendEvent|||JPY_Round||
+342|[Pause]||1|300|Sleep|||JPY_Round||
+343|Up|{Up}|1|100|Send|||JPY_Round||
+344|[Pause]||1|300|Sleep|||JPY_Round||
+345|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||JPY_Round||
+346|[Pause]||1|300|Sleep|||JPY_Round||
+347|[Text]|{Control Down}{Left}{Down}{Control Up}|1|100|SendEvent|||JPY_Round||
+348|[Pause]||1|300|Sleep|||JPY_Round||
+349|[Text]|{Right 1}{Control Down}{Shift Down}{Up}{Shift Up}{Control Up}|1|100|SendEvent|||JPY_Round||
+350|[Pause]||1|300|Sleep|||JPY_Round||
+351|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||||
+352|[MsgBox]|JPY|1|0|MsgBox|0||IDR||
+353|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|Set IDR to Cash Bill||
+354|[Pause]||1|1000|Sleep|||Set IDR to Cash Bill||
+355|F5|{F5}|1|100|Send|||Set IDR to Cash Bill||
+356|[Pause]||1|300|Sleep|||Set IDR to Cash Bill||
+357|[Text]|J1{Enter}|1|100|SendEvent|||Set IDR to Cash Bill||
+358|[Pause]||1|300|Sleep|||Set IDR to Cash Bill||
+359|Alt + Down|{Alt Down}{Down}{Alt Up}|1|100|Send|||Set IDR to Cash Bill||
+360|[Pause]||1|300|Sleep|||Set IDR to Cash Bill||
+361|[Text]|{Down 7}|1|100|SendEvent|||Set IDR to Cash Bill||
+362|[Pause]||1|300|Sleep|||Set IDR to Cash Bill||
+363|[Text]|RP{Enter}|1|100|SendEvent|||Set IDR to Cash Bill||
+364|[Pause]||1|300|Sleep|||Set IDR to Cash Bill||
+365|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|RP_Invoice Date - Desc||
+366|[Pause]||1|300|Sleep|||RP_Invoice Date - Desc||
+367|Control + Home|{Control Down}{Home}{Control Up}|1|100|Send|||RP_Invoice Date - Desc||
+368|[Pause]||1|300|Sleep|||RP_Invoice Date - Desc||
+369|[Text]|{Down}{Shift Down}{Right 4}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||RP_Invoice Date - Desc||
+370|[Pause]||1|300|Sleep|||RP_Invoice Date - Desc||
+371|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||RP_Invoice Date - Desc||
+372|[Pause]||1|300|Sleep|||RP_Invoice Date - Desc||
+373|WinActivate||1|333|WinActivate||4. ACCRUED.xlsx - Excel|RP_Invoice Date - Desc||
+374|[Pause]||1|1000|Sleep|||RP_Invoice Date - Desc||
+375|F5|{F5}|1|100|Send|||RP_Invoice Date - Desc||
+376|[Pause]||1|300|Sleep|||RP_Invoice Date - Desc||
+377|[Text]|B8{Enter}|1|100|SendEvent|||RP_Invoice Date - Desc||
+378|[Pause]||1|300|Sleep|||RP_Invoice Date - Desc||
+379|Control + Down|{Control Down}{Down}{Control Up}|2|100|Send|||RP_Invoice Date - Desc||
+380|[Pause]||1|300|Sleep|||RP_Invoice Date - Desc||
+381|Down|{Down}|2|100|Send|||RP_Invoice Date - Desc||
+382|[Pause]||1|300|Sleep|||RP_Invoice Date - Desc||
+383|[Text]|{Alt}{h}{v}|1|300|SendEvent|||RP_Invoice Date - Desc||
+384|[Pause]||1|300|Sleep|||RP_Invoice Date - Desc||
+385|[Text]|{Down 2}{Enter}|1|100|SendEvent|||RP_Invoice Date - Desc||
+386|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|RP_CC - Debit Account||
+387|[Pause]||1|300|Sleep|||RP_CC - Debit Account||
+388|F5|{F5}|1|100|Send|||RP_CC - Debit Account||
+389|[Pause]||1|300|Sleep|||RP_CC - Debit Account||
+390|[Text]|G1{Enter}|1|100|SendEvent|||RP_CC - Debit Account||
+391|[Pause]||1|300|Sleep|||RP_CC - Debit Account||
+392|[Text]|{Down}{Shift Down}{Right}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||RP_CC - Debit Account||
+393|[Pause]||1|300|Sleep|||RP_CC - Debit Account||
+394|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||RP_CC - Debit Account||
+395|[Pause]||1|300|Sleep|||RP_CC - Debit Account||
+396|WinActivate||1|333|WinActivate||4. ACCRUED.xlsx - Excel|RP_CC - Debit Account||
+397|[Pause]||1|1000|Sleep|||RP_CC - Debit Account||
+398|F5|{F5}|1|100|Send|||RP_CC - Debit Account||
+399|[Pause]||1|300|Sleep|||RP_CC - Debit Account||
+400|[Text]|G8{Enter}|1|100|SendEvent|||RP_CC - Debit Account||
+401|[Pause]||1|300|Sleep|||RP_CC - Debit Account||
+402|Control + Down|{Control Down}{Down}{Control Up}|2|100|Send|||RP_CC - Debit Account||
+403|[Pause]||1|300|Sleep|||RP_CC - Debit Account||
+404|Down|{Down}|2|100|Send|||RP_CC - Debit Account||
+405|[Pause]||1|300|Sleep|||RP_CC - Debit Account||
+406|[Text]|{Alt}{h}{v}|1|300|SendEvent|||RP_CC - Debit Account||
+407|[Pause]||1|300|Sleep|||RP_CC - Debit Account||
+408|[Text]|{Down 2}{Enter}|1|100|SendEvent|||RP_CC - Debit Account||
+409|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|RP_Amount||
+410|[Pause]||1|300|Sleep|||RP_Amount||
+411|F5|{F5}|1|100|Send|||RP_Amount||
+412|[Pause]||1|300|Sleep|||RP_Amount||
+413|[Text]|K1{Enter}|1|100|SendEvent|||RP_Amount||
+414|[Pause]||1|300|Sleep|||RP_Amount||
+415|[Text]|{Down}{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||RP_Amount||
+416|[Pause]||1|300|Sleep|||RP_Amount||
+417|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||RP_Amount||
+418|[Pause]||1|300|Sleep|||RP_Amount||
+419|WinActivate||1|333|WinActivate||4. ACCRUED.xlsx - Excel|RP_Amount||
+420|[Pause]||1|1000|Sleep|||RP_Amount||
+421|F5|{F5}|1|100|Send|||RP_Amount||
+422|[Pause]||1|300|Sleep|||RP_Amount||
+423|[Text]|B8{Enter}|1|100|SendEvent|||RP_Amount||
+424|[Pause]||1|300|Sleep|||RP_Amount||
+425|Control + Down|{Control Down}{Down}{Control Up}|2|100|Send|||RP_Amount||
+426|[Pause]||1|300|Sleep|||RP_Amount||
+427|[Text]|{Down 2}{Control Down}{Right}{Control Up}{Right 7}|1|100|SendEvent|||RP_Amount||
+428|[Pause]||1|300|Sleep|||RP_Amount||
+429|[Text]|{Alt}{h}{v}|1|300|SendEvent|||RP_Amount||
+430|[Pause]||1|300|Sleep|||RP_Amount||
+431|[Text]|{Down 2}{Enter}|1|100|SendEvent|||RP_Amount||
+432|[Pause]||1|300|Sleep|||RP_Amount||
+433|F5|{F5}|1|100|Send|||RP_Daily Rate||
+434|[Pause]||1|300|Sleep|||RP_Daily Rate||
+435|[Text]|B8{Enter}|1|100|SendEvent|||RP_Daily Rate||
+436|[Pause]||1|300|Sleep|||RP_Daily Rate||
+437|Control + Down|{Control Down}{Down}{Control Up}|2|100|Send|||RP_Daily Rate||
+438|[Pause]||1|300|Sleep|||RP_Daily Rate||
+439|[Text]|{Down 2}{Control Down}{Right}{Control Up}{Right 3}|1|100|SendEvent|||RP_Daily Rate||
+440|[Pause]||1|300|Sleep|||RP_Daily Rate||
+441|[Text]|=VLOOKUP({Home}{Right}`,{Control Down}{PgUp}{Home}{Shift Down}{Right}{Down}{Shift Up}{Control Up}{F4}`,2`,0{Enter}|1|100|SendEvent|||RP_Daily Rate||
+442|[Pause]||1|300|Sleep|||RP_Daily Rate||
+443|[Text]|{Up}{Control Down}{c}{Control Up}{Left 4}{Control Down}{Down}{Control Up}{Right 4}|1|100|SendEvent|||RP_Daily Rate||
+444|[Pause]||1|300|Sleep|||RP_Daily Rate||
+445|[Text]|{Control Down}{Shift Down}{Up}{Shift Up}{v}{Control Up}|1|100|SendEvent|||RP_Daily Rate||
+446|[Pause]||1|300|Sleep|||RP_Daily Rate||
+447|F5|{F5}|1|100|Send|||RP_Rumus Round||
+448|[Pause]||1|300|Sleep|||RP_Rumus Round||
+449|[Text]|B8{Enter}|1|100|SendEvent|||RP_Rumus Round||
+450|[Pause]||1|300|Sleep|||RP_Rumus Round||
+451|Control + Down|{Control Down}{Down}{Control Up}|2|100|Send|||RP_Rumus Round||
+452|[Pause]||1|300|Sleep|||RP_Rumus Round||
+453|[Text]|{Down 2}{Control Down}{Right}{Control Up}{Right 5}|1|100|SendEvent|||RP_Rumus Round||
+454|[Pause]||1|300|Sleep|||RP_Rumus Round||
+455|[Text]|=ROUND(({Right 2}/{Left 5})`,2){Enter}|1|100|SendEvent|||RP_Rumus Round||
+456|[Pause]||1|300|Sleep|||RP_Rumus Round||
+457|Up|{Up}|1|100|Send|||RP_Rumus Round||
+458|[Pause]||1|300|Sleep|||RP_Rumus Round||
+459|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||RP_Rumus Round||
+460|[Pause]||1|300|Sleep|||RP_Rumus Round||
+461|[Text]|{Control Down}{Left}{Down}{Control Up}|1|100|SendEvent|||RP_Rumus Round||
+462|[Pause]||1|300|Sleep|||RP_Rumus Round||
+463|[Text]|{Right 2}{Control Down}{Shift Down}{Up}{Shift Up}{Control Up}|1|100|SendEvent|||RP_Rumus Round||
+464|[Pause]||1|300|Sleep|||RP_Rumus Round||
+465|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||RP_Rumus Round||
+466|[Pause]||1|300|Sleep|||RP_Rumus Round||
+467|[MsgBox]|IDR Finish|1|0|MsgBox|0||IDR||
+468|[FuncReturn]|return|1|0|FuncReturn|||||
+
+[PMC Code v5.0.5]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|FillExcRate()
+Groups=Start:1
+1|[FunctionStart]|FillExcRate|1|0|UserFunction|Local| / |||
+2|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|Fill USD||
+3|[Pause]||1|300|Sleep|||||
+4|Control + Home|{Control Down}{Home}{Control Up}|1|0|Send|||||
+5|[Pause]||1|300|Sleep|||||
+6|[Text]|{Alt}{a}{t}|1|0|Send|||||
+7|[Pause]||1|1000|Sleep|||Fill USD||
+8|F5|{F5}|1|100|Send|||Delete Slip Number||
+9|[Pause]||1|300|Sleep|||Delete Slip Number||
+10|[Text]|C1{Enter}|1|100|SendEvent|||Delete Slip Number||
+11|[Pause]||1|300|Sleep|||Delete Slip Number||
+12|Control + Space|{Control Down}{Space}{Control Up}|1|0|Send|||Delete Slip Number||
+13|[Pause]||1|300|Sleep|||Delete Slip Number||
+14|[Text]|{AppsKey}{d}|1|100|SendEvent|||Delete Slip Number||
+15|F5|{F5}|1|100|Send|||Fill USD||
+16|[Pause]||1|300|Sleep|||Fill USD||
+17|[Text]|I1{Enter}|1|100|SendEvent|||Fill USD||
+18|[Pause]||1|300|Sleep|||Fill USD||
+19|Alt + Down|{Alt Down}{Down}{Alt Up}|1|100|Send|||Fill USD||
+20|[Pause]||1|300|Sleep|||Fill USD||
+21|[Text]|{Down 7}|1|100|SendEvent|||Fill USD||
+22|[Pause]||1|300|Sleep|||Fill USD||
+23|[Text]|USD{Enter}|1|100|SendEvent|||Fill USD||
+24|[Pause]||1|300|Sleep|||Fill USD||
+25|Control + Home|{Control Down}{Home}{Control Up}|1|100|Send|||USD MODEL||
+26|[Pause]||1|300|Sleep|||USD Invoice Date||
+27|[Text]|{Down}{Shift Down}{Right 2}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||USD Invoice Date||
+28|[Pause]||1|300|Sleep|||USD Invoice Date||
+29|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||USD Invoice Date||
+30|[Pause]||1|300|Sleep|||USD Invoice Date||
+31|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|USD Invoice Date||
+32|[Pause]||1|1000|Sleep|||USD Invoice Date||
+33|F5|{F5}|1|100|Send|||USD Invoice Date||
+34|[Pause]||1|100|Sleep|||USD Invoice Date||
+35|[Text]|B8{Enter}|1|100|SendEvent|||USD Invoice Date||
+36|[Pause]||1|300|Sleep|||USD Invoice Date||
+37|[Text]|{Alt}{h}{v}|1|300|SendEvent|||USD Invoice Date||
+38|[Pause]||1|100|Sleep|||USD Invoice Date||
+39|[Text]|{Down 2}{Enter}|1|100|SendEvent|||USD_CC - Debit Account||
+40|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|USD_Debit Account||
+41|[Pause]||1|300|Sleep|||USD_Debit Account||
+42|F5|{F5}|1|100|Send|||USD_Debit Account||
+43|[Pause]||1|300|Sleep|||USD_Debit Account||
+44|[Text]|G1{Enter}|1|100|SendEvent|||USD_Debit Account||
+45|[Pause]||1|300|Sleep|||USD_Debit Account||
+46|[Text]|{Down}{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||USD_Debit Account||
+47|[Pause]||1|300|Sleep|||USD_Debit Account||
+48|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||USD_Debit Account||
+49|[Pause]||1|300|Sleep|||USD_Debit Account||
+50|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|USD_Debit Account||
+51|[Pause]||1|1000|Sleep|||USD_Debit Account||
+52|F5|{F5}|1|100|Send|||USD_Debit Account||
+53|[Pause]||1|300|Sleep|||USD_Debit Account||
+54|[Text]|F8{Enter}|1|100|SendEvent|||USD_Debit Account||
+55|[Pause]||1|300|Sleep|||USD_Debit Account||
+56|[Text]|{Alt}{h}{v}|1|300|SendEvent|||USD_Debit Account||
+57|[Pause]||1|300|Sleep|||USD_Debit Account||
+58|[Text]|{Down 2}{Enter}|1|100|SendEvent|||USD_Debit Account||
+59|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|Fill USD||
+60|[Pause]||1|300|Sleep|||USD_Amount||
+61|F5|{F5}|1|100|Send|||USD_Amount||
+62|[Pause]||1|300|Sleep|||USD_Amount||
+63|[Text]|J1{Enter}|1|100|SendEvent|||USD_Amount||
+64|[Pause]||1|300|Sleep|||USD_Amount||
+65|[Text]|{Down}{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||USD_Amount||
+66|[Pause]||1|300|Sleep|||USD_Amount||
+67|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||USD_Amount||
+68|[Pause]||1|300|Sleep|||USD_Amount||
+69|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|USD_Amount||
+70|[Pause]||1|1000|Sleep|||USD_Amount||
+71|F5|{F5}|1|100|Send|||USD_Amount||
+72|[Pause]||1|300|Sleep|||USD_Amount||
+73|[Text]|K8{Enter}|1|100|SendEvent|||USD_Amount||
+74|[Pause]||1|300|Sleep|||USD_Amount||
+75|[Text]|{Alt}{h}{v}|1|300|SendEvent|||USD_Amount||
+76|[Pause]||1|300|Sleep|||USD_Amount||
+77|[Text]|{Down 2}{Enter}|1|100|SendEvent|||USD_Amount||
+78|[Pause]||1|300|Sleep|||USD_Amount||
+79|[MsgBox]|USD Selesai`n`nNext >> SGD|1|0|MsgBox|0||||
+80|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|Fill SGD||
+81|[Pause]||1|1000|Sleep|||Fill SGD||
+82|F5|{F5}|1|100|Send|||Fill SGD||
+83|[Pause]||1|300|Sleep|||Fill SGD||
+84|[Text]|I1{Enter}|1|100|SendEvent|||Fill SGD||
+85|[Pause]||1|300|Sleep|||Fill SGD||
+86|Alt + Down|{Alt Down}{Down}{Alt Up}|1|100|Send|||Fill SGD||
+87|[Pause]||1|300|Sleep|||Fill SGD||
+88|[Text]|{Down 7}|1|100|SendEvent|||Fill SGD||
+89|[Pause]||1|300|Sleep|||Fill SGD||
+90|[Text]|SGD{Enter}|1|100|SendEvent|||Fill SGD||
+91|[Pause]||1|300|Sleep|||Fill SGD||
+92|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|SGD_Invoice Date - Supp Name||
+93|[Pause]||1|300|Sleep|||SGD_Invoice Date - Supp Name||
+94|Control + Home|{Control Down}{Home}{Control Up}|1|100|Send|||SGD_Invoice Date - Supp Name||
+95|[Pause]||1|300|Sleep|||SGD_Invoice Date - Supp Name||
+96|[Text]|{Down}{Shift Down}{Right 2}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||SGD_Invoice Date - Supp Name||
+97|[Pause]||1|300|Sleep|||SGD_Invoice Date - Supp Name||
+98|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||SGD_Invoice Date - Supp Name||
+99|[Pause]||1|300|Sleep|||SGD_Invoice Date - Supp Name||
+100|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|SGD_Invoice Date - Supp Name||
+101|[Pause]||1|1000|Sleep|||SGD_Invoice Date - Supp Name||
+102|F5|{F5}|1|100|Send|||SGD_Invoice Date - Supp Name||
+103|[Pause]||1|100|Sleep|||SGD_Invoice Date - Supp Name||
+104|[Text]|B8{Enter}|1|100|SendEvent|||SGD_Invoice Date - Supp Name||
+105|[Pause]||1|300|Sleep|||SGD_Invoice Date - Supp Name||
+106|Control + Down|{Control Down}{Down}{Control Up}|1|0|Send|||SGD_Invoice Date - Supp Name||
+107|[Pause]||1|300|Sleep|||SGD_Model - Desc||
+108|Down|{Down}|1|100|Send|||||
+109|[Pause]||1|300|Sleep|||SGD_Invoice Date - Supp Name||
+110|[Text]|{Alt}{h}{v}|1|300|SendEvent|||SGD_Invoice Date - Supp Name||
+111|[Pause]||1|100|Sleep|||SGD_Invoice Date - Supp Name||
+112|[Text]|{Down 2}{Enter}|1|100|SendEvent|||SGD_Invoice Date - Supp Name||
+113|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|SGD_Debit Account||
+114|[Pause]||1|300|Sleep|||SGD_Debit Account||
+115|F5|{F5}|1|100|Send|||SGD_Debit Account||
+116|[Pause]||1|300|Sleep|||SGD_Debit Account||
+117|[Text]|G1{Enter}|1|100|SendEvent|||SGD_Debit Account||
+118|[Pause]||1|300|Sleep|||SGD_Debit Account||
+119|[Text]|{Down}{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||SGD_Debit Account||
+120|[Pause]||1|300|Sleep|||SGD_Debit Account||
+121|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||SGD_Debit Account||
+122|[Pause]||1|300|Sleep|||SGD_Debit Account||
+123|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|SGD_Debit Account||
+124|[Pause]||1|1000|Sleep|||SGD_Debit Account||
+125|F5|{F5}|1|100|Send|||SGD_Debit Account||
+126|[Pause]||1|300|Sleep|||SGD_Debit Account||
+127|[Text]|F8{Enter}|1|100|SendEvent|||SGD_Debit Account||
+128|[Pause]||1|300|Sleep|||SGD_Debit Account||
+129|Control + Down|{Control Down}{Down}{Control Up}|1|0|Send|||SGD_Debit Account||
+130|[Pause]||1|300|Sleep|||SGD_Debit Account||
+131|Down|{Down}|1|100|Send|||SGD_Debit Account||
+132|[Pause]||1|300|Sleep|||SGD_Debit Account||
+133|[Text]|{Alt}{h}{v}|1|300|SendEvent|||SGD_Debit Account||
+134|[Pause]||1|300|Sleep|||SGD_Debit Account||
+135|[Text]|{Down 2}{Enter}|1|100|SendEvent|||SGD_Debit Account||
+136|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|SGD_Amount||
+137|[Pause]||1|300|Sleep|||SGD_Amount||
+138|F5|{F5}|1|100|Send|||SGD_Amount||
+139|[Pause]||1|300|Sleep|||SGD_Amount||
+140|[Text]|J1{Enter}|1|100|SendEvent|||SGD_Amount||
+141|[Pause]||1|300|Sleep|||SGD_Amount||
+142|[Text]|{Down}{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||SGD_Amount||
+143|[Pause]||1|300|Sleep|||SGD_Amount||
+144|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||SGD_Amount||
+145|[Pause]||1|300|Sleep|||SGD_Amount||
+146|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|SGD_Amount||
+147|[Pause]||1|1000|Sleep|||SGD_Amount||
+148|F5|{F5}|1|100|Send|||SGD_Amount||
+149|[Pause]||1|300|Sleep|||SGD_Amount||
+150|[Text]|K8{Enter}|1|100|SendEvent|||SGD_Amount||
+151|[Pause]||1|300|Sleep|||SGD_Amount||
+152|Control + Down|{Control Down}{Down}{Control Up}|1|0|Send|||SGD_Amount||
+153|[Pause]||1|300|Sleep|||SGD_Amount||
+154|Down|{Down}|1|100|Send|||SGD_Amount||
+155|[Pause]||1|300|Sleep|||SGD_Amount||
+156|Right|{Right}|2|100|Send|||SGD_Amount||
+157|[Pause]||1|300|Sleep|||SGD_Amount||
+158|[Text]|{Alt}{h}{v}|1|300|SendEvent|||SGD_Amount||
+159|[Pause]||1|300|Sleep|||SGD_Amount||
+160|[Text]|{Down 2}{Enter}|1|100|SendEvent|||SGD_Amount||
+161|[Pause]||1|300|Sleep|||SGD_Amount||
+162|WinActivate||1|333|WinActivate||4. ACCRUED.xlsx - Excel|SGD_Daily Rate||
+163|Control + PgUp|{Control Down}{PgUp}{Control Up}|1|100|Send|||SGD_Rate B||
+164|[Pause]||1|300|Sleep|||SGD_Rate B||
+165|[Text]|{Control Down}{Home}{Down}{Control Up}{Right 2}|1|100|SendEvent|||SGD_Rate B||
+166|[Pause]||1|300|Sleep|||SGD_Rate B||
+167|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||SGD_Rate B||
+168|[Pause]||1|300|Sleep|||SGD_Rate B||
+169|Control + PgDn|{Control Down}{PgDn}{Control Up}|1|100|Send|||SGD_Rate B||
+170|[Pause]||1|300|Sleep|||SGD_Rate B||
+171|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|SGD_Daily Rate||
+172|[Pause]||1|300|Sleep|||SGD_Rate B||
+173|F5|{F5}|1|100|Send|||SGD_Rate B||
+174|[Pause]||1|300|Sleep|||SGD_Rate B||
+175|[Text]|K8{Enter}|1|100|SendEvent|||SGD_Rate B||
+176|[Pause]||1|300|Sleep|||SGD_Rate B||
+177|Control + Down|{Control Down}{Down}{Control Up}|1|100|Send|||SGD_Rate B||
+178|[Pause]||1|300|Sleep|||SGD_Rate B||
+179|Down|{Down}|1|100|Send|||||
+180|[Pause]||1|300|Sleep|||SGD_Rate B||
+181|Left|{Left}|4|100|Send|||||
+182|[Pause]||1|300|Sleep|||SGD_Rate B||
+183|[Text]|{Alt}{h}{v}|1|300|SendEvent|||SGD_Rate B||
+184|[Pause]||1|300|Sleep|||SGD_Rate B||
+185|[Text]|{Down 2}{Enter}|1|100|SendEvent|||SGD_Rate B||
+186|[Pause]||1|300|Sleep|||SGD_Rate B||
+187|[Text]|{Control Down}{c}{Control Up}{Control Down}{Left}{Down}{Control Up}{Right}|1|100|SendEvent|||SGD_Rate B||
+188|[Pause]||1|300|Sleep|||SGD_Rate B||
+189|[Text]|{Control Down}{Shift Down}{Up}{Shift Up}{v}{Control Up}|1|100|SendEvent|||SGD_Rate B||
+190|[Pause]||1|300|Sleep|||SGD_Rate B||
+191|F5|{F5}|1|100|Send|||SGD_Round Rumus||
+192|[Pause]||1|300|Sleep|||SGD_Round Rumus||
+193|[Text]|K8{Enter}|1|100|SendEvent|||SGD_Round Rumus||
+194|[Pause]||1|300|Sleep|||SGD_Round Rumus||
+195|Control + Down|{Control Down}{Down}{Control Up}|1|100|Send|||SGD_Round Rumus||
+196|[Pause]||1|300|Sleep|||SGD_Round Rumus||
+197|Down|{Down}|1|100|Send|||SGD_Round Rumus||
+198|[Pause]||1|300|Sleep|||SGD_Round Rumus||
+199|[Text]|=ROUND(({Right 2}/{Left 4})`,2){Enter}|1|100|SendEvent|||SGD_Round Rumus||
+200|[Pause]||1|300|Sleep|||SGD_Round Rumus||
+201|Up|{Up}|1|100|Send|||SGD_Round Rumus||
+202|[Pause]||1|300|Sleep|||SGD_Round Rumus||
+203|Control + c|{Control Down}{c}{Control Up}|1|0|Send|||SGD_Round Rumus||
+204|[Pause]||1|300|Sleep|||SGD_Round Rumus||
+205|[Text]|{Control Down}{Left}{Down}{Control Up}{Right 4}{Shift Down}{Control Down}{Up}{Control Up}{Down}{Shift Up}|1|100|SendEvent|||SGD_Round Rumus||
+206|[Pause]||1|300|Sleep|||SGD_Round Rumus||
+207|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||SGD_Round Rumus||
+208|[Pause]||1|300|Sleep|||SGD_Round Rumus||
+209|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|Fill JPY||
+210|[Pause]||1|1000|Sleep|||Fill JPY||
+211|F5|{F5}|1|100|Send|||Fill JPY||
+212|[Pause]||1|300|Sleep|||Fill JPY||
+213|[Text]|I1{Enter}|1|100|SendEvent|||Fill JPY||
+214|[Pause]||1|300|Sleep|||Fill JPY||
+215|Alt + Down|{Alt Down}{Down}{Alt Up}|1|100|Send|||Fill JPY||
+216|[Pause]||1|300|Sleep|||Fill JPY||
+217|[Text]|{Down 7}|1|100|SendEvent|||Fill JPY||
+218|[Pause]||1|300|Sleep|||Fill JPY||
+219|[Text]|JPY{Enter}|1|100|SendEvent|||Fill JPY||
+220|[Pause]||1|300|Sleep|||Fill JPY||
+221|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|JPY_Inv date - Supp Name||
+222|[Pause]||1|300|Sleep|||JPY_Inv date - Supp Name||
+223|Control + Home|{Control Down}{Home}{Control Up}|1|100|Send|||JPY_Inv date - Supp Name||
+224|[Pause]||1|300|Sleep|||JPY_Inv date - Supp Name||
+225|[Text]|{Down}{Shift Down}{Right 2}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||JPY_Inv date - Supp Name||
+226|[Pause]||1|300|Sleep|||JPY_Inv date - Supp Name||
+227|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||JPY_Inv date - Supp Name||
+228|[Pause]||1|300|Sleep|||JPY_Inv date - Supp Name||
+229|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|JPY_Inv date - Supp Name||
+230|[Pause]||1|1000|Sleep|||JPY_Inv date - Supp Name||
+231|F5|{F5}|1|100|Send|||JPY_Inv date - Supp Name||
+232|[Pause]||1|100|Sleep|||JPY_Inv date - Supp Name||
+233|[Text]|B8{Enter}|1|100|SendEvent|||JPY_Inv date - Supp Name||
+234|[Pause]||1|300|Sleep|||JPY_Inv date - Supp Name||
+235|Control + Down|{Control Down}{Down}{Control Up}|1|100|Send|||JPY_Inv date - Supp Name||
+236|[Pause]||1|300|Sleep|||JPY_Inv date - Supp Name||
+237|Down|{Down}|1|100|Send|||JPY_Inv date - Supp Name||
+238|[Pause]||1|300|Sleep|||JPY_Inv date - Supp Name||
+239|[Text]|{Alt}{h}{v}|1|300|SendEvent|||JPY_Inv date - Supp Name||
+240|[Pause]||1|100|Sleep|||JPY_Inv date - Supp Name||
+241|[Text]|{Down 2}{Enter}|1|100|SendEvent|||JPY_Inv date - Supp Name||
+242|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|JPY_Debit Account||
+243|[Pause]||1|300|Sleep|||JPY_Debit Account||
+244|F5|{F5}|1|100|Send|||JPY_Debit Account||
+245|[Pause]||1|300|Sleep|||JPY_Debit Account||
+246|[Text]|G1{Enter}|1|100|SendEvent|||JPY_Debit Account||
+247|[Pause]||1|300|Sleep|||JPY_Debit Account||
+248|[Text]|{Down}{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||JPY_Debit Account||
+249|[Pause]||1|300|Sleep|||JPY_Debit Account||
+250|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||JPY_Debit Account||
+251|[Pause]||1|300|Sleep|||JPY_Debit Account||
+252|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|JPY_Debit Account||
+253|[Pause]||1|1000|Sleep|||JPY_Debit Account||
+254|F5|{F5}|1|100|Send|||JPY_Debit Account||
+255|[Pause]||1|300|Sleep|||JPY_Debit Account||
+256|[Text]|F8{Enter}|1|100|SendEvent|||JPY_Debit Account||
+257|[Pause]||1|300|Sleep|||JPY_Debit Account||
+258|Control + Down|{Control Down}{Down}{Control Up}|1|0|Send|||JPY_Debit Account||
+259|[Pause]||1|300|Sleep|||JPY_Debit Account||
+260|Down|{Down}|1|100|Send|||JPY_Debit Account||
+261|[Pause]||1|300|Sleep|||JPY_Debit Account||
+262|[Text]|{Alt}{h}{v}|1|300|SendEvent|||JPY_Debit Account||
+263|[Pause]||1|300|Sleep|||JPY_Debit Account||
+264|[Text]|{Down 2}{Enter}|1|100|SendEvent|||JPY_Debit Account||
+265|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|JPY_Amount||
+266|[Pause]||1|300|Sleep|||JPY_Amount||
+267|F5|{F5}|1|100|Send|||JPY_Amount||
+268|[Pause]||1|300|Sleep|||JPY_Amount||
+269|[Text]|J1{Enter}|1|100|SendEvent|||JPY_Amount||
+270|[Pause]||1|300|Sleep|||JPY_Amount||
+271|[Text]|{Down}{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||JPY_Amount||
+272|[Pause]||1|300|Sleep|||JPY_Amount||
+273|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||JPY_Amount||
+274|[Pause]||1|300|Sleep|||JPY_Amount||
+275|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|JPY_Amount||
+276|[Pause]||1|1000|Sleep|||JPY_Amount||
+277|F5|{F5}|1|100|Send|||JPY_Amount||
+278|[Pause]||1|300|Sleep|||JPY_Amount||
+279|[Text]|K8{Enter}|1|100|SendEvent|||JPY_Amount||
+280|[Pause]||1|300|Sleep|||JPY_Amount||
+281|Control + Down|{Control Down}{Down}{Control Up}|1|0|Send|||JPY_Amount||
+282|[Pause]||1|300|Sleep|||JPY_Amount||
+283|Down|{Down}|1|100|Send|||JPY_Amount||
+284|[Pause]||1|300|Sleep|||JPY_Amount||
+285|Right|{Right}|2|100|Send|||JPY_Amount||
+286|[Pause]||1|300|Sleep|||JPY_Amount||
+287|[Text]|{Alt}{h}{v}|1|300|SendEvent|||JPY_Amount||
+288|[Pause]||1|300|Sleep|||JPY_Amount||
+289|[Text]|{Down 2}{Enter}|1|100|SendEvent|||JPY_Amount||
+290|[Pause]||1|300|Sleep|||JPY_Amount||
+291|WinActivate||1|333|WinActivate||4. ACCRUED.xlsx - Excel|JPY_Rate B||
+292|Control + PgUp|{Control Down}{PgUp}{Control Up}|1|100|Send|||JPY_Rate B||
+293|[Pause]||1|300|Sleep|||JPY_Rate B||
+294|[Text]|{Control Down}{Home}{Down}{Control Up}{Right 3}|1|100|SendEvent|||JPY_Rate B||
+295|[Pause]||1|300|Sleep|||JPY_Rate B||
+296|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||JPY_Rate B||
+297|[Pause]||1|300|Sleep|||JPY_Rate B||
+298|Control + PgDn|{Control Down}{PgDn}{Control Up}|1|100|Send|||JPY_Rate B||
+299|[Pause]||1|300|Sleep|||JPY_Rate B||
+300|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|JPY_Rate B||
+301|[Pause]||1|300|Sleep|||JPY_Rate B||
+302|F5|{F5}|1|100|Send|||JPY_Rate B||
+303|[Pause]||1|300|Sleep|||JPY_Rate B||
+304|[Text]|K8{Enter}|1|100|SendEvent|||JPY_Rate B||
+305|[Pause]||1|300|Sleep|||JPY_Rate B||
+306|Control + Down|{Control Down}{Down}{Control Up}|1|100|Send|||JPY_Rate B||
+307|[Pause]||1|300|Sleep|||JPY_Rate B||
+308|Down|{Down}|1|100|Send|||JPY_Rate B||
+309|[Pause]||1|300|Sleep|||JPY_Rate B||
+310|Left|{Left}|3|100|Send|||JPY_Rate B||
+311|[Pause]||1|300|Sleep|||JPY_Rate B||
+312|[Text]|{Alt}{h}{v}|1|300|SendEvent|||JPY_Rate B||
+313|[Pause]||1|300|Sleep|||JPY_Rate B||
+314|[Text]|{Down 2}{Enter}|1|100|SendEvent|||JPY_Rate B||
+315|[Pause]||1|300|Sleep|||JPY_Rate B||
+316|[Text]|{Control Down}{c}{Control Up}{Control Down}{Left}{Down}{Control Up}{Right 2}|1|100|SendEvent|||JPY_Rate B||
+317|[Pause]||1|300|Sleep|||JPY_Rate B||
+318|[Text]|{Control Down}{Shift Down}{Up}{Shift Up}{v}{Control Up}|1|100|SendEvent|||JPY_Rate B||
+319|[Pause]||1|300|Sleep|||JPY_Rate B||
+320|F5|{F5}|1|100|Send|||JPY_Round Rumus||
+321|[Pause]||1|300|Sleep|||JPY_Round Rumus||
+322|[Text]|K8{Enter}|1|100|SendEvent|||JPY_Round Rumus||
+323|[Pause]||1|300|Sleep|||JPY_Round Rumus||
+324|Control + Down|{Control Down}{Down}{Control Up}|2|100|Send|||JPY_Round Rumus||
+325|[Pause]||1|300|Sleep|||JPY_Round Rumus||
+326|Shift + Right|{Shift Down}{Right}{Shift Up}|1|100|Send|||JPY_Round Rumus||
+327|[Pause]||1|300|Sleep|||JPY_Round Rumus||
+328|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||JPY_Round Rumus||
+329|[Pause]||1|300|Sleep|||JPY_Round Rumus||
+330|[Text]|{Control Down}{Up}{Control Up}{Down}|1|100|SendEvent|||JPY_Round Rumus||
+331|[Pause]||1|300|Sleep|||JPY_Round Rumus||
+332|[Text]|{Control Down}{Left}{Down}{Control Up}{Right 3}{Shift Down}{Control Down}{Up}{Control Up}{Down}{Shift Up}|1|100|SendEvent|||JPY_Round Rumus||
+333|[Pause]||1|300|Sleep|||JPY_Round Rumus||
+334|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||JPY_Round Rumus||
+335|[Pause]||1|300|Sleep|||JPY_Round Rumus||
+336|[MsgBox]|JPY Finish|1|0|MsgBox|0||IDR||
+337|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|Set IDR to Cash Bill||
+338|[Pause]||1|1000|Sleep|||Set IDR to Cash Bill||
+339|F5|{F5}|1|100|Send|||Set IDR to Cash Bill||
+340|[Pause]||1|300|Sleep|||Set IDR to Cash Bill||
+341|[Text]|I1{Enter}|1|100|SendEvent|||Set IDR to Cash Bill||
+342|[Pause]||1|300|Sleep|||Set IDR to Cash Bill||
+343|Alt + Down|{Alt Down}{Down}{Alt Up}|1|100|Send|||Set IDR to Cash Bill||
+344|[Pause]||1|300|Sleep|||Set IDR to Cash Bill||
+345|[Text]|{Down 7}|1|100|SendEvent|||Set IDR to Cash Bill||
+346|[Pause]||1|300|Sleep|||Set IDR to Cash Bill||
+347|[Text]|RP{Enter}|1|100|SendEvent|||Set IDR to Cash Bill||
+348|[Pause]||1|300|Sleep|||Set IDR to Cash Bill||
+349|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|RP_Invoice Date - Desc||
+350|[Pause]||1|300|Sleep|||RP_Invoice Date - Desc||
+351|Control + Home|{Control Down}{Home}{Control Up}|1|100|Send|||RP_Invoice Date - Desc||
+352|[Pause]||1|300|Sleep|||RP_Invoice Date - Desc||
+353|[Text]|{Down}{Shift Down}{Right 2}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||RP_Invoice Date - Desc||
+354|[Pause]||1|300|Sleep|||RP_Invoice Date - Desc||
+355|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||RP_Invoice Date - Desc||
+356|[Pause]||1|300|Sleep|||RP_Invoice Date - Desc||
+357|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|RP_Invoice Date - Desc||
+358|[Pause]||1|1000|Sleep|||RP_Invoice Date - Desc||
+359|F5|{F5}|1|100|Send|||RP_Invoice Date - Desc||
+360|[Pause]||1|300|Sleep|||RP_Invoice Date - Desc||
+361|[Text]|B8{Enter}|1|100|SendEvent|||RP_Invoice Date - Desc||
+362|[Pause]||1|300|Sleep|||RP_Invoice Date - Desc||
+363|Control + Down|{Control Down}{Down}{Control Up}|2|100|Send|||RP_Invoice Date - Desc||
+364|[Pause]||1|300|Sleep|||RP_Invoice Date - Desc||
+365|Down|{Down}|2|100|Send|||RP_Invoice Date - Desc||
+366|[Pause]||1|300|Sleep|||RP_Invoice Date - Desc||
+367|[Text]|{Alt}{h}{v}|1|300|SendEvent|||RP_Invoice Date - Desc||
+368|[Pause]||1|300|Sleep|||RP_Invoice Date - Desc||
+369|[Text]|{Down 2}{Enter}|1|100|SendEvent|||RP_Invoice Date - Desc||
+370|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|RP_Debit Account||
+371|[Pause]||1|300|Sleep|||RP_Debit Account||
+372|F5|{F5}|1|100|Send|||RP_Debit Account||
+373|[Pause]||1|300|Sleep|||RP_Debit Account||
+374|[Text]|G1{Enter}|1|100|SendEvent|||RP_Debit Account||
+375|[Pause]||1|300|Sleep|||RP_Debit Account||
+376|[Text]|{Down}{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||RP_Debit Account||
+377|[Pause]||1|300|Sleep|||RP_Debit Account||
+378|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||RP_Debit Account||
+379|[Pause]||1|300|Sleep|||RP_Debit Account||
+380|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|RP_Debit Account||
+381|[Pause]||1|1000|Sleep|||RP_Debit Account||
+382|F5|{F5}|1|100|Send|||RP_Debit Account||
+383|[Pause]||1|300|Sleep|||RP_Debit Account||
+384|[Text]|F8{Enter}|1|100|SendEvent|||RP_Debit Account||
+385|[Pause]||1|300|Sleep|||RP_Debit Account||
+386|Control + Down|{Control Down}{Down}{Control Up}|2|100|Send|||RP_Debit Account||
+387|[Pause]||1|300|Sleep|||RP_Debit Account||
+388|Down|{Down}|2|100|Send|||RP_Debit Account||
+389|[Pause]||1|300|Sleep|||RP_Debit Account||
+390|[Text]|{Alt}{h}{v}|1|300|SendEvent|||RP_Debit Account||
+391|[Pause]||1|300|Sleep|||RP_Debit Account||
+392|[Text]|{Down 2}{Enter}|1|100|SendEvent|||RP_Debit Account||
+393|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|RP_Amount||
+394|[Pause]||1|300|Sleep|||RP_Amount||
+395|F5|{F5}|1|100|Send|||RP_Amount||
+396|[Pause]||1|300|Sleep|||RP_Amount||
+397|[Text]|J1{Enter}|1|100|SendEvent|||RP_Amount||
+398|[Pause]||1|300|Sleep|||RP_Amount||
+399|[Text]|{Down}{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||RP_Amount||
+400|[Pause]||1|300|Sleep|||RP_Amount||
+401|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||RP_Amount||
+402|[Pause]||1|300|Sleep|||RP_Amount||
+403|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|RP_Amount||
+404|[Pause]||1|1000|Sleep|||RP_Amount||
+405|F5|{F5}|1|100|Send|||RP_Amount||
+406|[Pause]||1|300|Sleep|||RP_Amount||
+407|[Text]|B8{Enter}|1|100|SendEvent|||RP_Amount||
+408|[Pause]||1|300|Sleep|||RP_Amount||
+409|Control + Down|{Control Down}{Down}{Control Up}|2|100|Send|||RP_Amount||
+410|[Pause]||1|300|Sleep|||RP_Amount||
+411|[Text]|{Down 2}{Control Down}{Right}{Control Up}{Right 9}|1|100|SendEvent|||RP_Amount||
+412|[Pause]||1|300|Sleep|||RP_Amount||
+413|[Text]|{Alt}{h}{v}|1|300|SendEvent|||RP_Amount||
+414|[Pause]||1|300|Sleep|||RP_Amount||
+415|[Text]|{Down 2}{Enter}|1|100|SendEvent|||RP_Amount||
+416|[Pause]||1|300|Sleep|||RP_Amount||
+417|WinActivate||1|333|WinActivate||4. ACCRUED.xlsx - Excel|RP_End Month Rate IDR||
+418|Control + PgUp|{Control Down}{PgUp}{Control Up}|1|100|Send|||RP_End Month Rate IDR||
+419|[Pause]||1|300|Sleep|||RP_End Month Rate IDR||
+420|[Text]|{Control Down}{Home}{Down}{Control Up}{Right}|1|100|SendEvent|||RP_End Month Rate IDR||
+421|[Pause]||1|300|Sleep|||RP_End Month Rate IDR||
+422|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||RP_End Month Rate IDR||
+423|[Pause]||1|300|Sleep|||RP_End Month Rate IDR||
+424|Control + PgDn|{Control Down}{PgDn}{Control Up}|1|100|Send|||RP_End Month Rate IDR||
+425|[Pause]||1|300|Sleep|||RP_End Month Rate IDR||
+426|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|RP_End Month Rate IDR||
+427|[Pause]||1|300|Sleep|||RP_End Month Rate IDR||
+428|F5|{F5}|1|100|Send|||RP_End Month Rate IDR||
+429|[Pause]||1|300|Sleep|||RP_End Month Rate IDR||
+430|[Text]|B8{Enter}|1|100|SendEvent|||RP_End Month Rate IDR||
+431|[Pause]||1|300|Sleep|||RP_End Month Rate IDR||
+432|Control + Down|{Control Down}{Down}{Control Up}|3|100|Send|||RP_End Month Rate IDR||
+433|[Pause]||1|300|Sleep|||RP_End Month Rate IDR||
+434|Right|{Right}|7|100|Send|||RP_End Month Rate IDR||
+435|[Pause]||1|300|Sleep|||RP_End Month Rate IDR||
+436|[Text]|{Alt}{h}{v}|1|300|SendEvent|||RP_End Month Rate IDR||
+437|[Pause]||1|300|Sleep|||RP_End Month Rate IDR||
+438|[Text]|{Down 2}{Enter}|1|100|SendEvent|||RP_End Month Rate IDR||
+439|[Pause]||1|300|Sleep|||RP_End Month Rate IDR||
+440|[Text]|{Control Down}{c}{Control Up}{Control Down}{Left}{Down}{Control Up}{Right 3}|1|100|SendEvent|||RP_End Month Rate IDR||
+441|[Pause]||1|300|Sleep|||RP_End Month Rate IDR||
+442|[Text]|{Control Down}{Shift Down}{Up}{Shift Up}{v}{Control Up}|1|100|SendEvent|||RP_End Month Rate IDR||
+443|[Pause]||1|300|Sleep|||RP_End Month Rate IDR||
+444|WinActivate||1|333|WinActivate||4. ACCRUED.xlsx - Excel|RP_Rate B||
+445|Control + PgUp|{Control Down}{PgUp}{Control Up}|1|100|Send|||RP_Rate B||
+446|[Pause]||1|300|Sleep|||RP_Rate B||
+447|[Text]|{Control Down}{Home}{Down}{Control Up}{Right}|1|100|SendEvent|||RP_Rate B||
+448|[Pause]||1|300|Sleep|||RP_Rate B||
+449|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||RP_Rate B||
+450|[Pause]||1|300|Sleep|||RP_Rate B||
+451|Control + PgDn|{Control Down}{PgDn}{Control Up}|1|100|Send|||RP_Rate B||
+452|[Pause]||1|300|Sleep|||RP_Rate B||
+453|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|RP_Rate B||
+454|[Pause]||1|300|Sleep|||RP_Rate B||
+455|F5|{F5}|1|100|Send|||RP_Rate B||
+456|[Pause]||1|300|Sleep|||RP_Rate B||
+457|[Text]|B8{Enter}|1|100|SendEvent|||RP_Rate B||
+458|[Pause]||1|300|Sleep|||RP_Rate B||
+459|Control + Down|{Control Down}{Down}{Control Up}|3|100|Send|||RP_Rate B||
+460|[Pause]||1|300|Sleep|||RP_Rate B||
+461|Right|{Right}|6|100|Send|||RP_Rate B||
+462|[Pause]||1|300|Sleep|||RP_Rate B||
+463|[Text]|{Alt}{h}{v}|1|300|SendEvent|||RP_Rate B||
+464|[Pause]||1|300|Sleep|||RP_Rate B||
+465|[Text]|{Down 2}{Enter}|1|100|SendEvent|||RP_Rate B||
+466|[Pause]||1|300|Sleep|||RP_Rate B||
+467|[Text]|{Control Down}{c}{Control Up}{Control Down}{Left}{Down}{Control Up}{Right 2}|1|100|SendEvent|||RP_Rate B||
+468|[Pause]||1|300|Sleep|||RP_Rate B||
+469|[Text]|{Control Down}{Shift Down}{Up}{Shift Up}{v}{Control Up}|1|100|SendEvent|||RP_Rate B||
+470|[Pause]||1|300|Sleep|||RP_Rate B||
+471|F5|{F5}|1|100|Send|||RP_Rumus Round||
+472|[Pause]||1|300|Sleep|||RP_Rumus Round||
+473|[Text]|B8{Enter}|1|100|SendEvent|||RP_Rumus Round||
+474|[Pause]||1|300|Sleep|||RP_Rumus Round||
+475|Control + Down|{Control Down}{Down}{Control Up}|2|100|Send|||RP_Rumus Round||
+476|[Pause]||1|300|Sleep|||RP_Rumus Round||
+477|[Text]|{Down 2}{Control Down}{Right}{Control Up}{Right 5}|1|100|SendEvent|||RP_Rumus Round||
+478|[Pause]||1|300|Sleep|||RP_Rumus Round||
+479|[Text]|=ROUND(({Right 2}/{Left 5})`,2){Enter}|1|100|SendEvent|||RP_Rumus Round||
+480|[Pause]||1|300|Sleep|||RP_Rumus Round||
+481|Up|{Up}|1|100|Send|||RP_Rumus Round||
+482|[Pause]||1|300|Sleep|||RP_Rumus Round||
+483|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||RP_Rumus Round||
+484|[Pause]||1|300|Sleep|||RP_Rumus Round||
+485|[Text]|{Control Down}{Left}{Down}{Control Up}|1|100|SendEvent|||RP_Rumus Round||
+486|[Pause]||1|300|Sleep|||RP_Rumus Round||
+487|[Text]|{Right 2}{Control Down}{Shift Down}{Up}{Shift Up}{Control Up}|1|100|SendEvent|||RP_Rumus Round||
+488|[Pause]||1|300|Sleep|||RP_Rumus Round||
+489|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||RP_Rumus Round||
+490|[Pause]||1|300|Sleep|||RP_Rumus Round||
+491|[MsgBox]|IDR Finish|1|0|MsgBox|0||IDR||
+492|[FuncReturn]|return|1|0|FuncReturn|||||
+
+[PMC Code v5.0.5]|F6||1|Window,2,Fast,0,1,Input,-1,-1,1|1|TestMacro
+Groups=Start:1
+1|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|Fill USD||
+2|[Pause]||1|300|Sleep|||||
+3|Control + Home|{Control Down}{Home}{Control Up}|1|0|Send|||||
+4|[Pause]||1|300|Sleep|||||
+5|[Text]|{Alt}{a}{t}|1|0|Send|||||
+6|[Pause]||1|1000|Sleep|||Fill USD||
+7|F5|{F5}|1|100|Send|||Delete Slip Number||
+8|[Pause]||1|300|Sleep|||Delete Slip Number||
+9|[Text]|C1{Enter}|1|100|SendEvent|||Delete Slip Number||
+10|[Pause]||1|300|Sleep|||Delete Slip Number||
+11|Control + Space|{Control Down}{Space}{Control Up}|1|0|Send|||Delete Slip Number||
+12|[Pause]||1|300|Sleep|||Delete Slip Number||
+13|[Text]|{AppsKey}{d}|1|100|SendEvent|||Delete Slip Number||
+14|F5|{F5}|1|100|Send|||Fill USD||
+15|[Pause]||1|300|Sleep|||Fill USD||
+16|[Text]|I1{Enter}|1|100|SendEvent|||Fill USD||
+17|[Pause]||1|300|Sleep|||Fill USD||
+18|Alt + Down|{Alt Down}{Down}{Alt Up}|1|100|Send|||Fill USD||
+19|[Pause]||1|300|Sleep|||Fill USD||
+20|[Text]|{Down 7}|1|100|SendEvent|||Fill USD||
+21|[Pause]||1|300|Sleep|||Fill USD||
+22|[Text]|USD{Enter}|1|100|SendEvent|||Fill USD||
+23|[Pause]||1|300|Sleep|||Fill USD||
+24|Control + Home|{Control Down}{Home}{Control Up}|1|100|Send|||USD MODEL||
+25|[Pause]||1|300|Sleep|||USD Invoice Date||
+26|[Text]|{Down}{Shift Down}{Right 2}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||USD Invoice Date||
+27|[Pause]||1|300|Sleep|||USD Invoice Date||
+28|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||USD Invoice Date||
+29|[Pause]||1|300|Sleep|||USD Invoice Date||
+30|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|USD Invoice Date||
+31|[Pause]||1|1000|Sleep|||USD Invoice Date||
+32|F5|{F5}|1|100|Send|||USD Invoice Date||
+33|[Pause]||1|100|Sleep|||USD Invoice Date||
+34|[Text]|B8{Enter}|1|100|SendEvent|||USD Invoice Date||
+35|[Pause]||1|300|Sleep|||USD Invoice Date||
+36|[Text]|{Alt}{h}{v}|1|300|SendEvent|||USD Invoice Date||
+37|[Pause]||1|100|Sleep|||USD Invoice Date||
+38|[Text]|{Down 2}{Enter}|1|100|SendEvent|||USD_CC - Debit Account||
+39|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|USD_Debit Account||
+40|[Pause]||1|300|Sleep|||USD_Debit Account||
+41|F5|{F5}|1|100|Send|||USD_Debit Account||
+42|[Pause]||1|300|Sleep|||USD_Debit Account||
+43|[Text]|G1{Enter}|1|100|SendEvent|||USD_Debit Account||
+44|[Pause]||1|300|Sleep|||USD_Debit Account||
+45|[Text]|{Down}{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||USD_Debit Account||
+46|[Pause]||1|300|Sleep|||USD_Debit Account||
+47|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||USD_Debit Account||
+48|[Pause]||1|300|Sleep|||USD_Debit Account||
+49|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|USD_Debit Account||
+50|[Pause]||1|1000|Sleep|||USD_Debit Account||
+51|F5|{F5}|1|100|Send|||USD_Debit Account||
+52|[Pause]||1|300|Sleep|||USD_Debit Account||
+53|[Text]|F8{Enter}|1|100|SendEvent|||USD_Debit Account||
+54|[Pause]||1|300|Sleep|||USD_Debit Account||
+55|[Text]|{Alt}{h}{v}|1|300|SendEvent|||USD_Debit Account||
+56|[Pause]||1|300|Sleep|||USD_Debit Account||
+57|[Text]|{Down 2}{Enter}|1|100|SendEvent|||USD_Debit Account||
+58|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|Fill USD||
+59|[Pause]||1|300|Sleep|||USD_Amount||
+60|F5|{F5}|1|100|Send|||USD_Amount||
+61|[Pause]||1|300|Sleep|||USD_Amount||
+62|[Text]|J1{Enter}|1|100|SendEvent|||USD_Amount||
+63|[Pause]||1|300|Sleep|||USD_Amount||
+64|[Text]|{Down}{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||USD_Amount||
+65|[Pause]||1|300|Sleep|||USD_Amount||
+66|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||USD_Amount||
+67|[Pause]||1|300|Sleep|||USD_Amount||
+68|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|USD_Amount||
+69|[Pause]||1|1000|Sleep|||USD_Amount||
+70|F5|{F5}|1|100|Send|||USD_Amount||
+71|[Pause]||1|300|Sleep|||USD_Amount||
+72|[Text]|K8{Enter}|1|100|SendEvent|||USD_Amount||
+73|[Pause]||1|300|Sleep|||USD_Amount||
+74|[Text]|{Alt}{h}{v}|1|300|SendEvent|||USD_Amount||
+75|[Pause]||1|300|Sleep|||USD_Amount||
+76|[Text]|{Down 2}{Enter}|1|100|SendEvent|||USD_Amount||
+77|[Pause]||1|300|Sleep|||USD_Amount||
+78|[MsgBox]|USD Selesai`n`nNext >> SGD|1|0|MsgBox|0||||
+79|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|Fill SGD||
+80|[Pause]||1|1000|Sleep|||Fill SGD||
+81|F5|{F5}|1|100|Send|||Fill SGD||
+82|[Pause]||1|300|Sleep|||Fill SGD||
+83|[Text]|I1{Enter}|1|100|SendEvent|||Fill SGD||
+84|[Pause]||1|300|Sleep|||Fill SGD||
+85|Alt + Down|{Alt Down}{Down}{Alt Up}|1|100|Send|||Fill SGD||
+86|[Pause]||1|300|Sleep|||Fill SGD||
+87|[Text]|{Down 7}|1|100|SendEvent|||Fill SGD||
+88|[Pause]||1|300|Sleep|||Fill SGD||
+89|[Text]|SGD{Enter}|1|100|SendEvent|||Fill SGD||
+90|[Pause]||1|300|Sleep|||Fill SGD||
+91|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|SGD_Invoice Date - Supp Name||
+92|[Pause]||1|300|Sleep|||SGD_Invoice Date - Supp Name||
+93|Control + Home|{Control Down}{Home}{Control Up}|1|100|Send|||SGD_Invoice Date - Supp Name||
+94|[Pause]||1|300|Sleep|||SGD_Invoice Date - Supp Name||
+95|[Text]|{Down}{Shift Down}{Right 2}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||SGD_Invoice Date - Supp Name||
+96|[Pause]||1|300|Sleep|||SGD_Invoice Date - Supp Name||
+97|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||SGD_Invoice Date - Supp Name||
+98|[Pause]||1|300|Sleep|||SGD_Invoice Date - Supp Name||
+99|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|SGD_Invoice Date - Supp Name||
+100|[Pause]||1|1000|Sleep|||SGD_Invoice Date - Supp Name||
+101|F5|{F5}|1|100|Send|||SGD_Invoice Date - Supp Name||
+102|[Pause]||1|100|Sleep|||SGD_Invoice Date - Supp Name||
+103|[Text]|B8{Enter}|1|100|SendEvent|||SGD_Invoice Date - Supp Name||
+104|[Pause]||1|300|Sleep|||SGD_Invoice Date - Supp Name||
+105|Control + Down|{Control Down}{Down}{Control Up}|1|0|Send|||SGD_Invoice Date - Supp Name||
+106|[Pause]||1|300|Sleep|||SGD_Model - Desc||
+107|Down|{Down}|1|100|Send|||||
+108|[Pause]||1|300|Sleep|||SGD_Invoice Date - Supp Name||
+109|[Text]|{Alt}{h}{v}|1|300|SendEvent|||SGD_Invoice Date - Supp Name||
+110|[Pause]||1|100|Sleep|||SGD_Invoice Date - Supp Name||
+111|[Text]|{Down 2}{Enter}|1|100|SendEvent|||SGD_Invoice Date - Supp Name||
+112|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|SGD_Debit Account||
+113|[Pause]||1|300|Sleep|||SGD_Debit Account||
+114|F5|{F5}|1|100|Send|||SGD_Debit Account||
+115|[Pause]||1|300|Sleep|||SGD_Debit Account||
+116|[Text]|G1{Enter}|1|100|SendEvent|||SGD_Debit Account||
+117|[Pause]||1|300|Sleep|||SGD_Debit Account||
+118|[Text]|{Down}{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||SGD_Debit Account||
+119|[Pause]||1|300|Sleep|||SGD_Debit Account||
+120|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||SGD_Debit Account||
+121|[Pause]||1|300|Sleep|||SGD_Debit Account||
+122|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|SGD_Debit Account||
+123|[Pause]||1|1000|Sleep|||SGD_Debit Account||
+124|F5|{F5}|1|100|Send|||SGD_Debit Account||
+125|[Pause]||1|300|Sleep|||SGD_Debit Account||
+126|[Text]|F8{Enter}|1|100|SendEvent|||SGD_Debit Account||
+127|[Pause]||1|300|Sleep|||SGD_Debit Account||
+128|Control + Down|{Control Down}{Down}{Control Up}|1|0|Send|||SGD_Debit Account||
+129|[Pause]||1|300|Sleep|||SGD_Debit Account||
+130|Down|{Down}|1|100|Send|||SGD_Debit Account||
+131|[Pause]||1|300|Sleep|||SGD_Debit Account||
+132|[Text]|{Alt}{h}{v}|1|300|SendEvent|||SGD_Debit Account||
+133|[Pause]||1|300|Sleep|||SGD_Debit Account||
+134|[Text]|{Down 2}{Enter}|1|100|SendEvent|||SGD_Debit Account||
+135|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|SGD_Amount||
+136|[Pause]||1|300|Sleep|||SGD_Amount||
+137|F5|{F5}|1|100|Send|||SGD_Amount||
+138|[Pause]||1|300|Sleep|||SGD_Amount||
+139|[Text]|J1{Enter}|1|100|SendEvent|||SGD_Amount||
+140|[Pause]||1|300|Sleep|||SGD_Amount||
+141|[Text]|{Down}{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||SGD_Amount||
+142|[Pause]||1|300|Sleep|||SGD_Amount||
+143|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||SGD_Amount||
+144|[Pause]||1|300|Sleep|||SGD_Amount||
+145|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|SGD_Amount||
+146|[Pause]||1|1000|Sleep|||SGD_Amount||
+147|F5|{F5}|1|100|Send|||SGD_Amount||
+148|[Pause]||1|300|Sleep|||SGD_Amount||
+149|[Text]|K8{Enter}|1|100|SendEvent|||SGD_Amount||
+150|[Pause]||1|300|Sleep|||SGD_Amount||
+151|Control + Down|{Control Down}{Down}{Control Up}|1|0|Send|||SGD_Amount||
+152|[Pause]||1|300|Sleep|||SGD_Amount||
+153|Down|{Down}|1|100|Send|||SGD_Amount||
+154|[Pause]||1|300|Sleep|||SGD_Amount||
+155|Right|{Right}|2|100|Send|||SGD_Amount||
+156|[Pause]||1|300|Sleep|||SGD_Amount||
+157|[Text]|{Alt}{h}{v}|1|300|SendEvent|||SGD_Amount||
+158|[Pause]||1|300|Sleep|||SGD_Amount||
+159|[Text]|{Down 2}{Enter}|1|100|SendEvent|||SGD_Amount||
+160|[Pause]||1|300|Sleep|||SGD_Amount||
+161|WinActivate||1|333|WinActivate||4. ACCRUED.xlsx - Excel|SGD_Daily Rate||
+162|Control + PgUp|{Control Down}{PgUp}{Control Up}|1|100|Send|||SGD_Rate B||
+163|[Pause]||1|300|Sleep|||SGD_Rate B||
+164|[Text]|{Control Down}{Home}{Down}{Control Up}{Right 2}|1|100|SendEvent|||SGD_Rate B||
+165|[Pause]||1|300|Sleep|||SGD_Rate B||
+166|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||SGD_Rate B||
+167|[Pause]||1|300|Sleep|||SGD_Rate B||
+168|Control + PgDn|{Control Down}{PgDn}{Control Up}|1|100|Send|||SGD_Rate B||
+169|[Pause]||1|300|Sleep|||SGD_Rate B||
+170|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|SGD_Daily Rate||
+171|[Pause]||1|300|Sleep|||SGD_Rate B||
+172|F5|{F5}|1|100|Send|||SGD_Rate B||
+173|[Pause]||1|300|Sleep|||SGD_Rate B||
+174|[Text]|K8{Enter}|1|100|SendEvent|||SGD_Rate B||
+175|[Pause]||1|300|Sleep|||SGD_Rate B||
+176|Control + Down|{Control Down}{Down}{Control Up}|1|100|Send|||SGD_Rate B||
+177|[Pause]||1|300|Sleep|||SGD_Rate B||
+178|Down|{Down}|1|100|Send|||||
+179|[Pause]||1|300|Sleep|||SGD_Rate B||
+180|Left|{Left}|4|100|Send|||||
+181|[Pause]||1|300|Sleep|||SGD_Rate B||
+182|[Text]|{Alt}{h}{v}|1|300|SendEvent|||SGD_Rate B||
+183|[Pause]||1|300|Sleep|||SGD_Rate B||
+184|[Text]|{Down 2}{Enter}|1|100|SendEvent|||SGD_Rate B||
+185|[Pause]||1|300|Sleep|||SGD_Rate B||
+186|[Text]|{Control Down}{c}{Control Up}{Control Down}{Left}{Down}{Control Up}{Right}|1|100|SendEvent|||SGD_Rate B||
+187|[Pause]||1|300|Sleep|||SGD_Rate B||
+188|[Text]|{Control Down}{Shift Down}{Up}{Shift Up}{v}{Control Up}|1|100|SendEvent|||SGD_Rate B||
+189|[Pause]||1|300|Sleep|||SGD_Rate B||
+190|F5|{F5}|1|100|Send|||SGD_Round Rumus||
+191|[Pause]||1|300|Sleep|||SGD_Round Rumus||
+192|[Text]|K8{Enter}|1|100|SendEvent|||SGD_Round Rumus||
+193|[Pause]||1|300|Sleep|||SGD_Round Rumus||
+194|Control + Down|{Control Down}{Down}{Control Up}|1|100|Send|||SGD_Round Rumus||
+195|[Pause]||1|300|Sleep|||SGD_Round Rumus||
+196|Down|{Down}|1|100|Send|||SGD_Round Rumus||
+197|[Pause]||1|300|Sleep|||SGD_Round Rumus||
+198|[Text]|=ROUND(({Right 2}/{Left 4})`,2){Enter}|1|100|SendEvent|||SGD_Round Rumus||
+199|[Pause]||1|300|Sleep|||SGD_Round Rumus||
+200|Up|{Up}|1|100|Send|||SGD_Round Rumus||
+201|[Pause]||1|300|Sleep|||SGD_Round Rumus||
+202|Control + c|{Control Down}{c}{Control Up}|1|0|Send|||SGD_Round Rumus||
+203|[Pause]||1|300|Sleep|||SGD_Round Rumus||
+204|[Text]|{Control Down}{Left}{Down}{Control Up}{Right 4}{Shift Down}{Control Down}{Up}{Control Up}{Down}{Shift Up}|1|100|SendEvent|||SGD_Round Rumus||
+205|[Pause]||1|300|Sleep|||SGD_Round Rumus||
+206|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||SGD_Round Rumus||
+207|[Pause]||1|300|Sleep|||SGD_Round Rumus||
+208|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|Fill JPY||
+209|[Pause]||1|1000|Sleep|||Fill JPY||
+210|F5|{F5}|1|100|Send|||Fill JPY||
+211|[Pause]||1|300|Sleep|||Fill JPY||
+212|[Text]|I1{Enter}|1|100|SendEvent|||Fill JPY||
+213|[Pause]||1|300|Sleep|||Fill JPY||
+214|Alt + Down|{Alt Down}{Down}{Alt Up}|1|100|Send|||Fill JPY||
+215|[Pause]||1|300|Sleep|||Fill JPY||
+216|[Text]|{Down 7}|1|100|SendEvent|||Fill JPY||
+217|[Pause]||1|300|Sleep|||Fill JPY||
+218|[Text]|JPY{Enter}|1|100|SendEvent|||Fill JPY||
+219|[Pause]||1|300|Sleep|||Fill JPY||
+220|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|JPY_Inv date - Supp Name||
+221|[Pause]||1|300|Sleep|||JPY_Inv date - Supp Name||
+222|Control + Home|{Control Down}{Home}{Control Up}|1|100|Send|||JPY_Inv date - Supp Name||
+223|[Pause]||1|300|Sleep|||JPY_Inv date - Supp Name||
+224|[Text]|{Down}{Shift Down}{Right 2}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||JPY_Inv date - Supp Name||
+225|[Pause]||1|300|Sleep|||JPY_Inv date - Supp Name||
+226|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||JPY_Inv date - Supp Name||
+227|[Pause]||1|300|Sleep|||JPY_Inv date - Supp Name||
+228|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|JPY_Inv date - Supp Name||
+229|[Pause]||1|1000|Sleep|||JPY_Inv date - Supp Name||
+230|F5|{F5}|1|100|Send|||JPY_Inv date - Supp Name||
+231|[Pause]||1|100|Sleep|||JPY_Inv date - Supp Name||
+232|[Text]|B8{Enter}|1|100|SendEvent|||JPY_Inv date - Supp Name||
+233|[Pause]||1|300|Sleep|||JPY_Inv date - Supp Name||
+234|Control + Down|{Control Down}{Down}{Control Up}|1|100|Send|||JPY_Inv date - Supp Name||
+235|[Pause]||1|300|Sleep|||JPY_Inv date - Supp Name||
+236|Down|{Down}|1|100|Send|||JPY_Inv date - Supp Name||
+237|[Pause]||1|300|Sleep|||JPY_Inv date - Supp Name||
+238|[Text]|{Alt}{h}{v}|1|300|SendEvent|||JPY_Inv date - Supp Name||
+239|[Pause]||1|100|Sleep|||JPY_Inv date - Supp Name||
+240|[Text]|{Down 2}{Enter}|1|100|SendEvent|||JPY_Inv date - Supp Name||
+241|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|JPY_Debit Account||
+242|[Pause]||1|300|Sleep|||JPY_Debit Account||
+243|F5|{F5}|1|100|Send|||JPY_Debit Account||
+244|[Pause]||1|300|Sleep|||JPY_Debit Account||
+245|[Text]|G1{Enter}|1|100|SendEvent|||JPY_Debit Account||
+246|[Pause]||1|300|Sleep|||JPY_Debit Account||
+247|[Text]|{Down}{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||JPY_Debit Account||
+248|[Pause]||1|300|Sleep|||JPY_Debit Account||
+249|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||JPY_Debit Account||
+250|[Pause]||1|300|Sleep|||JPY_Debit Account||
+251|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|JPY_Debit Account||
+252|[Pause]||1|1000|Sleep|||JPY_Debit Account||
+253|F5|{F5}|1|100|Send|||JPY_Debit Account||
+254|[Pause]||1|300|Sleep|||JPY_Debit Account||
+255|[Text]|F8{Enter}|1|100|SendEvent|||JPY_Debit Account||
+256|[Pause]||1|300|Sleep|||JPY_Debit Account||
+257|Control + Down|{Control Down}{Down}{Control Up}|1|0|Send|||JPY_Debit Account||
+258|[Pause]||1|300|Sleep|||JPY_Debit Account||
+259|Down|{Down}|1|100|Send|||JPY_Debit Account||
+260|[Pause]||1|300|Sleep|||JPY_Debit Account||
+261|[Text]|{Alt}{h}{v}|1|300|SendEvent|||JPY_Debit Account||
+262|[Pause]||1|300|Sleep|||JPY_Debit Account||
+263|[Text]|{Down 2}{Enter}|1|100|SendEvent|||JPY_Debit Account||
+264|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|JPY_Amount||
+265|[Pause]||1|300|Sleep|||JPY_Amount||
+266|F5|{F5}|1|100|Send|||JPY_Amount||
+267|[Pause]||1|300|Sleep|||JPY_Amount||
+268|[Text]|J1{Enter}|1|100|SendEvent|||JPY_Amount||
+269|[Pause]||1|300|Sleep|||JPY_Amount||
+270|[Text]|{Down}{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||JPY_Amount||
+271|[Pause]||1|300|Sleep|||JPY_Amount||
+272|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||JPY_Amount||
+273|[Pause]||1|300|Sleep|||JPY_Amount||
+274|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|JPY_Amount||
+275|[Pause]||1|1000|Sleep|||JPY_Amount||
+276|F5|{F5}|1|100|Send|||JPY_Amount||
+277|[Pause]||1|300|Sleep|||JPY_Amount||
+278|[Text]|K8{Enter}|1|100|SendEvent|||JPY_Amount||
+279|[Pause]||1|300|Sleep|||JPY_Amount||
+280|Control + Down|{Control Down}{Down}{Control Up}|1|0|Send|||JPY_Amount||
+281|[Pause]||1|300|Sleep|||JPY_Amount||
+282|Down|{Down}|1|100|Send|||JPY_Amount||
+283|[Pause]||1|300|Sleep|||JPY_Amount||
+284|Right|{Right}|2|100|Send|||JPY_Amount||
+285|[Pause]||1|300|Sleep|||JPY_Amount||
+286|[Text]|{Alt}{h}{v}|1|300|SendEvent|||JPY_Amount||
+287|[Pause]||1|300|Sleep|||JPY_Amount||
+288|[Text]|{Down 2}{Enter}|1|100|SendEvent|||JPY_Amount||
+289|[Pause]||1|300|Sleep|||JPY_Amount||
+290|WinActivate||1|333|WinActivate||4. ACCRUED.xlsx - Excel|JPY_Rate B||
+291|Control + PgUp|{Control Down}{PgUp}{Control Up}|1|100|Send|||JPY_Rate B||
+292|[Pause]||1|300|Sleep|||JPY_Rate B||
+293|[Text]|{Control Down}{Home}{Down}{Control Up}{Right 3}|1|100|SendEvent|||JPY_Rate B||
+294|[Pause]||1|300|Sleep|||JPY_Rate B||
+295|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||JPY_Rate B||
+296|[Pause]||1|300|Sleep|||JPY_Rate B||
+297|Control + PgDn|{Control Down}{PgDn}{Control Up}|1|100|Send|||JPY_Rate B||
+298|[Pause]||1|300|Sleep|||JPY_Rate B||
+299|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|JPY_Rate B||
+300|[Pause]||1|300|Sleep|||JPY_Rate B||
+301|F5|{F5}|1|100|Send|||JPY_Rate B||
+302|[Pause]||1|300|Sleep|||JPY_Rate B||
+303|[Text]|K8{Enter}|1|100|SendEvent|||JPY_Rate B||
+304|[Pause]||1|300|Sleep|||JPY_Rate B||
+305|Control + Down|{Control Down}{Down}{Control Up}|1|100|Send|||JPY_Rate B||
+306|[Pause]||1|300|Sleep|||JPY_Rate B||
+307|Down|{Down}|1|100|Send|||JPY_Rate B||
+308|[Pause]||1|300|Sleep|||JPY_Rate B||
+309|Left|{Left}|3|100|Send|||JPY_Rate B||
+310|[Pause]||1|300|Sleep|||JPY_Rate B||
+311|[Text]|{Alt}{h}{v}|1|300|SendEvent|||JPY_Rate B||
+312|[Pause]||1|300|Sleep|||JPY_Rate B||
+313|[Text]|{Down 2}{Enter}|1|100|SendEvent|||JPY_Rate B||
+314|[Pause]||1|300|Sleep|||JPY_Rate B||
+315|[Text]|{Control Down}{c}{Control Up}{Control Down}{Left}{Down}{Control Up}{Right 2}|1|100|SendEvent|||JPY_Rate B||
+316|[Pause]||1|300|Sleep|||JPY_Rate B||
+317|[Text]|{Control Down}{Shift Down}{Up}{Shift Up}{v}{Control Up}|1|100|SendEvent|||JPY_Rate B||
+318|[Pause]||1|300|Sleep|||JPY_Rate B||
+319|F5|{F5}|1|100|Send|||JPY_Round Rumus||
+320|[Pause]||1|300|Sleep|||JPY_Round Rumus||
+321|[Text]|K8{Enter}|1|100|SendEvent|||JPY_Round Rumus||
+322|[Pause]||1|300|Sleep|||JPY_Round Rumus||
+323|Control + Down|{Control Down}{Down}{Control Up}|2|100|Send|||JPY_Round Rumus||
+324|[Pause]||1|300|Sleep|||JPY_Round Rumus||
+325|Shift + Right|{Shift Down}{Right}{Shift Up}|1|100|Send|||JPY_Round Rumus||
+326|[Pause]||1|300|Sleep|||JPY_Round Rumus||
+327|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||JPY_Round Rumus||
+328|[Pause]||1|300|Sleep|||JPY_Round Rumus||
+329|[Text]|{Control Down}{Up}{Control Up}{Down}|1|100|SendEvent|||JPY_Round Rumus||
+330|[Pause]||1|300|Sleep|||JPY_Round Rumus||
+331|[Text]|{Control Down}{Left}{Down}{Control Up}{Right 3}{Shift Down}{Control Down}{Up}{Control Up}{Down}{Shift Up}|1|100|SendEvent|||JPY_Round Rumus||
+332|[Pause]||1|300|Sleep|||JPY_Round Rumus||
+333|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||JPY_Round Rumus||
+334|[Pause]||1|300|Sleep|||JPY_Round Rumus||
+335|[MsgBox]|JPY Finish|1|0|MsgBox|0||IDR||
+336|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|Set IDR to Cash Bill||
+337|[Pause]||1|1000|Sleep|||Set IDR to Cash Bill||
+338|F5|{F5}|1|100|Send|||Set IDR to Cash Bill||
+339|[Pause]||1|300|Sleep|||Set IDR to Cash Bill||
+340|[Text]|I1{Enter}|1|100|SendEvent|||Set IDR to Cash Bill||
+341|[Pause]||1|300|Sleep|||Set IDR to Cash Bill||
+342|Alt + Down|{Alt Down}{Down}{Alt Up}|1|100|Send|||Set IDR to Cash Bill||
+343|[Pause]||1|300|Sleep|||Set IDR to Cash Bill||
+344|[Text]|{Down 7}|1|100|SendEvent|||Set IDR to Cash Bill||
+345|[Pause]||1|300|Sleep|||Set IDR to Cash Bill||
+346|[Text]|RP{Enter}|1|100|SendEvent|||Set IDR to Cash Bill||
+347|[Pause]||1|300|Sleep|||Set IDR to Cash Bill||
+348|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|RP_Invoice Date - Desc||
+349|[Pause]||1|300|Sleep|||RP_Invoice Date - Desc||
+350|Control + Home|{Control Down}{Home}{Control Up}|1|100|Send|||RP_Invoice Date - Desc||
+351|[Pause]||1|300|Sleep|||RP_Invoice Date - Desc||
+352|[Text]|{Down}{Shift Down}{Right 2}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||RP_Invoice Date - Desc||
+353|[Pause]||1|300|Sleep|||RP_Invoice Date - Desc||
+354|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||RP_Invoice Date - Desc||
+355|[Pause]||1|300|Sleep|||RP_Invoice Date - Desc||
+356|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|RP_Invoice Date - Desc||
+357|[Pause]||1|1000|Sleep|||RP_Invoice Date - Desc||
+358|F5|{F5}|1|100|Send|||RP_Invoice Date - Desc||
+359|[Pause]||1|300|Sleep|||RP_Invoice Date - Desc||
+360|[Text]|B8{Enter}|1|100|SendEvent|||RP_Invoice Date - Desc||
+361|[Pause]||1|300|Sleep|||RP_Invoice Date - Desc||
+362|Control + Down|{Control Down}{Down}{Control Up}|2|100|Send|||RP_Invoice Date - Desc||
+363|[Pause]||1|300|Sleep|||RP_Invoice Date - Desc||
+364|Down|{Down}|2|100|Send|||RP_Invoice Date - Desc||
+365|[Pause]||1|300|Sleep|||RP_Invoice Date - Desc||
+366|[Text]|{Alt}{h}{v}|1|300|SendEvent|||RP_Invoice Date - Desc||
+367|[Pause]||1|300|Sleep|||RP_Invoice Date - Desc||
+368|[Text]|{Down 2}{Enter}|1|100|SendEvent|||RP_Invoice Date - Desc||
+369|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|RP_Debit Account||
+370|[Pause]||1|300|Sleep|||RP_Debit Account||
+371|F5|{F5}|1|100|Send|||RP_Debit Account||
+372|[Pause]||1|300|Sleep|||RP_Debit Account||
+373|[Text]|G1{Enter}|1|100|SendEvent|||RP_Debit Account||
+374|[Pause]||1|300|Sleep|||RP_Debit Account||
+375|[Text]|{Down}{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||RP_Debit Account||
+376|[Pause]||1|300|Sleep|||RP_Debit Account||
+377|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||RP_Debit Account||
+378|[Pause]||1|300|Sleep|||RP_Debit Account||
+379|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|RP_Debit Account||
+380|[Pause]||1|1000|Sleep|||RP_Debit Account||
+381|F5|{F5}|1|100|Send|||RP_Debit Account||
+382|[Pause]||1|300|Sleep|||RP_Debit Account||
+383|[Text]|F8{Enter}|1|100|SendEvent|||RP_Debit Account||
+384|[Pause]||1|300|Sleep|||RP_Debit Account||
+385|Control + Down|{Control Down}{Down}{Control Up}|2|100|Send|||RP_Debit Account||
+386|[Pause]||1|300|Sleep|||RP_Debit Account||
+387|Down|{Down}|2|100|Send|||RP_Debit Account||
+388|[Pause]||1|300|Sleep|||RP_Debit Account||
+389|[Text]|{Alt}{h}{v}|1|300|SendEvent|||RP_Debit Account||
+390|[Pause]||1|300|Sleep|||RP_Debit Account||
+391|[Text]|{Down 2}{Enter}|1|100|SendEvent|||RP_Debit Account||
+392|WinActivate||1|333|WinActivate||1. Cashbill.xlsx - Excel|RP_Amount||
+393|[Pause]||1|300|Sleep|||RP_Amount||
+394|F5|{F5}|1|100|Send|||RP_Amount||
+395|[Pause]||1|300|Sleep|||RP_Amount||
+396|[Text]|J1{Enter}|1|100|SendEvent|||RP_Amount||
+397|[Pause]||1|300|Sleep|||RP_Amount||
+398|[Text]|{Down}{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|SendEvent|||RP_Amount||
+399|[Pause]||1|300|Sleep|||RP_Amount||
+400|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||RP_Amount||
+401|[Pause]||1|300|Sleep|||RP_Amount||
+402|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|RP_Amount||
+403|[Pause]||1|1000|Sleep|||RP_Amount||
+404|F5|{F5}|1|100|Send|||RP_Amount||
+405|[Pause]||1|300|Sleep|||RP_Amount||
+406|[Text]|B8{Enter}|1|100|SendEvent|||RP_Amount||
+407|[Pause]||1|300|Sleep|||RP_Amount||
+408|Control + Down|{Control Down}{Down}{Control Up}|2|100|Send|||RP_Amount||
+409|[Pause]||1|300|Sleep|||RP_Amount||
+410|[Text]|{Down 2}{Control Down}{Right}{Control Up}{Right 9}|1|100|SendEvent|||RP_Amount||
+411|[Pause]||1|300|Sleep|||RP_Amount||
+412|[Text]|{Alt}{h}{v}|1|300|SendEvent|||RP_Amount||
+413|[Pause]||1|300|Sleep|||RP_Amount||
+414|[Text]|{Down 2}{Enter}|1|100|SendEvent|||RP_Amount||
+415|[Pause]||1|300|Sleep|||RP_Amount||
+416|WinActivate||1|333|WinActivate||4. ACCRUED.xlsx - Excel|RP_End Month Rate IDR||
+417|Control + PgUp|{Control Down}{PgUp}{Control Up}|1|100|Send|||RP_End Month Rate IDR||
+418|[Pause]||1|300|Sleep|||RP_End Month Rate IDR||
+419|[Text]|{Control Down}{Home}{Down}{Control Up}{Right}|1|100|SendEvent|||RP_End Month Rate IDR||
+420|[Pause]||1|300|Sleep|||RP_End Month Rate IDR||
+421|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||RP_End Month Rate IDR||
+422|[Pause]||1|300|Sleep|||RP_End Month Rate IDR||
+423|Control + PgDn|{Control Down}{PgDn}{Control Up}|1|100|Send|||RP_End Month Rate IDR||
+424|[Pause]||1|300|Sleep|||RP_End Month Rate IDR||
+425|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|RP_End Month Rate IDR||
+426|[Pause]||1|300|Sleep|||RP_End Month Rate IDR||
+427|F5|{F5}|1|100|Send|||RP_End Month Rate IDR||
+428|[Pause]||1|300|Sleep|||RP_End Month Rate IDR||
+429|[Text]|B8{Enter}|1|100|SendEvent|||RP_End Month Rate IDR||
+430|[Pause]||1|300|Sleep|||RP_End Month Rate IDR||
+431|Control + Down|{Control Down}{Down}{Control Up}|3|100|Send|||RP_End Month Rate IDR||
+432|[Pause]||1|300|Sleep|||RP_End Month Rate IDR||
+433|Right|{Right}|7|100|Send|||RP_End Month Rate IDR||
+434|[Pause]||1|300|Sleep|||RP_End Month Rate IDR||
+435|[Text]|{Alt}{h}{v}|1|300|SendEvent|||RP_End Month Rate IDR||
+436|[Pause]||1|300|Sleep|||RP_End Month Rate IDR||
+437|[Text]|{Down 2}{Enter}|1|100|SendEvent|||RP_End Month Rate IDR||
+438|[Pause]||1|300|Sleep|||RP_End Month Rate IDR||
+439|[Text]|{Control Down}{c}{Control Up}{Control Down}{Left}{Down}{Control Up}{Right 3}|1|100|SendEvent|||RP_End Month Rate IDR||
+440|[Pause]||1|300|Sleep|||RP_End Month Rate IDR||
+441|[Text]|{Control Down}{Shift Down}{Up}{Shift Up}{v}{Control Up}|1|100|SendEvent|||RP_End Month Rate IDR||
+442|[Pause]||1|300|Sleep|||RP_End Month Rate IDR||
+443|WinActivate||1|333|WinActivate||4. ACCRUED.xlsx - Excel|RP_Rate B||
+444|Control + PgUp|{Control Down}{PgUp}{Control Up}|1|100|Send|||RP_Rate B||
+445|[Pause]||1|300|Sleep|||RP_Rate B||
+446|[Text]|{Control Down}{Home}{Down}{Control Up}{Right}|1|100|SendEvent|||RP_Rate B||
+447|[Pause]||1|300|Sleep|||RP_Rate B||
+448|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||RP_Rate B||
+449|[Pause]||1|300|Sleep|||RP_Rate B||
+450|Control + PgDn|{Control Down}{PgDn}{Control Up}|1|100|Send|||RP_Rate B||
+451|[Pause]||1|300|Sleep|||RP_Rate B||
+452|WinActivate||1|333|WinActivate||5. EXC.RATE.xlsx - Excel|RP_Rate B||
+453|[Pause]||1|300|Sleep|||RP_Rate B||
+454|F5|{F5}|1|100|Send|||RP_Rate B||
+455|[Pause]||1|300|Sleep|||RP_Rate B||
+456|[Text]|B8{Enter}|1|100|SendEvent|||RP_Rate B||
+457|[Pause]||1|300|Sleep|||RP_Rate B||
+458|Control + Down|{Control Down}{Down}{Control Up}|3|100|Send|||RP_Rate B||
+459|[Pause]||1|300|Sleep|||RP_Rate B||
+460|Right|{Right}|6|100|Send|||RP_Rate B||
+461|[Pause]||1|300|Sleep|||RP_Rate B||
+462|[Text]|{Alt}{h}{v}|1|300|SendEvent|||RP_Rate B||
+463|[Pause]||1|300|Sleep|||RP_Rate B||
+464|[Text]|{Down 2}{Enter}|1|100|SendEvent|||RP_Rate B||
+465|[Pause]||1|300|Sleep|||RP_Rate B||
+466|[Text]|{Control Down}{c}{Control Up}{Control Down}{Left}{Down}{Control Up}{Right 2}|1|100|SendEvent|||RP_Rate B||
+467|[Pause]||1|300|Sleep|||RP_Rate B||
+468|[Text]|{Control Down}{Shift Down}{Up}{Shift Up}{v}{Control Up}|1|100|SendEvent|||RP_Rate B||
+469|[Pause]||1|300|Sleep|||RP_Rate B||
+470|F5|{F5}|1|100|Send|||RP_Rumus Round||
+471|[Pause]||1|300|Sleep|||RP_Rumus Round||
+472|[Text]|B8{Enter}|1|100|SendEvent|||RP_Rumus Round||
+473|[Pause]||1|300|Sleep|||RP_Rumus Round||
+474|Control + Down|{Control Down}{Down}{Control Up}|2|100|Send|||RP_Rumus Round||
+475|[Pause]||1|300|Sleep|||RP_Rumus Round||
+476|[Text]|{Down 2}{Control Down}{Right}{Control Up}{Right 7}|1|100|SendEvent|||RP_Rumus Round||
+477|[Pause]||1|300|Sleep|||RP_Rumus Round||
+478|[Text]|=ROUND(({Right 2}/{Left 2}){`,}2){Enter}|1|100|SendEvent|||RP_Rumus Round||
+479|[Pause]||1|300|Sleep|||RP_Rumus Round||
+480|Up|{Up}|1|100|Send|||RP_Rumus Round||
+481|[Pause]||1|300|Sleep|||RP_Rumus Round||
+482|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||RP_Rumus Round||
+483|[Pause]||1|300|Sleep|||RP_Rumus Round||
+484|[Text]|{Control Down}{Left}{Down}{Control Up}|1|100|SendEvent|||RP_Rumus Round||
+485|[Pause]||1|300|Sleep|||RP_Rumus Round||
+486|[Text]|{Right 2}{Control Down}{Shift Down}{Up}{Shift Up}{Control Up}|1|100|SendEvent|||RP_Rumus Round||
+487|[Pause]||1|300|Sleep|||RP_Rumus Round||
+488|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||RP_Rumus Round||
+489|[Pause]||1|300|Sleep|||RP_Rumus Round||
+490|[MsgBox]|IDR Finish|1|0|MsgBox|0||IDR||
+

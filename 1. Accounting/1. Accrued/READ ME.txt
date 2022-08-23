@@ -1,0 +1,21 @@
+Aturan menjalankan proses Accrued:
+1. Copy dan paste file 2. List Accrued EMPTY - KOSONG.xls 
+2. Rename file 2. List Accrued EMPTY - KOSONG - Copy menjadi 2. List Accrued EMPTY.xls
+3. Copy dan paste file 3. LEDGER IMPORT - KOSONG.xls
+4. Rename file 3. LEDGER IMPORT - KOSONG - Copy.xls menjadi 3. LEDGER IMPORT.xls
+5. Copy dan paste file 4. ACCRUED KOSONG.xlsx
+6. Rename file 4. ACCRUED KOSONG - Copy menjadi 4. ACCRUED.xlsx
+7. Data dari cashbill yang asli (baru didownload dari investment) di copy semuanya ke file Cashbill.xlsx
+8. Buka file-file berikut ini:
+   - 1. Cashbill.xlsx
+	* semua currency (USD, JPY, SGD, IDR) harus ada transaksinya
+   - 2. List Accrued EMPTY.xls
+   - 3. LEDGER IMPORT.xls
+   - 4. ACCRUED.xlsx
+   - 5. EXC.RATE - KOSONG
+   - 6. period.xls
+
+9. Update data Kurs pada file 4. ACCRUED.xlsx sheet MASTER BOTM RATE, sesuaikan dengan data Rate terbaru.
+10. file scenario adalah D:\RPA\Scenarios\1. Accounting\1. Accrued\1. Scenario\accrued_live_ver2.ums4
+11. Setelah proses RPA selesai, maka file ( 2. List Accrued EMPTY.xls, 3. LEDGER IMPORT.xls dan 4. ACCRUED.xlsx ) 
+   harus di save as ke folder lain dengan tujuan menjadikan kosong kembali file-file tersebut.
