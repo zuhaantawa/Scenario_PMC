@@ -1,0 +1,716 @@
+﻿[PMC Globals]|None||
+[PMC Code v5.4.1]|F7||1|Window,2,Fast,0,1,Input,-1,-1,1|1|log
+Context=None|
+Groups=Start:1
+1|FormatTime|timeNow, , yyyy-MM-dd HH:mm:ss|1|0|FormatTime|||||1|
+2|[Pause]||1|200|Sleep||||||
+3|[Goto]|openFile|1|0|Goto|||||2|
+4|[Pause]||1|200|Sleep||||||
+5|[Label]|selesai|1|0|Label|||||3|
+6|[Pause]||1|200|Sleep||||||
+7|FormatTime|timeEnd, , yyyy-MM-dd HH:mm:ss|1|0|FormatTime|||||4|
+8|[Pause]||1|200|Sleep||||||
+9|FileAppend|ACCOUNTING``, Sales Export``, %timeNow%``, %timeEnd%`n, D:\PMC\Scenarios\1. Accounting\8. Sales Export\Log\sales.export.txt|1|0|FileAppend|||||5|
+10|[Pause]||1|200|Sleep|||||6|
+11|[MsgBox]|Sales Export Selesai !|1|0|MsgBox|0||||7|
+
+[PMC Code v5.4.1]|F7||1|Window,2,Fast,0,1,Input,-1,-1,1|1|openFile
+Context=None|
+Groups=Start:1
+1|Run|D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files\1. WEEKLY REPORT.xls, D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files|1|0|Run|||||1|
+2|[Pause]||1|300|Sleep|||||2|
+3|If Window Active|Microsoft Office Activation Wizard|1|0|If_Statement|||||3|
+4|[Pause]||1|500|Sleep|||||5|
+5|Alt + F4|{Alt Down}{F4}{Alt Up}|1|1|Send|||||6|
+6|[End If]|EndIf|1|0|If_Statement|||||8|
+7|WinActivate||1|333|WinActivate||1. WEEKLY REPORT.xls  [Compatibility Mode] - Excel||||
+8|WinMaximize||1|333|WinMaximize||1. WEEKLY REPORT.xls  [Compatibility Mode] - Excel|||10|
+9|[Pause]||1|300|Sleep|||||9|
+10|Run|D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files\2. Rekap Sales Export.xls, D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files|1|0|Run|||||13|
+11|WinActivate||1|333|WinActivate||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel||||
+12|WinMaximize||1|333|WinMaximize||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel|||14|
+13|[Pause]||1|1000|Sleep|||||16|
+14|Run|D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files\3. Unit Price.xlsx, D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files|1|0|Run|||||17|
+15|WinActivate||1|333|WinActivate||3. Unit Price.xlsx - Excel||||
+16|WinMaximize||1|333|WinMaximize||3. Unit Price.xlsx - Excel|||18|
+17|[Pause]||1|1000|Sleep|||||20|
+18|Run|D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files\4. SALES REPORT_SKE.xlsx, D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files|1|0|Run|||||21|
+19|WinMaximize||1|333|WinMaximize||4. SALES REPORT - 1.xlsx - Excel|||22|
+20|[Pause]||1|1000|Sleep|||||24|
+21|[Text]|{Control Down}{PgDn}{Control Up}|1|300|SendEvent|||||29|
+22|[Pause]||1|1000|Sleep|||||34|
+23|Run|D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files\5. SALES REPORT_JKC.xlsx, D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files|1|0|Run|||||35|
+24|WinMaximize||1|333|WinMaximize||5. SALES REPORT.xlsx - Excel|||36|
+25|[Pause]||1|2000|Sleep|||||38|
+26|Control + PgUp|{Control Down}{PgUp}{Control Up}|6|100|Send|||||51|
+27|[Pause]||1|300|Sleep|||||54|
+28|[Goto]|Inputdata|1|0|Goto|||||55|
+
+[PMC Code v5.4.1]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|Inputdata
+Context=None|
+Groups=Start:1
+1|InputBox|totalWeek, Jumlah Week, Masukan Jumlah Week pada Weekly Report, , 300, 300|1|1|InputBox|||||1|
+2|[MsgBox]|Total Week : %totalWeek%|1|0|MsgBox|0|||||
+3|InputBox|returnCargo, Return Cargo, Apakah terdapat Return Cargo? (Yes = Y``, No = N), , 300, 300|1|1|InputBox|||||1|
+4|InputBox|returnCargoWeek, Return Cargo Week, Return Cargo berapa di Week ke berapa? (Kosongkan jika tidak ada Return Cargo), , 300, 300|1|1|InputBox|||||1|
+5|InputBox|userID, User ID, Masukkan User ID BPCS, , 200, 200|1|1|InputBox|||||1|
+6|InputBox|password, Password, Masukkan Password BPCS, , 200, 200|1|1|InputBox|||||1|
+7|If Message Box|OK|1|0|If_Statement||||||
+8|[Pause]||1|300|Sleep||||||
+9|Run|ODOSTART.EXE, C:\Program Files (x86)\bpcscs\BPCSOO\SYSTEM\|1|300|Run||||||
+10|WinActivate||1|333|WinActivate||Welcome To BPCS||||
+11|[Pause]||1|1000|Sleep||||||
+12|[Goto]|copyWeeklyReport|1|0|Goto|||||10|
+13|[Else]|Else|1|0|If_Statement||||||
+14|[Goto]|selesai|1|0|Goto||||||
+15|[End If]|EndIf|1|0|If_Statement||||||
+
+[PMC Code v5.4.1]|Numpad2||1|Window,2,Fast,0,1,Input,-1,-1,1|1|copyWeeklyReport
+Context=None|
+Groups=Start:1
+1|[Pause]||1|100|Sleep||||||
+2|WinActivate||1|333|WinActivate||1. WEEKLY REPORT.xls  [Compatibility Mode] - Excel||||
+3|[Pause]||1|500|Sleep||||||
+4|[Text]|{Up}|1|200|SendEvent||||||
+5|[Pause]||1|500|Sleep||||||
+6|[Text]|{Control Down}{f}{Control Up}|1|200|SendEvent||||||
+7|[Pause]||1|200|Sleep||||||
+8|WinActivate||1|333|WinActivate||Find and Replace||||
+9|[Pause]||1|200|Sleep||||||
+10|[Text]|1stWEEK|1|301|Send||||||
+11|[Pause]||1|200|Sleep||||||
+12|[Text]|{Enter}|1|100|SendEvent||||||
+13|[Pause]||1|200|Sleep||||||
+14|[Text]|{Esc}|1|100|SendEvent||||||
+15|[Pause]||1|200|Sleep||||||
+16|[Text]|{Down 2}{Right}|1|200|SendEvent||||||
+17|[Pause]||1|200|Sleep||||||
+18|WinActivate||1|333|WinActivate||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel||||
+19|[Pause]||1|300|Sleep||||||
+20|[Text]|{F5}|1|200|SendEvent||||||
+21|[Pause]||1|200|Sleep||||||
+22|WinActivate||1|333|WinActivate||Go To||||
+23|[Pause]||1|200|Sleep||||||
+24|[Text]|'Sales Export'!B6|1|301|SendRaw||||||
+25|[Pause]||1|200|Sleep||||||
+26|[Text]|{Enter}|1|200|SendEvent||||||
+27|[Pause]||1|300|Sleep||||||
+28|[Assign Variable]|LoopStart := 0|1|0|Variable|Expression|||||
+29|[LoopStart]|LoopStart|0|0|Loop||||||
+30|[Assign Variable]|week := LoopStart + 1|1|0|Variable|Expression|||||
+31|[MsgBox]|LoopStart = %LoopStart%|1|1|MsgBox|0|||||
+32|[MsgBox]|Total week = %totalWeek%|1|1|MsgBox|0|||||
+33|WinActivate||1|333|WinActivate||1. WEEKLY REPORT.xls  [Compatibility Mode] - Excel||||
+34|Compare Variables|LoopStart == %totalWeek%|1|0|If_Statement||||||
+35|[MsgBox]|Check Return Cargo|1|1|MsgBox|0|||||
+36|[Goto]|returnCargo|1|0|Goto||||||
+37|[End If]|EndIf|1|0|If_Statement||||||
+38|WinActivate||1|333|WinActivate||1. WEEKLY REPORT.xls  [Compatibility Mode] - Excel||||
+39|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||14|
+40|[Pause]||1|300|Sleep|||input week 1 ||16|
+41|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 1 ||17|
+42|[Pause]||1|300|Sleep|||input week 1 ||19|
+43|[Assign Variable]|dateETD := %Clipboard%|1|100|Variable|||input week 1 ||20|
+44|[Pause]||1|200|Sleep||||||
+045|[MsgBox]|cek|1|0|MsgBox|0|||||
+46|WinActivate||1|333|WinActivate||1. WEEKLY REPORT.xls  [Compatibility Mode] - Excel||||
+047|[MsgBox]|cek|1|0|MsgBox|0|||||
+48|[Pause]||1|200|Sleep||||||
+49|[Text]|{Right}|1|100|SendEvent||||||
+50|[Pause]||1|300|Sleep||||||
+51|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||14|
+52|[Pause]||1|300|Sleep|||input week 1 ||16|
+53|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 1 ||17|
+54|[Pause]||1|300|Sleep|||input week 1 ||19|
+55|[Assign Variable]|soNO := %Clipboard%|1|100|Variable|||input week 1 ||20|
+56|[Pause]||1|200|Sleep||||||
+57|[Text]|{Right 2}|1|100|SendEvent||||||
+58|[Pause]||1|200|Sleep||||||
+59|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||14|
+60|[Pause]||1|300|Sleep|||input week 1 ||16|
+61|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 1 ||17|
+62|[Pause]||1|300|Sleep|||input week 1 ||19|
+63|[Assign Variable]|invNO := %Clipboard%|1|100|Variable|||input week 1 ||20|
+64|[Pause]||1|200|Sleep||||||
+65|[Text]|{Right}|1|100|SendEvent||||||
+66|[Pause]||1|200|Sleep||||||
+67|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||14|
+68|[Pause]||1|300|Sleep|||input week 1 ||16|
+69|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 1 ||17|
+70|[Pause]||1|300|Sleep|||input week 1 ||19|
+71|[Assign Variable]|model := %Clipboard%|1|100|Variable|||input week 1 ||20|
+72|[Pause]||1|300|Sleep||||||
+73|[Text]|{Right}|1|100|SendEvent||||||
+74|[Pause]||1|200|Sleep||||||
+75|[Text]|{Shift Down}{Right}{Shift Up}{Shift Down}{Control Down}{Down}{Shift Up}{Control Up}|1|200|SendEvent||||||
+76|[Pause]||1|300|Sleep|||input week 1 ||16|
+77|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 1 ||17|
+78|[Pause]||1|300|Sleep|||input week 1 ||19|
+79|[Assign Variable]|qtyUprice := %Clipboard%|1|100|Variable|||input week 1 ||20|
+80|[Pause]||1|300|Sleep||||||
+81|[Text]|{Right 3}|1|100|SendEvent||||||
+82|[Pause]||1|200|Sleep||||||
+83|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||14|
+84|[Pause]||1|300|Sleep|||input week 1 ||16|
+85|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 1 ||17|
+86|[Pause]||1|300|Sleep|||input week 1 ||19|
+87|[Assign Variable]|destination := %Clipboard%|1|100|Variable|||input week 1 ||20|
+88|[Pause]||1|300|Sleep||||||
+89|[Text]|{Right}|1|100|SendEvent||||||
+90|[Pause]||1|200|Sleep||||||
+91|[Text]|{Shift Down}{Right 4}{Shift Up}{Shift Down}{Control Down}{Down}{Shift Up}{Control Up}|1|200|SendEvent||||||
+092|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||14|
+93|[Pause]||1|300|Sleep|||input week 1 ||16|
+94|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 1 ||17|
+95|[Pause]||1|300|Sleep|||input week 1 ||19|
+96|[Assign Variable]|acc := %Clipboard%|1|100|Variable|||input week 1 ||20|
+97|[Pause]||1|300|Sleep||||||
+98|[Text]|{Home}|1|100|SendEvent||||||
+99|[Pause]||1|300|Sleep||||||
+100|[Text]|{Control Down}{Down}{Control Up}|2|200|SendEvent||||||
+101|[Pause]||1|300|Sleep||||||
+102|[Text]|{Down 2}{Right}|1|200|SendEvent||||||
+103|WinActivate||1|333|WinActivate||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel||||
+104|[Pause]||1|200|Sleep||||||
+105|[Assign Variable]|Clipboard := %dateETD%|1|0|Variable||||||
+106|[Pause]||1|300|Sleep||||||
+107|[Text]|{Control Down}{v}{Control Up}|1|300|SendEvent||||||
+108|[Pause]||1|500|Sleep||||||
+109|[MsgBox]|Check Paste Data|1|1|MsgBox|0|||||
+110|[Pause]||1|300|Sleep||||||
+111|[Text]|{Right 2}|1|200|SendEvent||||||
+112|[Pause]||1|200|Sleep||||||
+113|[Assign Variable]|Clipboard := %soNO%|1|0|Variable||||||
+114|[Pause]||1|300|Sleep||||||
+115|[Text]|{Control Down}{v}{Control Up}|1|300|SendEvent||||||
+116|[Pause]||1|200|Sleep||||||
+117|[Text]|{Right}|1|200|SendEvent||||||
+118|[Pause]||1|200|Sleep||||||
+119|[Assign Variable]|Clipboard := %invNO%|1|0|Variable||||||
+120|[Pause]||1|300|Sleep||||||
+121|[Text]|{Control Down}{v}{Control Up}|1|300|SendEvent||||||
+122|[Pause]||1|200|Sleep||||||
+123|[Text]|{Left 2}|1|200|SendEvent||||||
+124|[Pause]||1|200|Sleep||||||
+125|[Assign Variable]|Clipboard := %model%|1|0|Variable||||||
+126|[Pause]||1|300|Sleep||||||
+127|[Text]|{Control Down}{v}{Control Up}|1|300|SendEvent||||||
+128|[Pause]||1|200|Sleep||||||
+129|[Text]|{Right 3}|1|200|SendEvent||||||
+130|[Pause]||1|200|Sleep||||||
+131|[Text]|{Shift Down}{Right}{Shift Up}|1|200|SendEvent||||||
+132|[Pause]||1|200|Sleep||||||
+133|[Assign Variable]|Clipboard := %qtyUprice%|1|0|Variable||||||
+134|[Pause]||1|300|Sleep||||||
+135|[Text]|{Control Down}{v}{Control Up}|1|300|SendEvent||||||
+136|[Pause]||1|200|Sleep||||||
+137|[Text]|{Right 6}|1|200|SendEvent||||||
+138|[Pause]||1|200|Sleep||||||
+139|[Assign Variable]|Clipboard := %destination%|1|0|Variable||||||
+140|[Pause]||1|300|Sleep||||||
+141|[Text]|{Control Down}{v}{Control Up}|1|300|SendEvent||||||
+142|[Pause]||1|200|Sleep||||||
+143|[Text]|{Right 3}|1|200|SendEvent||||||
+144|[Pause]||1|200|Sleep||||||
+145|[Text]|{Shift Down}{Right 4}{Shift Up}|1|200|SendEvent||||||
+146|[Pause]||1|200|Sleep||||||
+147|[Assign Variable]|Clipboard := %acc%|1|0|Variable||||||
+148|[Pause]||1|300|Sleep||||||
+149|[Text]|{Control Down}{v}{Control Up}|1|300|SendEvent||||||
+150|WinActivate||1|333|WinActivate||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel||||
+151|[Text]|{Home}{Right}|1|300|SendEvent||||||
+152|[Pause]||1|200|Sleep||||||
+153|[Text]|{Control Down}{Down}{Control Up}|1|300|SendEvent||||||
+154|[Pause]||1|300|Sleep||||||
+155|[Text]|{Right 12}|1|200|SendEvent||||||
+156|[Pause]||1|200|Sleep||||||
+157|[Assign Variable]|Clipboard := %week%|1|0|Variable||||||
+158|[Pause]||1|200|Sleep||||||
+159|[MsgBox]|Week : %week%|1|1|MsgBox|0|||||
+160|[Pause]||1|200|Sleep||||||
+161|[Text]|{Control Down}{v}{Control Up}|1|300|SendEvent||||||
+162|[Pause]||1|200|Sleep||||||
+163|[Text]|{Home}{Right}{Down}|1|200|SendEvent||||||
+164|WinActivate||1|333|WinActivate||1. WEEKLY REPORT.xls  [Compatibility Mode] - Excel||||
+165|[Pause]||1|200|Sleep||||||
+166|[Add Variable]|LoopStart += 1|1|0|Variable|Expression|||||
+167|[LoopEnd]|LoopEnd|1|0|Loop||||||
+
+[PMC Code v5.4.1]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|returnCargo
+Context=None|
+Groups=Start:1
+1|WinActivate||1|333|WinActivate||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel||||
+2|[Pause]||1|200|Sleep||||||
+3|[Text]|{F5}|1|200|SendEvent||||||
+4|[Pause]||1|200|Sleep||||||
+5|WinActivate||1|333|WinActivate||Go To||||
+6|[Pause]||1|200|Sleep||||||
+7|[Text]|{C}{6}|1|300|Send||||||
+8|[Pause]||1|200|Sleep||||||
+9|[Text]|{Enter}|1|200|SendEvent||||||
+10|[Pause]||1|200|Sleep||||||
+11|[Text]|{Control Down}{Shift Down}{Down}{Control Up}{Shift Up}|1|200|SendEvent||||||
+12|[Pause]||1|200|Sleep||||||
+13|Control + h|{Control Down}{h}{Control Up}|1|300|Send||||||
+14|[Pause]||1|200|Sleep||||||
+15|WinActivate||1|333|WinActivate||Find and Replace||||
+16|[Pause]||1|200|Sleep||||||
+17|Alt + n|{Alt Down}{n}{Alt Up}|1|300|Send||||||
+18|[Pause]||1|300|Sleep||||||
+19|[Text]|{Space}|1|200|SendEvent||||||
+20|[Pause]||1|300|Sleep||||||
+21|[Text]|{Tab}|1|200|SendEvent||||||
+22|[Pause]||1|300|Sleep||||||
+23|[Text]|{Alt Down}{A}{Alt Up}|1|200|SendEvent||||||
+24|[Pause]||1|300|Sleep||||||
+25|[Text]|{Enter}|1|200|SendEvent||||||
+26|[Pause]||1|300|Sleep||||||
+27|[Text]|{Esc}|1|200|SendEvent||||||
+28|[Pause]||1|200|Sleep||||||
+29|Up|{Up}|1|300|Send||||||
+30|[Pause]||1|100|Sleep||||||
+31|Compare Variables|returnCargo = "Y"|1|0|If_Statement||||||
+32|[Pause]||1|300|Sleep||||||
+33|WinActivate||1|333|WinActivate||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel||||
+34|[Pause]||1|300|Sleep||||||
+35|Control + f|{Control Down}{f}{Control Up}|1|300|Send||||||
+36|[Pause]||1|0|Sleep||||||
+37|[MsgBox]|Check Process|1|1|MsgBox|0|||||
+38|[Pause]||1|300|Sleep||||||
+39|WinActivate||1|333|WinActivate||Find and Replace||||
+40|[Pause]||1|300|Sleep||||||
+41|[Pause]||1|300|Sleep||||||
+42|[Text]|CREDIT NOTE|1|300|SendRaw||||||
+43|[Pause]||1|200|Sleep||||||
+44|WinActivate||1|333|WinActivate||Find and Replace||||
+45|[Pause]||1|200|Sleep||||||
+46|Enter|{Enter}|1|300|Send||||||
+47|WinActivate||1|333|WinActivate||Find and Replace||||
+48|[Pause]||1|300|Sleep||||||
+49|[Text]|{Esc}|1|200|SendEvent||||||
+50|[Pause]||1|300|Sleep||||||
+51|WinActivate||1|333|WinActivate||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel||||
+52|[Pause]||1|300|Sleep||||||
+53|[Text]|{Enter}{Right}{Down}|1|200|SendEvent||||||
+54|[Pause]||1|300|Sleep||||||
+55|WinActivate||1|333|WinActivate||1. WEEKLY REPORT.xls  [Compatibility Mode] - Excel||||
+56|[Pause]||1|200|Sleep||||||
+57|Control + f|{Control Down}{f}{Control Up}|1|300|Send||||||
+58|[Pause]||1|0|Sleep||||||
+59|[MsgBox]|cek|1|0|MsgBox|0|||||
+60|[Pause]||1|300|Sleep||||||
+61|WinActivate||1|333|WinActivate||Find and Replace||||
+62|[Pause]||1|300|Sleep||||||
+63|[Pause]||1|300|Sleep||||||
+64|[Text]|RETURN CARGO|1|300|SendRaw||||||
+65|[Pause]||1|200|Sleep||||||
+66|WinActivate||1|333|WinActivate||Find and Replace||||
+67|[Pause]||1|200|Sleep||||||
+68|Enter|{Enter}|1|300|Send||||||
+69|WinActivate||1|333|WinActivate||Find and Replace||||
+70|[Pause]||1|300|Sleep||||||
+71|[Text]|{Esc}|1|200|SendEvent||||||
+72|[Pause]||1|300|Sleep||||||
+73|[Text]|{Down}{Right}{Down}|1|200|SendEvent||||||
+74|[Pause]||1|200|Sleep||||||
+75|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||14|
+76|[Pause]||1|300|Sleep|||input week 1 ||16|
+77|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 1 ||17|
+78|[Pause]||1|300|Sleep|||input week 1 ||19|
+79|[Assign Variable]|dateETD := %Clipboard%|1|100|Variable|||input week 1 ||20|
+80|[Pause]||1|200|Sleep||||||
+081|[MsgBox]|cek|1|0|MsgBox|0|||||
+82|WinActivate||1|333|WinActivate||1. WEEKLY REPORT.xls  [Compatibility Mode] - Excel||||
+083|[MsgBox]|cek|1|0|MsgBox|0|||||
+84|[Pause]||1|200|Sleep||||||
+85|[Text]|{Right}|1|100|SendEvent||||||
+86|[Pause]||1|300|Sleep||||||
+87|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||14|
+88|[Pause]||1|300|Sleep|||input week 1 ||16|
+89|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 1 ||17|
+90|[Pause]||1|300|Sleep|||input week 1 ||19|
+91|[Assign Variable]|soNO := %Clipboard%|1|100|Variable|||input week 1 ||20|
+92|[Pause]||1|200|Sleep||||||
+93|[Text]|{Right 2}|1|100|SendEvent||||||
+94|[Pause]||1|200|Sleep||||||
+95|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||14|
+96|[Pause]||1|300|Sleep|||input week 1 ||16|
+97|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 1 ||17|
+98|[Pause]||1|300|Sleep|||input week 1 ||19|
+99|[Assign Variable]|invNO := %Clipboard%|1|100|Variable|||input week 1 ||20|
+100|[Pause]||1|200|Sleep||||||
+101|[Text]|{Right}|1|100|SendEvent||||||
+102|[Pause]||1|200|Sleep||||||
+103|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||14|
+104|[Pause]||1|300|Sleep|||input week 1 ||16|
+105|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 1 ||17|
+106|[Pause]||1|300|Sleep|||input week 1 ||19|
+107|[Assign Variable]|model := %Clipboard%|1|100|Variable|||input week 1 ||20|
+108|[Pause]||1|300|Sleep||||||
+109|[Text]|{Right}|1|100|SendEvent||||||
+110|[Pause]||1|200|Sleep||||||
+111|[Text]|{Shift Down}{Right}{Shift Up}{Shift Down}{Control Down}{Down}{Shift Up}{Control Up}|1|200|SendEvent||||||
+112|[Pause]||1|300|Sleep|||input week 1 ||16|
+113|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 1 ||17|
+114|[Pause]||1|300|Sleep|||input week 1 ||19|
+115|[Assign Variable]|qtyUprice := %Clipboard%|1|100|Variable|||input week 1 ||20|
+116|[Pause]||1|300|Sleep||||||
+117|WinActivate||1|333|WinActivate||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel||||
+118|[Pause]||1|200|Sleep||||||
+119|[Assign Variable]|Clipboard := %dateETD%|1|0|Variable||||||
+120|[Pause]||1|300|Sleep||||||
+121|[Text]|{Control Down}{v}{Control Up}|1|300|SendEvent||||||
+122|[Pause]||1|500|Sleep||||||
+123|[MsgBox]|Check Paste Data|1|1|MsgBox|0|||||
+124|[Pause]||1|300|Sleep||||||
+125|[Text]|{Right 2}|1|200|SendEvent||||||
+126|[Pause]||1|200|Sleep||||||
+127|[Assign Variable]|Clipboard := %soNO%|1|0|Variable||||||
+128|[Pause]||1|300|Sleep||||||
+129|[Text]|{Control Down}{v}{Control Up}|1|300|SendEvent||||||
+130|[Pause]||1|200|Sleep||||||
+131|[Text]|{Right}|1|200|SendEvent||||||
+132|[Pause]||1|200|Sleep||||||
+133|[Assign Variable]|Clipboard := %invNO%|1|0|Variable||||||
+134|[Pause]||1|300|Sleep||||||
+135|[Text]|{Control Down}{v}{Control Up}|1|300|SendEvent||||||
+136|[Pause]||1|200|Sleep||||||
+137|[Text]|{Left 2}|1|200|SendEvent||||||
+138|[Pause]||1|200|Sleep||||||
+139|[Assign Variable]|Clipboard := %model%|1|0|Variable||||||
+140|[Pause]||1|300|Sleep||||||
+141|[Text]|{Control Down}{v}{Control Up}|1|300|SendEvent||||||
+142|[Pause]||1|200|Sleep||||||
+143|[Text]|{Right 3}|1|200|SendEvent||||||
+144|[Pause]||1|200|Sleep||||||
+145|[Text]|{Shift Down}{Right}{Shift Up}|1|200|SendEvent||||||
+146|[Pause]||1|200|Sleep||||||
+147|[Assign Variable]|Clipboard := %qtyUprice%|1|0|Variable||||||
+148|[Pause]||1|300|Sleep||||||
+149|[Text]|{Control Down}{v}{Control Up}|1|300|SendEvent||||||
+150|[Pause]||1|200|Sleep||||||
+151|WinActivate||1|333|WinActivate||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel||||
+152|[Text]|{Home}{Right 2}|1|300|SendEvent||||||
+153|[Pause]||1|200|Sleep||||||
+154|[Pause]||1|200|Sleep||||||
+155|[Text]|{Control Down}{Shift Down}{Down}{Control Up}{Shift Up}|1|200|SendEvent||||||
+156|[Pause]||1|200|Sleep||||||
+157|Control + h|{Control Down}{h}{Control Up}|1|300|Send||||||
+158|[Pause]||1|200|Sleep||||||
+159|WinActivate||1|333|WinActivate||Find and Replace||||
+160|[Pause]||1|200|Sleep||||||
+161|Alt + n|{Alt Down}{n}{Alt Up}|1|300|Send||||||
+162|[Pause]||1|300|Sleep||||||
+163|[Text]|{Space}|1|200|SendEvent||||||
+164|[Pause]||1|300|Sleep||||||
+165|[Text]|{Tab}|1|200|SendEvent||||||
+166|[Pause]||1|300|Sleep||||||
+167|[Text]|{Alt Down}{A}{Alt Up}|1|200|SendEvent||||||
+168|[Pause]||1|300|Sleep||||||
+169|[Text]|{Enter}|1|200|SendEvent||||||
+170|[Pause]||1|300|Sleep||||||
+171|[Text]|{Esc}|1|200|SendEvent||||||
+172|[Pause]||1|200|Sleep||||||
+173|[Text]|{Control Down}{Down}{Control Up}|1|200|SendEvent||||||
+174|[Pause]||1|200|Sleep||||||
+175|[Text]|{Down}|1|200|SendEvent||||||
+176|[Pause]||1|200|Sleep||||||
+177|[Text]|{Right 3}|1|200|SendEvent||||||
+178|[Pause]||1|200|Sleep||||||
+179|[Text]|-1|1|300|SendRaw||||||
+180|[Pause]||1|200|Sleep||||||
+181|[Text]|{Up}{Down}|1|20|SendEvent||||||
+182|[Pause]||1|200|Sleep||||||
+183|[Text]|{Control Down}{c}{Control Up}|1|200|SendEvent||||||
+184|[Pause]||1|200|Sleep||||||
+185|[Text]|{Control Down}{Up}{Control Up}|1|200|SendEvent||||||
+186|[Pause]||1|200|Sleep||||||
+187|[Text]|{Down}|1|200|SendEvent||||||
+188|[Pause]||1|200|Sleep||||||
+189|[Text]|{Control Down}{Shift Down}{Down}{Control Up}{Shift Up}|1|200|SendEvent||||||
+190|[Pause]||1|200|Sleep||||||
+191|[Text]|{Alt}{H}{V}{S}|1|200|SendEvent||||||
+192|[Pause]||1|200|Sleep||||||
+193|WinActivate||1|333|WinActivate||Paste Special||||
+194|[Pause]||1|200|Sleep||||||
+195|[Text]|{M}{Enter}|1|200|SendEvent||||||
+196|[Pause]||1|200|Sleep||||||
+197|[Text]|{Esc}|1|200|SendEvent||||||
+198|[Pause]||1|200|Sleep||||||
+199|[Text]|{Control Down}{Down}{Control Up}|1|200|SendEvent||||||
+200|[Pause]||1|200|Sleep||||||
+201|Delete|{Delete}|1|300|Send||||||
+202|[Pause]||1|200|Sleep||||||
+203|[Text]|{Right 6}|1|200|SendEvent||||||
+204|[Pause]||1|200|Sleep||||||
+205|Up|{Up}|1|300|Send||||||
+206|[Pause]||1|200|Sleep||||||
+207|[Assign Variable]|Clipboard := %returnCargoWeek%|1|0|Variable||||||
+208|[Pause]||1|300|Sleep||||||
+209|[Text]|{Control Down}{v}{Control Up}|1|300|SendEvent||||||
+210|[Pause]||1|200|Sleep||||||
+211|Control + c|{Control Down}{c}{Control Up}|1|300|Send||||||
+212|[Pause]||1|200|Sleep||||||
+213|[Text]|{Control Down}{Shift Down}{Up}{Control Up}{Shift Up}|1|200|SendEvent||||||
+214|[Pause]||1|200|Sleep||||||
+215|Shift + Down|{Shift Down}{Down}{Shift Up}|1|300|Send||||||
+216|[Pause]||1|200|Sleep||||||
+217|Enter|{Enter}|1|300|Send||||||
+218|[Pause]||1|200|Sleep||||||
+219|[Else]|Else|1|0|If_Statement||||||
+220|[MsgBox]|Tidak ada Return Cargo|1|2|MsgBox|0|||||
+221|[End If]|EndIf|1|0|If_Statement||||||
+222|[Pause]||1|100|Sleep||||||
+223|WinActivate||1|333|WinActivate||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel||||
+224|[Pause]||1|200|Sleep||||||
+225|Up|{Up}|1|300|Send||||||
+226|[Pause]||1|200|Sleep||||||
+227|Control + f|{Control Down}{f}{Control Up}|1|300|Send||||||
+228|[Pause]||1|200|Sleep||||||
+229|WinActivate||1|333|WinActivate||Find and Replace||||
+230|[Pause]||1|200|Sleep||||||
+231|[Text]|MARKETING DATA|1|200|SendRaw||||||
+232|[Pause]||1|200|Sleep||||||
+233|Enter|{Enter}|1|300|Send||||||
+234|[Pause]||1|200|Sleep||||||
+235|Escape|{Escape}|1|300|Send||||||
+236|[Pause]||1|200|Sleep||||||
+237|Right|{Right}|1|300|Send||||||
+238|[Pause]||1|200|Sleep||||||
+239|[Text]|=|1|200|SendRaw||||||
+240|[Pause]||1|200|Sleep||||||
+241|WinActivate||1|333|WinActivate||1. WEEKLY REPORT.xls  [Compatibility Mode] - Excel||||
+242|Control + f|{Control Down}{f}{Control Up}|1|300|Send||||||
+243|[Pause]||1|200|Sleep||||||
+244|WinActivate||1|333|WinActivate||Find and Replace||||
+245|[Pause]||1|200|Sleep||||||
+246|[Text]|Total|1|200|SendRaw||||||
+247|[Pause]||1|200|Sleep||||||
+248|Enter|{Enter}|1|300|Send||||||
+249|[Pause]||1|200|Sleep||||||
+250|Escape|{Escape}|1|300|Send||||||
+251|[Pause]||1|200|Sleep||||||
+252|[Text]|{Right}{Enter}|1|200|SendEvent||||||
+253|[Pause]||1|200|Sleep||||||
+254|WinActivate||1|333|WinActivate||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel||||
+255|[Text]|{Right 2}{Up}|1|200|SendEvent||||||
+256|[Pause]||1|200|Sleep||||||
+257|[Text]|=|1|200|SendRaw||||||
+258|[Pause]||1|200|Sleep||||||
+259|WinActivate||1|333|WinActivate||1. WEEKLY REPORT.xls  [Compatibility Mode] - Excel||||
+260|Control + f|{Control Down}{f}{Control Up}|1|300|Send||||||
+261|[Pause]||1|200|Sleep||||||
+262|WinActivate||1|333|WinActivate||Find and Replace||||
+263|[Pause]||1|200|Sleep||||||
+264|[Text]|Total|1|200|SendRaw||||||
+265|[Pause]||1|200|Sleep||||||
+266|Enter|{Enter}|1|300|Send||||||
+267|[Pause]||1|200|Sleep||||||
+268|Escape|{Escape}|1|300|Send||||||
+269|[Pause]||1|200|Sleep||||||
+270|[Text]|{Right 3}{Enter}|1|200|SendEvent||||||
+271|[Pause]||1|200|Sleep||||||
+272|[MsgBox]|Waiting|1|1|MsgBox|0|||||
+273|WinActivate||1|333|WinActivate||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel||||
+274|[Text]|{Up 2}{Right 6}|1|200|SendEvent||||||
+275|[Pause]||1|200|Sleep||||||
+276|[Assign Variable]|LoopStart := 0|1|0|Variable|Expression|||||
+277|[LoopStart]|LoopStart|0|0|Loop||||||
+278|[Pause]||1|200|Sleep||||||
+279|Compare Variables|LoopStart == %totalWeek%|1|0|If_Statement||||||
+280|[MsgBox]|Check Pivot Table|1|1|MsgBox|0|||||
+281|[Goto]|pivotTable|1|0|Goto||||||
+282|[End If]|EndIf|1|0|If_Statement||||||
+283|Control + Up|{Control Down}{Up}{Control Up}|1|300|Send||||||
+284|[Pause]||1|200|Sleep||||||
+285|Control + c|{Control Down}{c}{Control Up}|1|300|Send||||||
+286|[Pause]||1|200|Sleep||||||
+287|Shift + Control + Up|{Shift Down}{Control Down}{Up}{Control Up}{Shift Up}|1|300|Send||||||
+288|[Pause]||1|200|Sleep||||||
+289|Shift + Down|{Shift Down}{Down}{Shift Up}|1|300|Send||||||
+290|[Pause]||1|200|Sleep||||||
+291|Enter|{Enter}|1|300|Send||||||
+292|[Pause]||1|200|Sleep||||||
+293|[Add Variable]|LoopStart += 1|1|0|Variable|Expression|||||
+294|[MsgBox]|Week = %LoopStart%|1|1|MsgBox|0|||||
+295|[LoopEnd]|LoopEnd|1|0|Loop||||||
+
+[PMC Code v5.4.1]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|pivotTable
+Context=None|
+Groups=Start:1
+1|[Pause]||1|200|Sleep||||||
+2|WinActivate||1|333|WinActivate||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel||||
+3|[Pause]||1|200|Sleep||||||
+4|Control + Up|{Control Down}{Up}{Control Up}|1|300|Send||||||
+5|[Pause]||1|200|Sleep||||||
+6|Right|{Right}|1|300|Send||||||
+7|[Pause]||1|200|Sleep||||||
+8|Down|{Down}|1|300|Send||||||
+9|[Pause]||1|200|Sleep||||||
+10|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|300|Send||||||
+11|[Pause]||1|200|Sleep||||||
+12|Control + h|{Control Down}{h}{Control Up}|1|300|Send||||||
+13|[Pause]||1|200|Sleep||||||
+14|WinActivate||1|333|WinActivate||Find and Replace||||
+15|[Pause]||1|200|Sleep||||||
+16|Alt + n|{Alt Down}{n}{Alt Up}|1|300|Send||||||
+17|[Pause]||1|300|Sleep||||||
+18|[Text]|{Space}|1|200|SendEvent||||||
+19|[Pause]||1|300|Sleep||||||
+20|[Text]|{Tab}|1|200|SendEvent||||||
+21|[Pause]||1|300|Sleep||||||
+22|[Text]|{Alt Down}{A}{Alt Up}|1|200|SendEvent||||||
+23|[Pause]||1|300|Sleep||||||
+24|[Text]|{Enter}|1|200|SendEvent||||||
+25|[Pause]||1|300|Sleep||||||
+26|[Text]|{Esc}|1|200|SendEvent||||||
+27|[Pause]||1|200|Sleep||||||
+28|Control + Up|{Control Down}{Up}{Control Up}|1|300|Send||||||
+29|[Pause]||1|200|Sleep||||||
+30|Control + Down|{Control Down}{Down}{Control Up}|1|300|Send||||||
+31|[Pause]||1|200|Sleep||||||
+32|Down|{Down}|1|300|Send||||||
+33|[Pause]||1|200|Sleep||||||
+34|Left|{Left}|4|300|Send||||||
+35|[Pause]||1|200|Sleep||||||
+36|Shift + Control + Left|{Shift Down}{Control Down}{Left}{Control Up}{Shift Up}|1|300|Send||||||
+37|[Pause]||1|200|Sleep||||||
+38|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|300|Send||||||
+39|[Pause]||1|200|Sleep||||||
+40|Delete|{Delete}|1|300|Send||||||
+41|[Pause]||1|200|Sleep||||||
+42|[MsgBox]|Pivot Table|1|1|MsgBox|0|||||
+43|[Pause]||1|200|Sleep||||||
+44|WinActivate||1|333|WinActivate||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel||||
+45|[Pause]||1|200|Sleep||||||
+46|[Text]|{F5}|1|200|SendEvent||||||
+47|[Pause]||1|200|Sleep||||||
+48|WinActivate||1|333|WinActivate||Go To||||
+49|[Pause]||1|200|Sleep||||||
+50|[Text]|Pivottable!A1|1|300|SendRaw||||||
+51|[Pause]||1|200|Sleep||||||
+52|Enter|{Enter}|1|300|Send||||||
+53|[Pause]||1|200|Sleep||||||
+54|[Pause]||1|200|Sleep||||||
+55|[Text]|{Alt}{J}{T}{F}{R}|1|500|SendEvent||||||
+56|[Pause]||1|500|Sleep||||||
+57|[MsgBox]|OK|1|1|MsgBox|0|||||
+58|[Pause]||1|200|Sleep||||||
+59|Right|{Right}|1|300|Send||||||
+60|[Pause]||1|200|Sleep||||||
+61|[Pause]||1|200|Sleep||||||
+62|[LoopStart]|LoopStart|0|0|Loop||||||
+63|[Pause]||1|200|Sleep||||||
+64|Alt + Down|{Alt Down}{Down}{Alt Up}|1|300|Send||||||
+65|[Pause]||1|200|Sleep||||||
+66|Down|{Down}|1|300|Send||||||
+67|[Pause]||1|200|Sleep||||||
+68|[Text]|{Down}|1|200|SendEvent||||||
+69|[Pause]||1|200|Sleep||||||
+70|Enter|{Enter}|1|300|Send||||||
+71|[Pause]||1|200|Sleep||||||
+72|[Text]|{F2}{Shift Down}{Home}{Shift Up}|1|200|SendEvent||||||
+73|[Pause]||1|200|Sleep||||||
+74|Control + c|{Control Down}{c}{Control Up}|1|300|Send||||||
+75|[Pause]||1|200|Sleep||||||
+76|Escape|{Escape}|1|300|Send||||||
+77|[Pause]||1|200|Sleep||||||
+78|[Assign Variable]|invtoCust := %Clipboard%|1|0|Variable||||||
+79|[Pause]||1|200|Sleep||||||
+80|[MsgBox]|InvtoCust = %invtoCust%|1|1|MsgBox|0|||||
+81|[Pause]||1|200|Sleep||||||
+82|Compare Variables|invtoCust = "(blank)"|1|0|If_Statement||||||
+83|[Pause]||1|200|Sleep||||||
+84|[MsgBox]|Stop Pivot Process|1|0|MsgBox|0|||||
+85|[Pause]||1|200|Sleep||||||
+86|[Else]|Else|1|0|If_Statement||||||
+87|[Pause]||1|200|Sleep||||||
+88|Down|{Down}|1|299|Send||||||
+89|[Pause]||1|200|Sleep||||||
+90|[Goto]|weekPivot|1|0|Goto||||||
+91|[Pause]||1|200|Sleep||||||
+92|[End If]|EndIf|1|0|If_Statement||||||
+93|[Pause]||1|200|Sleep||||||
+94|[LoopEnd]|LoopEnd|1|0|Loop||||||
+
+[PMC Code v5.4.1]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|weekPivot
+Context=None|
+Groups=Start:1
+1|[Assign Variable]|LoopStart := 0|1|0|Variable|Expression|||||
+2|[LoopStart]|LoopStart|0|0|Loop||||||
+3|Compare Variables|LoopStart = %totalWeek%|1|0|If_Statement||||||
+4|[MsgBox]|OK trial|1|0|MsgBox|0|||||
+5|[End If]|EndIf|1|0|If_Statement||||||
+6|WinActivate||1|333|WinActivate||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel||||
+7|[Pause]||1|200|Sleep||||||
+8|Alt + Down|{Alt Down}{Down}{Alt Up}|1|299|Send||||||
+9|[Pause]||1|200|Sleep||||||
+10|[Text]|{Down}|2|200|SendEvent||||||
+11|[Pause]||1|200|Sleep||||||
+12|Enter|{Enter}|1|299|Send||||||
+13|[Pause]||1|200|Sleep||||||
+14|Down|{Down}|3|299|Send||||||
+15|[Pause]||1|200|Sleep||||||
+16|Right|{Right}|2|299|Send||||||
+17|[Pause]||1|200|Sleep||||||
+18|Down|{Down}|1|299|Send||||||
+19|[Pause]||1|200|Sleep||||||
+20|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|299|Send||||||
+21|[Pause]||1|200|Sleep||||||
+22|[Text]|{Shift Down}{Left 2}{Shift Up}|1|200|SendEvent||||||
+23|[Pause]||1|200|Sleep||||||
+24|Control + c|{Control Down}{c}{Control Up}|1|299|Send||||||
+25|[Pause]||1|200|Sleep||||||
+26|WinActivate||1|333|WinActivate||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel||||
+27|[Pause]||1|200|Sleep||||||
+28|[Text]|{F5}|1|200|SendEvent||||||
+29|[Pause]||1|200|Sleep||||||
+30|WinActivate||1|333|WinActivate||Go To||||
+31|[Pause]||1|200|Sleep||||||
+32|[Text]|ResultPivot!A2|1|301|SendRaw||||||
+33|[Pause]||1|200|Sleep||||||
+34|[Text]|{Enter}|1|200|SendEvent||||||
+35|[Pause]||1|200|Sleep||||||
+36|Control + v|{Control Down}{v}{Control Up}|1|299|Send||||||
+37|[Pause]||1|200|Sleep||||||
+38|Control + Up|{Control Down}{Up}{Control Up}|1|299|Send||||||
+39|[Pause]||1|200|Sleep||||||
+40|[Text]|{Shift Down}{Right 2}{Shift Up}|1|200|SendEvent||||||
+41|[Pause]||1|200|Sleep||||||
+42|[Text]|{Alt}{A}{T}|1|200|SendEvent||||||
+43|[Pause]||1|200|Sleep||||||
+44|Home|{Home}|1|299|Send||||||
+45|[Pause]||1|200|Sleep||||||
+46|Alt + Down|{Alt Down}{Down}{Alt Up}|1|299|Send||||||
+47|[Pause]||1|200|Sleep||||||
+48|[Text]|{Down 8}{End}{Space}{Enter}|1|200|SendEvent||||||
+49|[Pause]||1|200|Sleep||||||
+50|Down|{Down}|1|299|Send||||||
+51|[Pause]||1|200|Sleep||||||
+52|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|299|Send||||||
+53|[Pause]||1|200|Sleep||||||
+54|Shift + Control + Right|{Shift Down}{Control Down}{Right}{Control Up}{Shift Up}|1|299|Send||||||
+55|[Pause]||1|200|Sleep||||||
+056|Control + c|{Control Down}{c}{Control Up}|1|299|Send||||||
+57|[Pause]||1|200|Sleep||||||
+58|[MsgBox]|Copy to file masing-masing sesuai invtocust|1|0|MsgBox|0|||||
+59|WinActivate||1|333|WinActivate||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel||||
+60|[Text]|{F5}|1|200|SendEvent||||||
+61|[Pause]||1|200|Sleep||||||
+62|WinActivate||1|333|WinActivate||Go To||||
+63|[Pause]||1|200|Sleep||||||
+64|[Text]|Pivottable!A1|1|301|SendRaw||||||
+65|[Pause]||1|200|Sleep||||||
+66|[Text]|{Enter}|1|200|SendEvent||||||
+67|[Pause]||1|200|Sleep||||||
+68|Down|{Down}|1|299|Send||||||
+69|[Pause]||1|200|Sleep||||||
+70|Right|{Right}|1|299|Send||||||
+71|[Pause]||1|200|Sleep||||||
+72|[Add Variable]|LoopStart += 1|1|0|Variable|Expression|||||
+73|[LoopEnd]|LoopEnd|1|0|Loop||||||
+
+[PMC Code v5.4.1]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|inputdataPivot
+Context=None|
+Groups=Start:1
+
