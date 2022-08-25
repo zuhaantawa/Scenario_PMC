@@ -1,0 +1,291 @@
+﻿[PMC Globals]|None||
+[PMC Code v5.4.0]|F7||1|Window,2,Fast,0,1,Input,-1,-1,1|1|log
+Context=None|
+Groups=Start:1
+1|FormatTime|timeNow, , yyyy-MM-dd HH:mm:ss|1|0|FormatTime|||||1|
+2|[Goto]|openFile|1|0|Goto|||||2|
+3|[Label]|selesai|1|0|Label|||||3|
+4|FormatTime|timeEnd, , yyyy-MM-dd HH:mm:ss|1|0|FormatTime|||||4|
+5|FileAppend|ACCOUNTING``, Sales Export``, %timeNow%``, %timeEnd%`n, D:\PMC\Scenarios\1. Accounting\8. Sales Export\Log\sales.export.txt|1|0|FileAppend|||||5|
+6|[Pause]||1|500|Sleep|||||6|
+7|[MsgBox]|Sales Export Selesai !|1|0|MsgBox|0||||7|
+
+[PMC Code v5.4.0]|F7||1|Window,2,Fast,0,1,Input,-1,-1,1|1|openFile
+Context=None|
+Groups=Start:1
+1|Run|D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files\1. WEEKLY REPORT .xls, D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files|1|0|Run|||||1|
+2|[Pause]||1|2000|Sleep|||||2|
+3|If Window Active|Microsoft Office Activation Wizard|1|0|If_Statement|||||3|
+4|[Pause]||1|500|Sleep|||||5|
+5|Alt + F4|{Alt Down}{F4}{Alt Up}|1|1|Send|||||6|
+6|[End If]|EndIf|1|0|If_Statement|||||8|
+7|[Pause]||1|2000|Sleep|||||9|
+8|WinMaximize||1|333|WinMaximize||1. WEEKLY REPORT .xls  [Protected View] - Excel|||10|
+9|[Pause]||1|1000|Sleep|||||12|
+10|Run|D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files\2. Rekap Sales Export.xls, D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files|1|0|Run|||||13|
+11|WinMaximize||1|333|WinMaximize||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel|||14|
+12|[Pause]||1|1000|Sleep|||||16|
+13|Run|D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files\3. Unit Price.xlsx, D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files|1|0|Run|||||17|
+14|WinMaximize||1|333|WinMaximize||3. Unit Price.xlsx - Excel|||18|
+15|[Pause]||1|1000|Sleep|||||20|
+16|Run|D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files\4. SALES REPORT - 1.xlsx, D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files|1|0|Run|||||21|
+17|WinMaximize||1|333|WinMaximize||4. SALES REPORT - 1.xlsx - Excel|||22|
+18|[Pause]||1|1000|Sleep|||||24|
+19|[Text]|{Control Down}{PgDn}{Control Up}|1|300|SendEvent|||||25|
+20|[Pause]||1|1000|Sleep|||||29|
+21|Run|D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files\5. SALES REPORT.xlsx, D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files|1|0|Run|||||30|
+22|WinMaximize||1|333|WinMaximize||5. SALES REPORT.xlsx - Excel|||31|
+23|[Pause]||1|2000|Sleep|||||33|
+024|Right Move & Click|66, 699 Right, 1|1|100|Click|||||34|
+025|[Pause]||1|3000|Sleep|||||37|
+026|[Text]|{Home}{Enter}|1|300|SendEvent|||||38|
+027|[Pause]||1|3000|Sleep|||||42|
+028|Move|1169, 324, 0|1|100|Click|||||43|
+029|[Pause]||1|2000|Sleep|||||45|
+30|Control + PgUp|{Control Down}{PgUp}{Control Up}|6|100|Send|||||46|
+31|[Pause]||1|300|Sleep|||||49|
+32|[Goto]|inputData|1|0|Goto|||||50|
+
+[PMC Code v5.4.0]|F1||1|Window,2,Fast,0,1,Input,-1,-1,1|1|inputData
+Context=None|
+Groups=Start:1
+1|InputBox|inputDate, Date File, Input Date File|1|1|InputBox|||||1|
+2|[Pause]||1|1000|Sleep|||||3|
+3|InputBox|qtyWeek, Data File, Jumlah week pada weekly report `n (4``,5)|1|0|InputBox|||||4|
+4|[Pause]||1|300|Sleep|||||5|
+5|InputBox|inputData, Data File, Apakah weekly report ada return cargo ? `n (Y=Yes/N=No)|1|0|InputBox|||||6|
+6|[Pause]||1|300|Sleep|||||7|
+7|InputBox|weekReturncargo, Data File, Return cargo pada week ke berapa ? `n (1``,2``,3``,4``,5)|1|0|InputBox|||||8|
+8|[Pause]||1|300|Sleep|||||9|
+
+[PMC Code v5.4.0]|F9||1|Window,2,Fast,0,1,Input,-1,-1,1|1|weeklyReport
+Context=None|
+Groups=Start:1
+1|Compare Variables|qtyWeek = 4|1|0|If_Statement|||||1|
+2|WinActivate||1|333|WinActivate||1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel|week1 ||3|
+3|[Pause]||1|300|Sleep|||week1 ||5|
+4|gotoF5|_null := "A3","1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|0|Function|||week1 ||6|
+5|[Pause]||1|300|Sleep|||week1 ||7|
+6|F2|{F2}|1|100|Send|||week1 ||8|
+7|[Pause]||1|300|Sleep|||week1 ||10|
+8|Shift + Control + Home|{Shift Down}{Control Down}{Home}{Control Up}{Shift Up}|1|100|Send|||week1 ||11|
+9|[Pause]||1|300|Sleep|||week1 ||13|
+10|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||week1 ||14|
+11|[Pause]||1|300|Sleep|||week1 ||16|
+12|[Assign Variable]|week1 := %Clipboard%|1|300|Variable|||week1 ||17|
+13|[Pause]||1|300|Sleep|||week1 ||18|
+14|gotoF5|_null := "B4","1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||19|
+15|[Pause]||1|300|Sleep|||week1 ||20|
+16|date|_null := "1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||21|
+17|[Pause]||1|300|Sleep|||week1 ||22|
+18|gotoF5|_null := "C4","1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||23|
+19|[Pause]||1|300|Sleep|||week1 ||24|
+20|soNo|_null := "1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||25|
+21|[Pause]||1|300|Sleep|||week1 ||26|
+22|gotoF5|_null := "E4","1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||27|
+23|[Pause]||1|300|Sleep|||week1 ||28|
+24|invoiceNo|_null := "1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||29|
+25|[Pause]||1|300|Sleep|||week1 ||30|
+26|gotoF5|_null := "F4","1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||31|
+27|[Pause]||1|300|Sleep|||week1 ||32|
+28|modelName|_null := "1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||33|
+29|[Pause]||1|300|Sleep|||week1 ||34|
+30|gotoF5|_null := "F4","1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||31|
+31|[Pause]||1|300|Sleep|||week1 ||32|
+32|qty|_null := "1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||33|
+33|[Pause]||1|300|Sleep|||week1 ||34|
+34|gotoF5|_null := "J4","1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||31|
+35|[Pause]||1|300|Sleep|||week1 ||32|
+36|destination|_null := "1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||33|
+37|[Pause]||1|300|Sleep|||week1 ||34|
+38|gotoF5|_null := "K4","1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||31|
+39|[Pause]||1|300|Sleep|||week1 ||32|
+40|sales|_null := "1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||33|
+41|[Pause]||1|300|Sleep|||week1 ||34|
+42|gotoF5|_null := "L4","1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||31|
+43|[Pause]||1|300|Sleep|||week1 ||32|
+44|peb|_null := "1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||33|
+45|[Pause]||1|300|Sleep|||week1 ||34|
+46|gotoF5|_null := "A3","1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|0|Function|||week1 ||6|
+47|[Pause]||1|300|Sleep|||week1 ||7|
+48|Control + Down|{Control Down}{Down}{Control Up}|2|100|Send||||||
+49|[Pause]||1|300|Sleep||||||
+50|F2|{F2}|1|100|Send|||week1 ||8|
+51|[Pause]||1|300|Sleep|||week1 ||10|
+52|Shift + Control + Home|{Shift Down}{Control Down}{Home}{Control Up}{Shift Up}|1|100|Send|||week1 ||11|
+53|[Pause]||1|300|Sleep|||week1 ||13|
+54|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||week1 ||14|
+55|[Pause]||1|300|Sleep|||week1 ||16|
+56|[Assign Variable]|week2 := %Clipboard%|1|300|Variable|||week1 ||17|
+57|[Pause]||1|300|Sleep|||week1 ||18|
+58|gotoF5|_null := "B4","1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||19|
+59|[Pause]||1|300|Sleep|||week1 ||20|
+60|date|_null := "1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||21|
+61|[Pause]||1|300|Sleep|||week1 ||22|
+62|gotoF5|_null := "C4","1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||23|
+63|[Pause]||1|300|Sleep|||week1 ||24|
+64|soNo|_null := "1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||25|
+65|[Pause]||1|300|Sleep|||week1 ||26|
+66|gotoF5|_null := "E4","1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||27|
+67|[Pause]||1|300|Sleep|||week1 ||28|
+68|invoiceNo|_null := "1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||29|
+69|[Pause]||1|300|Sleep|||week1 ||30|
+70|gotoF5|_null := "F4","1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||31|
+71|[Pause]||1|300|Sleep|||week1 ||32|
+72|modelName|_null := "1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||33|
+73|[Pause]||1|300|Sleep|||week1 ||34|
+74|gotoF5|_null := "F4","1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||31|
+75|[Pause]||1|300|Sleep|||week1 ||32|
+76|qty|_null := "1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||33|
+77|[Pause]||1|300|Sleep|||week1 ||34|
+78|gotoF5|_null := "J4","1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||31|
+79|[Pause]||1|300|Sleep|||week1 ||32|
+80|destination|_null := "1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||33|
+81|[Pause]||1|300|Sleep|||week1 ||34|
+82|gotoF5|_null := "K4","1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||31|
+83|[Pause]||1|300|Sleep|||week1 ||32|
+84|sales|_null := "1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||33|
+85|[Pause]||1|300|Sleep|||week1 ||34|
+86|gotoF5|_null := "L4","1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||31|
+87|[Pause]||1|300|Sleep|||week1 ||32|
+88|peb|_null := "1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel"|1|300|Function|||week1 ||33|
+89|[Pause]||1|300|Sleep|||week1 ||34|
+90|[End If]|EndIf|1|0|If_Statement|||||35|
+
+[PMC Code v5.4.0]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|gotoF5()
+Context=None|
+Groups=Start:1
+1|[FuncParameter]|coloumnName|1|0|FuncParameter|||||1|
+2|[FuncParameter]|window|1|0|FuncParameter|||||1|
+3|[FunctionStart]|gotoF5|1|0|UserFunction|Local| / |||1|
+4|F5|{F5}|1|100|Send|||||3|
+5|[Pause]||1|300|Sleep|||||5|
+6|[Text]|%coloumnName% {Enter}|1|100|SendEvent|||||6|
+7|[Pause]||1|300|Sleep|||||10|
+8|[FuncReturn]|return|1|0|FuncReturn|||||11|
+
+[PMC Code v5.4.0]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|date()
+Context=None|
+Groups=Start:1
+1|[FuncParameter]|window|1|0|FuncParameter|||||1|
+2|[FunctionStart]|date|1|0|UserFunction|Local| / |||1|
+3|Down|{Down}|1|100|Send|||||3|
+4|[Pause]||1|300|Sleep|||||5|
+5|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||6|
+6|[Pause]||1|300|Sleep|||||8|
+7|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||||9|
+8|[Pause]||1|300|Sleep|||||11|
+9|[Assign Variable]|dateWeek := %Clipboard%|1|0|Variable|Expression||||12|
+10|[Pause]||1|300|Sleep|||||13|
+11|[FuncReturn]|return2|1|0|FuncReturn|||||14|
+
+[PMC Code v5.4.0]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|soNo()
+Context=None|
+Groups=Start:1
+1|[FuncParameter]|window|1|0|FuncParameter|||||1|
+2|[FunctionStart]|soNo|1|0|UserFunction|Local| / |||1|
+3|Down|{Down}|1|100|Send|||||3|
+4|[Pause]||1|300|Sleep|||||5|
+5|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||6|
+6|[Pause]||1|300|Sleep|||||8|
+7|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||||9|
+8|[Pause]||1|300|Sleep|||||11|
+9|[Assign Variable]|soNoweek := %Clipboard%|1|0|Variable|Expression||||12|
+10|[Pause]||1|300|Sleep|||||13|
+11|[FuncReturn]|return3|1|0|FuncReturn|||||14|
+
+[PMC Code v5.4.0]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|invoiceNo()
+Context=None|
+Groups=Start:1
+1|[FuncParameter]|window|1|0|FuncParameter|||||1|
+2|[FunctionStart]|invoiceNo|1|0|UserFunction|Local| / |||1|
+3|Down|{Down}|1|100|Send|||||3|
+4|[Pause]||1|300|Sleep|||||5|
+5|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||6|
+6|[Pause]||1|300|Sleep|||||8|
+7|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||||9|
+8|[Pause]||1|300|Sleep|||||11|
+9|[Assign Variable]|invoiceNoweek := %Clipboard%|1|0|Variable|Expression||||12|
+10|[Pause]||1|300|Sleep|||||13|
+11|[FuncReturn]|return4|1|0|FuncReturn|||||14|
+
+[PMC Code v5.4.0]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|modelName()
+Context=None|
+Groups=Start:1
+1|[FuncParameter]|window|1|0|FuncParameter|||||1|
+2|[FunctionStart]|modelName|1|0|UserFunction|Local| / |||1|
+3|Down|{Down}|1|100|Send|||||3|
+4|[Pause]||1|300|Sleep|||||5|
+5|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||6|
+6|[Pause]||1|300|Sleep|||||8|
+7|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||||9|
+8|[Pause]||1|300|Sleep|||||11|
+9|[Assign Variable]|model := %Clipboard%|1|0|Variable|Expression||||12|
+10|[Pause]||1|300|Sleep|||||13|
+11|[FuncReturn]|return5|1|0|FuncReturn|||||14|
+
+[PMC Code v5.4.0]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|qty()
+Context=None|
+Groups=Start:1
+1|[FuncParameter]|window|1|0|FuncParameter|||||1|
+2|[FunctionStart]|qty|1|0|UserFunction|Local| / |||1|
+3|Down|{Down}|1|100|Send|||||3|
+4|[Pause]||1|300|Sleep|||||5|
+5|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||6|
+6|[Pause]||1|300|Sleep|||||8|
+7|Shift + Right|{Shift Down}{Right}{Shift Up}|2|100|Send|||||9|
+8|[Pause]||1|300|Sleep|||||11|
+9|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||||12|
+10|[Pause]||1|300|Sleep|||||14|
+11|[Assign Variable]|qtyWeek := %Clipboard%|1|0|Variable|Expression||||15|
+12|[Pause]||1|300|Sleep|||||16|
+13|[FuncReturn]|return5|1|0|FuncReturn|||||17|
+
+[PMC Code v5.4.0]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|destination()
+Context=None|
+Groups=Start:1
+1|[FuncParameter]|window|1|0|FuncParameter|||||1|
+2|[FunctionStart]|destination|1|0|UserFunction|Local| / |||1|
+3|Down|{Down}|1|100|Send|||||3|
+4|[Pause]||1|300|Sleep|||||5|
+5|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||6|
+6|[Pause]||1|300|Sleep|||||8|
+7|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||||9|
+8|[Pause]||1|300|Sleep|||||11|
+9|[Assign Variable]|destinationWeek := %Clipboard%|1|0|Variable|Expression||||12|
+10|[Pause]||1|300|Sleep|||||13|
+11|[FuncReturn]|return6|1|0|FuncReturn|||||14|
+
+[PMC Code v5.4.0]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|sales()
+Context=None|
+Groups=Start:1
+1|[FuncParameter]|window|1|0|FuncParameter|||||1|
+2|[FunctionStart]|sales|1|0|UserFunction|Local| / |||1|
+3|Down|{Down}|1|100|Send|||||3|
+4|[Pause]||1|300|Sleep|||||5|
+5|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||6|
+6|[Pause]||1|300|Sleep|||||8|
+7|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||||9|
+8|[Pause]||1|300|Sleep|||||11|
+9|[Assign Variable]|salesWeek := %Clipboard%|1|0|Variable|Expression||||12|
+10|[Pause]||1|300|Sleep|||||13|
+11|[FuncReturn]|return7|1|0|FuncReturn|||||3|
+
+[PMC Code v5.4.0]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|peb()
+Context=None|
+Groups=Start:1
+1|[FuncParameter]|window|1|0|FuncParameter|||||1|
+2|[FunctionStart]|peb|1|0|UserFunction|Local| / |||1|
+3|Down|{Down}|1|100|Send|||||3|
+4|[Pause]||1|300|Sleep|||||5|
+5|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||6|
+6|[Pause]||1|300|Sleep|||||8|
+7|Control + Down|{Control Down}{Down}{Control Up}|1|0|Send||||||
+8|Shift + Right|{Shift Down}{Right}{Shift Up}|3|100|Send|||||9|
+9|[Pause]||1|300|Sleep|||||11|
+10|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||||12|
+11|[Pause]||1|300|Sleep|||||14|
+12|[Assign Variable]|pebNo := %Clipboard%|1|0|Variable|Expression||||15|
+13|[Assign Variable]|week1 := %Clipboard%|1|300|Variable|||||16|
+14|[FuncReturn]|return8|1|0|FuncReturn|||||3|
+

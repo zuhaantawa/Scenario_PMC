@@ -1,0 +1,2310 @@
+﻿[PMC Code v5.3.0]|F7||1|Window,2,Fast,0,1,Input,-1,-1,1|1|Macro1
+Context=None||None|
+Groups=Start:1
+1|FormatTime|timeNow, , yyyy-MM-dd HH:mm:ss|1|0|FormatTime|||||1|
+2|[Goto]|Macro2|1|0|Goto|||||2|
+3|[Label]|selesai|1|0|Label|||||3|
+4|FormatTime|timeEnd, , yyyy-MM-dd HH:mm:ss|1|0|FormatTime|||||4|
+5|FileAppend|ACCOUNTING``, Sales Export``, %timeNow%``, %timeEnd%`n, D:\PMC\Scenarios\1. Accounting\8. Sales Export\Log\sales.export.txt|1|0|FileAppend|||||5|
+6|[Pause]||1|500|Sleep|||||6|
+7|[MsgBox]|Sales Export Selesai !|1|0|MsgBox|0||||7|
+
+[PMC Code v5.3.0]|F7||1|Window,2,Fast,0,1,Input,-1,-1,1|1|Macro2
+Context=None||None|
+Groups=Start:1
+1|Run|D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files\1. WEEKLY REPORT .xls, D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files|1|0|Run|||||1|
+2|[Pause]||1|2000|Sleep|||||2|
+3|If Window Active|Microsoft Office Activation Wizard|1|0|If_Statement|||||3|
+4|[Pause]||1|500|Sleep|||||5|
+5|Alt + F4|{Alt Down}{F4}{Alt Up}|1|1|Send|||||6|
+6|[End If]|EndIf|1|0|If_Statement|||||8|
+7|[Pause]||1|2000|Sleep|||||9|
+8|WinMaximize||1|333|WinMaximize||1. WEEKLY REPORT .xls  [Protected View] - Excel|||10|
+9|[Pause]||1|1000|Sleep|||||12|
+10|Run|D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files\2. Rekap Sales Export.xls, D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files|1|0|Run|||||13|
+11|WinMaximize||1|333|WinMaximize||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel|||14|
+12|[Pause]||1|1000|Sleep|||||16|
+13|Run|D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files\3. Unit Price.xlsx, D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files|1|0|Run|||||17|
+14|WinMaximize||1|333|WinMaximize||3. Unit Price.xlsx - Excel|||18|
+15|[Pause]||1|1000|Sleep|||||20|
+16|Run|D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files\4. SALES REPORT - 1.xlsx, D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files|1|0|Run|||||21|
+17|WinMaximize||1|333|WinMaximize||4. SALES REPORT - 1.xlsx - Excel|||22|
+18|[Pause]||1|1000|Sleep|||||24|
+19|InputBox|inputDate, Date File, Input Date File|1|1|InputBox|||||25|
+20|[Pause]||1|1000|Sleep|||||27|
+21|[Text]|{Control Down}{PgDn}{Control Up}|1|300|SendEvent|||||28|
+22|[Pause]||1|1000|Sleep|||||32|
+23|Run|D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files\5. SALES REPORT.xlsx, D:\PMC\Scenarios\1. Accounting\8. Sales Export\New folder\Support Files|1|0|Run|||||33|
+24|WinMaximize||1|333|WinMaximize||5. SALES REPORT.xlsx - Excel|||34|
+25|[Pause]||1|2000|Sleep|||||36|
+26|Right Move & Click|66, 699 Right, 1|1|100|Click|||||37|
+27|[Pause]||1|3000|Sleep|||||39|
+28|[Text]|{Home}{Enter}|1|300|SendEvent|||||40|
+29|[Pause]||1|3000|Sleep|||||44|
+30|Move|1169, 324, 0|1|100|Click|||||45|
+31|[Pause]||1|2000|Sleep|||||47|
+32|Control + PgUp|{Control Down}{PgUp}{Control Up}|6|100|Send|||||48|
+33|[Pause]||1|300|Sleep|||||50|
+34|[Goto]|week1|1|0|Goto|||||51|
+
+[PMC Code v5.3.0]|F1||1|Window,2,Fast,0,1,Input,-1,-1,1|1|week1
+Context=None||None|
+Groups=Start:1
+1|WinActivate||1|333|WinActivate||1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel|input week 1 ||1|
+2|[Pause]||1|300|Sleep|||input week 1 ||3|
+3|F5|{F5}|1|100|Send|||input week 1 ||4|
+4|[Pause]||1|300|Sleep|||input week 1 ||6|
+5|[Text]|{B}{5}{Enter}|1|100|SendEvent|||input week 1 ||7|
+6|[Pause]||1|300|Sleep|||input week 1 ||11|
+7|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||12|
+8|[Pause]||1|300|Sleep|||input week 1 ||14|
+9|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 1 ||15|
+10|[Pause]||1|300|Sleep|||input week 1 ||17|
+11|[Assign Variable]|dateETD := %Clipboard%|1|100|Variable|||input week 1 ||18|
+12|[Pause]||1|300|Sleep|||input week 1 ||19|
+13|F5|{F5}|1|100|Send|||input week 1 ||20|
+14|[Pause]||1|300|Sleep|||input week 1 ||22|
+15|[Text]|{C}{5}{Enter}|1|100|SendEvent|||input week 1 ||23|
+16|[Pause]||1|300|Sleep|||input week 1 ||27|
+17|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||28|
+18|[Pause]||1|300|Sleep|||input week 1 ||30|
+19|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 1 ||31|
+20|[Pause]||1|300|Sleep|||input week 1 ||33|
+21|[Assign Variable]|sONO := %Clipboard%|1|100|Variable|||input week 1 ||34|
+22|[Pause]||1|300|Sleep|||input week 1 ||35|
+23|F5|{F5}|1|100|Send|||input week 1 ||36|
+24|[Pause]||1|300|Sleep|||input week 1 ||38|
+25|[Text]|{E}{5}{Enter}|1|100|SendEvent|||input week 1 ||39|
+26|[Pause]||1|300|Sleep|||input week 1 ||43|
+27|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||44|
+28|[Pause]||1|300|Sleep|||input week 1 ||46|
+29|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 1 ||47|
+30|[Pause]||1|300|Sleep|||input week 1 ||49|
+31|[Assign Variable]|invoiceno := %Clipboard%|1|100|Variable|||input week 1 ||50|
+32|[Pause]||1|300|Sleep|||input week 1 ||51|
+33|F5|{F5}|1|100|Send|||input week 1 ||52|
+34|[Pause]||1|300|Sleep|||input week 1 ||54|
+35|[Text]|{F}{5}{Enter}|1|100|SendEvent|||input week 1 ||55|
+36|[Pause]||1|300|Sleep|||input week 1 ||59|
+37|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||60|
+38|[Pause]||1|300|Sleep|||input week 1 ||62|
+39|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 1 ||63|
+40|[Pause]||1|300|Sleep|||input week 1 ||65|
+41|[Assign Variable]|model := %Clipboard%|1|100|Variable|||input week 1 ||66|
+42|[Pause]||1|300|Sleep|||input week 1 ||67|
+43|F5|{F5}|1|100|Send|||input week 1 ||68|
+44|[Pause]||1|300|Sleep|||input week 1 ||70|
+45|[Text]|{G}{5}{Enter}|1|100|SendEvent|||input week 1 ||71|
+46|[Pause]||1|300|Sleep|||input week 1 ||75|
+47|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||76|
+48|[Pause]||1|300|Sleep|||input week 1 ||78|
+49|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 1 ||79|
+50|[Pause]||1|300|Sleep|||input week 1 ||81|
+51|[Assign Variable]|qty := %Clipboard%|1|100|Variable|||input week 1 ||82|
+52|[Pause]||1|300|Sleep|||input week 1 ||83|
+53|F5|{F5}|1|100|Send|||input week 1 ||84|
+54|[Pause]||1|300|Sleep|||input week 1 ||86|
+55|[Text]|{H}{5}{Enter}|1|100|SendEvent|||input week 1 ||87|
+56|[Pause]||1|300|Sleep|||input week 1 ||91|
+57|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||92|
+58|[Pause]||1|300|Sleep|||input week 1 ||94|
+59|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 1 ||95|
+60|[Pause]||1|300|Sleep|||input week 1 ||97|
+61|[Assign Variable]|uprice := %Clipboard%|1|100|Variable|||input week 1 ||98|
+62|[Pause]||1|300|Sleep|||input week 1 ||99|
+63|F5|{F5}|1|100|Send|||input week 1 ||100|
+64|[Pause]||1|300|Sleep|||input week 1 ||102|
+65|[Text]|{I}{5}{Enter}|1|100|SendEvent|||input week 1 ||103|
+66|[Pause]||1|300|Sleep|||input week 1 ||107|
+67|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||108|
+68|[Pause]||1|300|Sleep|||input week 1 ||110|
+69|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 1 ||111|
+70|[Pause]||1|300|Sleep|||input week 1 ||113|
+71|[Assign Variable]|amount := %Clipboard%|1|100|Variable|||input week 1 ||114|
+72|[Pause]||1|300|Sleep|||input week 1 ||115|
+73|F5|{F5}|1|100|Send|||input week 1 ||116|
+74|[Pause]||1|300|Sleep|||input week 1 ||118|
+75|[Text]|{J}{5}{Enter}|1|100|SendEvent|||input week 1 ||119|
+76|[Pause]||1|300|Sleep|||input week 1 ||123|
+77|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||124|
+78|[Pause]||1|300|Sleep|||input week 1 ||126|
+79|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 1 ||127|
+80|[Pause]||1|300|Sleep|||input week 1 ||129|
+81|[Assign Variable]|destination := %Clipboard%|1|100|Variable|||input week 1 ||130|
+82|[Pause]||1|300|Sleep|||input week 1 ||131|
+83|F5|{F5}|1|100|Send|||input week 1 ||132|
+84|[Pause]||1|300|Sleep|||input week 1 ||134|
+85|[Text]|{K}{5}{Enter}|1|100|SendEvent|||input week 1 ||135|
+86|[Pause]||1|300|Sleep|||input week 1 ||139|
+87|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||140|
+88|[Pause]||1|300|Sleep|||input week 1 ||142|
+89|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 1 ||143|
+90|[Pause]||1|300|Sleep|||input week 1 ||145|
+91|[Assign Variable]|accountee := %Clipboard%|1|100|Variable|||input week 1 ||146|
+92|[Pause]||1|300|Sleep|||input week 1 ||147|
+93|F5|{F5}|1|100|Send|||input week 1 ||148|
+94|[Pause]||1|300|Sleep|||input week 1 ||150|
+95|[Text]|{L}{5}{Enter}|1|100|SendEvent|||input week 1 ||151|
+96|[Pause]||1|300|Sleep|||input week 1 ||155|
+97|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||156|
+98|[Pause]||1|300|Sleep|||input week 1 ||158|
+99|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 1 ||159|
+100|[Pause]||1|300|Sleep|||input week 1 ||161|
+101|[Assign Variable]|pebno := %Clipboard%|1|100|Variable|||input week 1 ||162|
+102|[Pause]||1|300|Sleep|||input week 1 ||163|
+103|F5|{F5}|1|100|Send|||input week 1 ||164|
+104|[Pause]||1|300|Sleep|||input week 1 ||166|
+105|[Text]|{M}{5}{Enter}|1|100|SendEvent|||input week 1 ||167|
+106|[Pause]||1|300|Sleep|||input week 1 ||171|
+107|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||172|
+108|[Pause]||1|300|Sleep|||input week 1 ||174|
+109|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 1 ||175|
+110|[Pause]||1|300|Sleep|||input week 1 ||177|
+111|[Assign Variable]|pebdate := %Clipboard%|1|100|Variable|||input week 1 ||178|
+112|[Pause]||1|300|Sleep|||input week 1 ||179|
+113|F5|{F5}|1|100|Send|||input week 1 ||180|
+114|[Pause]||1|300|Sleep|||input week 1 ||182|
+115|[Text]|{N}{5}{Enter}|1|100|SendEvent|||input week 1 ||183|
+116|[Pause]||1|300|Sleep|||input week 1 ||187|
+117|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||188|
+118|[Pause]||1|300|Sleep|||input week 1 ||190|
+119|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 1 ||191|
+120|[Pause]||1|300|Sleep|||input week 1 ||193|
+121|[Assign Variable]|noaju := %Clipboard%|1|100|Variable|||input week 1 ||194|
+122|[Pause]||1|300|Sleep|||input week 1 ||195|
+123|F5|{F5}|1|100|Send|||input week 1 ||196|
+124|[Pause]||1|300|Sleep|||input week 1 ||198|
+125|[Text]|{O}{5}{Enter}|1|100|SendEvent|||input week 1 ||199|
+126|[Pause]||1|300|Sleep|||input week 1 ||203|
+127|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||204|
+128|[Pause]||1|300|Sleep|||input week 1 ||206|
+129|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 1 ||207|
+130|[Pause]||1|300|Sleep|||input week 1 ||209|
+131|[Assign Variable]|npe := %Clipboard%|1|100|Variable|||input week 1 ||210|
+132|[Pause]||1|300|Sleep|||input week 1 ||211|
+133|F5|{F5}|1|100|Send|||input week 1 ||212|
+134|[Pause]||1|300|Sleep|||input week 1 ||214|
+135|[Text]|{A}{3}{Enter}|1|100|SendEvent|||input week 1 ||215|
+0136|[Pause]||1|300|Sleep|||||219|
+137|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||||221|
+138|[Pause]||1|300|Sleep|||||224|
+139|[Assign Variable]|week := %Clipboard%|1|100|Variable|||||225|
+140|[Pause]||1|300|Sleep|||||226|
+141|WinActivate||1|333|WinActivate||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel|input week 1 ||227|
+142|[Pause]||1|300|Sleep|||input week 1 ||229|
+143|F5|{F5}|1|100|Send|||input week 1 ||230|
+144|[Pause]||1|300|Sleep|||input week 1 ||232|
+145|[Text]|{B}{6}{Enter}|1|100|SendEvent|||input week 1 ||233|
+146|[Pause]||1|300|Sleep|||input week 1 ||237|
+147|[Assign Variable]|Clipboard := %dateETD%|1|100|Variable|||input week 1 ||238|
+148|[Pause]||1|300|Sleep|||input week 1 ||239|
+149|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 1 ||240|
+150|[Pause]||1|300|Sleep|||input week 1 ||242|
+151|F5|{F5}|1|100|Send|||input week 1 ||243|
+152|[Pause]||1|300|Sleep|||input week 1 ||245|
+153|[Text]|{C}{6}{Enter}|1|100|SendEvent|||input week 1 ||246|
+154|[Pause]||1|300|Sleep|||input week 1 ||250|
+155|[Assign Variable]|Clipboard := %model%|1|100|Variable|||input week 1 ||251|
+156|[Pause]||1|300|Sleep|||input week 1 ||252|
+157|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 1 ||253|
+158|[Pause]||1|300|Sleep|||input week 1 ||255|
+159|F5|{F5}|1|100|Send|||input week 1 ||256|
+160|[Pause]||1|300|Sleep|||input week 1 ||258|
+161|[Text]|{D}{6}{Enter}|1|100|SendEvent|||input week 1 ||259|
+162|[Pause]||1|300|Sleep|||input week 1 ||263|
+163|[Assign Variable]|Clipboard := %sONO%|1|100|Variable|||input week 1 ||264|
+164|[Pause]||1|300|Sleep|||input week 1 ||265|
+165|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 1 ||266|
+166|[Pause]||1|300|Sleep|||input week 1 ||268|
+167|F5|{F5}|1|100|Send|||input week 1 ||269|
+168|[Pause]||1|300|Sleep|||input week 1 ||271|
+169|[Text]|{E}{6}{Enter}|1|100|SendEvent|||input week 1 ||272|
+170|[Pause]||1|300|Sleep|||input week 1 ||276|
+171|[Assign Variable]|Clipboard := %invoiceno%|1|100|Variable|||input week 1 ||277|
+172|[Pause]||1|300|Sleep|||input week 1 ||278|
+173|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 1 ||279|
+174|[Pause]||1|300|Sleep|||input week 1 ||281|
+175|F5|{F5}|1|100|Send|||input week 1 ||282|
+176|[Pause]||1|300|Sleep|||input week 1 ||284|
+177|[Text]|{F}{6}{Enter}|1|100|SendEvent|||input week 1 ||285|
+178|[Pause]||1|300|Sleep|||input week 1 ||289|
+179|[Assign Variable]|Clipboard := %qty%|1|100|Variable|||input week 1 ||290|
+180|[Pause]||1|300|Sleep|||input week 1 ||291|
+181|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 1 ||292|
+182|[Pause]||1|300|Sleep|||input week 1 ||294|
+183|F5|{F5}|1|100|Send|||input week 1 ||295|
+184|[Pause]||1|300|Sleep|||input week 1 ||297|
+185|[Text]|{G}{6}{Enter}|1|100|SendEvent|||input week 1 ||298|
+186|[Pause]||1|300|Sleep|||input week 1 ||302|
+187|[Assign Variable]|Clipboard := %uprice%|1|100|Variable|||input week 1 ||303|
+188|[Pause]||1|300|Sleep|||input week 1 ||304|
+189|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 1 ||305|
+190|[Pause]||1|300|Sleep|||input week 1 ||307|
+191|F5|{F5}|1|100|Send|||input week 1 ||308|
+192|[Pause]||1|300|Sleep|||input week 1 ||310|
+193|[Text]|{H}{6}{Enter}|1|100|SendEvent|||input week 1 ||311|
+194|[Pause]||1|300|Sleep|||input week 1 ||315|
+195|[Assign Variable]|Clipboard := %amount%|1|100|Variable|||input week 1 ||316|
+196|[Pause]||1|300|Sleep|||input week 1 ||317|
+197|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 1 ||318|
+198|[Pause]||1|300|Sleep|||input week 1 ||320|
+199|F5|{F5}|1|100|Send|||input week 1 ||321|
+200|[Pause]||1|300|Sleep|||input week 1 ||323|
+201|[Text]|{L}{6}{Enter}|1|100|SendEvent|||input week 1 ||324|
+202|[Pause]||1|300|Sleep|||input week 1 ||328|
+203|[Assign Variable]|Clipboard := %destination%|1|100|Variable|||input week 1 ||329|
+204|[Pause]||1|300|Sleep|||input week 1 ||330|
+205|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 1 ||331|
+206|[Pause]||1|300|Sleep|||input week 1 ||333|
+207|F5|{F5}|1|100|Send|||input week 1 ||334|
+208|[Pause]||1|300|Sleep|||input week 1 ||336|
+209|[Text]|{O}{6}{Enter}|1|100|SendEvent|||input week 1 ||337|
+210|[Pause]||1|300|Sleep|||input week 1 ||341|
+211|[Assign Variable]|Clipboard := %accountee%|1|100|Variable|||input week 1 ||342|
+212|[Pause]||1|300|Sleep|||input week 1 ||343|
+213|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 1 ||344|
+214|[Pause]||1|300|Sleep|||input week 1 ||346|
+215|F5|{F5}|1|100|Send|||input week 1 ||347|
+216|[Pause]||1|300|Sleep|||input week 1 ||349|
+217|[Text]|{P}{6}{Enter}|1|100|SendEvent|||input week 1 ||350|
+218|[Pause]||1|300|Sleep|||input week 1 ||354|
+219|[Assign Variable]|Clipboard := %pebno%|1|100|Variable|||input week 1 ||355|
+220|[Pause]||1|300|Sleep|||input week 1 ||356|
+221|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 1 ||357|
+222|[Pause]||1|300|Sleep|||input week 1 ||359|
+223|F5|{F5}|1|100|Send|||input week 1 ||360|
+224|[Pause]||1|300|Sleep|||input week 1 ||362|
+225|[Text]|{Q}{6}{Enter}|1|100|SendEvent|||input week 1 ||363|
+226|[Pause]||1|300|Sleep|||input week 1 ||367|
+227|[Assign Variable]|Clipboard := %pebdate%|1|100|Variable|||input week 1 ||368|
+228|[Pause]||1|300|Sleep|||input week 1 ||369|
+229|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 1 ||370|
+230|[Pause]||1|300|Sleep|||input week 1 ||372|
+231|F5|{F5}|1|100|Send|||input week 1 ||373|
+232|[Pause]||1|300|Sleep|||input week 1 ||375|
+233|[Text]|{R}{6}{Enter}|1|100|SendEvent|||input week 1 ||376|
+234|[Pause]||1|300|Sleep|||input week 1 ||380|
+235|[Assign Variable]|Clipboard := %noaju%|1|100|Variable|||input week 1 ||381|
+236|[Pause]||1|300|Sleep|||input week 1 ||382|
+237|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 1 ||383|
+238|[Pause]||1|300|Sleep|||input week 1 ||385|
+239|F5|{F5}|1|100|Send|||input week 1 ||386|
+240|[Pause]||1|300|Sleep|||input week 1 ||388|
+241|[Text]|{S}{6}{Enter}|1|100|SendEvent|||input week 1 ||389|
+242|[Pause]||1|300|Sleep|||input week 1 ||393|
+243|[Assign Variable]|Clipboard := %npe%|1|100|Variable|||input week 1 ||394|
+244|[Pause]||1|300|Sleep|||input week 1 ||395|
+245|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 1 ||396|
+246|[Pause]||1|300|Sleep|||input week 1 ||398|
+247|Control + Down|{Control Down}{Down}{Control Up}|1|100|Send|||||399|
+248|[Pause]||1|300|Sleep|||||401|
+249|[Text]|{Left}{Left}{Left}{Left}{Left}|1|100|SendEvent|||||402|
+250|[Pause]||1|300|Sleep|||||406|
+251|[Assign Variable]|Clipboard := %week%|1|100|Variable|||||407|
+252|[Pause]||1|300|Sleep|||||408|
+253|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||||409|
+254|[Pause]||1|300|Sleep|||||411|
+255|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||||412|
+256|[Pause]||1|300|Sleep|||||414|
+257|Shift + Control + Up|{Shift Down}{Control Down}{Up}{Control Up}{Shift Up}|1|100|Send|||||415|
+258|[Pause]||1|300|Sleep|||||417|
+259|Shift + Down|{Shift Down}{Down}{Shift Up}|1|100|Send|||||418|
+260|[Pause]||1|300|Sleep|||||420|
+261|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||||421|
+262|[Pause]||1|300|Sleep|||||423|
+263|[Goto]|week2|1|0|Goto|||||424|
+
+[PMC Code v5.3.0]|F3||1|Window,2,Fast,0,1,Input,-1,-1,1|1|week2
+Context=None||None|
+Groups=Start:1
+1|WinActivate||1|333|WinActivate||1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel|input week 2||1|
+2|[Pause]||1|300|Sleep|||input week 2||3|
+3|F5|{F5}|1|100|Send|||input week 2||4|
+4|[Pause]||1|300|Sleep|||input week 2||6|
+5|[Text]|{B}{5}{Enter}|1|100|SendEvent|||input week 2||7|
+6|[Pause]||1|300|Sleep|||input week 2||11|
+7|[Text]|{Control Down}{Down}{Down}{Control Up}|1|100|SendEvent|||input week 2||12|
+8|[Pause]||1|300|Sleep|||input week 2||16|
+9|Down|{Down}|1|100|Send|||input week 2||17|
+10|[Pause]||1|300|Sleep|||input week 2||19|
+11|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||input week 2||20|
+12|[Pause]||1|300|Sleep|||input week 2||22|
+13|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 2||23|
+14|[Pause]||1|300|Sleep|||input week 1 ||25|
+15|[Assign Variable]|dateETD := %Clipboard%|1|100|Variable|||input week 2||26|
+16|[Pause]||1|300|Sleep|||input week 2||27|
+17|F5|{F5}|1|100|Send|||input week 2||28|
+18|[Pause]||1|300|Sleep|||input week 2||30|
+19|[Text]|{C}{5}{Enter}|1|100|SendEvent|||input week 2||31|
+20|[Pause]||1|300|Sleep|||input week 2||35|
+21|[Text]|{Control Down}{Down}{Down}{Control Up}|1|100|SendEvent|||input week 2||36|
+22|[Pause]||1|300|Sleep|||input week 2||40|
+23|Down|{Down}|1|100|Send|||input week 2||41|
+24|[Pause]||1|300|Sleep|||input week 2||43|
+25|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||input week 2||44|
+26|[Pause]||1|300|Sleep|||input week 2||46|
+27|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 2||47|
+28|[Pause]||1|300|Sleep|||input week 1 ||49|
+29|[Assign Variable]|sONO := %Clipboard%|1|100|Variable|||input week 2||50|
+30|[Pause]||1|300|Sleep|||input week 2||51|
+31|F5|{F5}|1|100|Send|||input week 2||52|
+32|[Pause]||1|300|Sleep|||input week 2||54|
+33|[Text]|{E}{5}{Enter}|1|100|SendEvent|||input week 2||55|
+34|[Pause]||1|300|Sleep|||input week 2||59|
+35|[Text]|{Control Down}{Down}{Down}{Control Up}|1|100|SendEvent|||input week 2||60|
+36|[Pause]||1|300|Sleep|||input week 2||64|
+37|Down|{Down}|1|100|Send|||input week 2||65|
+38|[Pause]||1|300|Sleep|||input week 2||67|
+39|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||input week 2||68|
+40|[Pause]||1|300|Sleep|||input week 2||70|
+41|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 2||71|
+42|[Pause]||1|300|Sleep|||input week 1 ||73|
+43|[Assign Variable]|invoiceno := %Clipboard%|1|100|Variable|||input week 2||74|
+44|[Pause]||1|300|Sleep|||input week 2||75|
+45|F5|{F5}|1|100|Send|||input week 2||76|
+46|[Pause]||1|300|Sleep|||input week 2||78|
+47|[Text]|{F}{5}{Enter}|1|100|SendEvent|||input week 2||79|
+48|[Pause]||1|300|Sleep|||input week 2||83|
+49|[Text]|{Control Down}{Down}{Down}{Control Up}|1|100|SendEvent|||input week 2||84|
+50|[Pause]||1|300|Sleep|||input week 2||88|
+51|Down|{Down}|1|100|Send|||input week 2||89|
+52|[Pause]||1|300|Sleep|||input week 2||91|
+53|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||input week 2||92|
+54|[Pause]||1|300|Sleep|||input week 2||94|
+55|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 2||95|
+56|[Pause]||1|300|Sleep|||input week 1 ||97|
+57|[Assign Variable]|model := %Clipboard%|1|100|Variable|||input week 2||98|
+58|[Pause]||1|300|Sleep|||input week 2||99|
+59|F5|{F5}|1|100|Send|||input week 2||100|
+60|[Pause]||1|300|Sleep|||input week 2||102|
+61|[Text]|{G}{5}{Enter}|1|100|SendEvent|||input week 2||103|
+62|[Pause]||1|300|Sleep|||input week 2||107|
+63|[Text]|{Control Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||input week 2||108|
+64|[Pause]||1|300|Sleep|||input week 2||112|
+65|Down|{Down}|1|100|Send|||input week 2||113|
+66|[Pause]||1|300|Sleep|||input week 2||115|
+67|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||input week 2||116|
+68|[Pause]||1|300|Sleep|||input week 2||118|
+69|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 2||119|
+70|[Pause]||1|300|Sleep|||input week 1 ||121|
+71|[Assign Variable]|qty := %Clipboard%|1|100|Variable|||input week 2||122|
+72|[Pause]||1|300|Sleep|||input week 2||123|
+73|F5|{F5}|1|100|Send|||input week 2||124|
+74|[Pause]||1|300|Sleep|||input week 2||126|
+75|[Text]|{H}{5}{Enter}|1|100|SendEvent|||input week 2||127|
+76|[Pause]||1|300|Sleep|||input week 2||131|
+77|[Text]|{Control Down}{Down}{Down}{Control Up}|1|100|SendEvent|||input week 2||132|
+78|[Pause]||1|300|Sleep|||input week 2||136|
+79|Down|{Down}|1|100|Send|||input week 2||137|
+80|[Pause]||1|300|Sleep|||input week 2||139|
+81|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||input week 2||140|
+82|[Pause]||1|300|Sleep|||input week 2||142|
+83|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 2||143|
+84|[Pause]||1|300|Sleep|||input week 1 ||145|
+85|[Assign Variable]|uprice := %Clipboard%|1|100|Variable|||input week 2||146|
+86|[Pause]||1|300|Sleep|||input week 2||147|
+87|F5|{F5}|1|100|Send|||input week 2||148|
+88|[Pause]||1|300|Sleep|||input week 2||150|
+89|[Text]|{I}{5}{Enter}|1|100|SendEvent|||input week 2||151|
+90|[Pause]||1|300|Sleep|||input week 2||155|
+91|[Text]|{Control Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||input week 2||156|
+92|[Pause]||1|300|Sleep|||input week 2||160|
+93|Down|{Down}|1|100|Send|||input week 2||161|
+94|[Pause]||1|300|Sleep|||input week 2||163|
+95|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||input week 2||164|
+96|[Pause]||1|300|Sleep|||input week 2||166|
+97|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 2||167|
+98|[Pause]||1|300|Sleep|||input week 1 ||169|
+99|[Assign Variable]|amount := %Clipboard%|1|100|Variable|||input week 2||170|
+100|[Pause]||1|300|Sleep|||input week 2||171|
+101|F5|{F5}|1|100|Send|||input week 2||172|
+102|[Pause]||1|300|Sleep|||input week 2||174|
+103|[Text]|{J}{5}{Enter}|1|100|SendEvent|||input week 2||175|
+104|[Pause]||1|300|Sleep|||input week 2||179|
+105|[Text]|{Control Down}{Down}{Down}{Control Up}|1|100|SendEvent|||input week 2||180|
+106|[Pause]||1|300|Sleep|||input week 2||184|
+107|Down|{Down}|1|100|Send|||input week 2||185|
+108|[Pause]||1|300|Sleep|||input week 2||187|
+109|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||input week 2||188|
+110|[Pause]||1|300|Sleep|||input week 2||190|
+111|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 2||191|
+112|[Pause]||1|300|Sleep|||input week 1 ||193|
+113|[Assign Variable]|destination := %Clipboard%|1|100|Variable|||input week 2||194|
+114|[Pause]||1|300|Sleep|||input week 2||195|
+115|F5|{F5}|1|100|Send|||input week 2||196|
+116|[Pause]||1|300|Sleep|||input week 2||198|
+117|[Text]|{K}{5}{Enter}|1|100|SendEvent|||input week 2||199|
+118|[Pause]||1|300|Sleep|||input week 2||203|
+119|[Text]|{Control Down}{Down}{Down}{Control Up}|1|100|SendEvent|||input week 2||204|
+120|[Pause]||1|300|Sleep|||input week 2||208|
+121|Down|{Down}|1|100|Send|||input week 2||209|
+122|[Pause]||1|300|Sleep|||input week 2||211|
+123|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||input week 2||212|
+124|[Pause]||1|300|Sleep|||input week 2||214|
+125|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 2||215|
+126|[Pause]||1|300|Sleep|||input week 1 ||217|
+127|[Assign Variable]|accountee := %Clipboard%|1|100|Variable|||input week 2||218|
+128|[Pause]||1|300|Sleep|||input week 2||219|
+129|F5|{F5}|1|100|Send|||input week 2||220|
+130|[Pause]||1|300|Sleep|||input week 2||222|
+131|[Text]|{L}{5}{Enter}|1|100|SendEvent|||input week 2||223|
+132|[Pause]||1|300|Sleep|||input week 2||227|
+133|[Text]|{Control Down}{Down}{Down}{Control Up}|1|100|SendEvent|||input week 2||228|
+134|[Pause]||1|300|Sleep|||input week 2||232|
+135|Down|{Down}|1|100|Send|||input week 2||233|
+136|[Pause]||1|300|Sleep|||input week 2||235|
+137|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||input week 2||236|
+138|[Pause]||1|300|Sleep|||input week 2||238|
+139|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 2||239|
+140|[Pause]||1|300|Sleep|||input week 1 ||241|
+141|[Assign Variable]|pebno := %Clipboard%|1|100|Variable|||input week 2||242|
+142|[Pause]||1|300|Sleep|||input week 2||243|
+143|F5|{F5}|1|100|Send|||input week 2||244|
+144|[Pause]||1|300|Sleep|||input week 2||246|
+145|[Text]|{M}{5}{Enter}|1|100|SendEvent|||input week 2||247|
+146|[Pause]||1|300|Sleep|||input week 2||251|
+147|[Text]|{Control Down}{Down}{Down}{Control Up}|1|100|SendEvent|||input week 2||252|
+148|[Pause]||1|300|Sleep|||input week 2||256|
+149|Down|{Down}|1|100|Send|||input week 2||257|
+150|[Pause]||1|300|Sleep|||input week 2||259|
+151|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||input week 2||260|
+152|[Pause]||1|300|Sleep|||input week 2||262|
+153|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 2||263|
+154|[Pause]||1|300|Sleep|||input week 1 ||265|
+155|[Assign Variable]|pebdate := %Clipboard%|1|100|Variable|||input week 2||266|
+156|[Pause]||1|300|Sleep|||input week 2||267|
+157|F5|{F5}|1|100|Send|||input week 2||268|
+158|[Pause]||1|300|Sleep|||input week 2||270|
+159|[Text]|{N}{5}{Enter}|1|100|SendEvent|||input week 2||271|
+160|[Pause]||1|300|Sleep|||input week 2||275|
+161|[Text]|{Control Down}{Down}{Down}{Control Up}|1|100|SendEvent|||input week 2||276|
+162|[Pause]||1|300|Sleep|||input week 2||280|
+163|Down|{Down}|1|100|Send|||input week 2||281|
+164|[Pause]||1|300|Sleep|||input week 2||283|
+165|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||input week 2||284|
+166|[Pause]||1|300|Sleep|||input week 2||286|
+167|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 2||287|
+168|[Pause]||1|300|Sleep|||input week 1 ||289|
+169|[Assign Variable]|noaju := %Clipboard%|1|100|Variable|||input week 2||290|
+170|[Pause]||1|300|Sleep|||input week 2||291|
+171|F5|{F5}|1|100|Send|||input week 2||292|
+172|[Pause]||1|300|Sleep|||input week 2||294|
+173|[Text]|{O}{5}{Enter}|1|100|SendEvent|||input week 2||295|
+174|[Pause]||1|300|Sleep|||input week 2||299|
+175|[Text]|{Control Down}{Down}{Down}{Control Up}|1|100|SendEvent|||input week 2||300|
+176|[Pause]||1|300|Sleep|||input week 2||304|
+177|Down|{Down}|1|100|Send|||input week 2||305|
+178|[Pause]||1|300|Sleep|||input week 2||307|
+179|[Text]|{Control Down}{Shift Down}{Down}{Shift Up}{Control Up}|1|100|SendEvent|||input week 2||308|
+180|[Pause]||1|300|Sleep|||input week 2||312|
+181|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 2||313|
+182|[Pause]||1|300|Sleep|||input week 1 ||315|
+183|[Assign Variable]|npe := %Clipboard%|1|100|Variable|||input week 2||316|
+184|[Pause]||1|300|Sleep|||input week 2||317|
+185|F5|{F5}|1|100|Send|||input week 1 ||318|
+186|[Pause]||1|300|Sleep|||input week 1 ||320|
+187|[Text]|{A}{3}{Enter}|1|100|SendEvent|||input week 1 ||321|
+188|[Pause]||1|300|Sleep|||input week 1 ||325|
+189|[Text]|{Control Down}{Down}{Down}{Control Up}|1|100|SendEvent|||||326|
+190|[Pause]||1|300|Sleep|||||330|
+191|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||||331|
+192|[Pause]||1|300|Sleep|||||333|
+193|[Assign Variable]|week := %Clipboard%|1|100|Variable|||||334|
+194|[Pause]||1|300|Sleep|||||335|
+195|WinActivate||1|333|WinActivate||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel|input week 2||336|
+196|[Pause]||1|300|Sleep|||input week 2||338|
+197|F5|{F5}|1|100|Send|||input week 2||339|
+198|[Pause]||1|300|Sleep|||input week 2||341|
+199|[Text]|{B}{6}{Enter}|1|100|SendEvent|||input week 2||342|
+200|[Pause]||1|300|Sleep|||input week 2||346|
+201|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||input week 2||347|
+202|[Pause]||1|300|Sleep|||input week 2||351|
+203|Down|{Down}|1|100|Send|||input week 2||352|
+204|[Pause]||1|300|Sleep|||input week 2||354|
+205|[Assign Variable]|Clipboard := %dateETD%|1|100|Variable|||input week 2||355|
+206|[Pause]||1|300|Sleep|||input week 2||356|
+207|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 2||357|
+208|[Pause]||1|300|Sleep|||input week 2||359|
+209|F5|{F5}|1|100|Send|||input week 2||360|
+210|[Pause]||1|300|Sleep|||input week 2||362|
+211|[Text]|{C}{6}{Enter}|1|100|SendEvent|||input week 2||363|
+212|[Pause]||1|300|Sleep|||input week 2||367|
+213|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||input week 2||368|
+214|[Pause]||1|300|Sleep|||input week 2||372|
+215|Down|{Down}|1|100|Send|||input week 2||373|
+216|[Pause]||1|300|Sleep|||input week 2||375|
+217|[Assign Variable]|Clipboard := %model%|1|100|Variable|||input week 2||376|
+218|[Pause]||1|300|Sleep|||input week 2||377|
+219|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 2||378|
+220|[Pause]||1|300|Sleep|||input week 2||380|
+221|F5|{F5}|1|100|Send|||input week 2||381|
+222|[Pause]||1|300|Sleep|||input week 2||383|
+223|[Text]|{D}{6}{Enter}|1|100|SendEvent|||input week 2||384|
+224|[Pause]||1|300|Sleep|||input week 2||388|
+225|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||input week 2||389|
+226|[Pause]||1|300|Sleep|||input week 2||393|
+227|Down|{Down}|1|100|Send|||input week 2||394|
+228|[Pause]||1|300|Sleep|||input week 2||396|
+229|[Assign Variable]|Clipboard := %sONO%|1|100|Variable|||input week 2||397|
+230|[Pause]||1|300|Sleep|||input week 2||398|
+231|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 2||399|
+232|[Pause]||1|300|Sleep|||input week 2||401|
+233|F5|{F5}|1|100|Send|||input week 2||402|
+234|[Pause]||1|300|Sleep|||input week 2||404|
+235|[Text]|{E}{6}{Enter}|1|100|SendEvent|||input week 2||405|
+236|[Pause]||1|300|Sleep|||input week 2||409|
+237|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||input week 2||410|
+238|[Pause]||1|300|Sleep|||input week 2||414|
+239|Down|{Down}|1|100|Send|||input week 2||415|
+240|[Pause]||1|300|Sleep|||input week 2||417|
+241|[Assign Variable]|Clipboard := %invoiceno%|1|100|Variable|||input week 2||418|
+242|[Pause]||1|300|Sleep|||input week 2||419|
+243|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 2||420|
+244|[Pause]||1|300|Sleep|||input week 2||422|
+245|F5|{F5}|1|100|Send|||input week 2||423|
+246|[Pause]||1|300|Sleep|||input week 2||425|
+247|[Text]|{F}{6}{Enter}|1|100|SendEvent|||input week 2||426|
+248|[Pause]||1|300|Sleep|||input week 2||430|
+249|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||input week 2||431|
+250|[Pause]||1|300|Sleep|||input week 2||435|
+251|Down|{Down}|1|100|Send|||input week 2||436|
+252|[Pause]||1|300|Sleep|||input week 2||438|
+253|[Assign Variable]|Clipboard := %qty%|1|100|Variable|||input week 2||439|
+254|[Pause]||1|300|Sleep|||input week 2||440|
+255|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 2||441|
+256|[Pause]||1|300|Sleep|||input week 2||443|
+257|F5|{F5}|1|100|Send|||input week 2||444|
+258|[Pause]||1|300|Sleep|||input week 2||446|
+259|[Text]|{G}{6}{Enter}|1|100|SendEvent|||input week 2||447|
+260|[Pause]||1|300|Sleep|||input week 2||451|
+261|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||input week 2||452|
+262|[Pause]||1|300|Sleep|||input week 2||456|
+263|Down|{Down}|1|100|Send|||input week 2||457|
+264|[Pause]||1|300|Sleep|||input week 2||459|
+265|[Assign Variable]|Clipboard := %uprice%|1|100|Variable|||input week 2||460|
+266|[Pause]||1|300|Sleep|||input week 2||461|
+267|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 2||462|
+268|[Pause]||1|300|Sleep|||input week 2||464|
+269|F5|{F5}|1|100|Send|||input week 2||465|
+270|[Pause]||1|300|Sleep|||input week 2||467|
+271|[Text]|{H}{6}{Enter}|1|100|SendEvent|||input week 2||468|
+272|[Pause]||1|300|Sleep|||input week 2||472|
+273|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||input week 2||473|
+274|[Pause]||1|300|Sleep|||input week 2||477|
+275|Down|{Down}|1|100|Send|||input week 2||478|
+276|[Pause]||1|300|Sleep|||input week 2||480|
+277|[Assign Variable]|Clipboard := %amount%|1|100|Variable|||input week 2||481|
+278|[Pause]||1|300|Sleep|||input week 2||482|
+279|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 2||483|
+280|[Pause]||1|300|Sleep|||input week 2||485|
+281|F5|{F5}|1|100|Send|||input week 2||486|
+282|[Pause]||1|300|Sleep|||input week 2||488|
+283|[Text]|{L}{6}{Enter}|1|100|SendEvent|||input week 2||489|
+284|[Pause]||1|300|Sleep|||input week 2||493|
+285|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||input week 2||494|
+286|[Pause]||1|300|Sleep|||input week 2||498|
+287|Down|{Down}|1|100|Send|||input week 2||499|
+288|[Pause]||1|300|Sleep|||input week 2||501|
+289|[Assign Variable]|Clipboard := %destination%|1|100|Variable|||input week 2||502|
+290|[Pause]||1|300|Sleep|||input week 2||503|
+291|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 2||504|
+292|[Pause]||1|300|Sleep|||input week 2||506|
+293|F5|{F5}|1|100|Send|||input week 2||507|
+294|[Pause]||1|300|Sleep|||input week 2||509|
+295|[Text]|{O}{6}{Enter}|1|100|SendEvent|||input week 2||510|
+296|[Pause]||1|300|Sleep|||input week 2||514|
+297|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||input week 2||515|
+298|[Pause]||1|300|Sleep|||input week 2||519|
+299|Down|{Down}|1|100|Send|||input week 2||520|
+300|[Pause]||1|300|Sleep|||input week 2||522|
+301|[Assign Variable]|Clipboard := %accountee%|1|100|Variable|||input week 2||523|
+302|[Pause]||1|300|Sleep|||input week 2||524|
+303|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 2||525|
+304|[Pause]||1|300|Sleep|||input week 2||527|
+305|F5|{F5}|1|100|Send|||input week 2||528|
+306|[Pause]||1|300|Sleep|||input week 2||530|
+307|[Text]|{P}{6}{Enter}|1|100|SendEvent|||input week 2||531|
+308|[Pause]||1|300|Sleep|||input week 2||535|
+309|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||input week 2||536|
+310|[Pause]||1|300|Sleep|||input week 2||540|
+311|Down|{Down}|1|100|Send|||input week 2||541|
+312|[Pause]||1|300|Sleep|||input week 2||543|
+313|[Assign Variable]|Clipboard := %pebno%|1|100|Variable|||input week 2||544|
+314|[Pause]||1|300|Sleep|||input week 2||545|
+315|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 2||546|
+316|[Pause]||1|300|Sleep|||input week 2||548|
+317|F5|{F5}|1|100|Send|||input week 2||549|
+318|[Pause]||1|300|Sleep|||input week 2||551|
+319|[Text]|{Q}{6}{Enter}|1|100|SendEvent|||input week 2||552|
+320|[Pause]||1|300|Sleep|||input week 2||556|
+321|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||input week 2||557|
+322|[Pause]||1|300|Sleep|||input week 2||561|
+323|Down|{Down}|1|100|Send|||input week 2||562|
+324|[Pause]||1|300|Sleep|||input week 2||564|
+325|[Assign Variable]|Clipboard := %pebdate%|1|100|Variable|||input week 2||565|
+326|[Pause]||1|300|Sleep|||input week 2||566|
+327|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 2||567|
+328|[Pause]||1|300|Sleep|||input week 2||569|
+329|F5|{F5}|1|100|Send|||input week 2||570|
+330|[Pause]||1|300|Sleep|||input week 2||572|
+331|[Text]|{R}{6}{Enter}|1|100|SendEvent|||input week 2||573|
+332|[Pause]||1|300|Sleep|||input week 2||577|
+333|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||input week 2||578|
+334|[Pause]||1|300|Sleep|||input week 2||582|
+335|Down|{Down}|1|100|Send|||input week 2||583|
+336|[Pause]||1|300|Sleep|||input week 2||585|
+337|[Assign Variable]|Clipboard := %noaju%|1|100|Variable|||input week 2||586|
+338|[Pause]||1|300|Sleep|||input week 2||587|
+339|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 2||588|
+340|[Pause]||1|300|Sleep|||input week 2||590|
+341|F5|{F5}|1|100|Send|||input week 2||591|
+342|[Pause]||1|300|Sleep|||input week 2||593|
+343|[Text]|{S}{6}{Enter}|1|100|SendEvent|||input week 2||594|
+344|[Pause]||1|300|Sleep|||input week 2||598|
+345|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||input week 2||599|
+346|[Pause]||1|300|Sleep|||input week 2||603|
+347|Down|{Down}|1|100|Send|||input week 2||604|
+348|[Pause]||1|300|Sleep|||input week 2||606|
+349|[Assign Variable]|Clipboard := %npe%|1|100|Variable|||input week 2||607|
+350|[Pause]||1|300|Sleep|||input week 2||608|
+351|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 2||609|
+352|[Pause]||1|300|Sleep|||input week 2||611|
+353|Control + Down|{Control Down}{Down}{Control Up}|1|100|Send|||||612|
+354|[Pause]||1|300|Sleep|||||614|
+355|[Text]|{Left}|5|100|SendEvent|||||615|
+356|[Pause]||1|300|Sleep|||||622|
+357|[Assign Variable]|Clipboard := %week%|1|100|Variable|||||623|
+358|[Pause]||1|300|Sleep|||||624|
+359|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||||625|
+360|[Pause]||1|300|Sleep|||||627|
+361|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||||628|
+362|[Pause]||1|300|Sleep|||||630|
+363|Shift + Control + Up|{Shift Down}{Control Down}{Up}{Control Up}{Shift Up}|1|100|Send|||||631|
+364|[Pause]||1|300|Sleep|||||633|
+365|Shift + Down|{Shift Down}{Down}{Shift Up}|1|100|Send|||||634|
+366|[Pause]||1|300|Sleep|||||636|
+367|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||||637|
+368|[Pause]||1|300|Sleep|||||639|
+369|[Goto]|week3|1|0|Goto|||||640|
+
+[PMC Code v5.3.0]|F6||1|Window,2,Fast,0,1,Input,-1,-1,1|1|week3
+Context=None||None|
+Groups=Start:1
+1|WinActivate||1|333|WinActivate||1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel|input week 3||1|
+2|[Pause]||1|200|Sleep|||input week 3||3|
+3|F5|{F5}|1|100|Send|||input week 3||4|
+4|[Pause]||1|200|Sleep|||input week 3||6|
+5|[Text]|{B}{5}{Enter}|1|300|SendEvent|||input week 3||7|
+6|[Pause]||1|200|Sleep|||input week 3||11|
+7|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Control Up}|1|300|SendEvent|||input week 3||12|
+8|[Pause]||1|200|Sleep|||input week 3||16|
+9|Down|{Down}|1|300|Send|||input week 3||17|
+10|[Pause]||1|200|Sleep|||input week 3||19|
+11|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|300|Send|||input week 3||20|
+12|[Pause]||1|200|Sleep|||input week 3||22|
+13|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||input week 3||23|
+14|[Assign Variable]|dateETD := %Clipboard%|1|0|Variable|||input week 3||25|
+15|[Pause]||1|200|Sleep|||input week 3||26|
+16|F5|{F5}|1|100|Send|||input week 3||27|
+17|[Pause]||1|200|Sleep|||input week 3||29|
+18|[Text]|{C}{5}{Enter}|1|300|SendEvent|||input week 3||30|
+19|[Pause]||1|200|Sleep|||input week 3||34|
+20|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Control Up}|1|300|SendEvent|||input week 3||35|
+21|[Pause]||1|200|Sleep|||input week 3||39|
+22|Down|{Down}|1|300|Send|||input week 3||40|
+23|[Pause]||1|200|Sleep|||input week 3||42|
+24|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|300|Send|||input week 3||43|
+25|[Pause]||1|200|Sleep|||input week 3||45|
+26|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||input week 3||46|
+27|[Assign Variable]|sONO := %Clipboard%|1|0|Variable|||input week 3||48|
+28|[Pause]||1|200|Sleep|||input week 3||49|
+29|F5|{F5}|1|100|Send|||input week 3||50|
+30|[Pause]||1|200|Sleep|||input week 3||52|
+31|[Text]|{E}{5}{Enter}|1|300|SendEvent|||input week 3||53|
+32|[Pause]||1|200|Sleep|||input week 3||57|
+33|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Control Up}|1|300|SendEvent|||input week 3||58|
+34|[Pause]||1|200|Sleep|||input week 3||62|
+35|Down|{Down}|1|300|Send|||input week 3||63|
+36|[Pause]||1|200|Sleep|||input week 3||65|
+37|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|300|Send|||input week 3||66|
+38|[Pause]||1|200|Sleep|||input week 3||68|
+39|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||input week 3||69|
+40|[Assign Variable]|invoiceno := %Clipboard%|1|0|Variable|||input week 3||71|
+41|[Pause]||1|200|Sleep|||input week 3||72|
+42|F5|{F5}|1|100|Send|||input week 3||73|
+43|[Pause]||1|200|Sleep|||input week 3||75|
+44|[Text]|{F}{5}{Enter}|1|300|SendEvent|||input week 3||76|
+45|[Pause]||1|200|Sleep|||input week 3||80|
+46|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Control Up}|1|300|SendEvent|||input week 3||81|
+47|[Pause]||1|200|Sleep|||input week 3||85|
+48|Down|{Down}|1|300|Send|||input week 3||86|
+49|[Pause]||1|200|Sleep|||input week 3||88|
+50|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|300|Send|||input week 3||89|
+51|[Pause]||1|200|Sleep|||input week 3||91|
+52|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||input week 3||92|
+53|[Assign Variable]|model := %Clipboard%|1|0|Variable|||input week 3||94|
+54|[Pause]||1|200|Sleep|||input week 3||95|
+55|F5|{F5}|1|100|Send|||input week 3||96|
+56|[Pause]||1|200|Sleep|||input week 3||98|
+57|[Text]|{G}{5}{Enter}|1|300|SendEvent|||input week 3||99|
+58|[Pause]||1|200|Sleep|||input week 3||103|
+59|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|300|SendEvent|||input week 3||104|
+60|[Pause]||1|200|Sleep|||input week 3||108|
+61|Down|{Down}|1|300|Send|||input week 3||109|
+62|[Pause]||1|200|Sleep|||input week 3||111|
+63|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|300|Send|||input week 3||112|
+64|[Pause]||1|200|Sleep|||input week 3||114|
+65|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||input week 3||115|
+66|[Assign Variable]|qty := %Clipboard%|1|0|Variable|||input week 3||117|
+67|[Pause]||1|200|Sleep|||input week 3||118|
+68|F5|{F5}|1|100|Send|||input week 3||119|
+69|[Pause]||1|200|Sleep|||input week 3||121|
+70|[Text]|{H}{5}{Enter}|1|300|SendEvent|||input week 3||122|
+71|[Pause]||1|200|Sleep|||input week 3||126|
+72|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Control Up}|1|300|SendEvent|||input week 3||127|
+73|[Pause]||1|200|Sleep|||input week 3||131|
+74|Down|{Down}|1|300|Send|||input week 3||132|
+75|[Pause]||1|200|Sleep|||input week 3||134|
+76|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|300|Send|||input week 3||135|
+77|[Pause]||1|200|Sleep|||input week 3||137|
+78|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||input week 3||138|
+79|[Assign Variable]|uprice := %Clipboard%|1|0|Variable|||input week 3||140|
+80|[Pause]||1|200|Sleep|||input week 3||141|
+81|F5|{F5}|1|100|Send|||input week 3||142|
+82|[Pause]||1|200|Sleep|||input week 3||144|
+83|[Text]|{I}{5}{Enter}|1|300|SendEvent|||input week 3||145|
+84|[Pause]||1|200|Sleep|||input week 3||149|
+85|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|300|SendEvent|||input week 3||150|
+86|[Pause]||1|200|Sleep|||input week 3||154|
+87|Down|{Down}|1|300|Send|||input week 3||155|
+88|[Pause]||1|200|Sleep|||input week 3||157|
+89|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|300|Send|||input week 3||158|
+90|[Pause]||1|200|Sleep|||input week 3||160|
+91|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||input week 3||161|
+92|[Assign Variable]|amount := %Clipboard%|1|0|Variable|||input week 3||163|
+93|[Pause]||1|200|Sleep|||input week 3||164|
+94|F5|{F5}|1|100|Send|||input week 3||165|
+95|[Pause]||1|200|Sleep|||input week 3||167|
+96|[Text]|{J}{5}{Enter}|1|300|SendEvent|||input week 3||168|
+97|[Pause]||1|200|Sleep|||input week 3||172|
+98|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Control Up}|1|300|SendEvent|||input week 3||173|
+99|[Pause]||1|200|Sleep|||input week 3||177|
+100|Down|{Down}|1|300|Send|||input week 3||178|
+101|[Pause]||1|200|Sleep|||input week 3||180|
+102|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|300|Send|||input week 3||181|
+103|[Pause]||1|200|Sleep|||input week 3||183|
+104|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||input week 3||184|
+105|[Assign Variable]|destination := %Clipboard%|1|0|Variable|||input week 3||186|
+106|[Pause]||1|200|Sleep|||input week 3||187|
+107|F5|{F5}|1|100|Send|||input week 3||188|
+108|[Pause]||1|200|Sleep|||input week 3||190|
+109|[Text]|{K}{5}{Enter}|1|300|SendEvent|||input week 3||191|
+110|[Pause]||1|200|Sleep|||input week 3||195|
+111|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Control Up}|1|300|SendEvent|||input week 3||196|
+112|[Pause]||1|200|Sleep|||input week 3||200|
+113|Down|{Down}|1|300|Send|||input week 3||201|
+114|[Pause]||1|200|Sleep|||input week 3||203|
+115|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|300|Send|||input week 3||204|
+116|[Pause]||1|200|Sleep|||input week 3||206|
+117|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||input week 3||207|
+118|[Assign Variable]|accountee := %Clipboard%|1|0|Variable|||input week 3||209|
+119|[Pause]||1|200|Sleep|||input week 3||210|
+120|F5|{F5}|1|100|Send|||input week 3||211|
+121|[Pause]||1|200|Sleep|||input week 3||213|
+122|[Text]|{L}{5}{Enter}|1|300|SendEvent|||input week 3||214|
+123|[Pause]||1|200|Sleep|||input week 3||218|
+124|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Control Up}|1|300|SendEvent|||input week 3||219|
+125|[Pause]||1|200|Sleep|||input week 3||223|
+126|Down|{Down}|1|300|Send|||input week 3||224|
+127|[Pause]||1|200|Sleep|||input week 3||226|
+128|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|300|Send|||input week 3||227|
+129|[Pause]||1|200|Sleep|||input week 3||229|
+130|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||input week 3||230|
+131|[Assign Variable]|pebno := %Clipboard%|1|0|Variable|||input week 3||232|
+132|[Pause]||1|200|Sleep|||input week 3||233|
+133|F5|{F5}|1|100|Send|||input week 3||234|
+134|[Pause]||1|200|Sleep|||input week 3||236|
+135|[Text]|{M}{5}{Enter}|1|300|SendEvent|||input week 3||237|
+136|[Pause]||1|200|Sleep|||input week 3||241|
+137|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Control Up}|1|300|SendEvent|||input week 3||242|
+138|[Pause]||1|200|Sleep|||input week 3||246|
+139|Down|{Down}|1|300|Send|||input week 3||247|
+140|[Pause]||1|200|Sleep|||input week 3||249|
+141|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|300|Send|||input week 3||250|
+142|[Pause]||1|200|Sleep|||input week 3||252|
+143|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||input week 3||253|
+144|[Pause]||1|200|Sleep|||||255|
+145|F5|{F5}|1|100|Send|||input week 3||256|
+146|[Pause]||1|200|Sleep|||input week 3||258|
+147|[Text]|{N}{5}{Enter}|1|300|SendEvent|||input week 3||259|
+148|[Pause]||1|200|Sleep|||input week 3||263|
+149|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Control Up}|1|300|SendEvent|||input week 3||264|
+150|[Pause]||1|200|Sleep|||input week 3||268|
+151|Down|{Down}|1|300|Send|||input week 3||269|
+152|[Pause]||1|200|Sleep|||input week 3||271|
+153|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|300|Send|||input week 3||272|
+154|[Pause]||1|200|Sleep|||input week 3||274|
+155|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||input week 3||275|
+156|[Assign Variable]|noaju := %Clipboard%|1|0|Variable|||input week 3||277|
+157|[Pause]||1|200|Sleep|||input week 3||278|
+158|F5|{F5}|1|100|Send|||input week 3||279|
+159|[Pause]||1|200|Sleep|||input week 3||281|
+160|[Text]|{O}{5}{Enter}|1|300|SendEvent|||input week 3||282|
+161|[Pause]||1|200|Sleep|||input week 3||286|
+162|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Control Up}|1|300|SendEvent|||input week 3||287|
+163|[Pause]||1|200|Sleep|||input week 3||291|
+164|Down|{Down}|1|300|Send|||input week 3||292|
+165|[Pause]||1|200|Sleep|||input week 3||294|
+166|[Text]|{Control Down}{Shift Down}{Down}{Shift Up}{Control Up}|1|300|SendEvent|||input week 3||295|
+167|[Pause]||1|200|Sleep|||input week 3||299|
+168|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||input week 3||300|
+169|[Pause]||1|200|Sleep|||||302|
+170|[Assign Variable]|npe := %Clipboard%|1|0|Variable|||input week 3||303|
+171|[Pause]||1|200|Sleep|||input week 3||304|
+172|F5|{F5}|1|100|Send|||input week 1 ||305|
+173|[Pause]||1|200|Sleep|||input week 1 ||307|
+174|[Text]|{A}{3}{Enter}|1|300|SendEvent|||input week 1 ||308|
+175|[Pause]||1|200|Sleep|||input week 1 ||312|
+176|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Control Up}|1|300|SendEvent|||||313|
+177|[Pause]||1|200|Sleep|||||317|
+178|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||||318|
+179|[Pause]||1|200|Sleep|||||320|
+180|[Assign Variable]|week := %Clipboard%|1|0|Variable|||||321|
+181|[Pause]||1|200|Sleep|||||322|
+182|WinActivate||1|333|WinActivate||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel|input week 3||323|
+183|[Pause]||1|200|Sleep|||input week 3||325|
+184|F5|{F5}|1|100|Send|||input week 3||326|
+185|[Pause]||1|200|Sleep|||input week 3||328|
+186|[Text]|{B}{6}{Enter}|1|300|SendEvent|||input week 3||329|
+187|[Pause]||1|200|Sleep|||input week 3||333|
+188|[Text]|{Control Down}{Down}{Control Up}|1|300|SendEvent|||input week 3||334|
+189|[Pause]||1|200|Sleep|||input week 3||338|
+190|Down|{Down}|1|300|Send|||input week 3||339|
+191|[Pause]||1|200|Sleep|||input week 3||341|
+192|[Assign Variable]|Clipboard := %dateETD%|1|0|Variable|||input week 3||342|
+193|[Pause]||1|200|Sleep|||input week 3||343|
+194|Control + v|{Control Down}{v}{Control Up}|1|300|Send|||input week 3||344|
+195|[Pause]||1|200|Sleep|||input week 3||346|
+196|F5|{F5}|1|100|Send|||input week 3||347|
+197|[Pause]||1|200|Sleep|||input week 3||349|
+198|[Text]|{C}{6}{Enter}|1|300|SendEvent|||input week 3||350|
+199|[Pause]||1|200|Sleep|||input week 3||354|
+200|[Text]|{Control Down}{Down}{Control Up}|1|300|SendEvent|||input week 3||355|
+201|[Pause]||1|200|Sleep|||input week 3||359|
+202|Down|{Down}|1|300|Send|||input week 3||360|
+203|[Pause]||1|200|Sleep|||input week 3||362|
+204|[Assign Variable]|Clipboard := %model%|1|0|Variable|||input week 3||363|
+205|[Pause]||1|200|Sleep|||input week 3||364|
+206|Control + v|{Control Down}{v}{Control Up}|1|300|Send|||input week 3||365|
+207|[Pause]||1|200|Sleep|||input week 3||367|
+208|F5|{F5}|1|100|Send|||input week 3||368|
+209|[Pause]||1|200|Sleep|||input week 3||370|
+210|[Text]|{D}{6}{Enter}|1|300|SendEvent|||input week 3||371|
+211|[Pause]||1|200|Sleep|||input week 3||375|
+212|[Text]|{Control Down}{Down}{Control Up}|1|300|SendEvent|||input week 3||376|
+213|[Pause]||1|200|Sleep|||input week 3||380|
+214|Down|{Down}|1|300|Send|||input week 3||381|
+215|[Pause]||1|200|Sleep|||input week 3||383|
+216|[Assign Variable]|Clipboard := %sONO%|1|0|Variable|||input week 3||384|
+217|[Pause]||1|200|Sleep|||input week 3||385|
+218|Control + v|{Control Down}{v}{Control Up}|1|300|Send|||input week 3||386|
+219|[Pause]||1|200|Sleep|||input week 3||388|
+220|F5|{F5}|1|100|Send|||input week 3||389|
+221|[Pause]||1|200|Sleep|||input week 3||391|
+222|[Text]|{E}{6}{Enter}|1|300|SendEvent|||input week 3||392|
+223|[Pause]||1|200|Sleep|||input week 3||396|
+224|[Text]|{Control Down}{Down}{Control Up}|1|300|SendEvent|||input week 3||397|
+225|[Pause]||1|200|Sleep|||input week 3||401|
+226|Down|{Down}|1|300|Send|||input week 3||402|
+227|[Pause]||1|200|Sleep|||input week 3||404|
+228|[Assign Variable]|Clipboard := %invoiceno%|1|0|Variable|||input week 3||405|
+229|[Pause]||1|200|Sleep|||input week 3||406|
+230|Control + v|{Control Down}{v}{Control Up}|1|300|Send|||input week 3||407|
+231|[Pause]||1|200|Sleep|||input week 3||409|
+232|F5|{F5}|1|100|Send|||input week 3||410|
+233|[Pause]||1|200|Sleep|||input week 3||412|
+234|[Text]|{F}{6}{Enter}|1|300|SendEvent|||input week 3||413|
+235|[Pause]||1|200|Sleep|||input week 3||417|
+236|[Text]|{Control Down}{Down}{Control Up}|1|300|SendEvent|||input week 3||418|
+237|[Pause]||1|200|Sleep|||input week 3||422|
+238|Down|{Down}|1|300|Send|||input week 3||423|
+239|[Pause]||1|200|Sleep|||input week 3||425|
+240|[Assign Variable]|Clipboard := %qty%|1|0|Variable|||input week 3||426|
+241|[Pause]||1|200|Sleep|||input week 3||427|
+242|Control + v|{Control Down}{v}{Control Up}|1|300|Send|||input week 3||428|
+243|[Pause]||1|200|Sleep|||input week 3||430|
+244|F5|{F5}|1|100|Send|||input week 3||431|
+245|[Pause]||1|200|Sleep|||input week 3||433|
+246|[Text]|{G}{6}{Enter}|1|300|SendEvent|||input week 3||434|
+247|[Pause]||1|200|Sleep|||input week 3||438|
+248|[Text]|{Control Down}{Down}{Control Up}|1|300|SendEvent|||input week 3||439|
+249|[Pause]||1|200|Sleep|||input week 3||443|
+250|Down|{Down}|1|300|Send|||input week 3||444|
+251|[Pause]||1|200|Sleep|||input week 3||446|
+252|[Assign Variable]|Clipboard := %uprice%|1|0|Variable|||input week 3||447|
+253|[Pause]||1|200|Sleep|||input week 3||448|
+254|Control + v|{Control Down}{v}{Control Up}|1|300|Send|||input week 3||449|
+255|[Pause]||1|200|Sleep|||input week 3||451|
+256|F5|{F5}|1|100|Send|||input week 3||452|
+257|[Pause]||1|200|Sleep|||input week 3||454|
+258|[Text]|{H}{6}{Enter}|1|300|SendEvent|||input week 3||455|
+259|[Pause]||1|200|Sleep|||input week 3||459|
+260|[Text]|{Control Down}{Down}{Control Up}|1|300|SendEvent|||input week 3||460|
+261|[Pause]||1|200|Sleep|||input week 3||464|
+262|Down|{Down}|1|300|Send|||input week 3||465|
+263|[Pause]||1|200|Sleep|||input week 3||467|
+264|[Assign Variable]|Clipboard := %amount%|1|0|Variable|||input week 3||468|
+265|[Pause]||1|200|Sleep|||input week 3||469|
+266|Control + v|{Control Down}{v}{Control Up}|1|300|Send|||input week 3||470|
+267|[Pause]||1|200|Sleep|||input week 3||472|
+268|F5|{F5}|1|100|Send|||input week 3||473|
+269|[Pause]||1|200|Sleep|||input week 3||475|
+270|[Text]|{L}{6}{Enter}|1|300|SendEvent|||input week 3||476|
+271|[Pause]||1|200|Sleep|||input week 3||480|
+272|[Text]|{Control Down}{Down}{Control Up}|1|300|SendEvent|||input week 3||481|
+273|[Pause]||1|200|Sleep|||input week 3||485|
+274|Down|{Down}|1|300|Send|||input week 3||486|
+275|[Pause]||1|200|Sleep|||input week 3||488|
+276|[Assign Variable]|Clipboard := %destination%|1|0|Variable|||input week 3||489|
+277|[Pause]||1|200|Sleep|||input week 3||490|
+278|Control + v|{Control Down}{v}{Control Up}|1|300|Send|||input week 3||491|
+279|[Pause]||1|200|Sleep|||input week 3||493|
+280|F5|{F5}|1|100|Send|||input week 3||494|
+281|[Pause]||1|200|Sleep|||input week 3||496|
+282|[Text]|{O}{6}{Enter}|1|300|SendEvent|||input week 3||497|
+283|[Pause]||1|200|Sleep|||input week 3||501|
+284|[Text]|{Control Down}{Down}{Control Up}|1|300|SendEvent|||input week 3||502|
+285|[Pause]||1|200|Sleep|||input week 3||506|
+286|Down|{Down}|1|300|Send|||input week 3||507|
+287|[Pause]||1|200|Sleep|||input week 3||509|
+288|[Assign Variable]|Clipboard := %accountee%|1|0|Variable|||input week 3||510|
+289|[Pause]||1|200|Sleep|||input week 3||511|
+290|Control + v|{Control Down}{v}{Control Up}|1|300|Send|||input week 3||512|
+291|[Pause]||1|200|Sleep|||input week 3||514|
+292|F5|{F5}|1|100|Send|||input week 3||515|
+293|[Pause]||1|200|Sleep|||input week 3||517|
+294|[Text]|{P}{6}{Enter}|1|300|SendEvent|||input week 3||518|
+295|[Pause]||1|200|Sleep|||input week 3||522|
+296|[Text]|{Control Down}{Down}{Control Up}|1|300|SendEvent|||input week 3||523|
+297|[Pause]||1|200|Sleep|||input week 3||527|
+298|Down|{Down}|1|300|Send|||input week 3||528|
+299|[Pause]||1|200|Sleep|||input week 3||530|
+300|[Assign Variable]|Clipboard := %pebno%|1|0|Variable|||input week 3||531|
+301|[Pause]||1|200|Sleep|||input week 3||532|
+302|Control + v|{Control Down}{v}{Control Up}|1|300|Send|||input week 3||533|
+303|[Pause]||1|200|Sleep|||input week 3||535|
+304|F5|{F5}|1|100|Send|||input week 3||536|
+305|[Pause]||1|200|Sleep|||input week 3||538|
+306|[Text]|{Q}{6}{Enter}|1|300|SendEvent|||input week 3||539|
+307|[Pause]||1|200|Sleep|||input week 3||543|
+308|[Text]|{Control Down}{Down}{Control Up}|1|300|SendEvent|||input week 3||544|
+309|[Pause]||1|200|Sleep|||input week 3||548|
+310|Down|{Down}|1|300|Send|||input week 3||549|
+311|[Pause]||1|200|Sleep|||input week 3||551|
+312|[Assign Variable]|Clipboard := %pebdate%|1|0|Variable|||input week 3||552|
+313|[Pause]||1|200|Sleep|||input week 3||553|
+314|Control + v|{Control Down}{v}{Control Up}|1|300|Send|||input week 3||554|
+315|[Pause]||1|200|Sleep|||input week 3||556|
+316|F5|{F5}|1|100|Send|||input week 3||557|
+317|[Pause]||1|200|Sleep|||input week 3||559|
+318|[Text]|{R}{6}{Enter}|1|300|SendEvent|||input week 3||560|
+319|[Pause]||1|200|Sleep|||input week 3||564|
+320|[Text]|{Control Down}{Down}{Control Up}|1|300|SendEvent|||input week 3||565|
+321|[Pause]||1|200|Sleep|||input week 3||569|
+322|Down|{Down}|1|300|Send|||input week 3||570|
+323|[Pause]||1|200|Sleep|||input week 3||572|
+324|[Assign Variable]|Clipboard := %noaju%|1|0|Variable|||input week 3||573|
+325|[Pause]||1|200|Sleep|||input week 3||574|
+326|Control + v|{Control Down}{v}{Control Up}|1|300|Send|||input week 3||575|
+327|[Pause]||1|200|Sleep|||input week 3||577|
+328|F5|{F5}|1|100|Send|||input week 3||578|
+329|[Pause]||1|200|Sleep|||input week 3||580|
+330|[Text]|{S}{6}{Enter}|1|300|SendEvent|||input week 3||581|
+331|[Pause]||1|200|Sleep|||input week 3||585|
+332|[Text]|{Control Down}{Down}{Control Up}|1|300|SendEvent|||input week 3||586|
+333|[Pause]||1|200|Sleep|||input week 3||590|
+334|Down|{Down}|1|300|Send|||input week 3||591|
+335|[Pause]||1|200|Sleep|||input week 3||593|
+336|[Assign Variable]|Clipboard := %npe%|1|0|Variable|||input week 3||594|
+337|[Pause]||1|200|Sleep|||input week 3||595|
+338|Control + v|{Control Down}{v}{Control Up}|1|300|Send|||input week 3||596|
+339|[Pause]||1|200|Sleep|||input week 3||598|
+340|Control + Down|{Control Down}{Down}{Control Up}|1|300|Send|||||599|
+341|[Pause]||1|200|Sleep|||||601|
+342|[Text]|{Left}{Left}{Left}{Left}{Left}|1|300|SendEvent|||||602|
+343|[Pause]||1|200|Sleep|||||606|
+344|[Assign Variable]|Clipboard := %week%|1|0|Variable|||||607|
+345|[Pause]||1|200|Sleep|||||608|
+346|Control + v|{Control Down}{v}{Control Up}|1|300|Send|||||609|
+347|[Pause]||1|200|Sleep|||||611|
+348|Control + c|{Control Down}{c}{Control Up}|1|300|Send|||||612|
+349|[Pause]||1|200|Sleep|||||614|
+350|Shift + Control + Up|{Shift Down}{Control Down}{Up}{Control Up}{Shift Up}|1|300|Send|||||615|
+351|[Pause]||1|200|Sleep|||||617|
+352|Shift + Down|{Shift Down}{Down}{Shift Up}|1|300|Send|||||618|
+353|[Pause]||1|200|Sleep|||||620|
+354|Control + v|{Control Down}{v}{Control Up}|1|300|Send|||||621|
+355|[Pause]||1|200|Sleep|||||623|
+356|[Goto]|Macro6|1|0|Goto|||||624|
+
+[PMC Code v5.3.0]|F9||1|Window,2,Fast,0,1,Input,-1,-1,1|1|Macro6
+Context=None||None|
+Groups=Start:1
+1|WinActivate||1|333|WinActivate||1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel|Input week 4 ||1|
+2|[Pause]||1|300|Sleep|||Input week 4 ||3|
+3|F5|{F5}|1|100|Send|||Input week 4 ||4|
+4|[Pause]||1|300|Sleep|||Input week 4 ||6|
+5|[Text]|{B}{5}{Enter}|1|100|SendEvent|||Input week 4 ||7|
+6|[Pause]||1|300|Sleep|||Input week 4 ||11|
+7|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||Input week 4 ||12|
+8|[Pause]||1|300|Sleep|||Input week 4 ||16|
+9|Down|{Down}|1|100|Send|||Input week 4 ||17|
+10|[Pause]||1|300|Sleep|||Input week 4 ||19|
+11|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||Input week 4 ||20|
+12|[Pause]||1|300|Sleep|||Input week 4 ||22|
+13|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Input week 4 ||23|
+14|[Pause]||1|300|Sleep|||Input week 4 ||25|
+15|[Assign Variable]|dateETD := %Clipboard%|1|100|Variable|||Input week 4 ||26|
+16|[Pause]||1|300|Sleep|||Input week 4 ||27|
+17|F5|{F5}|1|100|Send|||Input week 4 ||28|
+18|[Pause]||1|300|Sleep|||Input week 4 ||30|
+19|[Text]|{C}{5}{Enter}|1|100|SendEvent|||Input week 4 ||31|
+20|[Pause]||1|300|Sleep|||Input week 4 ||35|
+21|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||Input week 4 ||36|
+22|[Pause]||1|300|Sleep|||Input week 4 ||40|
+23|Down|{Down}|1|100|Send|||Input week 4 ||41|
+24|[Pause]||1|300|Sleep|||Input week 4 ||43|
+25|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||Input week 4 ||44|
+26|[Pause]||1|300|Sleep|||Input week 4 ||46|
+27|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Input week 4 ||47|
+28|[Pause]||1|300|Sleep|||Input week 4 ||49|
+29|[Assign Variable]|sONO := %Clipboard%|1|100|Variable|||Input week 4 ||50|
+30|[Pause]||1|300|Sleep|||Input week 4 ||51|
+31|F5|{F5}|1|100|Send|||Input week 4 ||52|
+32|[Pause]||1|300|Sleep|||Input week 4 ||54|
+33|[Text]|{E}{5}{Enter}|1|100|SendEvent|||Input week 4 ||55|
+34|[Pause]||1|300|Sleep|||Input week 4 ||59|
+35|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||Input week 4 ||60|
+36|[Pause]||1|300|Sleep|||Input week 4 ||64|
+37|Down|{Down}|1|100|Send|||Input week 4 ||65|
+38|[Pause]||1|300|Sleep|||Input week 4 ||67|
+39|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||Input week 4 ||68|
+40|[Pause]||1|300|Sleep|||Input week 4 ||70|
+41|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Input week 4 ||71|
+42|[Pause]||1|300|Sleep|||Input week 4 ||73|
+43|[Assign Variable]|invoiceno := %Clipboard%|1|100|Variable|||Input week 4 ||74|
+44|[Pause]||1|300|Sleep|||Input week 4 ||75|
+45|F5|{F5}|1|100|Send|||Input week 4 ||76|
+46|[Pause]||1|300|Sleep|||Input week 4 ||78|
+47|[Text]|{F}{5}{Enter}|1|100|SendEvent|||Input week 4 ||79|
+48|[Pause]||1|300|Sleep|||Input week 4 ||83|
+49|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||Input week 4 ||84|
+50|[Pause]||1|300|Sleep|||Input week 4 ||88|
+51|Down|{Down}|1|100|Send|||Input week 4 ||89|
+52|[Pause]||1|300|Sleep|||Input week 4 ||91|
+53|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||Input week 4 ||92|
+54|[Pause]||1|300|Sleep|||Input week 4 ||94|
+55|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Input week 4 ||95|
+56|[Pause]||1|300|Sleep|||Input week 4 ||97|
+57|[Assign Variable]|model := %Clipboard%|1|100|Variable|||Input week 4 ||98|
+58|[Pause]||1|300|Sleep|||Input week 4 ||99|
+59|F5|{F5}|1|100|Send|||Input week 4 ||100|
+60|[Pause]||1|300|Sleep|||Input week 4 ||102|
+61|[Text]|{G}{5}{Enter}|1|100|SendEvent|||Input week 4 ||103|
+62|[Pause]||1|300|Sleep|||Input week 4 ||107|
+63|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||Input week 4 ||108|
+64|[Pause]||1|300|Sleep|||Input week 4 ||112|
+65|Down|{Down}|1|100|Send|||Input week 4 ||113|
+66|[Pause]||1|300|Sleep|||Input week 4 ||115|
+67|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||Input week 4 ||116|
+68|[Pause]||1|300|Sleep|||Input week 4 ||118|
+69|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Input week 4 ||119|
+70|[Pause]||1|300|Sleep|||Input week 4 ||121|
+71|[Assign Variable]|qty := %Clipboard%|1|100|Variable|||Input week 4 ||122|
+72|[Pause]||1|300|Sleep|||Input week 4 ||123|
+73|F5|{F5}|1|100|Send|||Input week 4 ||124|
+74|[Pause]||1|300|Sleep|||Input week 4 ||126|
+75|[Text]|{H}{5}{Enter}|1|100|SendEvent|||Input week 4 ||127|
+76|[Pause]||1|300|Sleep|||Input week 4 ||131|
+77|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||Input week 4 ||132|
+78|[Pause]||1|300|Sleep|||Input week 4 ||136|
+79|Down|{Down}|1|100|Send|||Input week 4 ||137|
+80|[Pause]||1|300|Sleep|||Input week 4 ||139|
+81|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||Input week 4 ||140|
+82|[Pause]||1|300|Sleep|||Input week 4 ||142|
+83|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Input week 4 ||143|
+84|[Pause]||1|300|Sleep|||Input week 4 ||145|
+85|[Assign Variable]|uprice := %Clipboard%|1|100|Variable|||Input week 4 ||146|
+86|[Pause]||1|300|Sleep|||Input week 4 ||147|
+87|F5|{F5}|1|100|Send|||Input week 4 ||148|
+88|[Pause]||1|300|Sleep|||Input week 4 ||150|
+89|[Text]|{I}{5}{Enter}|1|100|SendEvent|||Input week 4 ||151|
+90|[Pause]||1|300|Sleep|||Input week 4 ||155|
+91|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||Input week 4 ||156|
+92|[Pause]||1|300|Sleep|||Input week 4 ||160|
+93|Down|{Down}|1|100|Send|||Input week 4 ||161|
+94|[Pause]||1|300|Sleep|||Input week 4 ||163|
+95|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||Input week 4 ||164|
+96|[Pause]||1|300|Sleep|||Input week 4 ||166|
+97|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Input week 4 ||167|
+98|[Pause]||1|300|Sleep|||Input week 4 ||169|
+99|[Assign Variable]|amount := %Clipboard%|1|100|Variable|||Input week 4 ||170|
+100|[Pause]||1|300|Sleep|||Input week 4 ||171|
+101|F5|{F5}|1|100|Send|||Input week 4 ||172|
+102|[Pause]||1|300|Sleep|||Input week 4 ||174|
+103|[Text]|{J}{5}{Enter}|1|100|SendEvent|||Input week 4 ||175|
+104|[Pause]||1|300|Sleep|||Input week 4 ||179|
+105|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||Input week 4 ||180|
+106|[Pause]||1|300|Sleep|||Input week 4 ||184|
+107|Down|{Down}|1|100|Send|||Input week 4 ||185|
+108|[Pause]||1|300|Sleep|||Input week 4 ||187|
+109|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||Input week 4 ||188|
+110|[Pause]||1|300|Sleep|||Input week 4 ||190|
+111|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Input week 4 ||191|
+112|[Pause]||1|300|Sleep|||Input week 4 ||193|
+113|[Assign Variable]|destination := %Clipboard%|1|100|Variable|||Input week 4 ||194|
+114|[Pause]||1|300|Sleep|||Input week 4 ||195|
+115|F5|{F5}|1|100|Send|||Input week 4 ||196|
+116|[Pause]||1|300|Sleep|||Input week 4 ||198|
+117|[Text]|{K}{5}{Enter}|1|100|SendEvent|||Input week 4 ||199|
+118|[Pause]||1|300|Sleep|||Input week 4 ||203|
+119|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||Input week 4 ||204|
+120|[Pause]||1|300|Sleep|||Input week 4 ||208|
+121|Down|{Down}|1|100|Send|||Input week 4 ||209|
+122|[Pause]||1|300|Sleep|||Input week 4 ||211|
+123|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||Input week 4 ||212|
+124|[Pause]||1|300|Sleep|||Input week 4 ||214|
+125|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Input week 4 ||215|
+126|[Pause]||1|300|Sleep|||Input week 4 ||217|
+127|[Assign Variable]|accountee := %Clipboard%|1|100|Variable|||Input week 4 ||218|
+128|[Pause]||1|300|Sleep|||Input week 4 ||219|
+129|F5|{F5}|1|100|Send|||Input week 4 ||220|
+130|[Pause]||1|300|Sleep|||Input week 4 ||222|
+131|[Text]|{L}{5}{Enter}|1|100|SendEvent|||Input week 4 ||223|
+132|[Pause]||1|300|Sleep|||Input week 4 ||227|
+133|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||Input week 4 ||228|
+134|[Pause]||1|300|Sleep|||Input week 4 ||232|
+135|Down|{Down}|1|100|Send|||Input week 4 ||233|
+136|[Pause]||1|300|Sleep|||Input week 4 ||235|
+137|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||Input week 4 ||236|
+138|[Pause]||1|300|Sleep|||Input week 4 ||238|
+139|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Input week 4 ||239|
+140|[Pause]||1|300|Sleep|||Input week 4 ||241|
+141|[Assign Variable]|pebno := %Clipboard%|1|100|Variable|||Input week 4 ||242|
+142|[Pause]||1|300|Sleep|||Input week 4 ||243|
+143|F5|{F5}|1|100|Send|||Input week 4 ||244|
+144|[Pause]||1|300|Sleep|||Input week 4 ||246|
+145|[Text]|{M}{5}{Enter}|1|100|SendEvent|||Input week 4 ||247|
+146|[Pause]||1|300|Sleep|||Input week 4 ||251|
+147|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||Input week 4 ||252|
+148|[Pause]||1|300|Sleep|||Input week 4 ||256|
+149|Down|{Down}|1|100|Send|||Input week 4 ||257|
+150|[Pause]||1|300|Sleep|||Input week 4 ||259|
+151|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||Input week 4 ||260|
+152|[Pause]||1|300|Sleep|||Input week 4 ||262|
+153|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Input week 4 ||263|
+154|[Pause]||1|300|Sleep|||Input week 4 ||265|
+155|[Assign Variable]|pebdate := %Clipboard%|1|100|Variable|||Input week 4 ||266|
+156|[Pause]||1|300|Sleep|||Input week 4 ||267|
+157|F5|{F5}|1|100|Send|||Input week 4 ||268|
+158|[Pause]||1|300|Sleep|||Input week 4 ||270|
+159|[Text]|{N}{5}{Enter}|1|100|SendEvent|||Input week 4 ||271|
+160|[Pause]||1|300|Sleep|||Input week 4 ||275|
+161|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||Input week 4 ||276|
+162|[Pause]||1|300|Sleep|||Input week 4 ||280|
+163|Down|{Down}|1|100|Send|||Input week 4 ||281|
+164|[Pause]||1|300|Sleep|||Input week 4 ||283|
+165|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||Input week 4 ||284|
+166|[Pause]||1|300|Sleep|||Input week 4 ||286|
+167|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Input week 4 ||287|
+168|[Pause]||1|300|Sleep|||Input week 4 ||289|
+169|[Assign Variable]|noaju := %Clipboard%|1|100|Variable|||Input week 4 ||290|
+170|[Pause]||1|300|Sleep|||Input week 4 ||291|
+171|F5|{F5}|1|100|Send|||Input week 4 ||292|
+172|[Pause]||1|300|Sleep|||Input week 4 ||294|
+173|[Text]|{O}{5}{Enter}|1|100|SendEvent|||Input week 4 ||295|
+174|[Pause]||1|300|Sleep|||Input week 4 ||299|
+175|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||Input week 4 ||300|
+176|[Pause]||1|300|Sleep|||Input week 4 ||304|
+177|Down|{Down}|1|100|Send|||Input week 4 ||305|
+178|[Pause]||1|300|Sleep|||Input week 4 ||307|
+179|[Text]|{Control Down}{Shift Down}{Down}{Shift Up}{Control Up}|1|100|SendEvent|||Input week 4 ||308|
+180|[Pause]||1|300|Sleep|||Input week 4 ||312|
+181|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Input week 4 ||313|
+182|[Pause]||1|300|Sleep|||Input week 4 ||315|
+183|[Assign Variable]|npe := %Clipboard%|1|100|Variable|||Input week 4 ||316|
+184|[Pause]||1|300|Sleep|||Input week 4 ||317|
+185|F5|{F5}|1|100|Send|||input week 1 ||318|
+186|[Pause]||1|300|Sleep|||input week 1 ||320|
+187|[Text]|{A}{3}{Enter}|1|100|SendEvent|||input week 1 ||321|
+188|[Pause]||1|300|Sleep|||input week 1 ||325|
+189|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||||326|
+190|[Pause]||1|300|Sleep|||||330|
+191|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||||331|
+192|[Pause]||1|300|Sleep|||||333|
+193|[Assign Variable]|week := %Clipboard%|1|100|Variable|||||334|
+194|[Pause]||1|300|Sleep|||||335|
+195|WinActivate||1|333|WinActivate||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel|Input week 4 ||336|
+196|[Pause]||1|300|Sleep|||Input week 4 ||338|
+197|F5|{F5}|1|100|Send|||Input week 4 ||339|
+198|[Pause]||1|300|Sleep|||Input week 4 ||341|
+199|[Text]|{B}{6}{Enter}|1|100|SendEvent|||Input week 4 ||342|
+200|[Pause]||1|300|Sleep|||Input week 4 ||346|
+201|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||Input week 4 ||347|
+202|[Pause]||1|300|Sleep|||Input week 4 ||351|
+203|Down|{Down}|1|100|Send|||Input week 4 ||352|
+204|[Pause]||1|300|Sleep|||Input week 4 ||354|
+205|[Assign Variable]|Clipboard := %dateETD%|1|100|Variable|||Input week 4 ||355|
+206|[Pause]||1|300|Sleep|||Input week 4 ||356|
+207|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Input week 4 ||357|
+208|[Pause]||1|300|Sleep|||Input week 4 ||359|
+209|F5|{F5}|1|100|Send|||Input week 4 ||360|
+210|[Pause]||1|300|Sleep|||Input week 4 ||362|
+211|[Text]|{C}{6}{Enter}|1|100|SendEvent|||Input week 4 ||363|
+212|[Pause]||1|300|Sleep|||Input week 4 ||367|
+213|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||Input week 4 ||368|
+214|[Pause]||1|300|Sleep|||Input week 4 ||372|
+215|Down|{Down}|1|100|Send|||Input week 4 ||373|
+216|[Pause]||1|300|Sleep|||Input week 4 ||375|
+217|[Assign Variable]|Clipboard := %model%|1|100|Variable|||Input week 4 ||376|
+218|[Pause]||1|300|Sleep|||Input week 4 ||377|
+219|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Input week 4 ||378|
+220|[Pause]||1|300|Sleep|||Input week 4 ||380|
+221|F5|{F5}|1|100|Send|||Input week 4 ||381|
+222|[Pause]||1|300|Sleep|||Input week 4 ||383|
+223|[Text]|{D}{6}{Enter}|1|100|SendEvent|||Input week 4 ||384|
+224|[Pause]||1|300|Sleep|||Input week 4 ||388|
+225|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||Input week 4 ||389|
+226|[Pause]||1|300|Sleep|||Input week 4 ||393|
+227|Down|{Down}|1|100|Send|||Input week 4 ||394|
+228|[Pause]||1|300|Sleep|||Input week 4 ||396|
+229|[Assign Variable]|Clipboard := %sONO%|1|100|Variable|||Input week 4 ||397|
+230|[Pause]||1|300|Sleep|||Input week 4 ||398|
+231|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Input week 4 ||399|
+232|[Pause]||1|300|Sleep|||Input week 4 ||401|
+233|F5|{F5}|1|100|Send|||Input week 4 ||402|
+234|[Pause]||1|300|Sleep|||Input week 4 ||404|
+235|[Text]|{E}{6}{Enter}|1|100|SendEvent|||Input week 4 ||405|
+236|[Pause]||1|300|Sleep|||Input week 4 ||409|
+237|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||Input week 4 ||410|
+238|[Pause]||1|300|Sleep|||Input week 4 ||414|
+239|Down|{Down}|1|100|Send|||Input week 4 ||415|
+240|[Pause]||1|300|Sleep|||Input week 4 ||417|
+241|[Assign Variable]|Clipboard := %invoiceno%|1|100|Variable|||Input week 4 ||418|
+242|[Pause]||1|300|Sleep|||Input week 4 ||419|
+243|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Input week 4 ||420|
+244|[Pause]||1|300|Sleep|||Input week 4 ||422|
+245|F5|{F5}|1|100|Send|||Input week 4 ||423|
+246|[Pause]||1|300|Sleep|||Input week 4 ||425|
+247|[Text]|{F}{6}{Enter}|1|100|SendEvent|||Input week 4 ||426|
+248|[Pause]||1|300|Sleep|||Input week 4 ||430|
+249|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||Input week 4 ||431|
+250|[Pause]||1|300|Sleep|||Input week 4 ||435|
+251|Down|{Down}|1|100|Send|||Input week 4 ||436|
+252|[Pause]||1|300|Sleep|||Input week 4 ||438|
+253|[Assign Variable]|Clipboard := %qty%|1|100|Variable|||Input week 4 ||439|
+254|[Pause]||1|300|Sleep|||Input week 4 ||440|
+255|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Input week 4 ||441|
+256|[Pause]||1|300|Sleep|||Input week 4 ||443|
+257|F5|{F5}|1|100|Send|||Input week 4 ||444|
+258|[Pause]||1|300|Sleep|||Input week 4 ||446|
+259|[Text]|{G}{6}{Enter}|1|100|SendEvent|||Input week 4 ||447|
+260|[Pause]||1|300|Sleep|||Input week 4 ||451|
+261|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||Input week 4 ||452|
+262|[Pause]||1|300|Sleep|||Input week 4 ||456|
+263|Down|{Down}|1|100|Send|||Input week 4 ||457|
+264|[Pause]||1|300|Sleep|||Input week 4 ||459|
+265|[Assign Variable]|Clipboard := %uprice%|1|100|Variable|||Input week 4 ||460|
+266|[Pause]||1|300|Sleep|||Input week 4 ||461|
+267|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Input week 4 ||462|
+268|[Pause]||1|300|Sleep|||Input week 4 ||464|
+269|F5|{F5}|1|100|Send|||Input week 4 ||465|
+270|[Pause]||1|300|Sleep|||Input week 4 ||467|
+271|[Text]|{H}{6}{Enter}|1|100|SendEvent|||Input week 4 ||468|
+272|[Pause]||1|300|Sleep|||Input week 4 ||472|
+273|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||Input week 4 ||473|
+274|[Pause]||1|300|Sleep|||Input week 4 ||477|
+275|Down|{Down}|1|100|Send|||Input week 4 ||478|
+276|[Pause]||1|300|Sleep|||Input week 4 ||480|
+277|[Assign Variable]|Clipboard := %amount%|1|100|Variable|||Input week 4 ||481|
+278|[Pause]||1|300|Sleep|||Input week 4 ||482|
+279|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Input week 4 ||483|
+280|[Pause]||1|300|Sleep|||Input week 4 ||485|
+281|F5|{F5}|1|100|Send|||Input week 4 ||486|
+282|[Pause]||1|300|Sleep|||Input week 4 ||488|
+283|[Text]|{L}{6}{Enter}|1|100|SendEvent|||Input week 4 ||489|
+284|[Pause]||1|300|Sleep|||Input week 4 ||493|
+285|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||Input week 4 ||494|
+286|[Pause]||1|300|Sleep|||Input week 4 ||498|
+287|Down|{Down}|1|100|Send|||Input week 4 ||499|
+288|[Pause]||1|300|Sleep|||Input week 4 ||501|
+289|[Assign Variable]|Clipboard := %destination%|1|100|Variable|||Input week 4 ||502|
+290|[Pause]||1|300|Sleep|||Input week 4 ||503|
+291|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Input week 4 ||504|
+292|[Pause]||1|300|Sleep|||Input week 4 ||506|
+293|F5|{F5}|1|100|Send|||Input week 4 ||507|
+294|[Pause]||1|300|Sleep|||Input week 4 ||509|
+295|[Text]|{O}{6}{Enter}|1|100|SendEvent|||Input week 4 ||510|
+296|[Pause]||1|300|Sleep|||Input week 4 ||514|
+297|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||Input week 4 ||515|
+298|[Pause]||1|300|Sleep|||Input week 4 ||519|
+299|Down|{Down}|1|100|Send|||Input week 4 ||520|
+300|[Pause]||1|300|Sleep|||Input week 4 ||522|
+301|[Assign Variable]|Clipboard := %accountee%|1|100|Variable|||Input week 4 ||523|
+302|[Pause]||1|300|Sleep|||Input week 4 ||524|
+303|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Input week 4 ||525|
+304|[Pause]||1|300|Sleep|||Input week 4 ||527|
+305|F5|{F5}|1|100|Send|||Input week 4 ||528|
+306|[Pause]||1|300|Sleep|||Input week 4 ||530|
+307|[Text]|{P}{6}{Enter}|1|100|SendEvent|||Input week 4 ||531|
+308|[Pause]||1|300|Sleep|||Input week 4 ||535|
+309|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||Input week 4 ||536|
+310|[Pause]||1|300|Sleep|||Input week 4 ||540|
+311|Down|{Down}|1|100|Send|||Input week 4 ||541|
+312|[Pause]||1|300|Sleep|||Input week 4 ||543|
+313|[Assign Variable]|Clipboard := %pebno%|1|100|Variable|||Input week 4 ||544|
+314|[Pause]||1|300|Sleep|||Input week 4 ||545|
+315|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Input week 4 ||546|
+316|[Pause]||1|300|Sleep|||Input week 4 ||548|
+317|F5|{F5}|1|100|Send|||Input week 4 ||549|
+318|[Pause]||1|300|Sleep|||Input week 4 ||551|
+319|[Text]|{Q}{6}{Enter}|1|100|SendEvent|||Input week 4 ||552|
+320|[Pause]||1|300|Sleep|||Input week 4 ||556|
+321|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||Input week 4 ||557|
+322|[Pause]||1|300|Sleep|||Input week 4 ||561|
+323|Down|{Down}|1|100|Send|||Input week 4 ||562|
+324|[Pause]||1|300|Sleep|||Input week 4 ||564|
+325|[Assign Variable]|Clipboard := %pebdate%|1|100|Variable|||Input week 4 ||565|
+326|[Pause]||1|300|Sleep|||Input week 4 ||566|
+327|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Input week 4 ||567|
+328|[Pause]||1|300|Sleep|||Input week 4 ||569|
+329|F5|{F5}|1|100|Send|||Input week 4 ||570|
+330|[Pause]||1|300|Sleep|||Input week 4 ||572|
+331|[Text]|{R}{6}{Enter}|1|100|SendEvent|||Input week 4 ||573|
+332|[Pause]||1|300|Sleep|||Input week 4 ||577|
+333|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||Input week 4 ||578|
+334|[Pause]||1|300|Sleep|||Input week 4 ||582|
+335|Down|{Down}|1|100|Send|||Input week 4 ||583|
+336|[Pause]||1|300|Sleep|||Input week 4 ||585|
+337|[Assign Variable]|Clipboard := %noaju%|1|100|Variable|||Input week 4 ||586|
+338|[Pause]||1|300|Sleep|||Input week 4 ||587|
+339|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Input week 4 ||588|
+340|[Pause]||1|300|Sleep|||Input week 4 ||590|
+341|F5|{F5}|1|100|Send|||Input week 4 ||591|
+342|[Pause]||1|300|Sleep|||Input week 4 ||593|
+343|[Text]|{S}{6}{Enter}|1|100|SendEvent|||Input week 4 ||594|
+344|[Pause]||1|300|Sleep|||Input week 4 ||598|
+345|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||Input week 4 ||599|
+346|[Pause]||1|300|Sleep|||Input week 4 ||603|
+347|Down|{Down}|1|100|Send|||Input week 4 ||604|
+348|[Pause]||1|300|Sleep|||Input week 4 ||606|
+349|[Assign Variable]|Clipboard := %npe%|1|100|Variable|||Input week 4 ||607|
+350|[Pause]||1|300|Sleep|||Input week 4 ||608|
+351|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Input week 4 ||609|
+352|[Pause]||1|300|Sleep|||Input week 4 ||611|
+353|Control + Down|{Control Down}{Down}{Control Up}|1|100|Send|||||612|
+354|[Pause]||1|300|Sleep|||||614|
+355|[Text]|{Left}{Left}{Left}{Left}{Left}|1|100|SendEvent|||||615|
+356|[Pause]||1|300|Sleep|||||619|
+357|[Assign Variable]|Clipboard := %week%|1|100|Variable|||||620|
+358|[Pause]||1|300|Sleep|||||621|
+359|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||||622|
+360|[Pause]||1|300|Sleep|||||624|
+361|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||||625|
+362|[Pause]||1|300|Sleep|||||627|
+363|Shift + Control + Up|{Shift Down}{Control Down}{Up}{Control Up}{Shift Up}|1|100|Send|||||628|
+364|[Pause]||1|300|Sleep|||||630|
+365|Shift + Down|{Shift Down}{Down}{Shift Up}|1|100|Send|||||631|
+366|[Pause]||1|300|Sleep|||||633|
+367|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||||634|
+368|[Pause]||1|300|Sleep|||||636|
+369|[Goto]|Macro7|1|0|Goto|||||637|
+
+[PMC Code v5.3.0]|F10||1|Window,2,Fast,0,1,Input,-1,-1,1|1|Macro7
+Context=None||None|
+Groups=Start:1
+1|WinActivate||1|333|WinActivate||1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel|input week 5 ||1|
+2|[Pause]||1|300|Sleep|||input week 5 ||3|
+3|F5|{F5}|1|100|Send|||input week 5 ||4|
+4|[Pause]||1|300|Sleep|||input week 5 ||6|
+5|[Text]|{B}{5}{Enter}|1|100|SendEvent|||input week 5 ||7|
+6|[Pause]||1|300|Sleep|||input week 5 ||11|
+7|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||input week 5 ||12|
+8|[Pause]||1|300|Sleep|||input week 5 ||16|
+9|Down|{Down}|1|100|Send|||input week 5 ||17|
+10|[Pause]||1|300|Sleep|||input week 5 ||19|
+11|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||input week 5 ||20|
+12|[Pause]||1|300|Sleep|||input week 5 ||22|
+13|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 5 ||23|
+14|[Pause]||1|300|Sleep|||Input week 4 ||25|
+15|[Assign Variable]|dateETD := %Clipboard%|1|100|Variable|||input week 5 ||26|
+16|[Pause]||1|300|Sleep|||input week 5 ||27|
+17|F5|{F5}|1|100|Send|||input week 5 ||28|
+18|[Pause]||1|300|Sleep|||input week 5 ||30|
+19|[Text]|{C}{5}{Enter}|1|100|SendEvent|||input week 5 ||31|
+20|[Pause]||1|300|Sleep|||input week 5 ||35|
+21|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||input week 5 ||36|
+22|[Pause]||1|300|Sleep|||input week 5 ||40|
+23|Down|{Down}|1|100|Send|||input week 5 ||41|
+24|[Pause]||1|300|Sleep|||input week 5 ||43|
+25|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||input week 5 ||44|
+26|[Pause]||1|300|Sleep|||input week 5 ||46|
+27|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 5 ||47|
+28|[Pause]||1|300|Sleep|||Input week 4 ||49|
+29|F5|{F5}|1|100|Send|||input week 5 ||50|
+30|[Pause]||1|300|Sleep|||input week 5 ||52|
+31|[Assign Variable]|sONO := %Clipboard%|1|100|Variable|||input week 5 ||53|
+32|[Pause]||1|300|Sleep|||input week 5 ||54|
+33|[Text]|{E}{5}{Enter}|1|100|SendEvent|||input week 5 ||55|
+34|[Pause]||1|300|Sleep|||input week 5 ||59|
+35|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||input week 5 ||60|
+36|[Pause]||1|300|Sleep|||input week 5 ||64|
+37|Down|{Down}|1|100|Send|||input week 5 ||65|
+38|[Pause]||1|300|Sleep|||input week 5 ||67|
+39|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||input week 5 ||68|
+40|[Pause]||1|300|Sleep|||input week 5 ||70|
+41|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 5 ||71|
+42|[Pause]||1|300|Sleep|||Input week 4 ||73|
+43|[Assign Variable]|invoiceno := %Clipboard%|1|100|Variable|||input week 5 ||74|
+44|[Pause]||1|300|Sleep|||input week 5 ||75|
+45|F5|{F5}|1|100|Send|||input week 5 ||76|
+46|[Pause]||1|300|Sleep|||input week 5 ||78|
+47|[Text]|{F}{5}{Enter}|1|100|SendEvent|||input week 5 ||79|
+48|[Pause]||1|300|Sleep|||input week 5 ||83|
+49|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||input week 5 ||84|
+50|[Pause]||1|300|Sleep|||input week 5 ||88|
+51|Down|{Down}|1|100|Send|||input week 5 ||89|
+52|[Pause]||1|300|Sleep|||input week 5 ||91|
+53|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||input week 5 ||92|
+54|[Pause]||1|300|Sleep|||input week 5 ||94|
+55|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 5 ||95|
+56|[Pause]||1|300|Sleep|||Input week 4 ||97|
+57|[Assign Variable]|model := %Clipboard%|1|100|Variable|||input week 5 ||98|
+58|[Pause]||1|300|Sleep|||input week 5 ||99|
+59|F5|{F5}|1|100|Send|||input week 5 ||100|
+60|[Pause]||1|300|Sleep|||input week 5 ||102|
+61|[Text]|{G}{5}{Enter}|1|100|SendEvent|||input week 5 ||103|
+62|[Pause]||1|300|Sleep|||input week 5 ||107|
+63|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||input week 5 ||108|
+64|[Pause]||1|300|Sleep|||input week 5 ||112|
+65|Down|{Down}|1|100|Send|||input week 5 ||113|
+66|[Pause]||1|300|Sleep|||input week 5 ||115|
+67|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||input week 5 ||116|
+68|[Pause]||1|300|Sleep|||input week 5 ||118|
+69|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 5 ||119|
+70|[Pause]||1|300|Sleep|||Input week 4 ||121|
+71|[Assign Variable]|qty := %Clipboard%|1|100|Variable|||input week 5 ||122|
+72|[Pause]||1|300|Sleep|||input week 5 ||123|
+73|F5|{F5}|1|100|Send|||input week 5 ||124|
+74|[Pause]||1|300|Sleep|||input week 5 ||126|
+75|[Text]|{H}{5}{Enter}|1|100|SendEvent|||input week 5 ||127|
+76|[Pause]||1|300|Sleep|||input week 5 ||131|
+77|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||input week 5 ||132|
+78|[Pause]||1|300|Sleep|||input week 5 ||136|
+79|Down|{Down}|1|100|Send|||input week 5 ||137|
+80|[Pause]||1|300|Sleep|||input week 5 ||139|
+81|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||input week 5 ||140|
+82|[Pause]||1|300|Sleep|||input week 5 ||142|
+83|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 5 ||143|
+84|[Pause]||1|300|Sleep|||Input week 4 ||145|
+85|[Assign Variable]|uprice := %Clipboard%|1|100|Variable|||input week 5 ||146|
+86|[Pause]||1|300|Sleep|||input week 5 ||147|
+87|F5|{F5}|1|100|Send|||input week 5 ||148|
+88|[Pause]||1|300|Sleep|||input week 5 ||150|
+89|[Text]|{I}{5}{Enter}|1|100|SendEvent|||input week 5 ||151|
+90|[Pause]||1|300|Sleep|||input week 5 ||155|
+91|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||input week 5 ||156|
+92|[Pause]||1|300|Sleep|||input week 5 ||160|
+93|Down|{Down}|1|100|Send|||input week 5 ||161|
+94|[Pause]||1|300|Sleep|||input week 5 ||163|
+95|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||input week 5 ||164|
+96|[Pause]||1|300|Sleep|||input week 5 ||166|
+97|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 5 ||167|
+98|[Pause]||1|300|Sleep|||Input week 4 ||169|
+99|[Assign Variable]|amount := %Clipboard%|1|100|Variable|||input week 5 ||170|
+100|[Pause]||1|300|Sleep|||input week 5 ||171|
+101|F5|{F5}|1|100|Send|||input week 5 ||172|
+102|[Pause]||1|300|Sleep|||input week 5 ||174|
+103|[Text]|{J}{5}{Enter}|1|100|SendEvent|||input week 5 ||175|
+104|[Pause]||1|300|Sleep|||input week 5 ||179|
+105|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||input week 5 ||180|
+106|[Pause]||1|300|Sleep|||input week 5 ||184|
+107|Down|{Down}|1|100|Send|||input week 5 ||185|
+108|[Pause]||1|300|Sleep|||input week 5 ||187|
+109|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||input week 5 ||188|
+110|[Pause]||1|300|Sleep|||input week 5 ||190|
+111|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 5 ||191|
+112|[Pause]||1|300|Sleep|||Input week 4 ||193|
+113|[Assign Variable]|destination := %Clipboard%|1|100|Variable|||input week 5 ||194|
+114|[Pause]||1|300|Sleep|||input week 5 ||195|
+115|F5|{F5}|1|100|Send|||input week 5 ||196|
+116|[Pause]||1|300|Sleep|||input week 5 ||198|
+117|[Text]|{K}{5}{Enter}|1|100|SendEvent|||input week 5 ||199|
+118|[Pause]||1|300|Sleep|||input week 5 ||203|
+119|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||input week 5 ||204|
+120|[Pause]||1|300|Sleep|||input week 5 ||208|
+121|Down|{Down}|1|100|Send|||input week 5 ||209|
+122|[Pause]||1|300|Sleep|||input week 5 ||211|
+123|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||input week 5 ||212|
+124|[Pause]||1|300|Sleep|||input week 5 ||214|
+125|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 5 ||215|
+126|[Pause]||1|300|Sleep|||Input week 4 ||217|
+127|[Assign Variable]|accountee := %Clipboard%|1|100|Variable|||input week 5 ||218|
+128|[Pause]||1|300|Sleep|||input week 5 ||219|
+129|F5|{F5}|1|100|Send|||input week 5 ||220|
+130|[Pause]||1|300|Sleep|||input week 5 ||222|
+131|[Text]|{L}{5}{Enter}|1|100|SendEvent|||input week 5 ||223|
+132|[Pause]||1|300|Sleep|||input week 5 ||227|
+133|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||input week 5 ||228|
+134|[Pause]||1|300|Sleep|||input week 5 ||232|
+135|Down|{Down}|1|100|Send|||input week 5 ||233|
+136|[Pause]||1|300|Sleep|||input week 5 ||235|
+137|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||input week 5 ||236|
+138|[Pause]||1|300|Sleep|||input week 5 ||238|
+139|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 5 ||239|
+140|[Pause]||1|300|Sleep|||Input week 4 ||241|
+141|[Assign Variable]|pebno := %Clipboard%|1|100|Variable|||input week 5 ||242|
+142|[Pause]||1|300|Sleep|||input week 5 ||243|
+143|F5|{F5}|1|100|Send|||input week 5 ||244|
+144|[Pause]||1|300|Sleep|||input week 5 ||246|
+145|[Text]|{M}{5}{Enter}|1|100|SendEvent|||input week 5 ||247|
+146|[Pause]||1|300|Sleep|||input week 5 ||251|
+147|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||input week 5 ||252|
+148|[Pause]||1|300|Sleep|||input week 5 ||256|
+149|Down|{Down}|1|100|Send|||input week 5 ||257|
+150|[Pause]||1|300|Sleep|||input week 5 ||259|
+151|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||input week 5 ||260|
+152|[Pause]||1|300|Sleep|||input week 5 ||262|
+153|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 5 ||263|
+154|[Pause]||1|300|Sleep|||Input week 4 ||265|
+155|[Assign Variable]|pebdate := %Clipboard%|1|100|Variable|||input week 5 ||266|
+156|[Pause]||1|300|Sleep|||input week 5 ||267|
+157|F5|{F5}|1|100|Send|||input week 5 ||268|
+158|[Pause]||1|300|Sleep|||input week 5 ||270|
+159|[Text]|{N}{5}{Enter}|1|100|SendEvent|||input week 5 ||271|
+160|[Pause]||1|300|Sleep|||input week 5 ||275|
+161|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||input week 5 ||276|
+162|[Pause]||1|300|Sleep|||input week 5 ||280|
+163|Down|{Down}|1|100|Send|||input week 5 ||281|
+164|[Pause]||1|300|Sleep|||input week 5 ||283|
+165|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||input week 5 ||284|
+166|[Pause]||1|300|Sleep|||input week 5 ||286|
+167|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 5 ||287|
+168|[Pause]||1|300|Sleep|||Input week 4 ||289|
+169|[Assign Variable]|noaju := %Clipboard%|1|100|Variable|||input week 5 ||290|
+170|[Pause]||1|300|Sleep|||input week 5 ||291|
+171|F5|{F5}|1|100|Send|||input week 5 ||292|
+172|[Pause]||1|300|Sleep|||input week 5 ||294|
+173|[Text]|{O}{5}{Enter}|1|100|SendEvent|||input week 5 ||295|
+174|[Pause]||1|300|Sleep|||input week 5 ||299|
+175|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||input week 5 ||300|
+176|[Pause]||1|300|Sleep|||input week 5 ||304|
+177|Down|{Down}|1|100|Send|||input week 5 ||305|
+178|[Pause]||1|300|Sleep|||input week 5 ||307|
+179|[Text]|{Control Down}{Shift Down}{Down}{Shift Up}{Control Up}|1|100|SendEvent|||input week 5 ||308|
+180|[Pause]||1|300|Sleep|||input week 5 ||312|
+181|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||input week 5 ||313|
+182|[Pause]||1|300|Sleep|||Input week 4 ||315|
+183|[Assign Variable]|npe := %Clipboard%|1|100|Variable|||input week 5 ||316|
+184|[Pause]||1|300|Sleep|||input week 5 ||317|
+185|F5|{F5}|1|100|Send|||input week 1 ||318|
+186|[Pause]||1|300|Sleep|||input week 1 ||320|
+187|[Text]|{A}{3}{Enter}|1|100|SendEvent|||input week 1 ||321|
+188|[Pause]||1|300|Sleep|||input week 1 ||325|
+189|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||||326|
+190|[Pause]||1|300|Sleep|||||330|
+191|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||||331|
+192|[Pause]||1|300|Sleep|||||333|
+193|[Assign Variable]|week := %Clipboard%|1|100|Variable|||||334|
+194|[Pause]||1|300|Sleep|||||335|
+195|WinActivate||1|333|WinActivate||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel|input week 5 ||336|
+196|[Pause]||1|300|Sleep|||input week 5 ||338|
+197|F5|{F5}|1|100|Send|||input week 5 ||339|
+198|[Pause]||1|300|Sleep|||input week 5 ||341|
+199|[Text]|{B}{6}{Enter}|1|100|SendEvent|||input week 5 ||342|
+200|[Pause]||1|300|Sleep|||input week 5 ||346|
+201|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||input week 5 ||347|
+202|[Pause]||1|300|Sleep|||input week 5 ||351|
+203|Down|{Down}|1|100|Send|||input week 5 ||352|
+204|[Pause]||1|300|Sleep|||input week 5 ||354|
+205|[Assign Variable]|Clipboard := %dateETD%|1|100|Variable|||input week 5 ||355|
+206|[Pause]||1|300|Sleep|||input week 5 ||356|
+207|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 5 ||357|
+208|[Pause]||1|300|Sleep|||input week 5 ||359|
+209|F5|{F5}|1|100|Send|||input week 5 ||360|
+210|[Pause]||1|300|Sleep|||input week 5 ||362|
+211|[Text]|{C}{6}{Enter}|1|100|SendEvent|||input week 5 ||363|
+212|[Pause]||1|300|Sleep|||input week 5 ||367|
+213|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||input week 5 ||368|
+214|[Pause]||1|300|Sleep|||input week 5 ||372|
+215|Down|{Down}|1|100|Send|||input week 5 ||373|
+216|[Pause]||1|300|Sleep|||input week 5 ||375|
+217|[Assign Variable]|Clipboard := %model%|1|100|Variable|||input week 5 ||376|
+218|[Pause]||1|300|Sleep|||input week 5 ||377|
+219|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 5 ||378|
+220|[Pause]||1|300|Sleep|||input week 5 ||380|
+221|F5|{F5}|1|100|Send|||input week 5 ||381|
+222|[Pause]||1|300|Sleep|||input week 5 ||383|
+223|[Text]|{D}{6}{Enter}|1|100|SendEvent|||input week 5 ||384|
+224|[Pause]||1|300|Sleep|||input week 5 ||388|
+225|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||input week 5 ||389|
+226|[Pause]||1|300|Sleep|||input week 5 ||393|
+227|Down|{Down}|1|100|Send|||input week 5 ||394|
+228|[Pause]||1|300|Sleep|||input week 5 ||396|
+229|[Assign Variable]|Clipboard := %sONO%|1|100|Variable|||input week 5 ||397|
+230|[Pause]||1|300|Sleep|||input week 5 ||398|
+231|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 5 ||399|
+232|[Pause]||1|300|Sleep|||input week 5 ||401|
+233|F5|{F5}|1|100|Send|||input week 5 ||402|
+234|[Pause]||1|300|Sleep|||input week 5 ||404|
+235|[Text]|{E}{6}{Enter}|1|100|SendEvent|||input week 5 ||405|
+236|[Pause]||1|300|Sleep|||input week 5 ||409|
+237|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||input week 5 ||410|
+238|[Pause]||1|300|Sleep|||input week 5 ||414|
+239|Down|{Down}|1|100|Send|||input week 5 ||415|
+240|[Pause]||1|300|Sleep|||input week 5 ||417|
+241|[Assign Variable]|Clipboard := %invoiceno%|1|100|Variable|||input week 5 ||418|
+242|[Pause]||1|300|Sleep|||input week 5 ||419|
+243|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 5 ||420|
+244|[Pause]||1|300|Sleep|||input week 5 ||422|
+245|F5|{F5}|1|100|Send|||input week 5 ||423|
+246|[Pause]||1|300|Sleep|||input week 5 ||425|
+247|[Text]|{F}{6}{Enter}|1|100|SendEvent|||input week 5 ||426|
+248|[Pause]||1|300|Sleep|||input week 5 ||430|
+249|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||input week 5 ||431|
+250|[Pause]||1|300|Sleep|||input week 5 ||435|
+251|Down|{Down}|1|100|Send|||input week 5 ||436|
+252|[Pause]||1|300|Sleep|||input week 5 ||438|
+253|[Assign Variable]|Clipboard := %qty%|1|100|Variable|||input week 5 ||439|
+254|[Pause]||1|300|Sleep|||input week 5 ||440|
+255|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 5 ||441|
+256|[Pause]||1|300|Sleep|||input week 5 ||443|
+257|F5|{F5}|1|100|Send|||input week 5 ||444|
+258|[Pause]||1|300|Sleep|||input week 5 ||446|
+259|[Text]|{G}{6}{Enter}|1|100|SendEvent|||input week 5 ||447|
+260|[Pause]||1|300|Sleep|||input week 5 ||451|
+261|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||input week 5 ||452|
+262|[Pause]||1|300|Sleep|||input week 5 ||456|
+263|Down|{Down}|1|100|Send|||input week 5 ||457|
+264|[Pause]||1|300|Sleep|||input week 5 ||459|
+265|[Assign Variable]|Clipboard := %uprice%|1|100|Variable|||input week 5 ||460|
+266|[Pause]||1|300|Sleep|||input week 5 ||461|
+267|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 5 ||462|
+268|[Pause]||1|300|Sleep|||input week 5 ||464|
+269|F5|{F5}|1|100|Send|||input week 5 ||465|
+270|[Pause]||1|300|Sleep|||input week 5 ||467|
+271|[Text]|{H}{6}{Enter}|1|100|SendEvent|||input week 5 ||468|
+272|[Pause]||1|300|Sleep|||input week 5 ||472|
+273|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||input week 5 ||473|
+274|[Pause]||1|300|Sleep|||input week 5 ||477|
+275|Down|{Down}|1|100|Send|||input week 5 ||478|
+276|[Pause]||1|300|Sleep|||input week 5 ||480|
+277|[Assign Variable]|Clipboard := %amount%|1|100|Variable|||input week 5 ||481|
+278|[Pause]||1|300|Sleep|||input week 5 ||482|
+279|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 5 ||483|
+280|[Pause]||1|300|Sleep|||input week 5 ||485|
+281|F5|{F5}|1|100|Send|||input week 5 ||486|
+282|[Pause]||1|300|Sleep|||input week 5 ||488|
+283|[Text]|{L}{6}{Enter}|1|100|SendEvent|||input week 5 ||489|
+284|[Pause]||1|300|Sleep|||input week 5 ||493|
+285|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||input week 5 ||494|
+286|[Pause]||1|300|Sleep|||input week 5 ||498|
+287|Down|{Down}|1|100|Send|||input week 5 ||499|
+288|[Pause]||1|300|Sleep|||input week 5 ||501|
+289|[Assign Variable]|Clipboard := %destination%|1|100|Variable|||input week 5 ||502|
+290|[Pause]||1|300|Sleep|||input week 5 ||503|
+291|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 5 ||504|
+292|[Pause]||1|300|Sleep|||input week 5 ||506|
+293|F5|{F5}|1|100|Send|||input week 5 ||507|
+294|[Pause]||1|300|Sleep|||input week 5 ||509|
+295|[Text]|{O}{6}{Enter}|1|100|SendEvent|||input week 5 ||510|
+296|[Pause]||1|300|Sleep|||input week 5 ||514|
+297|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||input week 5 ||515|
+298|[Pause]||1|300|Sleep|||input week 5 ||519|
+299|Down|{Down}|1|100|Send|||input week 5 ||520|
+300|[Pause]||1|300|Sleep|||input week 5 ||522|
+301|[Assign Variable]|Clipboard := %accountee%|1|100|Variable|||input week 5 ||523|
+302|[Pause]||1|300|Sleep|||input week 5 ||524|
+303|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 5 ||525|
+304|[Pause]||1|300|Sleep|||input week 5 ||527|
+305|F5|{F5}|1|100|Send|||input week 5 ||528|
+306|[Pause]||1|300|Sleep|||input week 5 ||530|
+307|[Text]|{P}{6}{Enter}|1|100|SendEvent|||input week 5 ||531|
+308|[Pause]||1|300|Sleep|||input week 5 ||535|
+309|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||input week 5 ||536|
+310|[Pause]||1|300|Sleep|||input week 5 ||540|
+311|Down|{Down}|1|100|Send|||input week 5 ||541|
+312|[Pause]||1|300|Sleep|||input week 5 ||543|
+313|[Assign Variable]|Clipboard := %pebno%|1|100|Variable|||input week 5 ||544|
+314|[Pause]||1|300|Sleep|||input week 5 ||545|
+315|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 5 ||546|
+316|[Pause]||1|300|Sleep|||input week 5 ||548|
+317|F5|{F5}|1|100|Send|||input week 5 ||549|
+318|[Pause]||1|300|Sleep|||input week 5 ||551|
+319|[Text]|{Q}{6}{Enter}|1|100|SendEvent|||input week 5 ||552|
+320|[Pause]||1|300|Sleep|||input week 5 ||556|
+321|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||input week 5 ||557|
+322|[Pause]||1|300|Sleep|||input week 5 ||561|
+323|Down|{Down}|1|100|Send|||input week 5 ||562|
+324|[Pause]||1|300|Sleep|||input week 5 ||564|
+325|[Assign Variable]|Clipboard := %pebdate%|1|100|Variable|||input week 5 ||565|
+326|[Pause]||1|300|Sleep|||input week 5 ||566|
+327|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 5 ||567|
+328|[Pause]||1|300|Sleep|||input week 5 ||569|
+329|F5|{F5}|1|100|Send|||input week 5 ||570|
+330|[Pause]||1|300|Sleep|||input week 5 ||572|
+331|[Text]|{R}{6}{Enter}|1|100|SendEvent|||input week 5 ||573|
+332|[Pause]||1|300|Sleep|||input week 5 ||577|
+333|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||input week 5 ||578|
+334|[Pause]||1|300|Sleep|||input week 5 ||582|
+335|Down|{Down}|1|100|Send|||input week 5 ||583|
+336|[Pause]||1|300|Sleep|||input week 5 ||585|
+337|[Assign Variable]|Clipboard := %noaju%|1|100|Variable|||input week 5 ||586|
+338|[Pause]||1|300|Sleep|||input week 5 ||587|
+339|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 5 ||588|
+340|[Pause]||1|300|Sleep|||input week 5 ||590|
+341|F5|{F5}|1|100|Send|||input week 5 ||591|
+342|[Pause]||1|300|Sleep|||input week 5 ||593|
+343|[Text]|{S}{6}{Enter}|1|100|SendEvent|||input week 5 ||594|
+344|[Pause]||1|300|Sleep|||input week 5 ||598|
+345|[Text]|{Control Down}{Down}{Control Up}|1|100|SendEvent|||input week 5 ||599|
+346|[Pause]||1|300|Sleep|||input week 5 ||603|
+347|Down|{Down}|1|100|Send|||input week 5 ||604|
+348|[Pause]||1|300|Sleep|||input week 5 ||606|
+349|[Assign Variable]|Clipboard := %npe%|1|100|Variable|||input week 5 ||607|
+350|[Pause]||1|300|Sleep|||input week 5 ||608|
+351|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||input week 5 ||609|
+352|[Pause]||1|300|Sleep|||input week 5 ||611|
+353|Control + Down|{Control Down}{Down}{Control Up}|1|100|Send|||||612|
+354|[Pause]||1|300|Sleep|||||614|
+355|[Text]|{Left}{Left}{Left}{Left}{Left}|1|100|SendEvent|||||615|
+356|[Pause]||1|300|Sleep|||||619|
+357|[Assign Variable]|Clipboard := %week%|1|100|Variable|||||620|
+358|[Pause]||1|300|Sleep|||||621|
+359|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||||622|
+360|[Pause]||1|300|Sleep|||||624|
+361|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||||625|
+362|[Pause]||1|300|Sleep|||||627|
+363|Shift + Control + Up|{Shift Down}{Control Down}{Up}{Control Up}{Shift Up}|1|100|Send|||||628|
+364|[Pause]||1|300|Sleep|||||630|
+365|Shift + Down|{Shift Down}{Down}{Shift Up}|1|100|Send|||||631|
+366|[Pause]||1|300|Sleep|||||633|
+367|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||||634|
+368|[Pause]||1|300|Sleep|||||636|
+369|[Goto]|Macro8|1|0|Goto|||||637|
+
+[PMC Code v5.3.0]|F11||1|Window,2,Fast,0,1,Input,-1,-1,1|1|Macro8
+Context=None||None|
+Groups=Start:1
+1|WinActivate||1|333|WinActivate||1. WEEKLY REPORT .xls  [Compatibility Mode] - Excel|Copy paste jumlah qty dan amount||1|
+2|[Pause]||1|300|Sleep|||Copy paste jumlah qty dan amount||3|
+3|F5|{F5}|1|100|Send|||Copy paste jumlah qty dan amount||4|
+4|[Pause]||1|300|Sleep|||Copy paste jumlah qty dan amount||6|
+5|[Text]|{G}{5}{Enter}|1|100|SendEvent|||Copy paste jumlah qty dan amount||7|
+6|[Pause]||1|300|Sleep|||Copy paste jumlah qty dan amount||11|
+7|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||Copy paste jumlah qty dan amount||12|
+8|[Pause]||1|300|Sleep|||Copy paste jumlah qty dan amount||16|
+9|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Copy paste jumlah qty dan amount||17|
+10|[Pause]||1|300|Sleep|||Copy paste jumlah qty dan amount||19|
+11|[Assign Variable]|totalqty := %Clipboard%|1|100|Variable|||Copy paste jumlah qty dan amount||20|
+12|[Pause]||1|300|Sleep|||Input week 4 ||21|
+13|F5|{F5}|1|100|Send|||Copy paste jumlah qty dan amount||22|
+14|[Pause]||1|300|Sleep|||Copy paste jumlah qty dan amount||24|
+15|[Text]|{I}{5}{Enter}|1|100|SendEvent|||Copy paste jumlah qty dan amount||25|
+16|[Pause]||1|300|Sleep|||Copy paste jumlah qty dan amount||29|
+17|[Text]|{Control Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}{Control Up}|1|100|SendEvent|||Copy paste jumlah qty dan amount||30|
+18|[Pause]||1|300|Sleep|||Copy paste jumlah qty dan amount||34|
+19|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Copy paste jumlah qty dan amount||35|
+20|[Pause]||1|300|Sleep|||Copy paste jumlah qty dan amount||37|
+21|[Assign Variable]|totalamount := %Clipboard%|1|100|Variable|||Copy paste jumlah qty dan amount||38|
+22|WinActivate||1|333|WinActivate||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel|Copy paste jumlah qty dan amount||39|
+23|[Pause]||1|300|Sleep|||Copy paste jumlah qty dan amount||41|
+24|F5|{F5}|1|100|Send|||Copy paste jumlah qty dan amount||42|
+25|[Pause]||1|300|Sleep|||Copy paste jumlah qty dan amount||44|
+26|[Text]|{F}{6}{Enter}|1|100|SendEvent|||Copy paste jumlah qty dan amount||45|
+27|[Pause]||1|300|Sleep|||Copy paste jumlah qty dan amount||49|
+28|[Text]|{Control Down}{Down}{Down}{Control Up}|1|100|SendEvent|||Copy paste jumlah qty dan amount||50|
+29|[Pause]||1|300|Sleep|||Copy paste jumlah qty dan amount||54|
+30|Down|{Down}|1|100|Send|||Copy paste jumlah qty dan amount||55|
+31|[Pause]||1|300|Sleep|||Copy paste jumlah qty dan amount||57|
+32|[Assign Variable]|Clipboard := %totalqty%|1|100|Variable|||Copy paste jumlah qty dan amount||58|
+33|[Pause]||1|300|Sleep|||Input week 4 ||59|
+34|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Copy paste jumlah qty dan amount||60|
+35|[Pause]||1|300|Sleep|||Copy paste jumlah qty dan amount||62|
+36|F5|{F5}|1|100|Send|||Copy paste jumlah qty dan amount||63|
+37|[Pause]||1|300|Sleep|||Copy paste jumlah qty dan amount||65|
+38|[Text]|{H}{6}{Enter}|1|100|SendEvent|||Copy paste jumlah qty dan amount||66|
+39|[Pause]||1|300|Sleep|||Copy paste jumlah qty dan amount||70|
+40|[Text]|{Control Down}{Down}{Down}{Control Up}|1|100|SendEvent|||Copy paste jumlah qty dan amount||71|
+41|[Pause]||1|300|Sleep|||Copy paste jumlah qty dan amount||75|
+42|Down|{Down}|1|100|Send|||Copy paste jumlah qty dan amount||76|
+43|[Pause]||1|300|Sleep|||Copy paste jumlah qty dan amount||78|
+44|[Assign Variable]|Clipboard := %totalamount%|1|100|Variable|||Copy paste jumlah qty dan amount||79|
+45|[Pause]||1|300|Sleep|||Input week 4 ||80|
+46|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Copy paste jumlah qty dan amount||81|
+47|[Pause]||1|300|Sleep|||Copy paste jumlah qty dan amount||83|
+48|F5|{F5}|1|100|Send|||make pivot tabel||84|
+49|[Pause]||1|300|Sleep|||make pivot tabel||86|
+50|[Text]|{H}{5}{Enter}|1|100|SendEvent|||make pivot tabel||87|
+51|[Pause]||1|300|Sleep|||make pivot tabel||91|
+52|Control + Down|{Control Down}{Down}{Control Up}|1|100|Send|||||92|
+53|[Pause]||1|300|Sleep|||make pivot tabel||94|
+54|Down|{Down}|1|100|Send|||||95|
+55|[Pause]||1|300|Sleep|||make pivot tabel||97|
+56|Right|{Right}|1|100|Send|||||98|
+57|[Pause]||1|300|Sleep|||make pivot tabel||100|
+58|Shift + Control + Right|{Shift Down}{Control Down}{Right}{Control Up}{Shift Up}|1|100|Send|||||101|
+59|[Pause]||1|300|Sleep|||make pivot tabel||103|
+60|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||104|
+61|[Pause]||1|300|Sleep|||make pivot tabel||106|
+62|Delete|{Delete}|1|100|Send|||||107|
+63|[Pause]||1|300|Sleep|||make pivot tabel||109|
+64|F5|{F5}|1|100|Send|||make pivot tabel||110|
+65|[Pause]||1|300|Sleep|||make pivot tabel||112|
+66|[Text]|{B}{6}{Enter}|1|100|SendEvent|||make pivot tabel||113|
+67|[Pause]||1|300|Sleep|||make pivot tabel||117|
+68|[Text]|{Control Down}{Shift Down}{Down}{Right}{Right}{Right}{Right}{Shift Up}{Control Up}|1|100|SendEvent|||make pivot tabel||118|
+69|[Pause]||1|300|Sleep|||make pivot tabel||122|
+70|[Text]|{Alt}{N}{V}{Enter}|1|100|SendEvent|||make pivot tabel||123|
+71|[Pause]||1|500|Sleep|||make pivot tabel||127|
+72|F6|{F6}|1|100|Send|||||128|
+73|[Pause]||1|300|Sleep|||||130|
+74|Down|{Down}|1|100|Send|||make pivot tabel||131|
+75|[Pause]||1|300|Sleep|||make pivot tabel||133|
+76|Space|{Space}|1|100|Send|||make pivot tabel||134|
+77|[Pause]||1|300|Sleep|||make pivot tabel||136|
+78|[Text]|{Down}{Down}{Down}|1|100|SendEvent|||make pivot tabel||137|
+79|[Pause]||1|300|Sleep|||make pivot tabel||141|
+80|AppsKey|{AppsKey}|1|100|Send|||make pivot tabel||142|
+81|[Pause]||1|300|Sleep|||make pivot tabel||144|
+82|[Text]|{Down}{Down}{Enter}|1|100|SendEvent|||make pivot tabel||145|
+83|[Pause]||1|300|Sleep|||make pivot tabel||149|
+84|Down|{Down}|1|100|Send|||make pivot tabel||150|
+85|[Pause]||1|300|Sleep|||make pivot tabel||152|
+86|AppsKey|{AppsKey}|1|100|Send|||make pivot tabel||153|
+87|[Pause]||1|300|Sleep|||make pivot tabel||155|
+88|[Text]|{Down}{Down}{Down}{Down}{Enter}|1|100|SendEvent|||make pivot tabel||156|
+89|[Pause]||1|300|Sleep|||make pivot tabel||160|
+90|[Text]|{Down}{Down}{Down}{Down}|1|100|SendEvent|||make pivot tabel||161|
+91|[Pause]||1|300|Sleep|||make pivot tabel||165|
+92|AppsKey|{AppsKey}|1|100|Send|||make pivot tabel||166|
+93|[Pause]||1|300|Sleep|||make pivot tabel||168|
+94|[Text]|{Down}{Down}{Down}{Down}{Enter}|1|100|SendEvent|||make pivot tabel||169|
+95|[Pause]||1|300|Sleep|||make pivot tabel||173|
+96|[Text]|{Down}{Down}{Down}{Down}|1|100|SendEvent|||make pivot tabel||174|
+97|[Pause]||1|300|Sleep|||make pivot tabel||178|
+98|AppsKey|{AppsKey}|1|100|Send|||make pivot tabel||179|
+99|[Pause]||1|300|Sleep|||make pivot tabel||181|
+100|[Text]|{Down}{Enter}|1|100|SendEvent|||make pivot tabel||182|
+101|[Pause]||1|300|Sleep|||make pivot tabel||186|
+102|Down|{Down}|1|100|Send|||make pivot tabel||187|
+103|[Pause]||1|300|Sleep|||make pivot tabel||189|
+104|AppsKey|{AppsKey}|1|100|Send|||make pivot tabel||190|
+105|[Pause]||1|300|Sleep|||make pivot tabel||192|
+106|[Text]|{Down}{Enter}|1|100|SendEvent|||make pivot tabel||193|
+107|[Pause]||1|300|Sleep|||make pivot tabel||197|
+108|Control + f|{Control Down}{f}{Control Up}|1|100|Send|||||198|
+109|[Pause]||1|300|Sleep|||make pivot tabel||200|
+110|[Text]|{A}{A}{M}{O}{U}{N}{T}{Enter}|1|100|SendEvent|||||201|
+111|[Pause]||1|300|Sleep|||make pivot tabel||205|
+112|Escape|{Escape}|1|100|Send|||||206|
+113|[Pause]||1|300|Sleep|||||208|
+114|F5|{F5}|1|100|Send|||make pivot tabel||209|
+115|[Pause]||1|300|Sleep|||make pivot tabel||211|
+116|[Text]|{B}{2}{Enter}|1|100|SendEvent|||make pivot tabel||212|
+117|[Pause]||1|300|Sleep|||make pivot tabel||216|
+118|Alt + Down|{Alt Down}{Down}{Alt Up}|1|100|Send|||make pivot tabel||217|
+119|[Pause]||1|300|Sleep|||make pivot tabel||219|
+120|[Text]|{Down}{Down}{Down}{Enter}|1|100|SendEvent|||make pivot tabel||220|
+121|[Pause]||1|300|Sleep|||make pivot tabel||224|
+122|Left Move & Click|662, 422 Left, 1|1|10|Click|||||225|
+123|[Pause]||1|300|Sleep|||||227|
+124|F5|{F5}|1|100|Send|||copy SKE Kuning||228|
+125|[Pause]||1|300|Sleep|||copy SKE Kuning||230|
+126|[Text]|{A}{5}{Enter}|1|100|SendEvent|||copy SKE Kuning||231|
+127|[Pause]||1|300|Sleep|||copy SKE Kuning||235|
+128|[Text]|{Alt}{J}{T}{G}|1|100|SendEvent|||copy SKE Kuning||236|
+129|[Pause]||1|300|Sleep|||copy SKE Kuning||240|
+130|[Text]|{Alt Down}{E}{Alt Up}{Enter}|1|100|SendEvent|||||241|
+131|[Pause]||1|300|Sleep|||||245|
+132|[Text]|{Right}{Down}|1|100|SendEvent|||copy SKE Kuning||246|
+133|[Pause]||1|300|Sleep|||copy SKE Kuning||250|
+134|[Text]|{Control Down}{Shift Down}{Right}{Down}{Shift Up}{Control Up}|1|100|SendEvent|||copy SKE Kuning||251|
+135|[Pause]||1|300|Sleep|||copy SKE Kuning||255|
+136|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||copy SKE Kuning||256|
+137|[Pause]||1|300|Sleep|||copy SKE Kuning||258|
+138|[Assign Variable]|pivotTabel := %Clipboard%|1|100|Variable|||copy SKE Kuning||259|
+139|[Pause]||1|300|Sleep|||copy SKE Kuning||260|
+140|[Goto]|Macro9|1|0|Goto|||||261|
+
+[PMC Code v5.3.0]|Numpad2||1|Window,2,Fast,0,1,Input,-1,-1,1|1|Macro9
+Context=None||None|
+Groups=Start:1
+1|WinActivate||1|333|WinActivate||4. SALES REPORT - 1.xlsx - Excel|Input tabel kuning ||1|
+2|[Pause]||1|300|Sleep|||Input tabel kuning ||3|
+3|Control + PgUp|{Control Down}{PgUp}{Control Up}|3|100|Send|||||4|
+4|[Pause]||1|300|Sleep|||Input tabel kuning ||6|
+5|Control + PgDn|{Control Down}{PgDn}{Control Up}|1|100|Send|||||7|
+6|[Pause]||1|300|Sleep|||Input tabel kuning ||9|
+7|F5|{F5}|1|100|Send|||Input tabel kuning ||10|
+8|[Pause]||1|300|Sleep|||Input tabel kuning ||12|
+9|[Text]|{C}{1}{5}{Enter}|1|100|SendEvent|||Input tabel kuning ||13|
+10|[Pause]||1|300|Sleep|||Input tabel kuning ||17|
+11|[Assign Variable]|Clipboard := %pivotTabel%|1|100|Variable|||Input tabel kuning ||18|
+12|[Pause]||1|300|Sleep|||Input tabel kuning ||19|
+13|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Input tabel kuning ||20|
+14|[Pause]||1|300|Sleep|||||22|
+15|F5|{F5}|1|100|Send|||Input tabel kuning ||23|
+16|[Pause]||1|300|Sleep|||Input tabel kuning ||25|
+17|[Text]|{E}{4}{Enter}|1|100|SendEvent|||Input tabel kuning ||26|
+18|[Pause]||1|300|Sleep|||Input tabel kuning ||30|
+19|[Assign Variable]|Clipboard := %inputDate%|1|100|Variable|||Input tabel kuning ||31|
+20|[Pause]||1|300|Sleep|||Input tabel kuning ||32|
+21|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Input tabel kuning ||33|
+22|[Pause]||1|300|Sleep|||Input tabel kuning ||35|
+23|WinActivate||1|333|WinActivate||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel|Input tabel JKC biru||36|
+24|[Pause]||1|300|Sleep|||Input tabel JKC biru||38|
+25|F5|{F5}|1|100|Send|||Input tabel JKC biru||39|
+26|[Pause]||1|300|Sleep|||Input tabel JKC biru||41|
+27|[Text]|{B}{2}{Enter}|1|100|SendEvent|||Input tabel JKC biru||42|
+28|[Pause]||1|300|Sleep|||Input tabel JKC biru||46|
+29|Alt + Down|{Alt Down}{Down}{Alt Up}|1|100|Send|||Input tabel JKC biru||47|
+30|[Pause]||1|300|Sleep|||Input tabel JKC biru||49|
+31|[Text]|{Down}{Up}{Enter}|1|100|SendEvent|||Input tabel JKC biru||50|
+32|[Pause]||1|300|Sleep|||Input tabel JKC biru||54|
+33|[Goto]|mulai|1|0|Goto|||Input tabel JKC biru||55|
+34|[Pause]||1|300|Sleep|||Input tabel JKC biru||56|
+35|[Label]|loopingMulai|1|0|Label|||Input tabel JKC biru||57|
+36|[Pause]||1|300|Sleep|||Input tabel JKC biru||58|
+37|[Assign Variable]|jumlahPerulangan := 0|1|100|Variable|||Input tabel JKC biru||59|
+38|[Label]|mulai|1|0|Label|||Input tabel JKC biru||60|
+39|[Pause]||1|300|Sleep|||Input tabel JKC biru||61|
+40|Compare Variables|jumlahPerulangan = 5|1|0|If_Statement|||Input tabel JKC biru||62|
+41|[Goto]|loopingSelesai|1|0|Goto|||Input tabel JKC biru||64|
+42|[End If]|EndIf|1|0|If_Statement|||Input tabel JKC biru||65|
+43|[Add Variable]|jumlahPerulangan += 1|1|100|Variable|||Input tabel JKC biru||66|
+44|WinActivate||1|333|WinActivate||2. Rekap Sales Export.xls  [Compatibility Mode] - Excel|Input tabel JKC biru||67|
+45|[Pause]||1|300|Sleep|||Input tabel JKC biru||69|
+46|F5|{F5}|1|100|Send|||Input tabel JKC biru||70|
+47|[Pause]||1|300|Sleep|||Input tabel JKC biru||72|
+48|[Text]|{B}{1}{Enter}|1|100|SendEvent|||Input tabel JKC biru||73|
+49|[Pause]||1|300|Sleep|||Input tabel JKC biru||77|
+50|Alt + Down|{Alt Down}{Down}{Alt Up}|1|100|Send|||Input tabel JKC biru||78|
+51|[Pause]||1|300|Sleep|||Input tabel JKC biru||80|
+52|[Text]|{Down}{Down}{Enter}|1|100|SendEvent|||Input tabel JKC biru||81|
+53|[Pause]||1|300|Sleep|||Input tabel JKC biru||85|
+54|F5|{F5}|1|100|Send|||Input tabel JKC biru||86|
+55|[Pause]||1|300|Sleep|||Input tabel JKC biru||88|
+56|[Text]|{A}{5}{Enter}|1|100|SendEvent|||Input tabel JKC biru||89|
+57|[Pause]||1|300|Sleep|||Input tabel JKC biru||93|
+58|Down|{Down}|1|100|Send|||Input tabel JKC biru||94|
+59|[Pause]||1|300|Sleep|||||96|
+60|[Text]|{F2}{Shift Down}{Home}{Shift Up}|1|100|SendEvent|||||97|
+61|[Pause]||1|300|Sleep|||||101|
+62|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||||102|
+63|[Pause]||1|300|Sleep|||||104|
+64|Escape|{Escape}|1|100|Send|||||105|
+65|[Pause]||1|300|Sleep|||||107|
+66|[Assign Variable]|hastag := %Clipboard%|1|100|Variable|||Input tabel kuning ||108|
+67|[Pause]||1|300|Sleep|||||109|
+068|[MsgBox]|hastag = %hastag%|1|0|MsgBox|0||||110|
+69|Compare Variables|hastag contains Grand Total|1|0|If_Statement|||||112|
+70|[Goto]|monthlyReport|1|0|Goto|||||115|
+71|[End If]|EndIf|1|0|If_Statement|||||116|
+72|Right|{Right}|3|100|Send|||||117|
+73|[Pause]||1|300|Sleep|||Input tabel JKC biru||119|
+74|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|100|Send|||||120|
+75|[Pause]||1|300|Sleep|||Input tabel JKC biru||122|
+76|Shift + Left|{Shift Down}{Left}{Shift Up}|2|100|Send|||||123|
+77|[Pause]||1|300|Sleep|||Input tabel JKC biru||125|
+78|Shift + Up|{Shift Down}{Up}{Shift Up}|1|100|Send|||||126|
+79|[Pause]||1|300|Sleep|||||128|
+80|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Input tabel JKC biru||129|
+81|[Pause]||1|300|Sleep|||Input tabel JKC biru||131|
+82|[Assign Variable]|pivot1 := %Clipboard%|1|100|Variable|||Input tabel JKC biru||132|
+83|[Pause]||1|300|Sleep|||Input tabel JKC biru||133|
+84|WinActivate||1|333|WinActivate||5. SALES REPORT.xlsx - Excel|Input tabel JKC biru||134|
+85|[Pause]||1|300|Sleep|||Input tabel JKC biru||136|
+86|F5|{F5}|1|100|Send|||Input tabel JKC biru||137|
+87|[Pause]||1|300|Sleep|||Input tabel JKC biru||139|
+88|[Text]|{D}{1}{3}{Enter}|1|100|SendEvent|||Input tabel JKC biru||140|
+89|[Pause]||1|300|Sleep|||Input tabel JKC biru||144|
+90|[Assign Variable]|Clipboard := %pivot1%|1|100|Variable|||Input tabel JKC biru||145|
+91|[Pause]||1|300|Sleep|||Input tabel JKC biru||146|
+92|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||Input tabel JKC biru||147|
+93|[Pause]||1|300|Sleep|||Input tabel JKC biru||149|
+94|Control + PgDn|{Control Down}{PgDn}{Control Up}|1|100|Send|||||150|
+95|[Pause]||1|300|Sleep|||||152|
+96|[Goto]|loopingMulai|1|0|Goto|||Input tabel JKC biru||153|
+97|[Label]|loopingSelesai|1|0|Label|||Input tabel JKC biru||154|
+98|[Pause]||1|300|Sleep|||||155|
+99|[Label]|monthlyReport|1|0|Label|||||156|
+100|[Pause]||1|300|Sleep|||||157|
+101|WinActivate||1|333|WinActivate||5. SALES REPORT.xlsx - Excel|||158|
+102|[Pause]||1|300|Sleep|||||160|
+103|[Text]|{Control Down}{PgDn}{PgDn}{PgDn}{PgDn}{PgDn}{Control Up}|1|100|SendEvent|||Copy paste total qty dan amount||161|
+104|[Pause]||1|300|Sleep|||||165|
+105|[Text]|{Control Down}{PgUp}{PgUp}{PgUp}{PgUp}{PgUp}{Control Up}|1|100|SendEvent|||||166|
+106|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||170|
+107|F5|{F5}|1|100|Send|||Copy paste total qty dan amount||171|
+108|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||173|
+109|[Text]|{E}{1}{3}{Enter}|1|100|SendEvent|||Copy paste total qty dan amount||174|
+110|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||178|
+111|[Text]|{F2}{Shift Down}{Home}{Shift Up}|1|100|SendEvent|||||179|
+112|[Pause]||1|300|Sleep|||||183|
+113|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||||184|
+114|[Pause]||1|300|Sleep|||||186|
+115|Escape|{Escape}|1|100|Send|||||187|
+116|[Pause]||1|300|Sleep|||||189|
+117|[Assign Variable]|mobileQty := %Clipboard%|1|100|Variable|||Input tabel kuning ||190|
+118|[Pause]||1|300|Sleep|||||191|
+0119|[MsgBox]|Mobile Quantity = %mobileQty%|1|0|MsgBox|0||||192|
+120|Compare Variables|mobileQty = |1|0|If_Statement|||||194|
+121|[Goto]|nextPage|1|0|Goto|||||197|
+122|[End If]|EndIf|1|0|If_Statement|||||198|
+123|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||199|
+124|Control + f|{Control Down}{f}{Control Up}|1|100|Send|||||200|
+125|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||202|
+126|[Text]|{T}{O}{T}{A}{L}|1|100|SendEvent|||||203|
+127|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||207|
+128|Enter|{Enter}|1|100|Send|||||208|
+129|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||210|
+130|Escape|{Escape}|1|100|Send|||||211|
+131|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||213|
+132|Right|{Right}|1|100|Send|||||214|
+133|[Pause]||1|300|Sleep|||||216|
+134|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Copy paste total qty dan amount||217|
+135|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||219|
+136|[Assign Variable]|qty1 := %Clipboard%|1|100|Variable|||Copy paste total qty dan amount||220|
+137|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||221|
+138|Right|{Right}|1|100|Send|||||222|
+139|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||224|
+140|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Copy paste total qty dan amount||225|
+141|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||227|
+142|[Assign Variable]|amount1 := %Clipboard%|1|100|Variable|||Copy paste total qty dan amount||228|
+143|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||229|
+144|Control + PgDn|{Control Down}{PgDn}{Control Up}|1|100|Send|||Copy paste total qty dan amount||230|
+145|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||232|
+146|F5|{F5}|1|100|Send|||Copy paste total qty dan amount||233|
+147|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||235|
+148|[Text]|{E}{1}{3}{Enter}|1|100|SendEvent|||Copy paste total qty dan amount||236|
+149|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||240|
+150|[Text]|{F2}{Shift Down}{Home}{Shift Up}|1|100|SendEvent|||||241|
+151|[Pause]||1|300|Sleep|||||245|
+152|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||||246|
+153|[Pause]||1|300|Sleep|||||248|
+154|Escape|{Escape}|1|100|Send|||||249|
+155|[Pause]||1|300|Sleep|||||251|
+156|[Assign Variable]|mobileQty := %Clipboard%|1|100|Variable|||Input tabel kuning ||252|
+157|[Pause]||1|300|Sleep|||||253|
+0158|[MsgBox]|Mobile Quantity = %mobileQty%|1|0|MsgBox|0||||254|
+159|Compare Variables|mobileQty = |1|0|If_Statement|||||256|
+160|[Goto]|nextPage|1|0|Goto|||||259|
+161|[End If]|EndIf|1|0|If_Statement|||||260|
+162|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||261|
+163|Control + f|{Control Down}{f}{Control Up}|1|100|Send|||||262|
+164|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||264|
+165|[Text]|{T}{O}{T}{A}{L}|1|100|SendEvent|||||265|
+166|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||269|
+167|Enter|{Enter}|1|100|Send|||||270|
+168|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||272|
+169|Escape|{Escape}|1|100|Send|||||273|
+170|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||275|
+171|Right|{Right}|1|100|Send|||||276|
+172|[Pause]||1|300|Sleep|||||278|
+173|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Copy paste total qty dan amount||279|
+174|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||281|
+175|[Assign Variable]|qty2 := %Clipboard%|1|100|Variable|||Copy paste total qty dan amount||282|
+176|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||283|
+177|Right|{Right}|1|100|Send|||||284|
+178|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||286|
+179|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Copy paste total qty dan amount||287|
+180|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||289|
+181|[Assign Variable]|amount2 := %Clipboard%|1|100|Variable|||Copy paste total qty dan amount||290|
+182|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||291|
+183|Control + PgDn|{Control Down}{PgDn}{Control Up}|1|100|Send|||Copy paste total qty dan amount||292|
+184|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||294|
+185|F5|{F5}|1|100|Send|||Copy paste total qty dan amount||295|
+186|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||297|
+187|[Text]|{E}{1}{3}{Enter}|1|100|SendEvent|||Copy paste total qty dan amount||298|
+188|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||302|
+189|[Text]|{F2}{Shift Down}{Home}{Shift Up}|1|100|SendEvent|||||303|
+190|[Pause]||1|300|Sleep|||||307|
+191|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||||308|
+192|[Pause]||1|300|Sleep|||||310|
+193|Escape|{Escape}|1|100|Send|||||311|
+194|[Pause]||1|300|Sleep|||||313|
+195|[Assign Variable]|mobileQty := %Clipboard%|1|100|Variable|||Input tabel kuning ||314|
+196|[Pause]||1|300|Sleep|||||315|
+0197|[MsgBox]|Mobile Quantity = %mobileQty%|1|0|MsgBox|0||||316|
+198|Compare Variables|mobileQty = |1|0|If_Statement|||||318|
+199|[Goto]|nextPage|1|0|Goto|||||321|
+200|[End If]|EndIf|1|0|If_Statement|||||322|
+201|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||323|
+202|Control + f|{Control Down}{f}{Control Up}|1|100|Send|||||324|
+203|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||326|
+204|[Text]|{T}{O}{T}{A}{L}|1|100|SendEvent|||||327|
+205|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||331|
+206|Enter|{Enter}|1|100|Send|||||332|
+207|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||334|
+208|Escape|{Escape}|1|100|Send|||||335|
+209|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||337|
+210|Right|{Right}|1|100|Send|||||338|
+211|[Pause]||1|300|Sleep|||||340|
+212|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Copy paste total qty dan amount||341|
+213|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||343|
+214|[Assign Variable]|qty3 := %Clipboard%|1|100|Variable|||Copy paste total qty dan amount||344|
+215|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||345|
+216|Right|{Right}|1|100|Send|||||346|
+217|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||348|
+218|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Copy paste total qty dan amount||349|
+219|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||351|
+220|[Assign Variable]|amount3 := %Clipboard%|1|100|Variable|||Copy paste total qty dan amount||352|
+221|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||353|
+222|Control + PgDn|{Control Down}{PgDn}{Control Up}|1|100|Send|||Copy paste total qty dan amount||354|
+223|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||356|
+224|F5|{F5}|1|100|Send|||Copy paste total qty dan amount||357|
+225|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||359|
+226|[Text]|{E}{1}{3}{Enter}|1|100|SendEvent|||Copy paste total qty dan amount||360|
+227|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||364|
+228|[Text]|{F2}{Shift Down}{Home}{Shift Up}|1|100|SendEvent|||||365|
+229|[Pause]||1|300|Sleep|||||369|
+230|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||||370|
+231|[Pause]||1|300|Sleep|||||372|
+232|Escape|{Escape}|1|100|Send|||||373|
+233|[Pause]||1|300|Sleep|||||375|
+234|[Assign Variable]|mobileQty := %Clipboard%|1|100|Variable|||Input tabel kuning ||376|
+235|[Pause]||1|300|Sleep|||||377|
+0236|[MsgBox]|Mobile Quantity = %mobileQty%|1|0|MsgBox|0||||378|
+237|Compare Variables|mobileQty = |1|0|If_Statement|||||380|
+238|[Goto]|nextPage|1|0|Goto|||||383|
+239|[End If]|EndIf|1|0|If_Statement|||||384|
+240|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||385|
+241|Control + f|{Control Down}{f}{Control Up}|1|100|Send|||||386|
+242|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||388|
+243|[Text]|{T}{O}{T}{A}{L}|1|100|SendEvent|||||389|
+244|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||393|
+245|Enter|{Enter}|1|100|Send|||||394|
+246|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||396|
+247|Escape|{Escape}|1|100|Send|||||397|
+248|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||399|
+249|Right|{Right}|1|100|Send|||||400|
+250|[Pause]||1|300|Sleep|||||402|
+251|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Copy paste total qty dan amount||403|
+252|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||405|
+253|[Assign Variable]|qty4 := %Clipboard%|1|100|Variable|||Copy paste total qty dan amount||406|
+254|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||407|
+255|Right|{Right}|1|100|Send|||||408|
+256|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||410|
+257|[Assign Variable]|amount4 := %Clipboard%|1|100|Variable|||Copy paste total qty dan amount||411|
+258|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||412|
+259|Control + PgDn|{Control Down}{PgDn}{Control Up}|1|100|Send|||Copy paste total qty dan amount||413|
+260|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||415|
+261|F5|{F5}|1|100|Send|||Copy paste total qty dan amount||416|
+262|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||418|
+263|[Text]|{E}{1}{3}{Enter}|1|100|SendEvent|||Copy paste total qty dan amount||419|
+264|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||423|
+265|[Text]|{F2}{Shift Down}{Home}{Shift Up}|1|100|SendEvent|||||424|
+266|[Pause]||1|300|Sleep|||||428|
+267|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||||429|
+268|[Pause]||1|300|Sleep|||||431|
+269|Escape|{Escape}|1|100|Send|||||432|
+270|[Pause]||1|300|Sleep|||||434|
+271|[Assign Variable]|mobileQty := %Clipboard%|1|100|Variable|||Input tabel kuning ||435|
+272|[Pause]||1|300|Sleep|||||436|
+0273|[MsgBox]|Mobile Quantity = %mobileQty%|1|0|MsgBox|0||||437|
+274|Compare Variables|mobileQty = |1|0|If_Statement|||||439|
+275|[Goto]|nextPage|1|0|Goto|||||442|
+276|[End If]|EndIf|1|0|If_Statement|||||443|
+277|[Pause]||1|300|Sleep|||||444|
+278|Control + f|{Control Down}{f}{Control Up}|1|100|Send|||||445|
+279|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||447|
+280|[Text]|{T}{O}{T}{A}{L}|1|100|SendEvent|||||448|
+281|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||452|
+282|Enter|{Enter}|1|100|Send|||||453|
+283|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||455|
+284|Escape|{Escape}|1|100|Send|||||456|
+285|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||458|
+286|Right|{Right}|1|100|Send|||||459|
+287|[Pause]||1|300|Sleep|||||461|
+288|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||462|
+289|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Copy paste total qty dan amount||463|
+290|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||465|
+291|[Assign Variable]|qty5 := %Clipboard%|1|100|Variable|||Copy paste total qty dan amount||466|
+292|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||467|
+293|Right|{Right}|1|100|Send|||||468|
+294|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||470|
+295|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||Copy paste total qty dan amount||471|
+296|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||473|
+297|[Assign Variable]|amount5 := %Clipboard%|1|100|Variable|||Copy paste total qty dan amount||474|
+298|[Pause]||1|300|Sleep|||||475|
+299|[Label]|nextPage|1|0|Label|||||476|
+300|[Pause]||1|300|Sleep|||||477|
+301|Control + PgDn|{Control Down}{PgDn}{Control Up}|1|100|Send|||||478|
+302|[Pause]||1|300|Sleep|||||480|
+303|F5|{F5}|1|100|Send|||Copy paste total qty dan amount||481|
+304|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||483|
+305|[Text]|{C}{2}{3}{Enter}|1|100|SendEvent|||Copy paste total qty dan amount||484|
+306|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||488|
+307|[Assign Variable]|Clipboard := %qty1%|1|100|Variable|||Copy paste total qty dan amount||489|
+308|[Pause]||1|300|Sleep|||||490|
+309|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||||491|
+310|[Pause]||1|300|Sleep|||||493|
+311|Enter|{Enter}|1|100|Send|||||494|
+312|[Pause]||1|300|Sleep|||||496|
+313|[Assign Variable]|Clipboard := %qty2%|1|100|Variable|||Copy paste total qty dan amount||497|
+314|[Pause]||1|300|Sleep|||||498|
+315|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||||499|
+316|[Pause]||1|300|Sleep|||||501|
+317|Enter|{Enter}|1|100|Send|||||502|
+318|[Pause]||1|300|Sleep|||||504|
+319|[Assign Variable]|Clipboard := %qty3%|1|100|Variable|||Copy paste total qty dan amount||505|
+320|[Pause]||1|300|Sleep|||||506|
+321|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||||507|
+322|[Pause]||1|300|Sleep|||||509|
+323|Enter|{Enter}|1|100|Send|||||510|
+324|[Pause]||1|300|Sleep|||||512|
+325|[Assign Variable]|Clipboard := %qty4%|1|100|Variable|||Copy paste total qty dan amount||513|
+326|[Pause]||1|300|Sleep|||||514|
+327|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||||515|
+328|[Pause]||1|300|Sleep|||||517|
+329|Enter|{Enter}|1|100|Send|||||518|
+330|[Pause]||1|300|Sleep|||||520|
+331|[Assign Variable]|Clipboard := %qty5%|1|100|Variable|||Copy paste total qty dan amount||521|
+332|[Pause]||1|300|Sleep|||||522|
+333|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||||523|
+334|[Pause]||1|300|Sleep|||||525|
+335|F5|{F5}|1|100|Send|||Copy paste total qty dan amount||526|
+336|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||528|
+337|[Text]|{D}{2}{3}{Enter}|1|100|SendEvent|||Copy paste total qty dan amount||529|
+338|[Pause]||1|300|Sleep|||Copy paste total qty dan amount||533|
+339|[Assign Variable]|Clipboard := %amount1%|1|100|Variable|||Copy paste total qty dan amount||534|
+340|[Pause]||1|300|Sleep|||||535|
+341|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||||536|
+342|[Pause]||1|300|Sleep|||||538|
+343|Enter|{Enter}|1|100|Send|||||539|
+344|[Pause]||1|300|Sleep|||||541|
+345|[Assign Variable]|Clipboard := %amount2%|1|100|Variable|||Copy paste total qty dan amount||542|
+346|[Pause]||1|300|Sleep|||||543|
+347|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||||544|
+348|[Pause]||1|300|Sleep|||||546|
+349|Enter|{Enter}|1|100|Send|||||547|
+350|[Pause]||1|300|Sleep|||||549|
+351|[Assign Variable]|Clipboard := %amount3%|1|100|Variable|||Copy paste total qty dan amount||550|
+352|[Pause]||1|300|Sleep|||||551|
+353|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||||552|
+354|[Pause]||1|300|Sleep|||||554|
+355|Enter|{Enter}|1|100|Send|||||555|
+356|[Pause]||1|300|Sleep|||||557|
+357|[Assign Variable]|Clipboard := %amount4%|1|100|Variable|||Copy paste total qty dan amount||558|
+358|[Pause]||1|300|Sleep|||||559|
+359|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||||560|
+360|[Pause]||1|300|Sleep|||||562|
+361|Enter|{Enter}|1|100|Send|||||563|
+362|[Pause]||1|300|Sleep|||||565|
+363|[Assign Variable]|Clipboard := %amount5%|1|100|Variable|||Copy paste total qty dan amount||566|
+364|[Pause]||1|300|Sleep|||||567|
+365|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||||568|
+366|[Pause]||1|300|Sleep|||||570|
+367|[Goto]|selesai|1|0|Goto|||||571|
+
