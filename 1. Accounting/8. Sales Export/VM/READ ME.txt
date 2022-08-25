@@ -1,0 +1,12 @@
+Panduan menggunakan PMC Program Sales Export
+1. Ada 5 file yang digunakan user yang harus diubah terlebih dahulu sebelum menjalankan program PMC, 
+   file tersebut diletakkan pada folder : D:\PMC\Scenarios\1. Accounting\8. Sales Export\Support Files\New File
+2. Untuk file pastikan penamaan harus mengikuti petunjuk dibawah ini :
+   * Weekly report ==> 1. WEEKLY REPORT.xlsx
+   * Rekap Sales Export ==> 2. Rekap Sales Export.xls
+   * Unit Price ==> 3. Unit Price.xlsx
+   * Sales Report SKE ==> 4. SALES REPORT_SKE.xlsx
+   * Sales Report JKC ==> 5. SALES REPORT_JKC.xlsx
+   Atau gunakan file yang ada, dan diganti isinya saja.
+3. Ada beberapa inputan yang harus dilakukan user secara manual, harap perhatikan keterangan pada box inputan.
+4. Sebelum me-runningkan PMC, pastikan posisi kursor di Log pada awal running.
