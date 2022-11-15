@@ -150,7 +150,28 @@ Groups=Start:1
 82|Control + v|{Control Down}{v}{Control Up}|1|200|Send|||||116|
 83|[Pause]||1|300|Sleep|||||118|
 84|Enter|{Enter}|1|200|Send|||||119|
-85|[Goto]|shortlistProcess|1|0|Goto|||||121|
+85|[Pause]||1|300|Sleep|||||121|
+86|goTo|_null := "SF92D!R1"|1|0|Function|||||122|
+87|[Pause]||1|300|Sleep|||||123|
+88|[Text]|{Alt}{A}{S}{A}|1|200|Send||||||
+89|[Pause]||1|300|Sleep||||||
+90|goTo|_null := "A1"|1|0|Function|||||129|
+91|[Pause]||1|300|Sleep||||||
+92|[Text]|{Alt}{a}{t}|1|200|SendEvent|||||124|
+93|[Pause]||1|300|Sleep|||||128|
+94|goTo|_null := "R1"|1|0|Function|||||129|
+95|[Pause]||1|300|Sleep|||||130|
+96|Alt + Down|{Alt Down}{Down}{Alt Up}|1|200|Send|||||131|
+97|[Pause]||1|300|Sleep|||||133|
+98|Down|{Down}|7|200|Send|||||134|
+99|[Pause]||1|300|Sleep|||||139|
+100|[Assign Variable]|Clipboard := %monthShipping%|1|0|Variable|||||140|
+101|[Pause]||1|300|Sleep|||||141|
+102|Control + v|{Control Down}{v}{Control Up}|1|200|Send|||||142|
+103|[Pause]||1|300|Sleep|||||144|
+104|Enter|{Enter}|1|200|Send|||||145|
+105|[Pause]||1|300|Sleep|||||147|
+106|[Goto]|shortlistProcess|1|0|Goto|||||148|
 
 [PMC Code v5.4.1]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|shortlistProcess
 Context=None|
@@ -160,163 +181,163 @@ Groups=Start:1
 3|WinWaitActive||1|333|WinWaitActive||Shortlist.xlsx - Excel|||4|
 4|[Pause]||1|300|Sleep|||||6|
 5|goTo|_null := "'CAR STEREO AND AUDIO'!A1"|1|0|Function|||||7|
-6|[Pause]||1|300|Sleep||||||
-7|goTo|_null := "K1"|1|0|Function|||||7|
-8|[Pause]||1|300|Sleep|||||8|
-9|replaceSetting|_null := |1|0|Function|||||9|
-10|[Pause]||1|300|Sleep|||||10|
-11|goTo|_null := "B1"|1|0|Function|||Vlookup Last Stock||11|
-12|[Pause]||1|300|Sleep|||||12|
-13|replaceSetting|_null := |1|0|Function|||||13|
-14|[Pause]||1|300|Sleep|||Vlookup Last Stock||14|
-15|goTo|_null := "B1"|1|0|Function|||Vlookup Last Stock||15|
-16|[Pause]||1|300|Sleep|||Vlookup Last Stock||16|
-17|Down|{Down}|1|200|Send|||Vlookup Last Stock||17|
-18|[Pause]||1|300|Sleep|||Vlookup Last Stock||19|
-19|[Text]|=Vlookup({Left}`,|1|200|SendEvent|||Vlookup Last Stock||20|
-20|[Pause]||1|500|Sleep|||Vlookup Last Stock||24|
-21|WinActivate||1|333|WinActivate||MASTER MODEL.xlsx - Excel|Vlookup Last Stock||25|
-22|[Pause]||1|300|Sleep|||Vlookup Last Stock||27|
-23|WinWaitActive||1|333|WinWaitActive||MASTER MODEL.xlsx - Excel|Vlookup Last Stock||28|
-24|[Pause]||1|300|Sleep|||Vlookup Last Stock||30|
-25|goTo|_null := "D1"|1|0|Function|||Vlookup Last Stock||31|
-26|[Pause]||1|300|Sleep|||Vlookup Last Stock||32|
-27|Shift + Right|{Shift Down}{Right}{Shift Up}|1|200|Send|||Vlookup Last Stock||33|
-28|[Pause]||1|300|Sleep|||Vlookup Last Stock||35|
-29|Control + Space|{Control Down}{Space}{Control Up}|1|200|Send|||Vlookup Last Stock||36|
-30|[Pause]||1|300|Sleep|||Vlookup Last Stock||38|
-31|[Text]|`,2`,0{Enter}|1|200|SendEvent|||Vlookup Last Stock||39|
-32|[Pause]||1|300|Sleep|||Vlookup Last Stock||43|
-33|Up|{Up}|1|200|Send|||Vlookup Last Stock||44|
-34|[Pause]||1|300|Sleep|||Vlookup Last Stock||46|
-35|Control + c|{Control Down}{c}{Control Up}|1|200|Send|||Vlookup Last Stock||47|
-36|[Pause]||1|300|Sleep|||Vlookup Last Stock||49|
-37|Control + Down|{Control Down}{Down}{Control Up}|1|200|Send|||Vlookup Last Stock||50|
-38|[Pause]||1|300|Sleep|||Vlookup Last Stock||52|
-39|Up|{Up}|1|200|Send|||Vlookup Last Stock||53|
-40|[Pause]||1|300|Sleep|||Vlookup Last Stock||55|
-41|Shift + Control + Up|{Shift Down}{Control Down}{Up}{Control Up}{Shift Up}|1|200|Send|||Vlookup Last Stock||56|
-42|[Pause]||1|300|Sleep|||Vlookup Last Stock||58|
-43|Enter|{Enter}|1|200|Send|||Vlookup Last Stock||59|
-44|[Pause]||1|300|Sleep|||||61|
-45|Control + Up|{Control Down}{Up}{Control Up}|1|200|Send|||||62|
-46|[Pause]||1|300|Sleep|||||64|
-47|Shift + Space|{Shift Down}{Space}{Shift Up}|1|200|Send|||||65|
-48|[Pause]||1|300|Sleep|||||67|
-49|AppsKey|{AppsKey}|1|200|Send|||||68|
-50|[Pause]||1|300|Sleep|||||70|
-51|i|{i}|1|200|Send|||||71|
-52|[Pause]||1|300|Sleep|||||73|
-53|Shift + Space|{Shift Down}{Space}{Shift Up}|1|200|Send|||||74|
-54|[Pause]||1|300|Sleep|||||76|
-55|[Text]|{Alt}{a}{t}|1|200|Send|||||77|
-56|[Pause]||1|300|Sleep|||||79|
-57|goTo|_null := "B1"|1|0|Function|||||80|
-58|[Pause]||1|300|Sleep|||||81|
-59|Down|{Down}|1|200|Send|||||82|
-60|[Pause]||1|300|Sleep|||||84|
-61|Alt + Down|{Alt Down}{Down}{Alt Up}|1|200|Send|||||85|
-62|[Pause]||1|300|Sleep|||||87|
-63|Down|{Down}|8|200|Send|||||88|
-64|[Pause]||1|300|Sleep|||||93|
-65|Space|{Space}|1|200|Send|||||94|
-66|[Pause]||1|300|Sleep|||||96|
-67|Up|{Up}|1|200|Send|||||97|
-68|[Pause]||1|300|Sleep|||||99|
-69|[Text]|#N/A|1|200|SendRaw|||||100|
-70|[Pause]||1|300|Sleep|||||102|
-71|Enter|{Enter}|1|200|Send|||||103|
-72|[Pause]||1|300|Sleep|||||105|
-73|Down|{Down}|1|200|Send|||||106|
-74|[Pause]||1|300|Sleep|||||108|
-75|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|200|Send|||||109|
-76|[Pause]||1|300|Sleep|||||111|
-77|Shift + Up|{Shift Down}{Up}{Shift Up}|1|200|Send|||||112|
-78|[Pause]||1|300|Sleep|||||114|
-79|Delete|{Delete}|1|200|Send|||||115|
-80|[Pause]||1|300|Sleep|||||117|
-81|[Text]|{Alt}{a}{c}|1|200|Send|||||118|
-82|[Pause]||1|300|Sleep|||||120|
-83|Up|{Up}|1|200|Send|||||121|
-84|[Pause]||1|300|Sleep|||||123|
-85|findItem|_null := "VAN"|1|0|Function|||Sum untuk Tanggal pertama||124|
-86|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||125|
-87|Control + Right|{Control Down}{Right}{Control Up}|1|200|Send|||Sum untuk Tanggal pertama||126|
-88|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||128|
-89|Right|{Right}|1|200|Send|||Sum untuk Tanggal pertama||129|
-90|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||131|
-91|Down|{Down}|4|200|Send|||Sum untuk Tanggal pertama||132|
-92|[Pause]||1|300|Sleep|||||137|
-93|[Text]|=Sum({Left}{Shift Down}{Control Down}{Left}{Shift Up}{Control Up}|1|300|SendEvent|||Sum untuk Tanggal pertama||138|
-94|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||142|
-95|[Text]|{Shift Down}{Right}{Shift Up}{Enter}|1|300|SendEvent|||Sum untuk Tanggal pertama||143|
-96|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||147|
-97|Up|{Up}|1|200|Send|||Sum untuk Tanggal pertama||148|
-98|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||150|
-99|Control + c|{Control Down}{c}{Control Up}|1|200|Send|||Sum untuk Tanggal pertama||151|
-100|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||153|
-101|Control + Left|{Control Down}{Left}{Control Up}|1|200|Send|||Sum untuk Tanggal pertama||154|
-102|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||156|
-103|Control + Down|{Control Down}{Down}{Control Up}|1|200|Send|||Sum untuk Tanggal pertama||157|
-104|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||159|
-105|Control + Right|{Control Down}{Right}{Control Up}|1|200|Send|||Sum untuk Tanggal pertama||160|
-106|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||162|
-107|Right|{Right}|1|200|Send|||Sum untuk Tanggal pertama||163|
-108|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||165|
-109|Up|{Up}|1|200|Send|||Sum untuk Tanggal pertama||166|
-110|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||168|
-111|Shift + Control + Up|{Shift Down}{Control Down}{Up}{Control Up}{Shift Up}|1|200|Send|||Sum untuk Tanggal pertama||169|
-112|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||171|
-113|AppsKey|{AppsKey}|1|200|Send|||Sum untuk Tanggal pertama||172|
-114|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||174|
-115|Down|{Down}|2|200|Send|||Sum untuk Tanggal pertama||175|
-116|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||180|
-117|Right|{Right}|2|200|Send|||Sum untuk Tanggal pertama||181|
-118|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||186|
-119|Enter|{Enter}|1|200|Send|||Sum untuk Tanggal pertama||187|
-120|[Pause]||1|300|Sleep|||||189|
-121|[Assign Variable]|loopingSum := %totalDate% - 1|1|0|Variable|Expression||||190|
-122|[Pause]||1|300|Sleep|||||191|
-0123|[MsgBox]|Total Date = %totalDate%`nLooping Sum = %loopingSum%|1|2|MsgBox|0||||192|
-124|[Pause]||1|300|Sleep|||||198|
-125|[Assign Variable]|LoopStart := 0|1|0|Variable|||||200|
-126|[LoopStart]|LoopStart|0|0|Loop|||||201|
-127|[Pause]||1|300|Sleep|||||203|
-128|Compare Variables|LoopStart = %loopingSum%|1|0|If_Statement|||||204|
-129|[Pause]||1|300|Sleep|||||206|
-130|Control + Up|{Control Down}{Up}{Control Up}|1|200|Send|||||207|
-131|[Pause]||1|300|Sleep|||||209|
-132|findItem|_null := "VAN"|1|0|Function|||-||210|
-133|[Pause]||1|300|Sleep|||-||211|
-134|Control + Right|{Control Down}{Right}{Control Up}|1|200|Send|||-||212|
-135|[Pause]||1|300|Sleep|||-||214|
-136|Right|{Right}|2|200|Send|||-||215|
-137|[Pause]||1|300|Sleep|||-||220|
-138|Down|{Down}|4|200|Send|||-||221|
-139|[Pause]||1|300|Sleep|||||226|
-140|[Goto]|inputLooping|1|0|Goto|||||227|
-141|[Pause]||1|300|Sleep|||||228|
-142|[End If]|EndIf|1|0|If_Statement|||||229|
-143|[Pause]||1|300|Sleep|||||230|
-144|Control + Up|{Control Down}{Up}{Control Up}|1|200|Send|||||231|
-145|[Pause]||1|300|Sleep|||||233|
-146|Up|{Up}|4|200|Send|||||234|
-147|[Pause]||1|300|Sleep|||||239|
-148|Control + Right|{Control Down}{Right}{Control Up}|2|200|Send|||||240|
-149|[Pause]||1|300|Sleep|||||245|
-150|Right|{Right}|1|200|Send|||||246|
-151|[Pause]||1|300|Sleep|||||248|
-152|Down|{Down}|4|200|Send|||||249|
-153|[Pause]||1|300|Sleep|||||254|
-154|sumValue|_null := |1|0|Function|||||255|
-155|[Pause]||1|300|Sleep|||||256|
-0156|[MsgBox]|Test|1|0|MsgBox|0||||257|
-157|[Pause]||1|500|Sleep|||||259|
-158|pasteValue|_null := |1|0|Function|||||261|
-159|[Pause]||1|300|Sleep|||||262|
-160|[Add Variable]|LoopStart += 1|1|0|Variable|||||263|
-0161|[MsgBox]|Loop Start (%LoopStart%) = Looping Sum(%loopingSum%)|1|2|MsgBox|0||||264|
-162|[LoopEnd]|LoopEnd|1|0|Loop|||||266|
+6|[Pause]||1|300|Sleep|||||8|
+7|goTo|_null := "K1"|1|0|Function|||||9|
+8|[Pause]||1|300|Sleep|||||10|
+9|replaceSetting|_null := |1|0|Function|||||11|
+10|[Pause]||1|300|Sleep|||||12|
+11|goTo|_null := "B1"|1|0|Function|||Vlookup Last Stock||13|
+12|[Pause]||1|300|Sleep|||||14|
+13|replaceSetting|_null := |1|0|Function|||||15|
+14|[Pause]||1|300|Sleep|||Vlookup Last Stock||16|
+15|goTo|_null := "B1"|1|0|Function|||Vlookup Last Stock||17|
+16|[Pause]||1|300|Sleep|||Vlookup Last Stock||18|
+17|Down|{Down}|1|200|Send|||Vlookup Last Stock||19|
+18|[Pause]||1|300|Sleep|||Vlookup Last Stock||21|
+19|[Text]|=Vlookup({Left}`,|1|200|SendEvent|||Vlookup Last Stock||22|
+20|[Pause]||1|500|Sleep|||Vlookup Last Stock||26|
+21|WinActivate||1|333|WinActivate||MASTER MODEL.xlsx - Excel|Vlookup Last Stock||27|
+22|[Pause]||1|300|Sleep|||Vlookup Last Stock||29|
+23|WinWaitActive||1|333|WinWaitActive||MASTER MODEL.xlsx - Excel|Vlookup Last Stock||30|
+24|[Pause]||1|300|Sleep|||Vlookup Last Stock||32|
+25|goTo|_null := "D1"|1|0|Function|||Vlookup Last Stock||33|
+26|[Pause]||1|300|Sleep|||Vlookup Last Stock||34|
+27|Shift + Right|{Shift Down}{Right}{Shift Up}|1|200|Send|||Vlookup Last Stock||35|
+28|[Pause]||1|300|Sleep|||Vlookup Last Stock||37|
+29|Control + Space|{Control Down}{Space}{Control Up}|1|200|Send|||Vlookup Last Stock||38|
+30|[Pause]||1|300|Sleep|||Vlookup Last Stock||40|
+31|[Text]|`,2`,0{Enter}|1|200|SendEvent|||Vlookup Last Stock||41|
+32|[Pause]||1|300|Sleep|||Vlookup Last Stock||45|
+33|Up|{Up}|1|200|Send|||Vlookup Last Stock||46|
+34|[Pause]||1|300|Sleep|||Vlookup Last Stock||48|
+35|Control + c|{Control Down}{c}{Control Up}|1|200|Send|||Vlookup Last Stock||49|
+36|[Pause]||1|300|Sleep|||Vlookup Last Stock||51|
+37|Control + Down|{Control Down}{Down}{Control Up}|1|200|Send|||Vlookup Last Stock||52|
+38|[Pause]||1|300|Sleep|||Vlookup Last Stock||54|
+39|Up|{Up}|1|200|Send|||Vlookup Last Stock||55|
+40|[Pause]||1|300|Sleep|||Vlookup Last Stock||57|
+41|Shift + Control + Up|{Shift Down}{Control Down}{Up}{Control Up}{Shift Up}|1|200|Send|||Vlookup Last Stock||58|
+42|[Pause]||1|300|Sleep|||Vlookup Last Stock||60|
+43|Enter|{Enter}|1|200|Send|||Vlookup Last Stock||61|
+44|[Pause]||1|300|Sleep|||||63|
+45|Control + Up|{Control Down}{Up}{Control Up}|1|200|Send|||||64|
+46|[Pause]||1|300|Sleep|||||66|
+47|Shift + Space|{Shift Down}{Space}{Shift Up}|1|200|Send|||||67|
+48|[Pause]||1|300|Sleep|||||69|
+49|AppsKey|{AppsKey}|1|200|Send|||||70|
+50|[Pause]||1|300|Sleep|||||72|
+51|i|{i}|1|200|Send|||||73|
+52|[Pause]||1|300|Sleep|||||75|
+53|Shift + Space|{Shift Down}{Space}{Shift Up}|1|200|Send|||||76|
+54|[Pause]||1|300|Sleep|||||78|
+55|[Text]|{Alt}{a}{t}|1|200|Send|||||79|
+56|[Pause]||1|300|Sleep|||||81|
+57|goTo|_null := "B1"|1|0|Function|||||82|
+58|[Pause]||1|300|Sleep|||||83|
+59|Down|{Down}|1|200|Send|||||84|
+60|[Pause]||1|300|Sleep|||||86|
+61|Alt + Down|{Alt Down}{Down}{Alt Up}|1|200|Send|||||87|
+62|[Pause]||1|300|Sleep|||||89|
+63|Down|{Down}|8|200|Send|||||90|
+64|[Pause]||1|300|Sleep|||||95|
+65|Space|{Space}|1|200|Send|||||96|
+66|[Pause]||1|300|Sleep|||||98|
+67|Up|{Up}|1|200|Send|||||99|
+68|[Pause]||1|300|Sleep|||||101|
+69|[Text]|#N/A|1|200|SendRaw|||||102|
+70|[Pause]||1|300|Sleep|||||104|
+71|Enter|{Enter}|1|200|Send|||||105|
+72|[Pause]||1|300|Sleep|||||107|
+73|Down|{Down}|1|200|Send|||||108|
+74|[Pause]||1|300|Sleep|||||110|
+75|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|200|Send|||||111|
+76|[Pause]||1|300|Sleep|||||113|
+77|Shift + Up|{Shift Down}{Up}{Shift Up}|1|200|Send|||||114|
+78|[Pause]||1|300|Sleep|||||116|
+79|Delete|{Delete}|1|200|Send|||||117|
+80|[Pause]||1|300|Sleep|||||119|
+81|[Text]|{Alt}{a}{c}|1|200|Send|||||120|
+82|[Pause]||1|300|Sleep|||||122|
+83|Up|{Up}|1|200|Send|||||123|
+84|[Pause]||1|300|Sleep|||||125|
+85|findItem|_null := "VAN"|1|0|Function|||Sum untuk Tanggal pertama||126|
+86|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||127|
+87|Control + Right|{Control Down}{Right}{Control Up}|1|200|Send|||Sum untuk Tanggal pertama||128|
+88|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||130|
+89|Right|{Right}|1|200|Send|||Sum untuk Tanggal pertama||131|
+90|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||133|
+91|Down|{Down}|4|200|Send|||Sum untuk Tanggal pertama||134|
+92|[Pause]||1|300|Sleep|||||139|
+93|[Text]|=Sum({Left}{Shift Down}{Control Down}{Left}{Shift Up}{Control Up}|1|300|SendEvent|||Sum untuk Tanggal pertama||140|
+94|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||144|
+95|[Text]|{Shift Down}{Right}{Shift Up}{Enter}|1|300|SendEvent|||Sum untuk Tanggal pertama||145|
+96|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||149|
+97|Up|{Up}|1|200|Send|||Sum untuk Tanggal pertama||150|
+98|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||152|
+99|Control + c|{Control Down}{c}{Control Up}|1|200|Send|||Sum untuk Tanggal pertama||153|
+100|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||155|
+101|Control + Left|{Control Down}{Left}{Control Up}|1|200|Send|||Sum untuk Tanggal pertama||156|
+102|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||158|
+103|Control + Down|{Control Down}{Down}{Control Up}|1|200|Send|||Sum untuk Tanggal pertama||159|
+104|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||161|
+105|Control + Right|{Control Down}{Right}{Control Up}|1|200|Send|||Sum untuk Tanggal pertama||162|
+106|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||164|
+107|Right|{Right}|1|200|Send|||Sum untuk Tanggal pertama||165|
+108|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||167|
+109|Up|{Up}|1|200|Send|||Sum untuk Tanggal pertama||168|
+110|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||170|
+111|Shift + Control + Up|{Shift Down}{Control Down}{Up}{Control Up}{Shift Up}|1|200|Send|||Sum untuk Tanggal pertama||171|
+112|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||173|
+113|AppsKey|{AppsKey}|1|200|Send|||Sum untuk Tanggal pertama||174|
+114|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||176|
+115|Down|{Down}|2|200|Send|||Sum untuk Tanggal pertama||177|
+116|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||182|
+117|Right|{Right}|2|200|Send|||Sum untuk Tanggal pertama||183|
+118|[Pause]||1|300|Sleep|||Sum untuk Tanggal pertama||188|
+119|Enter|{Enter}|1|200|Send|||Sum untuk Tanggal pertama||189|
+120|[Pause]||1|300|Sleep|||||191|
+121|[Assign Variable]|loopingSum := %totalDate% - 1|1|0|Variable|Expression||||192|
+122|[Pause]||1|300|Sleep|||||193|
+0123|[MsgBox]|Total Date = %totalDate%`nLooping Sum = %loopingSum%|1|2|MsgBox|0||||194|
+124|[Pause]||1|300|Sleep|||||200|
+125|[Assign Variable]|LoopStart := 0|1|0|Variable|||||202|
+126|[LoopStart]|LoopStart|0|0|Loop|||||203|
+127|[Pause]||1|300|Sleep|||||205|
+128|Compare Variables|LoopStart = %loopingSum%|1|0|If_Statement|||||206|
+129|[Pause]||1|300|Sleep|||||208|
+130|Control + Up|{Control Down}{Up}{Control Up}|1|200|Send|||||209|
+131|[Pause]||1|300|Sleep|||||211|
+132|findItem|_null := "VAN"|1|0|Function|||-||212|
+133|[Pause]||1|300|Sleep|||-||213|
+134|Control + Right|{Control Down}{Right}{Control Up}|1|200|Send|||-||214|
+135|[Pause]||1|300|Sleep|||-||216|
+136|Right|{Right}|2|200|Send|||-||217|
+137|[Pause]||1|300|Sleep|||-||222|
+138|Down|{Down}|4|200|Send|||-||223|
+139|[Pause]||1|300|Sleep|||||228|
+140|[Goto]|inputLooping|1|0|Goto|||||229|
+141|[Pause]||1|300|Sleep|||||230|
+142|[End If]|EndIf|1|0|If_Statement|||||231|
+143|[Pause]||1|300|Sleep|||||232|
+144|Control + Up|{Control Down}{Up}{Control Up}|1|200|Send|||||233|
+145|[Pause]||1|300|Sleep|||||235|
+146|Up|{Up}|4|200|Send|||||236|
+147|[Pause]||1|300|Sleep|||||241|
+148|Control + Right|{Control Down}{Right}{Control Up}|2|200|Send|||||242|
+149|[Pause]||1|300|Sleep|||||247|
+150|Right|{Right}|1|200|Send|||||248|
+151|[Pause]||1|300|Sleep|||||250|
+152|Down|{Down}|4|200|Send|||||251|
+153|[Pause]||1|300|Sleep|||||256|
+154|sumValue|_null := |1|0|Function|||||257|
+155|[Pause]||1|300|Sleep|||||258|
+0156|[MsgBox]|Test|1|0|MsgBox|0||||259|
+157|[Pause]||1|500|Sleep|||||261|
+158|pasteValue|_null := |1|0|Function|||||263|
+159|[Pause]||1|300|Sleep|||||264|
+160|[Add Variable]|LoopStart += 1|1|0|Variable|||||265|
+0161|[MsgBox]|Loop Start (%LoopStart%) = Looping Sum(%loopingSum%)|1|2|MsgBox|0||||266|
+162|[LoopEnd]|LoopEnd|1|0|Loop|||||268|
 
 [PMC Code v5.4.1]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|inputLooping
 Context=None|
@@ -409,85 +430,96 @@ Groups=Start:1
 23|[Text]|0|1|200|SendRaw|||||39|
 24|[Pause]||1|300|Sleep|||||41|
 25|Enter|{Enter}|1|200|Send|||||42|
-26|[Pause]||1|300|Sleep||||||
-27|Down|{Down}|1|200|Send|||||46|
-28|[Pause]||1|300|Sleep|||||48|
-29|Shift + Right|{Shift Down}{Right}{Shift Up}|1|200|Send|||||49|
-30|[Pause]||1|300|Sleep|||||51|
-31|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|200|Send|||||52|
-32|[Pause]||1|300|Sleep|||||54|
-33|Control + c|{Control Down}{c}{Control Up}|1|200|Send|||||55|
-34|WinActivate||1|333|WinActivate||Shortlist.xlsx - Excel|||44|
-35|[Pause]||1|300|Sleep|||||57|
-36|goTo|_null := "Model!B2"|1|0|Function|||||58|
-37|[Pause]||1|300|Sleep|||||59|
-38|[Text]|{Alt}{h}{v}{v}|1|200|Send|||||60|
-39|[Pause]||1|300|Sleep|||||62|
-40|goTo|_null := "'CAR STEREO AND AUDIO'!A1"|1|0|Function|||||63|
-41|[Pause]||1|300|Sleep|||||64|
-42|Down|{Down}|2|200|Send|||||65|
-43|[Pause]||1|300|Sleep|||||70|
-44|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|200|Send|||||71|
-45|[Pause]||1|300|Sleep|||||73|
-46|Control + c|{Control Down}{c}{Control Up}|1|200|Send|||||74|
-47|[Pause]||1|300|Sleep|||||76|
-48|goTo|_null := "Model!A2"|1|0|Function|||||77|
-49|[Pause]||1|300|Sleep|||||78|
-50|[Text]|{Alt}{h}{v}{v}|1|200|Send|||||79|
-51|[Pause]||1|300|Sleep|||||81|
-52|Control + Up|{Control Down}{Up}{Control Up}|1|200|Send|||||82|
-53|[Pause]||1|300|Sleep|||||84|
-54|Down|{Down}|1|200|Send|||||85|
-55|[Pause]||1|300|Sleep|||||87|
-56|[Label]|inputProcess|1|0|Label|||||88|
-57|[Text]|{F2}{Shift Down}{Home}{Shift Up}{Control Down}{c}{Control Up}|1|300|SendEvent|||||89|
-58|[Pause]||1|300|Sleep|||||93|
-59|[Assign Variable]|modelName := %Clipboard%|1|0|Variable|||||94|
-60|[Pause]||1|300|Sleep|||||95|
-061|[MsgBox]|Model Name : %modelName%|1|0|MsgBox|0||||96|
-62|[Pause]||1|300|Sleep|||||97|
-63|Escape|{Escape}|1|200|Send|||||98|
-64|[Pause]||1|300|Sleep|||||100|
-65|Compare Variables|modelName = |1|0|If_Statement|||||101|
-66|[MsgBox]|Stop|1|0|MsgBox|0||||103|
-67|[End If]|EndIf|1|0|If_Statement|||||104|
-68|[Pause]||1|300|Sleep|||||105|
-69|Right|{Right}|1|200|Send|||||106|
-70|[Pause]||1|300|Sleep|||||108|
-71|[Text]|{F2}{Shift Down}{Home}{Shift Up}{Control Down}{c}{Control Up}|1|300|SendEvent|||||109|
-72|[Pause]||1|300|Sleep|||||113|
-73|[Assign Variable]|shipmentQty := %Clipboard%|1|0|Variable|Expression||||114|
-74|[Pause]||1|300|Sleep|||||115|
-075|[MsgBox]|Shipment Qty = %shipmentQty%|1|0|MsgBox|0||||116|
-76|[Pause]||1|300|Sleep|||||117|
-77|Escape|{Escape}|1|200|Send|||||118|
-78|[Pause]||1|300|Sleep|||||120|
-79|Right|{Right}|1|200|Send|||||121|
-80|[Pause]||1|300|Sleep|||||123|
-81|[Text]|{F2}{Shift Down}{Home}{Shift Up}{Control Down}{c}{Control Up}|1|300|SendEvent|||||124|
-82|[Pause]||1|300|Sleep|||||128|
-83|[Assign Variable]|InputQty := %Clipboard%|1|0|Variable|Expression||||129|
-84|[Pause]||1|300|Sleep|||||130|
-085|[MsgBox]|Input Qty = %InputQty%|1|0|MsgBox|0||||131|
-86|[Pause]||1|300|Sleep|||||132|
-87|Escape|{Escape}|1|200|Send|||||133|
-88|[Pause]||1|300|Sleep|||||135|
-89|Down|{Down}|1|200|Send|||||136|
-90|[Pause]||1|300|Sleep|||||138|
-91|Left|{Left}|2|200|Send|||||139|
-92|Compare Variables|shipmentQty = %InputQty%|1|0|If_Statement|||||144|
-93|[MsgBox]|Langsung Input|1|0|MsgBox|0||||146|
-94|WinActivate||1|333|WinActivate||SF92D.xlsx - Excel||||
-95|goTo|_null := "Sheet1!A1|1|0|Function||||||
-96|[ElseIf] Compare Variables|inputQty < 0|1|0|If_Statement|||||147|
-97|[MsgBox]|Tidak perlu diinput|1|0|MsgBox|0||||150|
-98|[ElseIf] Compare Variables|shipmentQty < %inputQty%|1|0|If_Statement|||||151|
-99|[MsgBox]|Proses SF92D|1|0|MsgBox|0||||154|
-100|[ElseIf] Compare Variables|shipmentQty > %inputQty%|1|0|If_Statement|||||155|
-101|[MsgBox]|Langsung input juga|1|0|MsgBox|0||||158|
-102|[End If]|EndIf|1|0|If_Statement|||||159|
-103|[Goto]|inputProcess|1|0|Goto|||||160|
-104|WinActivate||1|333|WinActivate||SF92D.xlsx - Excel|||161|
+26|[Pause]||1|300|Sleep|||||44|
+27|Down|{Down}|1|200|Send|||||45|
+28|[Pause]||1|300|Sleep|||||47|
+29|Shift + Right|{Shift Down}{Right}{Shift Up}|1|200|Send|||||48|
+30|[Pause]||1|300|Sleep|||||50|
+31|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|200|Send|||||51|
+32|[Pause]||1|300|Sleep|||||53|
+33|Control + c|{Control Down}{c}{Control Up}|1|200|Send|||||54|
+34|WinActivate||1|333|WinActivate||Shortlist.xlsx - Excel|||56|
+35|[Pause]||1|300|Sleep|||||58|
+36|goTo|_null := "Model!B2"|1|0|Function|||||59|
+37|[Pause]||1|300|Sleep|||||60|
+38|[Text]|{Alt}{h}{v}{v}|1|200|Send|||||61|
+39|[Pause]||1|300|Sleep|||||63|
+40|goTo|_null := "'CAR STEREO AND AUDIO'!A1"|1|0|Function|||||64|
+41|[Pause]||1|300|Sleep|||||65|
+42|Down|{Down}|2|200|Send|||||66|
+43|[Pause]||1|300|Sleep|||||71|
+44|Shift + Control + Down|{Shift Down}{Control Down}{Down}{Control Up}{Shift Up}|1|200|Send|||||72|
+45|[Pause]||1|300|Sleep|||||74|
+46|Control + c|{Control Down}{c}{Control Up}|1|200|Send|||||75|
+47|[Pause]||1|300|Sleep|||||77|
+48|goTo|_null := "Model!A2"|1|0|Function|||||78|
+49|[Pause]||1|300|Sleep|||||79|
+50|[Text]|{Alt}{h}{v}{v}|1|200|Send|||||80|
+51|[Pause]||1|300|Sleep|||||82|
+52|Control + Up|{Control Down}{Up}{Control Up}|1|200|Send|||||83|
+53|[Pause]||1|300|Sleep|||||85|
+54|Down|{Down}|1|200|Send|||||86|
+55|[Pause]||1|300|Sleep|||||88|
+56|[Label]|inputProcess|1|0|Label|||||89|
+57|[Text]|{F2}{Shift Down}{Home}{Shift Up}{Control Down}{c}{Control Up}|1|300|SendEvent|||||90|
+58|[Pause]||1|300|Sleep|||||94|
+59|[Assign Variable]|modelName := %Clipboard%|1|0|Variable|||||95|
+60|[Pause]||1|300|Sleep|||||96|
+061|[MsgBox]|Model Name : %modelName%|1|0|MsgBox|0||||97|
+62|[Pause]||1|300|Sleep|||||99|
+63|Escape|{Escape}|1|200|Send|||||101|
+64|[Pause]||1|300|Sleep|||||103|
+65|Compare Variables|modelName = |1|0|If_Statement|||||104|
+66|[MsgBox]|Stop|1|0|MsgBox|0||||106|
+67|[End If]|EndIf|1|0|If_Statement|||||107|
+68|[Pause]||1|300|Sleep|||||108|
+69|Right|{Right}|1|200|Send|||||109|
+70|[Pause]||1|300|Sleep|||||111|
+71|[Text]|{F2}{Shift Down}{Home}{Shift Up}{Control Down}{c}{Control Up}|1|300|SendEvent|||||112|
+72|[Pause]||1|300|Sleep|||||116|
+73|[Assign Variable]|shipmentQty := %Clipboard%|1|0|Variable|Expression||||117|
+74|[Pause]||1|300|Sleep|||||118|
+075|[MsgBox]|Shipment Qty = %shipmentQty%|1|0|MsgBox|0||||119|
+76|[Pause]||1|300|Sleep|||||121|
+77|Escape|{Escape}|1|200|Send|||||123|
+78|[Pause]||1|300|Sleep|||||125|
+79|Right|{Right}|1|200|Send|||||126|
+80|[Pause]||1|300|Sleep|||||128|
+81|[Text]|{F2}{Shift Down}{Home}{Shift Up}{Control Down}{c}{Control Up}|1|300|SendEvent|||||129|
+82|[Pause]||1|300|Sleep|||||133|
+83|[Assign Variable]|InputQty := %Clipboard%|1|0|Variable|Expression||||134|
+84|[Pause]||1|300|Sleep|||||135|
+085|[MsgBox]|Input Qty = %InputQty%|1|0|MsgBox|0||||136|
+86|[Pause]||1|300|Sleep|||||138|
+87|Escape|{Escape}|1|200|Send|||||140|
+88|[Pause]||1|300|Sleep|||||142|
+89|Down|{Down}|1|200|Send|||||143|
+90|[Pause]||1|300|Sleep|||||145|
+91|Left|{Left}|2|200|Send|||||146|
+92|Compare Variables|shipmentQty = %InputQty%|1|0|If_Statement|||||151|
+93|[MsgBox]|Langsung Input|1|0|MsgBox|0||||153|
+94|WinActivate||1|333|WinActivate||SF92D.xlsx - Excel|||154|
+95|[Pause]||1|300|Sleep|||||156|
+96|goTo|_null := "SF92D!F1"|1|0|Function|||||157|
+97|[Pause]||1|300|Sleep|||||158|
+98|Alt + Down|{Alt Down}{Down}{Alt Up}|1|200|Send|||||159|
+99|[Pause]||1|300|Sleep|||||161|
+100|Down|{Down}|7|200|Send|||||162|
+101|[Pause]||1|300|Sleep|||||167|
+102|[Assign Variable]|Clipboard := %modelName%|1|0|Variable|||||168|
+103|[Pause]||1|300|Sleep|||||169|
+104|Control + v|{Control Down}{v}{Control Up}|1|200|Send|||||170|
+105|[Pause]||1|300|Sleep|||||172|
+106|Enter|{Enter}|1|200|Send|||||173|
+107|[ElseIf] Compare Variables|inputQty < 0|1|0|If_Statement|||||175|
+108|[MsgBox]|Tidak perlu diinput|1|0|MsgBox|0||||178|
+109|[ElseIf] Compare Variables|shipmentQty < %inputQty%|1|0|If_Statement|||||179|
+110|[MsgBox]|Proses SF92D|1|0|MsgBox|0||||182|
+111|[ElseIf] Compare Variables|shipmentQty > %inputQty%|1|0|If_Statement|||||183|
+112|[MsgBox]|Langsung input juga|1|0|MsgBox|0||||186|
+113|[End If]|EndIf|1|0|If_Statement|||||187|
+114|[Goto]|inputProcess|1|0|Goto|||||188|
+115|WinActivate||1|333|WinActivate||SF92D.xlsx - Excel|||189|
 
 [PMC Code v5.4.1]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|inputToWeb
 Context=None|
@@ -501,6 +533,29 @@ Groups=Start:1
 7|Escape|{Escape}|1|200|Send|||||9|
 8|[Pause]||1|300|Sleep|||||11|
 9|Tab|{Tab}|4|200|Send|||||12|
+10|[Text]|=sum(1/countif(|1|200|SendRaw|||toGet Jumlah Whs||79|
+11|[Pause]||1|200|Sleep|||toGet Jumlah Whs||81|
+12|Control + Up|{Control Down}{Up}{Control Up}|1|200|Send|||toGet Jumlah Whs||82|
+13|[Pause]||1|200|Sleep|||toGet Jumlah Whs||84|
+14|Shift + Control + Up|{Shift Down}{Control Down}{Up}{Control Up}{Shift Up}|1|200|Send|||toGet Jumlah Whs||85|
+15|[Pause]||1|200|Sleep|||toGet Jumlah Whs||87|
+16|[Text]|`,|1|200|SendRaw|||toGet Jumlah Whs||88|
+17|[Pause]||1|200|Sleep|||toGet Jumlah Whs||90|
+18|F2|{F2}|1|100|Send|||toGet Jumlah Whs||91|
+19|[Pause]||1|200|Sleep|||toGet Jumlah Whs||93|
+20|Left|{Left}|1|100|Send|||toGet Jumlah Whs||94|
+21|[Pause]||1|200|Sleep|||toGet Jumlah Whs||96|
+22|[Text]|{Shift Down}{Control Down}{Left 2}{Shift Up}{Control Up}|1|200|SendEvent|||toGet Jumlah Whs||97|
+23|[Pause]||1|200|Sleep|||toGet Jumlah Whs||101|
+24|Control + c|{Control Down}{c}{Control Up}|1|200|Send|||toGet Jumlah Whs||102|
+25|[Pause]||1|200|Sleep|||toGet Jumlah Whs||104|
+26|[Text]|{Control Down}{Right 2}{Control Up}|1|200|SendEvent|||toGet Jumlah Whs||105|
+27|[Pause]||1|200|Sleep|||toGet Jumlah Whs||109|
+28|Control + v|{Control Down}{v}{Control Up}|1|200|Send|||toGet Jumlah Whs||110|
+29|[Pause]||1|200|Sleep|||toGet Jumlah Whs||112|
+30|[Text]|))|1|200|SendRaw|||toGet Jumlah Whs||113|
+31|[Pause]||1|200|Sleep|||toGet Jumlah Whs||115|
+32|Shift + Control + Enter|{Shift Down}{Control Down}{Enter}{Control Up}{Shift Up}|1|200|Send|||toGet Jumlah Whs||116|
 
 [PMC Code v5.4.1]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|goTo()
 Context=None|
@@ -681,5 +736,5 @@ Groups=Start:1
 24|[Pause]||1|300|Sleep|||||45|
 25|Enter|{Enter}|1|200|Send|||||46|
 26|[Pause]||1|300|Sleep|||||48|
-27|[FuncReturn]|Return|1|0|FuncReturn|||||3|
+27|[FuncReturn]|Return|1|0|FuncReturn|||||49|
 
